@@ -36,6 +36,10 @@ const CustomWeightDot = (props) => {
 export default function CutProgressDashboard() {
   const [fixSwaps, setFixSwaps] = useState(true);
 
+  // Interactive Projection States
+  const [simulatedOneOff, setSimulatedOneOff] = useState(0); // +/- calories (one time)
+  const [simulatedDaily, setSimulatedDaily] = useState(0);   // +/- calories (every day)
+
   // Process data
   const chartData = useMemo(() => {
     const cleanedData = rawData.map(day => {
@@ -65,7 +69,15 @@ export default function CutProgressDashboard() {
   const projectionStats = useMemo(() => {
     const startWeight = rawData[0].weight;
     const currentWeight = rawData[rawData.length - 1].weight;
-    const lbsRemaining = currentWeight - 155;
+    let lbsRemaining = currentWeight - 155;
+
+    // --- APPLY SIMULATIONS ---
+    // 1. One-Off Event: 3,500 kcal = 1lb
+    const oneOffLbsEffect = simulatedOneOff / 3500;
+    lbsRemaining += oneOffLbsEffect;
+
+    // Safety check if user simulates eating their way out of the goal entirely
+    if (lbsRemaining < 0) lbsRemaining = 0;
 
     const parseDate = (dateStr) => {
       const [month, day] = dateStr.split('/');
@@ -78,25 +90,34 @@ export default function CutProgressDashboard() {
 
     const lbsLost = startWeight - currentWeight;
     const historicalRatePerWeek = (lbsLost / daysElapsed) * 7;
+
+    // 2. Daily Habit Event: 500 kcal daily deficit = 1lb per week
+    const dailyLbsEffectPerWeek = simulatedDaily / 500;
+    let simulatedRatePerWeek = historicalRatePerWeek - dailyLbsEffectPerWeek;
+    // Example: If burn is 1 lb/wk, and user adds +500 daily: 1 - 1 = 0 burn rate.
+    // Ensure we don't divide by zero or negative if they simulate a huge surplus.
+    if (simulatedRatePerWeek <= 0.05) simulatedRatePerWeek = 0.05;
+
     const targetRatePerWeek = 1.0;
 
-    const daysRemainingHistorical = (lbsRemaining / historicalRatePerWeek) * 7;
+    const daysRemainingSimulated = (lbsRemaining / simulatedRatePerWeek) * 7;
     const daysRemainingTarget = (lbsRemaining / targetRatePerWeek) * 7;
 
-    const projectedDateHistorical = new Date(endDate);
-    projectedDateHistorical.setDate(projectedDateHistorical.getDate() + daysRemainingHistorical);
+    const projectedDateSimulated = new Date(endDate);
+    projectedDateSimulated.setDate(projectedDateSimulated.getDate() + daysRemainingSimulated);
 
     const projectedDateTarget = new Date(endDate);
     projectedDateTarget.setDate(projectedDateTarget.getDate() + daysRemainingTarget);
 
     return {
       historicalRate: historicalRatePerWeek.toFixed(2),
+      simulatedRate: simulatedRatePerWeek.toFixed(2),
       targetRate: targetRatePerWeek.toFixed(2),
       lbsRemaining: lbsRemaining.toFixed(1),
-      dateHistorical: projectedDateHistorical.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      dateSimulated: projectedDateSimulated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
       dateTarget: projectedDateTarget.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     };
-  }, []);
+  }, [simulatedOneOff, simulatedDaily]);
 
   const latestData = chartData[chartData.length - 1];
   const currentAvg = latestData.weightAvg;
@@ -220,18 +241,83 @@ export default function CutProgressDashboard() {
               <h2 className="text-xl font-bold tracking-wide">155 lbs Goal Projection</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white/10 rounded-xl p-5 border border-white/20">
+              <div className="bg-white/10 rounded-xl p-5 border border-white/20 flex flex-col justify-center">
                 <div className="text-blue-200 text-sm font-medium mb-1">Distance to Goal</div>
                 <div className="text-4xl font-bold">{projectionStats.lbsRemaining} <span className="text-lg font-normal opacity-80">lbs</span></div>
-              </div>
-              <div className="bg-white/10 rounded-xl p-5 border border-white/20">
-                <div className="text-blue-200 text-sm font-medium mb-1">Your Historical Rate</div>
-                <div className="text-4xl font-bold">{projectionStats.historicalRate} <span className="text-lg font-normal opacity-80">lbs/wk</span></div>
-                <div className="text-sm font-medium text-blue-200 mt-2 flex items-center gap-1">
-                  <CalendarDays size={14} /> Hits Goal: <span className="text-white font-semibold ml-1">{projectionStats.dateHistorical}</span>
+                <div className="text-sm font-medium text-blue-200 mt-2 flex justify-between items-center">
+                  <span>Baseline Rate:</span>
+                  <span className="text-white font-semibold">{projectionStats.historicalRate} lbs/wk</span>
                 </div>
               </div>
-              <div className="bg-white/10 rounded-xl p-5 border border-white/20 relative overflow-hidden">
+
+              {/* INTERACTIVE SIMULATION CARD */}
+              <div className="bg-white/20 rounded-xl p-5 border-2 border-amber-400/50 shadow-[0_0_15px_rgba(251,191,36,0.1)] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-amber-500 text-amber-950 text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">INTERACTIVE</div>
+                <div className="text-amber-200 text-sm font-bold mb-2 flex items-center gap-1.5 relative z-10">
+                  <Lightbulb size={16} /> Simulated Trajectory
+                </div>
+
+                <div className="space-y-4 relative z-10">
+                  {/* Slider 1: One-Off Event */}
+                  <div>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-white/80">One-Off Event</span>
+                      <span className="font-mono bg-white/10 px-1 rounded">{simulatedOneOff > 0 ? '+' : ''}{simulatedOneOff} kcal</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="-7000" max="7000" step="500"
+                      value={simulatedOneOff}
+                      onChange={(e) => setSimulatedOneOff(Number(e.target.value))}
+                      className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                    />
+                    <div className="flex justify-between text-[10px] text-white/50 mt-1">
+                      <span>-48h Fast</span>
+                      <span>+Bad Binge</span>
+                    </div>
+                  </div>
+
+                  {/* Slider 2: Daily Habit Change */}
+                  <div>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-white/80">Daily Habit +/-</span>
+                      <span className="font-mono bg-white/10 px-1 rounded">{simulatedDaily > 0 ? '+' : ''}{simulatedDaily} kcal/day</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="-1000" max="1000" step="100"
+                      value={simulatedDaily}
+                      onChange={(e) => setSimulatedDaily(Number(e.target.value))}
+                      className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                    />
+                    <div className="flex justify-between text-[10px] text-white/50 mt-1">
+                      <span>Extra Deficit</span>
+                      <span>Extra Surplus</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/20 flex flex-col relative z-10">
+                  <div className="text-2xl font-bold text-amber-300">
+                    {projectionStats.simulatedRate} <span className="text-sm font-normal opacity-80 text-white">lbs/wk</span>
+                  </div>
+                  <div className="text-sm font-medium text-amber-100 mt-1 flex items-center gap-1">
+                    <CalendarDays size={14} /> Hits Goal: <span className="text-white font-bold ml-1 bg-amber-500/20 px-1.5 py-0.5 rounded">{projectionStats.dateSimulated}</span>
+                  </div>
+
+                  {/* Quick Reset Button visible when active */}
+                  {(simulatedOneOff !== 0 || simulatedDaily !== 0) && (
+                    <button
+                      onClick={() => { setSimulatedOneOff(0); setSimulatedDaily(0); }}
+                      className="absolute bottom-0 right-0 text-[10px] text-white/60 hover:text-white bg-white/10 px-2 py-1 rounded transition-colors"
+                    >
+                      Reset Math
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-white/10 rounded-xl p-5 border border-white/20 relative overflow-hidden flex flex-col justify-center">
                 <div className="absolute -right-4 -bottom-4 opacity-5"><Target size={120} /></div>
                 <div className="text-blue-200 text-sm font-medium mb-1 relative z-10">Target Protocol Rate</div>
                 <div className="text-4xl font-bold relative z-10">{projectionStats.targetRate} <span className="text-lg font-normal opacity-80">lbs/wk</span></div>
