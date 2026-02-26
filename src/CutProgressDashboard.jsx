@@ -1,0 +1,434 @@
+import React, { useState, useMemo } from 'react';
+import {
+  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid,
+  Tooltip, Legend, ResponsiveContainer, ReferenceLine
+} from 'recharts';
+import {
+  TrendingDown, Scale, Activity, Ruler, Info, Target,
+  CalendarDays, CheckCircle2, XCircle, Moon, Utensils, Lightbulb
+} from 'lucide-react';
+
+// Enriched data with Calories, Protein, Sleep, and Adherence Status
+import rawData from './data.json';
+
+// Custom Dot for Weight Chart to show context
+const CustomWeightDot = (props) => {
+  const { cx, cy, payload } = props;
+
+  if (!cx || !cy) return null;
+
+  let fill = "#3b82f6"; // Default Blue (Linear/Tier 2)
+  let stroke = "#fff";
+
+  if (payload.status === 'Fail') {
+    fill = "#f59e0b"; // Orange/Yellow for slips
+  } else if (payload.tier === 'Tier 1') {
+    fill = "#ef4444"; // Red for Hard Muay Thai
+  } else if (payload.tier === 'Tier 3') {
+    fill = "#22c55e"; // Green for Fasting
+  }
+
+  return (
+    <circle cx={cx} cy={cy} r={5} fill={fill} stroke={stroke} strokeWidth={2} />
+  );
+};
+
+export default function CutProgressDashboard() {
+  const [fixSwaps, setFixSwaps] = useState(true);
+
+  // Process data
+  const chartData = useMemo(() => {
+    const cleanedData = rawData.map(day => {
+      let navel = day.waistNavel;
+      let plus2 = day.waistPlus2;
+
+      if (fixSwaps && navel && plus2 && plus2 > navel + 0.5) {
+        navel = day.waistPlus2;
+        plus2 = day.waistNavel;
+      }
+      return { ...day, waistNavel: navel, waistPlus2: plus2 };
+    });
+
+    return cleanedData.map((row, index, arr) => {
+      let sum = 0, count = 0;
+      for (let i = Math.max(0, index - 6); i <= index; i++) {
+        if (arr[i].weight) { sum += arr[i].weight; count++; }
+      }
+      return {
+        ...row,
+        weightAvg: count > 0 ? Number((sum / count).toFixed(1)) : null
+      };
+    });
+  }, [fixSwaps]);
+
+  // Goal Projection Calculations
+  const projectionStats = useMemo(() => {
+    const startWeight = rawData[0].weight;
+    const currentWeight = rawData[rawData.length - 1].weight;
+    const lbsRemaining = currentWeight - 155;
+
+    const parseDate = (dateStr) => {
+      const [month, day] = dateStr.split('/');
+      return new Date(2026, parseInt(month) - 1, parseInt(day));
+    };
+
+    const startDate = parseDate(rawData[0].date);
+    const endDate = parseDate(rawData[rawData.length - 1].date);
+    const daysElapsed = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+    const lbsLost = startWeight - currentWeight;
+    const historicalRatePerWeek = (lbsLost / daysElapsed) * 7;
+    const targetRatePerWeek = 1.0;
+
+    const daysRemainingHistorical = (lbsRemaining / historicalRatePerWeek) * 7;
+    const daysRemainingTarget = (lbsRemaining / targetRatePerWeek) * 7;
+
+    const projectedDateHistorical = new Date(endDate);
+    projectedDateHistorical.setDate(projectedDateHistorical.getDate() + daysRemainingHistorical);
+
+    const projectedDateTarget = new Date(endDate);
+    projectedDateTarget.setDate(projectedDateTarget.getDate() + daysRemainingTarget);
+
+    return {
+      historicalRate: historicalRatePerWeek.toFixed(2),
+      targetRate: targetRatePerWeek.toFixed(2),
+      lbsRemaining: lbsRemaining.toFixed(1),
+      dateHistorical: projectedDateHistorical.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      dateTarget: projectedDateTarget.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+  }, []);
+
+  const latestData = chartData[chartData.length - 1];
+  const currentAvg = latestData.weightAvg;
+
+  // Calculate adherence stats
+  const totalDays = chartData.length;
+  const passDays = chartData.filter(d => d.status === 'Pass').length;
+  const adherencePercent = Math.round((passDays / totalDays) * 100);
+
+  return (
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
+      <div className="max-w-7xl mx-auto space-y-6">
+
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div>
+            <h1 className="text-2xl font-bold flex items-center gap-2">
+              <Activity className="text-blue-600" />
+              Combat Nutrition Progress
+            </h1>
+            <p className="text-slate-500 text-sm mt-1">Metabolic Audit & Linear Cut Block (Jan 19 - Feb 25)</p>
+          </div>
+
+          <div className="mt-4 md:mt-0 flex items-center bg-slate-100 p-1 rounded-lg">
+            <button onClick={() => setFixSwaps(true)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Auto-Fix Waist Data</button>
+            <button onClick={() => setFixSwaps(false)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${!fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Raw Logs</button>
+          </div>
+        </div>
+
+        {/* Adherence Heatmap & Stats */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <h2 className="text-lg font-bold flex items-center gap-2">
+              <CheckCircle2 className="text-green-500" size={20} />
+              Behavioral Adherence Tracker
+            </h2>
+            <div className="text-sm font-medium bg-slate-100 px-3 py-1 rounded-full mt-2 md:mt-0">
+              Pass Rate: <span className={`${adherencePercent >= 85 ? 'text-green-600' : 'text-amber-600'} font-bold`}>{adherencePercent}%</span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {chartData.map((day, i) => (
+              <div
+                key={i}
+                title={`${day.date} | ${day.tier} | Status: ${day.status}`}
+                className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold text-white transition-transform hover:scale-110 cursor-help
+                  ${day.status === 'Pass' ? 'bg-green-500 shadow-sm' : 'bg-amber-400 shadow-inner'}`}
+              >
+                {day.status === 'Pass' ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
+              </div>
+            ))}
+          </div>
+          <div className="text-xs text-slate-500 mt-3 flex items-center gap-4">
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-green-500 rounded-sm"></div> Controlled & Compliant</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-amber-400 rounded-sm"></div> Slip / Unplanned Flex</div>
+          </div>
+
+          <div className="mt-4 bg-green-50/50 border border-green-100/80 rounded-xl p-4">
+            <h3 className="text-sm font-bold text-green-900 flex items-center gap-1.5 mb-2">
+              <Lightbulb size={16} className="text-amber-500" />
+              Coach's Analysis
+            </h3>
+            <ul className="text-xs text-green-800/90 space-y-2">
+              <li>
+                <strong className="text-green-900 font-semibold">Consistency &gt; Perfection:</strong> A pass rate of {adherencePercent}% means the system is working. Physique is built by stacking 85–90% disciplined weeks.
+              </li>
+              <li>
+                <strong className="text-green-900 font-semibold">Controlled Leakage:</strong> Your "Fails" (like the Feb 14th Valentine's or Feb 21st Buffet) were contained. You stopped eating, you didn't spiral, and you returned to structure the next morning.
+              </li>
+              <li>
+                <strong className="text-green-900 font-semibold">Actionable Takeaway:</strong> A single slip does not erase a week of green days. Keep your adherence above 90% and the math will take care of the fat loss.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* KPI Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div className="flex justify-between items-center text-slate-500 mb-2">
+              <span className="text-sm font-semibold">Current Weight</span>
+              <Scale size={18} />
+            </div>
+            <div className="text-3xl font-bold">{latestData.weight} <span className="text-base font-normal text-slate-500">lbs</span></div>
+            <div className="text-xs text-green-600 font-medium mt-2 flex items-center gap-1"><TrendingDown size={14} /> From Peak: -4.6 lbs</div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div className="flex justify-between items-center text-slate-500 mb-2">
+              <span className="text-sm font-semibold">7-Day Trend (Avg)</span>
+              <Activity size={18} />
+            </div>
+            <div className="text-3xl font-bold">{currentAvg} <span className="text-base font-normal text-slate-500">lbs</span></div>
+            <div className="text-xs text-slate-500 font-medium mt-2">Coach KPI metric</div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div className="flex justify-between items-center text-slate-500 mb-2">
+              <span className="text-sm font-semibold">Abdomen (Navel)</span>
+              <Ruler size={18} />
+            </div>
+            <div className="text-3xl font-bold">{latestData.waistNavel?.toFixed(2)} <span className="text-base font-normal text-slate-500">in</span></div>
+            <div className="text-xs text-slate-500 font-medium mt-2">Lowest recorded: 31.39"</div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div className="flex justify-between items-center text-slate-500 mb-2">
+              <span className="text-sm font-semibold">Block Status</span>
+              <Activity size={18} />
+            </div>
+            <div className="text-xl font-bold text-blue-700">Linear Cut</div>
+            <div className="text-xs text-slate-500 font-medium mt-2">Target: 1550-1650 kcal</div>
+          </div>
+        </div>
+
+        {/* Projection Module */}
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+          <div className="bg-gradient-to-r from-blue-700 to-indigo-800 p-6 text-white">
+            <div className="flex items-center gap-2 mb-5">
+              <Target size={22} className="text-blue-300" />
+              <h2 className="text-xl font-bold tracking-wide">155 lbs Goal Projection</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-white/10 rounded-xl p-5 border border-white/20">
+                <div className="text-blue-200 text-sm font-medium mb-1">Distance to Goal</div>
+                <div className="text-4xl font-bold">{projectionStats.lbsRemaining} <span className="text-lg font-normal opacity-80">lbs</span></div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-5 border border-white/20">
+                <div className="text-blue-200 text-sm font-medium mb-1">Your Historical Rate</div>
+                <div className="text-4xl font-bold">{projectionStats.historicalRate} <span className="text-lg font-normal opacity-80">lbs/wk</span></div>
+                <div className="text-sm font-medium text-blue-200 mt-2 flex items-center gap-1">
+                  <CalendarDays size={14} /> Hits Goal: <span className="text-white font-semibold ml-1">{projectionStats.dateHistorical}</span>
+                </div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-5 border border-white/20 relative overflow-hidden">
+                <div className="absolute -right-4 -bottom-4 opacity-5"><Target size={120} /></div>
+                <div className="text-blue-200 text-sm font-medium mb-1 relative z-10">Target Protocol Rate</div>
+                <div className="text-4xl font-bold relative z-10">{projectionStats.targetRate} <span className="text-lg font-normal opacity-80">lbs/wk</span></div>
+                <div className="text-sm font-medium text-blue-200 mt-2 flex items-center gap-1 relative z-10">
+                  <CalendarDays size={14} /> Hits Goal: <span className="text-white font-semibold ml-1">{projectionStats.dateTarget}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-slate-50 p-4 border-t border-slate-100">
+            <div className="flex gap-2">
+              <Lightbulb size={16} className="text-amber-500 shrink-0 mt-0.5" />
+              <div className="text-xs text-slate-600 space-y-1">
+                <p><strong className="text-slate-800">The Arithmetic:</strong> At {projectionStats.historicalRate} lbs/week, you are squarely inside the coach's realistic and sustainable target band (0.8–1.0 lb/week).</p>
+                <p><strong className="text-slate-800">Actionable Takeaway:</strong> Stop chasing aggressive volatility. The math proves that the "boring" linear process will get you to 155 lbs by early May without crashing your metabolism.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Primary Outputs (Lagging Indicators) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Weight Chart with Context */}
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h2 className="text-lg font-bold mb-1 flex items-center gap-2">Body Weight Trend & Context</h2>
+              <p className="text-xs text-slate-500 mb-4">Dots indicate training load & physiological context.</p>
+              <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                    <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#64748b' }} tickMargin={10} minTickGap={20} />
+                    <YAxis domain={['dataMin - 1', 'dataMax + 1']} tick={{ fontSize: 12, fill: '#64748b' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                    <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+
+                    <Line type="monotone" dataKey="weightAvg" name="7-Day Avg" stroke="#94a3b8" strokeWidth={3} dot={false} connectNulls={true} />
+                    <Line type="monotone" dataKey="weight" name="Daily Weight" stroke="#cbd5e1" strokeWidth={1} activeDot={{ r: 6 }} connectNulls={true} dot={<CustomWeightDot />} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="flex justify-center gap-4 mt-2 mb-4 text-xs text-slate-500">
+                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-red-500"></div> Hard (Tier 1)</div>
+                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-blue-500"></div> Standard</div>
+                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-green-500"></div> Fast (Tier 3)</div>
+                <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-amber-500"></div> Slip/Flex</div>
+              </div>
+            </div>
+
+            <div className="bg-slate-50/80 border border-slate-200/60 rounded-xl p-4">
+              <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1.5 mb-2">
+                <Lightbulb size={16} className="text-amber-500" />
+                Coach's Analysis
+              </h3>
+              <ul className="text-xs text-slate-600 space-y-2">
+                <li>
+                  <strong className="text-slate-800 font-semibold">Effort Theater vs. Data Stability:</strong> Look at the 7-day average line. It filters out the daily noise and shows a clear downward slope.
+                </li>
+                <li>
+                  <strong className="text-slate-800 font-semibold">Contextual Spikes:</strong> Notice the red dots (Tier 1 Muay Thai days like Feb 10). They are almost always followed by a weight spike due to inflammation and glycogen refill, <em className="italic">not fat gain</em>.
+                </li>
+                <li>
+                  <strong className="text-slate-800 font-semibold">Actionable Takeaway:</strong> Do not emotionally react to one weigh-in. Do not tighten calories after a post-training water bump. Trust the moving average.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Waist Chart */}
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h2 className="text-lg font-bold mb-4 flex items-center gap-2">Abdomen & Waist Compression</h2>
+              <div className="h-72 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                    <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#64748b' }} tickMargin={10} minTickGap={20} />
+                    <YAxis domain={[31, 34.5]} tick={{ fontSize: 12, fill: '#64748b' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                    <Legend verticalAlign="top" height={36} iconType="circle" />
+                    <Line type="monotone" dataKey="waistNavel" name="Abdomen (Navel)" stroke="#0f172a" strokeWidth={2} dot={{ r: 3 }} connectNulls={true} />
+                    <Line type="monotone" dataKey="waistPlus2" name="Waist (+2&quot;)" stroke="#3b82f6" strokeWidth={2} dot={{ r: 2 }} connectNulls={true} />
+                    <Line type="monotone" dataKey="waistMinus2" name="Below Abdomen" stroke="#cbd5e1" strokeWidth={2} dot={{ r: 2 }} connectNulls={true} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-slate-50/80 border border-slate-200/60 rounded-xl p-4 mt-4">
+              <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1.5 mb-2">
+                <Lightbulb size={16} className="text-amber-500" />
+                Coach's Analysis
+              </h3>
+              <ul className="text-xs text-slate-600 space-y-2">
+                <li>
+                  <strong className="text-slate-800 font-semibold">True Tissue Loss:</strong> The waist measurement (+2") establishes the true floor for fat loss. It has consistently compressed down toward the low 31" range.
+                </li>
+                <li>
+                  <strong className="text-slate-800 font-semibold">Gut Volume Noise:</strong> The abdomen (navel) fluctuates far more dramatically due to digestion, food volume, and sodium.
+                </li>
+                <li>
+                  <strong className="text-slate-800 font-semibold">Actionable Takeaway:</strong> When the scale stalls but the waist (+2") stays tight, it confirms recomposition and fat loss are still occurring.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Secondary Inputs (Leading Indicators) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+          {/* Caloric Intake Chart */}
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h2 className="text-lg font-bold mb-1 flex items-center gap-2">
+                <Utensils className="text-orange-500" size={20} />
+                Caloric Intake vs. Target
+              </h2>
+              <p className="text-xs text-slate-500 mb-4">Values at 0 reflect Tier 3 Fasting days.</p>
+              <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                    <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#64748b' }} tickMargin={10} minTickGap={20} />
+                    <YAxis domain={[0, 3200]} tick={{ fontSize: 12, fill: '#64748b' }} />
+                    <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                    <ReferenceLine y={1600} stroke="#22c55e" strokeDasharray="4 4" label={{ position: 'top', value: 'Linear Target (1600)', fill: '#16a34a', fontSize: 11 }} />
+                    <ReferenceLine y={2400} stroke="#94a3b8" strokeDasharray="3 3" label={{ position: 'top', value: 'Tier 2 Target', fill: '#94a3b8', fontSize: 11 }} />
+                    <Bar dataKey="calories" name="Calories" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="mt-4 bg-orange-50/50 border border-orange-100/80 rounded-xl p-4">
+              <h3 className="text-sm font-bold text-orange-900 flex items-center gap-1.5 mb-2">
+                <Lightbulb size={16} className="text-amber-500" />
+                Coach's Analysis
+              </h3>
+              <ul className="text-xs text-orange-800/90 space-y-2">
+                <li>
+                  <strong className="text-orange-900 font-semibold">The Shift to Linear:</strong> Notice the volatility of the Tier 1/2/3 cycles in late January, compared to the steady execution of the 1,600 kcal "Linear Target" starting Feb 12.
+                </li>
+                <li>
+                  <strong className="text-orange-900 font-semibold">The Protein Floor:</strong> Across almost all days, your logs show high compliance with hitting the non-negotiable &gt;190g protein floor, protecting muscle mass.
+                </li>
+                <li>
+                  <strong className="text-orange-900 font-semibold">Actionable Takeaway:</strong> Boring linear compliance works. Avoid the temptation to slash calories further just to speed things up; it only increases the risk of a binge.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Sleep / Recovery Chart */}
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h2 className="text-lg font-bold mb-1 flex items-center gap-2">
+                <Moon className="text-indigo-500" size={20} />
+                Sleep & Recovery Friction
+              </h2>
+              <p className="text-xs text-slate-500 mb-4">Dips below 6.5 hrs correlate directly with higher craving days.</p>
+              <div className="h-56 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                    <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#64748b' }} tickMargin={10} minTickGap={20} />
+                    <YAxis domain={[4, 9]} tick={{ fontSize: 12, fill: '#64748b' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                    <ReferenceLine y={7} stroke="#22c55e" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: '7hr Goal', fill: '#16a34a', fontSize: 11 }} />
+                    <ReferenceLine y={6.5} stroke="#ef4444" strokeDasharray="3 3" label={{ position: 'insideBottomLeft', value: 'Friction Threshold', fill: '#ef4444', fontSize: 11 }} />
+                    <Line type="monotone" dataKey="sleep" name="Sleep (Hrs)" stroke="#6366f1" strokeWidth={3} dot={{ r: 4, fill: '#6366f1' }} activeDot={{ r: 6 }} connectNulls={true} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="mt-4 bg-indigo-50/40 border border-indigo-100/60 rounded-xl p-4">
+              <h3 className="text-sm font-bold text-indigo-900 flex items-center gap-1.5 mb-2">
+                <Lightbulb size={16} className="text-amber-500" />
+                Coach's Analysis
+              </h3>
+              <ul className="text-xs text-indigo-800/80 space-y-2">
+                <li>
+                  <strong className="text-indigo-900 font-semibold">The 6.5hr Threshold:</strong> Both recorded "Fail/Slip" days (Feb 14, Feb 21) happened on or right after sleep dipped to 6.5 hours or below.
+                </li>
+                <li>
+                  <strong className="text-indigo-900 font-semibold">Willpower vs. Fatigue:</strong> As noted explicitly in your logs on Feb 15 (6.3 hrs sleep): <em className="text-slate-600 block mt-0.5 border-l-2 border-indigo-200 pl-2">"Mental fatigue: 10/10... Not a food-control issue; cognitive load + sleep restriction."</em>
+                </li>
+                <li>
+                  <strong className="text-indigo-900 font-semibold">Actionable Takeaway:</strong> When sleep falls below the red dotted line, your brain actively seeks high-stimulation foods (sugar/fat) to compensate for low energy. Rigid pre-plating is critical on these days.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
