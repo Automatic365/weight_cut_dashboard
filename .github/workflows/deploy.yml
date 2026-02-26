@@ -47,7 +47,7 @@ jobs:
       - name: Sync Markdown Logs to JSON
         run: npm run sync
         env:
-          DAILY_LOG_URL: ${{ secrets.DAILY_LOG_URL }}
+          DAILY_LOG_URL: 'https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md'
           
       - name: Build Vite App
         run: npm run build
