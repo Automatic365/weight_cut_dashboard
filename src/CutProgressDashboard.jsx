@@ -175,11 +175,13 @@ export default function CutProgressDashboard() {
             {chartData.map((day, i) => (
               <div
                 key={i}
-                title={`${day.date} | ${day.tier} | Status: ${day.status}${day.isBossFight ? ` | Boss: ${day.bossName}` : ''}`}
+                title={`${day.date} | ${day.tier} | Status: ${day.status}${day.adherenceScore ? ` | Score: ${day.adherenceScore}%` : ''}${day.isBossFight ? ` | Boss: ${day.bossName}` : ''}`}
                 className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold text-white transition-transform hover:scale-110 cursor-help
                   ${day.isBossFight
-                    ? (day.status === 'Pass' ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)] z-10' : 'bg-red-600 shadow-inner')
-                    : (day.status === 'Pass' ? 'bg-green-500 shadow-sm' : 'bg-amber-400 shadow-inner')}`}
+                    ? (day.status === 'Pass' ? 'bg-[#dba104] shadow-[0_0_8px_rgba(219,161,4,0.6)] z-10' : 'bg-red-600 shadow-inner')
+                    : (day.adherenceScore && day.adherenceScore < 85
+                      ? 'bg-red-500 shadow-inner'
+                      : (day.status === 'Pass' ? 'bg-green-500 shadow-sm' : 'bg-orange-500 shadow-inner'))}`}
               >
                 {day.isBossFight
                   ? (day.status === 'Pass' ? <Trophy size={16} /> : <XCircle size={16} />)
@@ -189,9 +191,9 @@ export default function CutProgressDashboard() {
           </div>
           <div className="text-xs text-slate-500 mt-3 flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-green-500 rounded-sm"></div> Controlled & Compliant</div>
-            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-amber-400 rounded-sm"></div> Slip / Unplanned Flex</div>
-            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-amber-500 rounded-sm shadow-[0_0_4px_rgba(245,158,11,0.5)]"></div> Boss Defeated</div>
-            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-red-600 rounded-sm"></div> Boss Critical Hit</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-orange-500 rounded-sm"></div> Slip / Unplanned Flex</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-[#dba104] rounded-sm shadow-[0_0_4px_rgba(219,161,4,0.5)]"></div> Boss Defeated</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-red-600 rounded-sm"></div> Boss Critical Hit / &lt;85%</div>
           </div>
 
           {/* Combat Readiness (Gamification) */}

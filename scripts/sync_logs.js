@@ -15,6 +15,7 @@ function parseLogContent(content) {
     // Gamification State
     let currentStreak = 0;
     let currentShield = 0;
+    let pendingBossName = null;
 
     for (const dayText of dayBlocks) {
         const lines = dayText.split('\n');
@@ -79,11 +80,21 @@ function parseLogContent(content) {
         if (tier === 'Tier 3') {
             calories = 0; // Fast day
         } else {
+            const adjustedMatch = dayText.match(/Adjusted.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)\s*effective/i) ||
+                dayText.match(/Adjusted.*?:.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)/i);
+            const rangeMatch = dayText.match(/(?:Calories|Total|Midpoint log estimate|Realistic range).*?(?:~|\b)[0-9,]+(?:–|-)([0-9,]+)/i);
             const calMatch = dayText.match(/evaluated:\s*~?([0-9,]+)/) ||
                 dayText.match(/Total:\s*~?([0-9,]+)/) ||
                 dayText.match(/~([0-9,]+)\s*kcal/) ||
                 dayText.match(/Calories:\s*~?([0-9,]+)/);
-            if (calMatch) calories = parseInt(calMatch[1].replace(/,/g, ''));
+
+            if (adjustedMatch) {
+                calories = parseInt(adjustedMatch[1].replace(/,/g, ''));
+            } else if (rangeMatch) {
+                calories = parseInt(rangeMatch[1].replace(/,/g, ''));
+            } else if (calMatch) {
+                calories = parseInt(calMatch[1].replace(/,/g, ''));
+            }
         }
 
         // Protein
@@ -97,18 +108,64 @@ function parseLogContent(content) {
             if (protMatch) protein = parseInt(protMatch[1]);
         }
 
+        // Adherence Score
+        let adherenceScore = null;
+        // Check for out of 10 or 15 points first
+        const adherenceScoreMatchFraction = dayText.match(/Adherence(?:\s+Score)?.*?(?:Final|\*\*Final|Score)?(?::\s*|\*\*\s*|\n- \*\*)?(\d+(?:\.\d+)?)\s*\/\s*(\d+)/i) ||
+            dayText.match(/Total(?::\s*|\*\*\s*|\n- \*\*)?(\d+(?:\.\d+)?)\s*\/\s*(\d+)/i);
+        // Check for percentage
+        const adherenceScoreMatchPercentage = dayText.match(/Adherence(?:\s+Score)?.*?(?:Day|Final|Score|average|Overall)?(?::\s*|\*\*\s*|~|\n- \*\*.*?)?(\d{2,3})(?:%| %)/i);
+
+        if (adherenceScoreMatchFraction) {
+            const points = parseFloat(adherenceScoreMatchFraction[1]);
+            const outOf = parseInt(adherenceScoreMatchFraction[2]);
+            if (outOf > 0) {
+                adherenceScore = Math.round((points / outOf) * 100);
+            }
+        } else if (adherenceScoreMatchPercentage) {
+            adherenceScore = parseInt(adherenceScoreMatchPercentage[1]);
+        }
+
         // Gamification: Boss Battles (Heuristic Detection)
         let isBossFight = false;
         let bossName = null;
 
         const explicitMatch = dayText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
-        const eventKeywords = /(valentine|buffet|thanksgiving|christmas|holiday|party|vacation|wedding|family dinner|restaurant meal|outing)/i;
-        const planningKeywords = /(strategy|forecast|plan|contained|deviation|flex|indulgence)/i;
+        const eventKeywords = /(valentine|buffet|thanksgiving|christmas|holiday|party|vacation|wedding|family dinner|restaurant meal|outing|trip|lodge|travel)/i;
+        const planningKeywords = /(strategy|forecast|plan|contained|deviation|flex|indulgence|containment|controlled|honest)/i;
+
+        // Check for upcoming boss mentions to store them
+        const upcomingMatch = dayText.match(/upcoming\s+([a-zA-Z0-9\s']+?)\s+(?:trip|event|vacation)/i) ||
+            dayText.match(/Forward Plan \(([a-zA-Z0-9\s']+?)\s+Day\)/i) ||
+            dayText.match(/###\s*([a-zA-Z0-9\s']+?)\s+Reality Plan/i);
+        if (upcomingMatch) {
+            pendingBossName = upcomingMatch[1].trim();
+        }
+
+        let mentionsPendingBoss = false;
+        if (pendingBossName) {
+            const bossWords = pendingBossName.split(/\s+/).filter(w => w.length > 3);
+            mentionsPendingBoss = bossWords.some(w => new RegExp(`\\b${w}\\b`, 'i').test(dayText));
+        }
 
         if (explicitMatch) {
             isBossFight = true;
             bossName = explicitMatch[1].trim();
-        } else if (eventKeywords.test(dayText) && planningKeywords.test(dayText)) {
+        } else if (mentionsPendingBoss && (eventKeywords.test(dayText) || planningKeywords.test(dayText))) {
+            if (!dayText.match(/upcoming|Reality Plan|Forward Plan/i)) { // Avoid triggering on the planning day itself
+                isBossFight = true;
+                bossName = pendingBossName;
+            }
+        } else if (results.length > 0) { // If it's a consecutive event day (e.g. multi-day trip), persist the Boss Fight status
+            const prevDay = results[results.length - 1];
+            if (prevDay.isBossFight && prevDay.bossName === pendingBossName && eventKeywords.test(dayText)) {
+                isBossFight = true;
+                bossName = prevDay.bossName;
+            }
+        }
+
+        // Generic fallback for un-planned Boss Battles
+        if (!isBossFight && eventKeywords.test(dayText) && planningKeywords.test(dayText)) {
             const match = dayText.match(eventKeywords);
             if (match && match[1]) {
                 isBossFight = true;
@@ -117,14 +174,37 @@ function parseLogContent(content) {
             }
         }
 
+        // If it's a consecutive event day (e.g. multi-day trip), persist the Boss Fight status
+        if (!isBossFight && results.length > 0) {
+            const prevDay = results[results.length - 1];
+            if (prevDay.isBossFight && prevDay.bossName === pendingBossName && eventKeywords.test(dayText)) {
+                isBossFight = true;
+                bossName = prevDay.bossName;
+            }
+        }
+
         // Apply State Engine
         if (isBossFight) {
             // If the user's log indicates it was planned/controlled, we count it as a Boss Defeat (Win)
-            const isControlled = /(controlled|planned|contained)/i.test(dayText);
+            const isControlled = /(controlled|planned|contained|containment|honest|structur)/i.test(dayText);
 
             if (status === 'Pass' || isControlled) {
                 status = 'Pass'; // Enforce Pass for Gamification consistency so the UI shows the Trophy
-                currentShield = 0; // Survived: shield is spent to block the streak-breaker damage
+
+                // Dynamic Shield Damage Formula
+                const OVEREAT_THRESHOLD = 2300;
+                let damage = 0;
+                if (calories && calories > OVEREAT_THRESHOLD) {
+                    const surplus = calories - OVEREAT_THRESHOLD;
+                    damage = Math.floor(surplus / 250);
+                }
+
+                currentShield -= damage;
+                if (currentShield < 0) {
+                    currentShield = 0;
+                    currentStreak = 0; // Shield broke, streak is lost!
+                    status = 'Fail';
+                }
             } else {
                 status = 'Fail'; // Critical Hit
                 currentStreak = 0;
@@ -153,7 +233,8 @@ function parseLogContent(content) {
             isBossFight,
             bossName,
             shield: currentShield,
-            streak: currentStreak
+            streak: currentStreak,
+            adherenceScore
         });
     }
 

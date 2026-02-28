@@ -14,7 +14,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 1,
-    "streak": 1
+    "streak": 1,
+    "adherenceScore": 92
   },
   {
     "date": "01/21",
@@ -24,14 +25,15 @@
     "waistMinus2": null,
     "tier": "Tier 1",
     "status": "Pass",
-    "calories": 2400,
+    "calories": 2850,
     "protein": 0,
     "sleep": null,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
     "shield": 2,
-    "streak": 2
+    "streak": 2,
+    "adherenceScore": null
   },
   {
     "date": "01/22",
@@ -48,7 +50,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 3,
-    "streak": 3
+    "streak": 3,
+    "adherenceScore": null
   },
   {
     "date": "01/23",
@@ -58,14 +61,15 @@
     "waistMinus2": null,
     "tier": "Tier 2",
     "status": "Pass",
-    "calories": 2400,
+    "calories": 2200,
     "protein": 0,
     "sleep": null,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
     "shield": 4,
-    "streak": 4
+    "streak": 4,
+    "adherenceScore": null
   },
   {
     "date": "01/24",
@@ -82,7 +86,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 5,
-    "streak": 5
+    "streak": 5,
+    "adherenceScore": 90
   },
   {
     "date": "01/25",
@@ -99,7 +104,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 6,
-    "streak": 6
+    "streak": 6,
+    "adherenceScore": null
   },
   {
     "date": "01/26",
@@ -116,7 +122,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 7,
-    "streak": 7
+    "streak": 7,
+    "adherenceScore": 94
   },
   {
     "date": "01/27",
@@ -133,7 +140,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 0,
-    "streak": 0
+    "streak": 0,
+    "adherenceScore": 95
   },
   {
     "date": "01/28",
@@ -150,7 +158,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 1,
-    "streak": 1
+    "streak": 1,
+    "adherenceScore": 100
   },
   {
     "date": "01/29",
@@ -167,7 +176,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 2,
-    "streak": 2
+    "streak": 2,
+    "adherenceScore": null
   },
   {
     "date": "01/30",
@@ -177,14 +187,15 @@
     "waistMinus2": null,
     "tier": "Tier 2",
     "status": "Fail",
-    "calories": 0,
+    "calories": 2940,
     "protein": 0,
     "sleep": null,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
     "shield": 0,
-    "streak": 0
+    "streak": 0,
+    "adherenceScore": 55
   },
   {
     "date": "01/31",
@@ -193,15 +204,16 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
-    "status": "Pass",
-    "calories": 500,
+    "status": "Fail",
+    "calories": 3700,
     "protein": 0,
     "sleep": null,
     "notes": "",
     "isBossFight": true,
     "bossName": "Buffet",
     "shield": 0,
-    "streak": 0
+    "streak": 0,
+    "adherenceScore": null
   },
   {
     "date": "02/01",
@@ -218,7 +230,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 1,
-    "streak": 1
+    "streak": 1,
+    "adherenceScore": 100
   },
   {
     "date": "02/02",
@@ -235,7 +248,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 2,
-    "streak": 2
+    "streak": 2,
+    "adherenceScore": 95
   },
   {
     "date": "02/03",
@@ -252,7 +266,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 3,
-    "streak": 3
+    "streak": 3,
+    "adherenceScore": 95
   },
   {
     "date": "02/04",
@@ -269,7 +284,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 4,
-    "streak": 4
+    "streak": 4,
+    "adherenceScore": null
   },
   {
     "date": "02/05",
@@ -286,7 +302,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 5,
-    "streak": 5
+    "streak": 5,
+    "adherenceScore": 90
   },
   {
     "date": "02/06",
@@ -303,7 +320,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 6,
-    "streak": 6
+    "streak": 6,
+    "adherenceScore": null
   },
   {
     "date": "02/07",
@@ -320,7 +338,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 0,
-    "streak": 0
+    "streak": 0,
+    "adherenceScore": null
   },
   {
     "date": "02/08",
@@ -337,7 +356,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 1,
-    "streak": 1
+    "streak": 1,
+    "adherenceScore": null
   },
   {
     "date": "02/09",
@@ -347,14 +367,15 @@
     "waistMinus2": null,
     "tier": "Tier 1",
     "status": "Pass",
-    "calories": 2400,
+    "calories": 2100,
     "protein": 0,
     "sleep": null,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
     "shield": 2,
-    "streak": 2
+    "streak": 2,
+    "adherenceScore": null
   },
   {
     "date": "02/10",
@@ -371,7 +392,8 @@
     "isBossFight": false,
     "bossName": null,
     "shield": 3,
-    "streak": 3
+    "streak": 3,
+    "adherenceScore": 94
   },
   {
     "date": "02/11",
@@ -381,14 +403,15 @@
     "waistMinus2": null,
     "tier": "Tier 1",
     "status": "Pass",
-    "calories": 0,
+    "calories": 1650,
     "protein": 0,
     "sleep": 7,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
     "shield": 4,
-    "streak": 4
+    "streak": 4,
+    "adherenceScore": null
   },
   {
     "date": "02/12",
@@ -398,14 +421,15 @@
     "waistMinus2": null,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 335,
+    "calories": 1700,
     "protein": 50,
     "sleep": 6.5,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
     "shield": 5,
-    "streak": 5
+    "streak": 5,
+    "adherenceScore": 90
   },
   {
     "date": "02/13",
@@ -421,8 +445,9 @@
     "notes": "",
     "isBossFight": true,
     "bossName": "Valentine",
-    "shield": 0,
-    "streak": 5
+    "shield": 5,
+    "streak": 5,
+    "adherenceScore": null
   },
   {
     "date": "02/14",
@@ -432,14 +457,15 @@
     "waistMinus2": null,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 0,
+    "calories": 2900,
     "protein": 50,
     "sleep": null,
     "notes": "",
     "isBossFight": true,
     "bossName": "Restaurant meal",
-    "shield": 0,
-    "streak": 5
+    "shield": 3,
+    "streak": 5,
+    "adherenceScore": null
   },
   {
     "date": "02/15",
@@ -455,8 +481,9 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 1,
-    "streak": 6
+    "shield": 4,
+    "streak": 6,
+    "adherenceScore": 90
   },
   {
     "date": "02/16",
@@ -466,14 +493,15 @@
     "waistMinus2": null,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 250,
+    "calories": 1630,
     "protein": 0,
     "sleep": 8,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 2,
-    "streak": 7
+    "shield": 5,
+    "streak": 7,
+    "adherenceScore": null
   },
   {
     "date": "02/17",
@@ -489,8 +517,9 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 3,
-    "streak": 8
+    "shield": 6,
+    "streak": 8,
+    "adherenceScore": null
   },
   {
     "date": "02/18",
@@ -500,14 +529,15 @@
     "waistMinus2": null,
     "tier": "Tier 2",
     "status": "Pass",
-    "calories": 176,
+    "calories": 1750,
     "protein": 0,
     "sleep": 6.4,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 4,
-    "streak": 9
+    "shield": 7,
+    "streak": 9,
+    "adherenceScore": null
   },
   {
     "date": "02/19",
@@ -523,8 +553,9 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 5,
-    "streak": 10
+    "shield": 8,
+    "streak": 10,
+    "adherenceScore": 97
   },
   {
     "date": "02/20",
@@ -540,8 +571,9 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 6,
-    "streak": 11
+    "shield": 9,
+    "streak": 11,
+    "adherenceScore": null
   },
   {
     "date": "02/21",
@@ -550,15 +582,16 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Linear",
-    "status": "Within",
+    "status": "Pass",
     "calories": 0,
     "protein": 0,
     "sleep": 6.5,
     "notes": "",
-    "isBossFight": false,
-    "bossName": null,
-    "shield": 6,
-    "streak": 11
+    "isBossFight": true,
+    "bossName": "Lodge",
+    "shield": 9,
+    "streak": 11,
+    "adherenceScore": null
   },
   {
     "date": "02/22",
@@ -574,8 +607,9 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 7,
-    "streak": 12
+    "shield": 10,
+    "streak": 12,
+    "adherenceScore": 100
   },
   {
     "date": "02/23",
@@ -591,8 +625,9 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 8,
-    "streak": 13
+    "shield": 11,
+    "streak": 13,
+    "adherenceScore": 100
   },
   {
     "date": "02/24",
@@ -602,14 +637,15 @@
     "waistMinus2": 32.64,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 2100,
+    "calories": 2150,
     "protein": 240,
     "sleep": 7.2,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 9,
-    "streak": 14
+    "shield": 12,
+    "streak": 14,
+    "adherenceScore": 100
   },
   {
     "date": "02/25",
@@ -623,10 +659,11 @@
     "protein": 222,
     "sleep": 7,
     "notes": "",
-    "isBossFight": false,
-    "bossName": null,
-    "shield": 10,
-    "streak": 15
+    "isBossFight": true,
+    "bossName": "Lodge",
+    "shield": 12,
+    "streak": 14,
+    "adherenceScore": null
   },
   {
     "date": "02/26",
@@ -636,14 +673,15 @@
     "waistMinus2": null,
     "tier": "Tier 2",
     "status": "Pass",
-    "calories": 0,
+    "calories": 2200,
     "protein": 0,
     "sleep": 7.5,
     "notes": "",
     "isBossFight": true,
-    "bossName": "Buffet",
-    "shield": 0,
-    "streak": 15
+    "bossName": "Great Wolf Lodge",
+    "shield": 12,
+    "streak": 14,
+    "adherenceScore": null
   },
   {
     "date": "02/27",
@@ -652,14 +690,15 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Linear",
-    "status": "Pass",
-    "calories": 3000,
+    "status": "Fail",
+    "calories": 5600,
     "protein": 0,
     "sleep": 7,
     "notes": "",
     "isBossFight": true,
-    "bossName": "Buffet",
+    "bossName": "Great Wolf Lodge",
     "shield": 0,
-    "streak": 15
+    "streak": 0,
+    "adherenceScore": null
   }
 ]
