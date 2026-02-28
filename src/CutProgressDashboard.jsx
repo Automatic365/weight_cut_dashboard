@@ -205,6 +205,12 @@ export default function CutProgressDashboard() {
                           <span className={`${day.adherenceScore < 85 ? 'text-red-400' : 'text-green-400'} font-medium`}>{day.adherenceScore}%</span>
                         </div>
                       )}
+                      {day.shield != null && (
+                        <div className="flex justify-between gap-3 text-slate-300">
+                          <span>Shield:</span>
+                          <span className="font-medium text-blue-300">{day.shield}/14</span>
+                        </div>
+                      )}
                       {day.isBossFight && (
                         <div className="flex justify-between gap-3 text-amber-300 mt-0.5 pt-0.5 border-t border-slate-700">
                           <span>Boss:</span>
