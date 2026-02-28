@@ -12,6 +12,10 @@ function parseLogContent(content) {
 
     const results = [];
 
+    // Gamification State
+    let currentStreak = 0;
+    let currentShield = 0;
+
     for (const dayText of dayBlocks) {
         const lines = dayText.split('\n');
         const headerLine = lines[0]; // e.g., "2026-02-24 — Tuesday"
@@ -93,6 +97,47 @@ function parseLogContent(content) {
             if (protMatch) protein = parseInt(protMatch[1]);
         }
 
+        // Gamification: Boss Battles (Heuristic Detection)
+        let isBossFight = false;
+        let bossName = null;
+
+        const explicitMatch = dayText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
+        const eventKeywords = /(valentine|buffet|thanksgiving|christmas|holiday|party|vacation|wedding|family dinner|restaurant meal|outing)/i;
+        const planningKeywords = /(strategy|forecast|plan|contained|deviation|flex|indulgence)/i;
+
+        if (explicitMatch) {
+            isBossFight = true;
+            bossName = explicitMatch[1].trim();
+        } else if (eventKeywords.test(dayText) && planningKeywords.test(dayText)) {
+            const match = dayText.match(eventKeywords);
+            if (match && match[1]) {
+                isBossFight = true;
+                bossName = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+                if (bossName === 'Outing') bossName = 'Social Outing'; // Make it slightly more epic
+            }
+        }
+
+        // Apply State Engine
+        if (isBossFight) {
+            // If the user's log indicates it was planned/controlled, we count it as a Boss Defeat (Win)
+            const isControlled = /(controlled|planned|contained)/i.test(dayText);
+
+            if (status === 'Pass' || isControlled) {
+                status = 'Pass'; // Enforce Pass for Gamification consistency so the UI shows the Trophy
+                currentShield = 0; // Survived: shield is spent to block the streak-breaker damage
+            } else {
+                status = 'Fail'; // Critical Hit
+                currentStreak = 0;
+                currentShield = 0;
+            }
+        } else if (status === 'Pass') {
+            currentStreak += 1;
+            currentShield = Math.min(14, currentShield + 1); // Max 14 shield capacity
+        } else if (status === 'Fail') {
+            currentStreak = 0;
+            currentShield = 0;
+        }
+
         results.push({
             date,
             weight,
@@ -104,7 +149,11 @@ function parseLogContent(content) {
             calories: calories || 0,
             protein: protein || 0,
             sleep,
-            notes: ''
+            notes: '',
+            isBossFight,
+            bossName,
+            shield: currentShield,
+            streak: currentStreak
         });
     }
 

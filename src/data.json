@@ -10,7 +10,11 @@
     "calories": 2800,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 1,
+    "streak": 1
   },
   {
     "date": "01/21",
@@ -23,7 +27,11 @@
     "calories": 2400,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 2,
+    "streak": 2
   },
   {
     "date": "01/22",
@@ -36,7 +44,11 @@
     "calories": 2288,
     "protein": 0,
     "sleep": 5,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 3,
+    "streak": 3
   },
   {
     "date": "01/23",
@@ -49,7 +61,11 @@
     "calories": 2400,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 4,
+    "streak": 4
   },
   {
     "date": "01/24",
@@ -62,7 +78,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 7.2,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 5,
+    "streak": 5
   },
   {
     "date": "01/25",
@@ -75,7 +95,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 7,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 6,
+    "streak": 6
   },
   {
     "date": "01/26",
@@ -88,7 +112,11 @@
     "calories": 2400,
     "protein": 0,
     "sleep": 6.6,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 7,
+    "streak": 7
   },
   {
     "date": "01/27",
@@ -101,7 +129,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 7,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 0,
+    "streak": 0
   },
   {
     "date": "01/28",
@@ -114,7 +146,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 1,
+    "streak": 1
   },
   {
     "date": "01/29",
@@ -127,7 +163,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 2,
+    "streak": 2
   },
   {
     "date": "01/30",
@@ -140,7 +180,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 0,
+    "streak": 0
   },
   {
     "date": "01/31",
@@ -149,11 +193,15 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
-    "status": "Fail",
+    "status": "Pass",
     "calories": 500,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Buffet",
+    "shield": 0,
+    "streak": 0
   },
   {
     "date": "02/01",
@@ -166,7 +214,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 1,
+    "streak": 1
   },
   {
     "date": "02/02",
@@ -179,7 +231,11 @@
     "calories": 2400,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 2,
+    "streak": 2
   },
   {
     "date": "02/03",
@@ -192,7 +248,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 3,
+    "streak": 3
   },
   {
     "date": "02/04",
@@ -205,7 +265,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 4,
+    "streak": 4
   },
   {
     "date": "02/05",
@@ -218,7 +282,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 6,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 5,
+    "streak": 5
   },
   {
     "date": "02/06",
@@ -231,7 +299,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 6,
+    "streak": 6
   },
   {
     "date": "02/07",
@@ -244,7 +316,11 @@
     "calories": 3000,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 0,
+    "streak": 0
   },
   {
     "date": "02/08",
@@ -257,7 +333,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 1,
+    "streak": 1
   },
   {
     "date": "02/09",
@@ -270,7 +350,11 @@
     "calories": 2400,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 2,
+    "streak": 2
   },
   {
     "date": "02/10",
@@ -283,7 +367,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 3,
+    "streak": 3
   },
   {
     "date": "02/11",
@@ -296,7 +384,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 7,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 4,
+    "streak": 4
   },
   {
     "date": "02/12",
@@ -309,7 +401,11 @@
     "calories": 335,
     "protein": 50,
     "sleep": 6.5,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 5,
+    "streak": 5
   },
   {
     "date": "02/13",
@@ -322,7 +418,11 @@
     "calories": 400,
     "protein": 50,
     "sleep": 6.5,
-    "notes": ""
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Valentine",
+    "shield": 0,
+    "streak": 5
   },
   {
     "date": "02/14",
@@ -331,11 +431,15 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Linear",
-    "status": "Fail",
+    "status": "Pass",
     "calories": 0,
     "protein": 50,
     "sleep": null,
-    "notes": ""
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Restaurant meal",
+    "shield": 0,
+    "streak": 5
   },
   {
     "date": "02/15",
@@ -348,7 +452,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 6.3,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 1,
+    "streak": 6
   },
   {
     "date": "02/16",
@@ -361,7 +469,11 @@
     "calories": 250,
     "protein": 0,
     "sleep": 8,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 2,
+    "streak": 7
   },
   {
     "date": "02/17",
@@ -374,7 +486,11 @@
     "calories": 435,
     "protein": 0,
     "sleep": 8,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 3,
+    "streak": 8
   },
   {
     "date": "02/18",
@@ -387,7 +503,11 @@
     "calories": 176,
     "protein": 0,
     "sleep": 6.4,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 4,
+    "streak": 9
   },
   {
     "date": "02/19",
@@ -400,7 +520,11 @@
     "calories": 400,
     "protein": 0,
     "sleep": 6.1,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 5,
+    "streak": 10
   },
   {
     "date": "02/20",
@@ -413,7 +537,11 @@
     "calories": 120,
     "protein": 0,
     "sleep": 7,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 6,
+    "streak": 11
   },
   {
     "date": "02/21",
@@ -426,7 +554,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 6.5,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 6,
+    "streak": 11
   },
   {
     "date": "02/22",
@@ -439,7 +571,11 @@
     "calories": 0,
     "protein": 0,
     "sleep": 6.2,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 7,
+    "streak": 12
   },
   {
     "date": "02/23",
@@ -452,7 +588,11 @@
     "calories": 1855,
     "protein": 227,
     "sleep": 6.9,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 8,
+    "streak": 13
   },
   {
     "date": "02/24",
@@ -465,7 +605,11 @@
     "calories": 2100,
     "protein": 240,
     "sleep": 7.2,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 9,
+    "streak": 14
   },
   {
     "date": "02/25",
@@ -478,6 +622,44 @@
     "calories": 114,
     "protein": 222,
     "sleep": 7,
-    "notes": ""
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 10,
+    "streak": 15
+  },
+  {
+    "date": "02/26",
+    "weight": 163.1,
+    "waistNavel": 32.33,
+    "waistPlus2": null,
+    "waistMinus2": null,
+    "tier": "Tier 2",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 7.5,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Buffet",
+    "shield": 0,
+    "streak": 15
+  },
+  {
+    "date": "02/27",
+    "weight": null,
+    "waistNavel": null,
+    "waistPlus2": null,
+    "waistMinus2": null,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 3000,
+    "protein": 0,
+    "sleep": 7,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Buffet",
+    "shield": 0,
+    "streak": 15
   }
 ]

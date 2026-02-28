@@ -5,7 +5,8 @@ import {
 } from 'recharts';
 import {
   TrendingDown, Scale, Activity, Ruler, Info, Target,
-  CalendarDays, CheckCircle2, XCircle, Moon, Utensils, Lightbulb
+  CalendarDays, CheckCircle2, XCircle, Moon, Utensils, Lightbulb,
+  Shield, Flame, Trophy
 } from 'lucide-react';
 
 // Enriched data with Calories, Protein, Sleep, and Adherence Status
@@ -127,6 +128,18 @@ export default function CutProgressDashboard() {
   const passDays = chartData.filter(d => d.status === 'Pass').length;
   const adherencePercent = Math.round((passDays / totalDays) * 100);
 
+  // Gamification Stats
+  const currentStreak = latestData?.streak || 0;
+  const currentShield = latestData?.shield || 0;
+  const shieldPercent = Math.min(100, Math.max(0, (currentShield / 14) * 100));
+
+  // Get all earned trophies (Defeated Bosses)
+  const trophies = useMemo(() => {
+    return chartData
+      .filter(d => d.isBossFight && d.status === 'Pass' && d.bossName)
+      .map(d => d.bossName);
+  }, [chartData]);
+
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -162,17 +175,65 @@ export default function CutProgressDashboard() {
             {chartData.map((day, i) => (
               <div
                 key={i}
-                title={`${day.date} | ${day.tier} | Status: ${day.status}`}
+                title={`${day.date} | ${day.tier} | Status: ${day.status}${day.isBossFight ? ` | Boss: ${day.bossName}` : ''}`}
                 className={`w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold text-white transition-transform hover:scale-110 cursor-help
-                  ${day.status === 'Pass' ? 'bg-green-500 shadow-sm' : 'bg-amber-400 shadow-inner'}`}
+                  ${day.isBossFight
+                    ? (day.status === 'Pass' ? 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)] z-10' : 'bg-red-600 shadow-inner')
+                    : (day.status === 'Pass' ? 'bg-green-500 shadow-sm' : 'bg-amber-400 shadow-inner')}`}
               >
-                {day.status === 'Pass' ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
+                {day.isBossFight
+                  ? (day.status === 'Pass' ? <Trophy size={16} /> : <XCircle size={16} />)
+                  : (day.status === 'Pass' ? <CheckCircle2 size={16} /> : <XCircle size={16} />)}
               </div>
             ))}
           </div>
-          <div className="text-xs text-slate-500 mt-3 flex items-center gap-4">
+          <div className="text-xs text-slate-500 mt-3 flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-green-500 rounded-sm"></div> Controlled & Compliant</div>
             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-amber-400 rounded-sm"></div> Slip / Unplanned Flex</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-amber-500 rounded-sm shadow-[0_0_4px_rgba(245,158,11,0.5)]"></div> Boss Defeated</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-red-600 rounded-sm"></div> Boss Critical Hit</div>
+          </div>
+
+          {/* Combat Readiness (Gamification) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            {/* Shield Bar */}
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-center">
+              <div className="flex justify-between items-end mb-2">
+                <div className="text-sm font-bold text-slate-700 flex items-center gap-1.5"><Shield size={16} className="text-blue-500" /> Tactical Shield</div>
+                <div className="text-xs font-semibold text-slate-500 text-right">{currentShield} / 14 Charges</div>
+              </div>
+              <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden flex">
+                <div className={`h-full transition-all duration-1000 ${currentShield === 14 ? 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]' : 'bg-blue-400'}`} style={{ width: `${shieldPercent}%` }}></div>
+              </div>
+              <div className="text-[10px] text-slate-500 mt-2 text-center text-balance">
+                {currentShield === 14 ? 'Shield fully charged. Ready for next Boss Encounter.' : 'Complete disciplined days to recharge shield.'}
+              </div>
+            </div>
+
+            {/* Trophies & Streak */}
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex justify-between items-center">
+              <div>
+                <div className="text-[10px] text-slate-500 font-semibold mb-1 uppercase tracking-widest">Active Streak</div>
+                <div className="text-3xl font-bold flex items-center gap-2">
+                  {currentStreak} <span className="text-sm font-normal text-slate-500">days</span>
+                  {currentStreak >= 7 && <Flame size={20} className="text-orange-500 shrink-0" />}
+                </div>
+              </div>
+              <div className="text-right border-l border-slate-200 pl-4">
+                <div className="text-[10px] text-slate-500 font-semibold mb-1 uppercase tracking-widest flex items-center justify-end gap-1">
+                  <Trophy size={11} className="text-amber-500" /> Trophies
+                </div>
+                <div className="flex gap-1.5 flex-wrap justify-end">
+                  {trophies.length > 0 ? trophies.map((boss, idx) => (
+                    <div key={idx} className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-1 rounded border border-amber-200 shadow-sm" title={`Defeated Boss: ${boss}`}>
+                      {boss}
+                    </div>
+                  )) : (
+                    <div className="text-[10px] text-slate-400 italic mt-1">No Bosses Defeated Yet</div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="mt-4 bg-green-50/50 border border-green-100/80 rounded-xl p-4">
