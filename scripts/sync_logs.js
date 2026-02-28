@@ -17,6 +17,27 @@ function parseLogContent(content) {
     let currentShield = 0;
     let pendingBossName = null;
 
+    // RPG Attributes (XP Totals)
+    let xp = {
+        vitality: 0,
+        discipline: 0,
+        strength: 0,
+        resilience: 0
+    };
+
+    function getLevelInfo(totalXp) {
+        if (totalXp < 0) totalXp = 0;
+        let level = 1;
+        let xpRequired = level * 100;
+        let remainingXp = totalXp;
+        while (remainingXp >= xpRequired) {
+            remainingXp -= xpRequired;
+            level++;
+            xpRequired = level * 100;
+        }
+        return { level, currentLvlXp: remainingXp, nextLvlXp: xpRequired };
+    }
+
     for (const dayText of dayBlocks) {
         const lines = dayText.split('\n');
         const headerLine = lines[0]; // e.g., "2026-02-24 — Tuesday"
@@ -218,6 +239,39 @@ function parseLogContent(content) {
             currentShield = 0;
         }
 
+        // RPG Attributes Logic
+        const isWorkoutDay = /(muay thai|lift|workout|training|hard set)/i.test(dayText);
+
+        // Vitality
+        if (sleep) {
+            if (sleep > 7) xp.vitality += 10;
+            else if (sleep < 6) xp.vitality = Math.max(0, xp.vitality - 5);
+        }
+
+        // Discipline
+        if (adherenceScore) {
+            if (adherenceScore >= 90) xp.discipline += 10;
+            else if (adherenceScore < 85) xp.discipline = Math.max(0, xp.discipline - 10);
+        }
+        if (isWorkoutDay) xp.discipline += 10;
+
+        // Strength
+        if (protein >= 190) xp.strength += 10;
+        if (isWorkoutDay) xp.strength += 10;
+
+        // Resilience
+        if (isBossFight) {
+            if (status === 'Pass') xp.resilience += 50;
+            else if (status === 'Fail') xp.resilience = Math.max(0, xp.resilience - 20);
+        }
+
+        const attributes = {
+            vitality: getLevelInfo(xp.vitality),
+            discipline: getLevelInfo(xp.discipline),
+            strength: getLevelInfo(xp.strength),
+            resilience: getLevelInfo(xp.resilience)
+        };
+
         results.push({
             date,
             weight,
@@ -234,7 +288,8 @@ function parseLogContent(content) {
             bossName,
             shield: currentShield,
             streak: currentStreak,
-            adherenceScore
+            adherenceScore,
+            attributes
         });
     }
 

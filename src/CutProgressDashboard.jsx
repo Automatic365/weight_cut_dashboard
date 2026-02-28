@@ -6,7 +6,7 @@ import {
 import {
   TrendingDown, Scale, Activity, Ruler, Info, Target,
   CalendarDays, CheckCircle2, XCircle, Moon, Utensils, Lightbulb,
-  Shield, Flame, Trophy
+  Shield, Flame, Trophy, Heart, Dumbbell, Brain
 } from 'lucide-react';
 
 // Enriched data with Calories, Protein, Sleep, and Adherence Status
@@ -132,6 +132,13 @@ export default function CutProgressDashboard() {
   const currentStreak = latestData?.streak || 0;
   const currentShield = latestData?.shield || 0;
   const shieldPercent = Math.min(100, Math.max(0, (currentShield / 14) * 100));
+
+  const latestAttributes = latestData?.attributes || {
+    vitality: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
+    discipline: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
+    strength: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
+    resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100 }
+  };
 
   // Get all earned trophies (Defeated Bosses)
   const trophies = useMemo(() => {
@@ -271,6 +278,72 @@ export default function CutProgressDashboard() {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* RPG Hero Attributes */}
+          <div className="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <h3 className="text-sm font-bold text-slate-700 flex items-center gap-1.5 mb-3 uppercase tracking-wider">
+              Hero Attributes
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+              {/* Strength */}
+              <div className="flex flex-col">
+                <div className="flex justify-between items-end mb-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <Dumbbell size={14} className="text-red-500" /> Strength
+                  </div>
+                  <div className="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 rounded">Lvl {latestAttributes.strength.level}</div>
+                </div>
+                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
+                  <div className="h-full bg-red-500" style={{ width: `${(latestAttributes.strength.currentLvlXp / latestAttributes.strength.nextLvlXp) * 100}%` }}></div>
+                </div>
+                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.strength.currentLvlXp} / {latestAttributes.strength.nextLvlXp} XP</div>
+              </div>
+
+              {/* Vitality */}
+              <div className="flex flex-col">
+                <div className="flex justify-between items-end mb-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <Heart size={14} className="text-green-500" /> Vitality
+                  </div>
+                  <div className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 rounded">Lvl {latestAttributes.vitality.level}</div>
+                </div>
+                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
+                  <div className="h-full bg-green-500" style={{ width: `${(latestAttributes.vitality.currentLvlXp / latestAttributes.vitality.nextLvlXp) * 100}%` }}></div>
+                </div>
+                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.vitality.currentLvlXp} / {latestAttributes.vitality.nextLvlXp} XP</div>
+              </div>
+
+              {/* Discipline */}
+              <div className="flex flex-col">
+                <div className="flex justify-between items-end mb-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <Brain size={14} className="text-purple-500" /> Discipline
+                  </div>
+                  <div className="text-[10px] font-bold text-purple-600 bg-purple-100 px-1.5 rounded">Lvl {latestAttributes.discipline.level}</div>
+                </div>
+                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
+                  <div className="h-full bg-purple-500" style={{ width: `${(latestAttributes.discipline.currentLvlXp / latestAttributes.discipline.nextLvlXp) * 100}%` }}></div>
+                </div>
+                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.discipline.currentLvlXp} / {latestAttributes.discipline.nextLvlXp} XP</div>
+              </div>
+
+              {/* Resilience */}
+              <div className="flex flex-col">
+                <div className="flex justify-between items-end mb-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <Shield size={14} className="text-blue-500" /> Resilience
+                  </div>
+                  <div className="text-[10px] font-bold text-blue-600 bg-blue-100 px-1.5 rounded">Lvl {latestAttributes.resilience.level}</div>
+                </div>
+                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
+                  <div className="h-full bg-blue-500" style={{ width: `${(latestAttributes.resilience.currentLvlXp / latestAttributes.resilience.nextLvlXp) * 100}%` }}></div>
+                </div>
+                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.resilience.currentLvlXp} / {latestAttributes.resilience.nextLvlXp} XP</div>
+              </div>
+
             </div>
           </div>
 

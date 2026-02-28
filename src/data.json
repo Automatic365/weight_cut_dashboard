@@ -15,7 +15,29 @@
     "bossName": null,
     "shield": 1,
     "streak": 1,
-    "adherenceScore": 92
+    "adherenceScore": 92,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 1,
+        "currentLvlXp": 20,
+        "nextLvlXp": 100
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/21",
@@ -33,7 +55,29 @@
     "bossName": null,
     "shield": 2,
     "streak": 2,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 20,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/22",
@@ -51,7 +95,29 @@
     "bossName": null,
     "shield": 3,
     "streak": 3,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/23",
@@ -69,7 +135,29 @@
     "bossName": null,
     "shield": 4,
     "streak": 4,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/24",
@@ -87,7 +175,29 @@
     "bossName": null,
     "shield": 5,
     "streak": 5,
-    "adherenceScore": 90
+    "adherenceScore": 90,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 1,
+        "currentLvlXp": 70,
+        "nextLvlXp": 100
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/25",
@@ -105,7 +215,29 @@
     "bossName": null,
     "shield": 6,
     "streak": 6,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 60,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/26",
@@ -123,7 +255,29 @@
     "bossName": null,
     "shield": 7,
     "streak": 7,
-    "adherenceScore": 94
+    "adherenceScore": 94,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 70,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/27",
@@ -141,7 +295,29 @@
     "bossName": null,
     "shield": 0,
     "streak": 0,
-    "adherenceScore": 95
+    "adherenceScore": 95,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 20,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/28",
@@ -159,7 +335,29 @@
     "bossName": null,
     "shield": 1,
     "streak": 1,
-    "adherenceScore": 100
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 40,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/29",
@@ -177,7 +375,29 @@
     "bossName": null,
     "shield": 2,
     "streak": 2,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/30",
@@ -195,7 +415,29 @@
     "bossName": null,
     "shield": 0,
     "streak": 0,
-    "adherenceScore": 55
+    "adherenceScore": 55,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 10,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "01/31",
@@ -213,7 +455,29 @@
     "bossName": "Buffet",
     "shield": 0,
     "streak": 0,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 60,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 20,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/01",
@@ -231,7 +495,29 @@
     "bossName": null,
     "shield": 1,
     "streak": 1,
-    "adherenceScore": 100
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 80,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 30,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/02",
@@ -249,7 +535,29 @@
     "bossName": null,
     "shield": 2,
     "streak": 2,
-    "adherenceScore": 95
+    "adherenceScore": 95,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 100,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 40,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/03",
@@ -267,7 +575,29 @@
     "bossName": null,
     "shield": 3,
     "streak": 3,
-    "adherenceScore": 95
+    "adherenceScore": 95,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 120,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/04",
@@ -285,7 +615,29 @@
     "bossName": null,
     "shield": 4,
     "streak": 4,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 130,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 60,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/05",
@@ -303,7 +655,29 @@
     "bossName": null,
     "shield": 5,
     "streak": 5,
-    "adherenceScore": 90
+    "adherenceScore": 90,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 150,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 70,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/06",
@@ -321,7 +695,29 @@
     "bossName": null,
     "shield": 6,
     "streak": 6,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 80,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/07",
@@ -339,7 +735,29 @@
     "bossName": null,
     "shield": 0,
     "streak": 0,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 170,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 90,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/08",
@@ -357,7 +775,29 @@
     "bossName": null,
     "shield": 1,
     "streak": 1,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 180,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 100,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/09",
@@ -375,7 +815,29 @@
     "bossName": null,
     "shield": 2,
     "streak": 2,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 2,
+        "currentLvlXp": 190,
+        "nextLvlXp": 200
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 110,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/10",
@@ -393,7 +855,29 @@
     "bossName": null,
     "shield": 3,
     "streak": 3,
-    "adherenceScore": 94
+    "adherenceScore": 94,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 10,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 120,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/11",
@@ -411,7 +895,29 @@
     "bossName": null,
     "shield": 4,
     "streak": 4,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 20,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 130,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/12",
@@ -429,7 +935,29 @@
     "bossName": null,
     "shield": 5,
     "streak": 5,
-    "adherenceScore": 90
+    "adherenceScore": 90,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 40,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 140,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/13",
@@ -447,7 +975,29 @@
     "bossName": "Valentine",
     "shield": 5,
     "streak": 5,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 50,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 150,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
+      }
+    }
   },
   {
     "date": "02/14",
@@ -465,7 +1015,29 @@
     "bossName": "Restaurant meal",
     "shield": 3,
     "streak": 5,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 60,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/15",
@@ -483,7 +1055,29 @@
     "bossName": null,
     "shield": 4,
     "streak": 6,
-    "adherenceScore": 90
+    "adherenceScore": 90,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 10,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 80,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 170,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/16",
@@ -501,7 +1095,29 @@
     "bossName": null,
     "shield": 5,
     "streak": 7,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 20,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 90,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 180,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/17",
@@ -519,7 +1135,29 @@
     "bossName": null,
     "shield": 6,
     "streak": 8,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 100,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 2,
+        "currentLvlXp": 190,
+        "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/18",
@@ -537,7 +1175,29 @@
     "bossName": null,
     "shield": 7,
     "streak": 9,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 110,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 0,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/19",
@@ -555,7 +1215,29 @@
     "bossName": null,
     "shield": 8,
     "streak": 10,
-    "adherenceScore": 97
+    "adherenceScore": 97,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 130,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 10,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/20",
@@ -573,7 +1255,29 @@
     "bossName": null,
     "shield": 9,
     "streak": 11,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 140,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 20,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/21",
@@ -591,7 +1295,29 @@
     "bossName": "Lodge",
     "shield": 9,
     "streak": 11,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 150,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 30,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/22",
@@ -609,7 +1335,29 @@
     "bossName": null,
     "shield": 10,
     "streak": 12,
-    "adherenceScore": 100
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 160,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 30,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/23",
@@ -627,7 +1375,29 @@
     "bossName": null,
     "shield": 11,
     "streak": 13,
-    "adherenceScore": 100
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 180,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 50,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/24",
@@ -645,7 +1415,29 @@
     "bossName": null,
     "shield": 12,
     "streak": 14,
-    "adherenceScore": 100
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 200,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 70,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/25",
@@ -663,7 +1455,29 @@
     "bossName": "Lodge",
     "shield": 12,
     "streak": 14,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 210,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 90,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 100,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/26",
@@ -681,7 +1495,29 @@
     "bossName": "Great Wolf Lodge",
     "shield": 12,
     "streak": 14,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 220,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 100,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 150,
+        "nextLvlXp": 200
+      }
+    }
   },
   {
     "date": "02/27",
@@ -699,6 +1535,28 @@
     "bossName": "Great Wolf Lodge",
     "shield": 0,
     "streak": 0,
-    "adherenceScore": null
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 230,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 110,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 130,
+        "nextLvlXp": 200
+      }
+    }
   }
 ]
