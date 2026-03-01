@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, ResponsiveContainer, ReferenceLine
+  Tooltip, Legend, ResponsiveContainer, ReferenceLine,
+  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
 } from 'recharts';
 import {
   TrendingDown, Scale, Activity, Ruler, Info, Target,
@@ -139,6 +140,15 @@ export default function CutProgressDashboard() {
     strength: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
     resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100 }
   };
+
+  const radarData = useMemo(() => {
+    return [
+      { subject: 'Strength', level: latestAttributes.strength.level, fullMark: Math.max(10, latestAttributes.strength.level + 2) },
+      { subject: 'Vitality', level: latestAttributes.vitality.level, fullMark: Math.max(10, latestAttributes.vitality.level + 2) },
+      { subject: 'Resilience', level: latestAttributes.resilience.level, fullMark: Math.max(10, latestAttributes.resilience.level + 2) },
+      { subject: 'Discipline', level: latestAttributes.discipline.level, fullMark: Math.max(10, latestAttributes.discipline.level + 2) },
+    ];
+  }, [latestAttributes]);
 
   // Get all earned trophies (Defeated Bosses)
   const trophies = useMemo(() => {
@@ -282,68 +292,62 @@ export default function CutProgressDashboard() {
           </div>
 
           {/* RPG Hero Attributes */}
-          <div className="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
-            <h3 className="text-sm font-bold text-slate-700 flex items-center gap-1.5 mb-3 uppercase tracking-wider">
+          <div className="mt-4 bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-inner">
+            <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mb-1 uppercase tracking-wider">
               Hero Attributes
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-
-              {/* Strength */}
-              <div className="flex flex-col">
-                <div className="flex justify-between items-end mb-1">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-                    <Dumbbell size={14} className="text-red-500" /> Strength
-                  </div>
-                  <div className="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 rounded">Lvl {latestAttributes.strength.level}</div>
-                </div>
-                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
-                  <div className="h-full bg-red-500" style={{ width: `${(latestAttributes.strength.currentLvlXp / latestAttributes.strength.nextLvlXp) * 100}%` }}></div>
-                </div>
-                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.strength.currentLvlXp} / {latestAttributes.strength.nextLvlXp} XP</div>
+            <div className="text-xs text-slate-400 mb-4">Level Progression (Max Lvl 10)</div>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <div className="w-full md:w-1/2 h-64 flex justify-center items-center">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
+                    <PolarGrid stroke="#334155" />
+                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 'bold' }} />
+                    <PolarRadiusAxis angle={30} domain={[0, 'dataMax']} tick={false} axisLine={false} />
+                    <Radar
+                      name="Hero Level"
+                      dataKey="level"
+                      stroke="#8b5cf6"
+                      fill="#8b5cf6"
+                      fillOpacity={0.5}
+                    />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#fff' }}
+                      itemStyle={{ color: '#c4b5fd' }}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
               </div>
-
-              {/* Vitality */}
-              <div className="flex flex-col">
-                <div className="flex justify-between items-end mb-1">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-                    <Heart size={14} className="text-green-500" /> Vitality
+              <div className="w-full md:w-1/2 grid grid-cols-2 gap-3">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
+                    <Dumbbell size={14} className="text-red-400" /> Strength
                   </div>
-                  <div className="text-[10px] font-bold text-green-600 bg-green-100 px-1.5 rounded">Lvl {latestAttributes.vitality.level}</div>
+                  <div className="text-xl font-black text-white">Lvl {latestAttributes.strength.level}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.strength.currentLvlXp}/{latestAttributes.strength.nextLvlXp} XP</div>
                 </div>
-                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
-                  <div className="h-full bg-green-500" style={{ width: `${(latestAttributes.vitality.currentLvlXp / latestAttributes.vitality.nextLvlXp) * 100}%` }}></div>
-                </div>
-                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.vitality.currentLvlXp} / {latestAttributes.vitality.nextLvlXp} XP</div>
-              </div>
-
-              {/* Discipline */}
-              <div className="flex flex-col">
-                <div className="flex justify-between items-end mb-1">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-                    <Brain size={14} className="text-purple-500" /> Discipline
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
+                    <Heart size={14} className="text-green-400" /> Vitality
                   </div>
-                  <div className="text-[10px] font-bold text-purple-600 bg-purple-100 px-1.5 rounded">Lvl {latestAttributes.discipline.level}</div>
+                  <div className="text-xl font-black text-white">Lvl {latestAttributes.vitality.level}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.vitality.currentLvlXp}/{latestAttributes.vitality.nextLvlXp} XP</div>
                 </div>
-                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
-                  <div className="h-full bg-purple-500" style={{ width: `${(latestAttributes.discipline.currentLvlXp / latestAttributes.discipline.nextLvlXp) * 100}%` }}></div>
-                </div>
-                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.discipline.currentLvlXp} / {latestAttributes.discipline.nextLvlXp} XP</div>
-              </div>
-
-              {/* Resilience */}
-              <div className="flex flex-col">
-                <div className="flex justify-between items-end mb-1">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-                    <Shield size={14} className="text-blue-500" /> Resilience
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
+                    <Brain size={14} className="text-purple-400" /> Discipline
                   </div>
-                  <div className="text-[10px] font-bold text-blue-600 bg-blue-100 px-1.5 rounded">Lvl {latestAttributes.resilience.level}</div>
+                  <div className="text-xl font-black text-white">Lvl {latestAttributes.discipline.level}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.discipline.currentLvlXp}/{latestAttributes.discipline.nextLvlXp} XP</div>
                 </div>
-                <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden flex">
-                  <div className="h-full bg-blue-500" style={{ width: `${(latestAttributes.resilience.currentLvlXp / latestAttributes.resilience.nextLvlXp) * 100}%` }}></div>
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
+                    <Shield size={14} className="text-blue-400" /> Resilience
+                  </div>
+                  <div className="text-xl font-black text-white">Lvl {latestAttributes.resilience.level}</div>
+                  <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.resilience.currentLvlXp}/{latestAttributes.resilience.nextLvlXp} XP</div>
                 </div>
-                <div className="text-[9px] text-right text-slate-400 mt-0.5 font-medium">{latestAttributes.resilience.currentLvlXp} / {latestAttributes.resilience.nextLvlXp} XP</div>
               </div>
-
             </div>
           </div>
 
