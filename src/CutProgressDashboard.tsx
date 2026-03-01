@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 
 import rawData from './data.json';
-import { MAX_SHIELD, ADHERENCE_LOW } from './config';
+import { MAX_SHIELD, ADHERENCE_LOW, MISSION_STATEMENT } from './config';
 import { applyWaistSwapFix, compute7DayAvg, computeProjectionStats } from './utils/dataProcessing';
 import type { DayEntry, Attributes } from './types';
 
@@ -15,6 +15,8 @@ import CoachAnalysis from './components/CoachAnalysis';
 import ProjectionModule from './components/ProjectionModule';
 import ChartsSection from './components/ChartsSection';
 import InputsSection from './components/InputsSection';
+import ConsistencyEngineSection from './components/ConsistencyEngineSection';
+import { deriveConsistencyGameState } from './utils/consistencyGame';
 
 export default function CutProgressDashboard() {
   const [fixSwaps, setFixSwaps] = useState(true);
@@ -61,22 +63,31 @@ export default function CutProgressDashboard() {
       .map(d => d.bossName as string)
   ), [chartData]);
 
+  const gameState = useMemo(() => deriveConsistencyGameState(chartData), [chartData]);
+
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
       <div className="max-w-7xl mx-auto space-y-6">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <div>
-            <h1 className="text-2xl font-bold flex items-center gap-2">
-              <Activity className="text-blue-600" />
-              Combat Nutrition Progress
-            </h1>
-            <p className="text-slate-500 text-sm mt-1">Metabolic Audit & Linear Cut Block (Jan 19 - Feb 25)</p>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div>
+              <h1 className="text-2xl font-bold flex items-center gap-2">
+                <Activity className="text-blue-600" />
+                Combat Nutrition Progress
+              </h1>
+              <p className="text-slate-500 text-sm mt-1">Metabolic Audit & Linear Cut Block (Jan 19 - Feb 25)</p>
+            </div>
+            <div className="mt-4 md:mt-0 flex items-center bg-slate-100 p-1 rounded-lg shrink-0">
+              <button onClick={() => setFixSwaps(true)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Auto-Fix Waist Data</button>
+              <button onClick={() => setFixSwaps(false)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${!fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Raw Logs</button>
+            </div>
           </div>
-          <div className="mt-4 md:mt-0 flex items-center bg-slate-100 p-1 rounded-lg">
-            <button onClick={() => setFixSwaps(true)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Auto-Fix Waist Data</button>
-            <button onClick={() => setFixSwaps(false)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${!fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Raw Logs</button>
+          <div className="mt-4 pt-4 border-t border-slate-100 flex gap-2 items-start">
+            <span className="text-blue-400 text-xl font-bold leading-none mt-0.5 select-none">"</span>
+            <p className="text-sm text-slate-600 italic leading-relaxed flex-1">{MISSION_STATEMENT}</p>
+            <span className="text-blue-400 text-xl font-bold leading-none self-end mb-0.5 select-none">"</span>
           </div>
         </div>
 
@@ -162,6 +173,8 @@ export default function CutProgressDashboard() {
             </li>
           </CoachAnalysis>
         </div>
+
+        <ConsistencyEngineSection gameState={gameState} />
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
