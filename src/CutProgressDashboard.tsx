@@ -146,8 +146,6 @@ export default function CutProgressDashboard() {
           </div>
 
           <HeroIdentitySection
-            projectionStats={projectionStats}
-            latestData={latestData}
             latestAttributes={latestAttributes}
             radarData={radarData}
           />

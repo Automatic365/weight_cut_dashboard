@@ -286,16 +286,16 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 3",
-    "status": "Fail",
+    "status": "Pass",
     "calories": 0,
     "protein": 0,
     "sleep": 7,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 0,
-    "streak": 0,
-    "adherenceScore": 95,
+    "shield": 8,
+    "streak": 8,
+    "adherenceScore": 87,
     "attributes": {
       "vitality": {
         "level": 1,
@@ -304,7 +304,7 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 80,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "strength": {
@@ -333,8 +333,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 1,
-    "streak": 1,
+    "shield": 9,
+    "streak": 9,
     "adherenceScore": 100,
     "attributes": {
       "vitality": {
@@ -344,7 +344,7 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 95,
+        "currentLvlXp": 85,
         "nextLvlXp": 100
       },
       "strength": {
@@ -373,8 +373,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 2,
-    "streak": 2,
+    "shield": 10,
+    "streak": 10,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -383,9 +383,9 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 2,
-        "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
@@ -424,7 +424,7 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 95,
+        "currentLvlXp": 85,
         "nextLvlXp": 100
       },
       "strength": {
@@ -463,9 +463,9 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 2,
-        "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
@@ -504,7 +504,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 15,
+        "currentLvlXp": 5,
         "nextLvlXp": 200
       },
       "strength": {
@@ -544,7 +544,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 30,
+        "currentLvlXp": 20,
         "nextLvlXp": 200
       },
       "strength": {
@@ -575,7 +575,7 @@
     "bossName": null,
     "shield": 3,
     "streak": 3,
-    "adherenceScore": 95,
+    "adherenceScore": 90,
     "attributes": {
       "vitality": {
         "level": 1,
@@ -584,7 +584,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 45,
+        "currentLvlXp": 35,
         "nextLvlXp": 200
       },
       "strength": {
@@ -624,7 +624,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 50,
+        "currentLvlXp": 40,
         "nextLvlXp": 200
       },
       "strength": {
@@ -664,7 +664,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 65,
+        "currentLvlXp": 55,
         "nextLvlXp": 200
       },
       "strength": {
@@ -704,7 +704,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 70,
+        "currentLvlXp": 60,
         "nextLvlXp": 200
       },
       "strength": {
@@ -744,7 +744,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 75,
+        "currentLvlXp": 65,
         "nextLvlXp": 200
       },
       "strength": {
@@ -784,7 +784,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 80,
+        "currentLvlXp": 70,
         "nextLvlXp": 200
       },
       "strength": {
@@ -824,7 +824,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 85,
+        "currentLvlXp": 75,
         "nextLvlXp": 200
       },
       "strength": {
@@ -855,7 +855,7 @@
     "bossName": null,
     "shield": 3,
     "streak": 3,
-    "adherenceScore": 94,
+    "adherenceScore": 92,
     "attributes": {
       "vitality": {
         "level": 1,
@@ -864,7 +864,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 100,
+        "currentLvlXp": 90,
         "nextLvlXp": 200
       },
       "strength": {
@@ -904,7 +904,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 105,
+        "currentLvlXp": 95,
         "nextLvlXp": 200
       },
       "strength": {
@@ -944,7 +944,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 120,
+        "currentLvlXp": 110,
         "nextLvlXp": 200
       },
       "strength": {
@@ -971,10 +971,10 @@
     "protein": 50,
     "sleep": 6.5,
     "notes": "",
-    "isBossFight": true,
-    "bossName": "Valentine",
-    "shield": 5,
-    "streak": 5,
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 6,
+    "streak": 6,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -984,7 +984,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 125,
+        "currentLvlXp": 115,
         "nextLvlXp": 200
       },
       "strength": {
@@ -994,7 +994,7 @@
       },
       "resilience": {
         "level": 1,
-        "currentLvlXp": 50,
+        "currentLvlXp": 0,
         "nextLvlXp": 100
       }
     }
@@ -1006,15 +1006,15 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Linear",
-    "status": "Pass",
+    "status": "Fail",
     "calories": 2900,
     "protein": 50,
     "sleep": null,
     "notes": "",
     "isBossFight": true,
     "bossName": "Restaurant meal",
-    "shield": 3,
-    "streak": 5,
+    "shield": 0,
+    "streak": 0,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1024,7 +1024,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 130,
+        "currentLvlXp": 120,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1033,9 +1033,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1053,8 +1053,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 4,
-    "streak": 6,
+    "shield": 1,
+    "streak": 1,
     "adherenceScore": 90,
     "attributes": {
       "vitality": {
@@ -1064,7 +1064,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 145,
+        "currentLvlXp": 135,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1073,9 +1073,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1093,8 +1093,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 5,
-    "streak": 7,
+    "shield": 2,
+    "streak": 2,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1104,7 +1104,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 150,
+        "currentLvlXp": 140,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1113,9 +1113,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1133,8 +1133,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 6,
-    "streak": 8,
+    "shield": 3,
+    "streak": 3,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1144,7 +1144,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 155,
+        "currentLvlXp": 145,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1153,9 +1153,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1173,8 +1173,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 7,
-    "streak": 9,
+    "shield": 4,
+    "streak": 4,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1184,7 +1184,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 160,
+        "currentLvlXp": 150,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1193,9 +1193,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1213,8 +1213,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 8,
-    "streak": 10,
+    "shield": 5,
+    "streak": 5,
     "adherenceScore": 97,
     "attributes": {
       "vitality": {
@@ -1224,7 +1224,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 175,
+        "currentLvlXp": 165,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1233,9 +1233,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1253,8 +1253,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 9,
-    "streak": 11,
+    "shield": 6,
+    "streak": 6,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1264,7 +1264,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 180,
+        "currentLvlXp": 170,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1273,9 +1273,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
+        "level": 1,
         "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "nextLvlXp": 100
       }
     }
   },
@@ -1291,10 +1291,10 @@
     "protein": 0,
     "sleep": 6.5,
     "notes": "",
-    "isBossFight": true,
-    "bossName": "Lodge",
-    "shield": 9,
-    "streak": 11,
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 7,
+    "streak": 7,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1304,7 +1304,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 185,
+        "currentLvlXp": 175,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1313,9 +1313,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
       }
     }
   },
@@ -1333,8 +1333,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 10,
-    "streak": 12,
+    "shield": 8,
+    "streak": 8,
     "adherenceScore": 100,
     "attributes": {
       "vitality": {
@@ -1344,7 +1344,7 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 195,
+        "currentLvlXp": 185,
         "nextLvlXp": 200
       },
       "strength": {
@@ -1353,9 +1353,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
       }
     }
   },
@@ -1373,8 +1373,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 11,
-    "streak": 13,
+    "shield": 9,
+    "streak": 9,
     "adherenceScore": 100,
     "attributes": {
       "vitality": {
@@ -1384,7 +1384,7 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 10,
+        "currentLvlXp": 0,
         "nextLvlXp": 300
       },
       "strength": {
@@ -1393,9 +1393,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
       }
     }
   },
@@ -1413,8 +1413,8 @@
     "notes": "",
     "isBossFight": false,
     "bossName": null,
-    "shield": 12,
-    "streak": 14,
+    "shield": 10,
+    "streak": 10,
     "adherenceScore": 100,
     "attributes": {
       "vitality": {
@@ -1424,7 +1424,7 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 25,
+        "currentLvlXp": 15,
         "nextLvlXp": 300
       },
       "strength": {
@@ -1433,9 +1433,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
       }
     }
   },
@@ -1451,10 +1451,10 @@
     "protein": 222,
     "sleep": 7,
     "notes": "",
-    "isBossFight": true,
-    "bossName": "Lodge",
-    "shield": 12,
-    "streak": 14,
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 11,
+    "streak": 11,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1464,7 +1464,7 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 30,
+        "currentLvlXp": 20,
         "nextLvlXp": 300
       },
       "strength": {
@@ -1473,9 +1473,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
-        "currentLvlXp": 100,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 0,
+        "nextLvlXp": 100
       }
     }
   },
@@ -1493,8 +1493,8 @@
     "notes": "",
     "isBossFight": true,
     "bossName": "Great Wolf Lodge",
-    "shield": 12,
-    "streak": 14,
+    "shield": 11,
+    "streak": 11,
     "adherenceScore": null,
     "attributes": {
       "vitality": {
@@ -1504,7 +1504,7 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 35,
+        "currentLvlXp": 25,
         "nextLvlXp": 300
       },
       "strength": {
@@ -1513,9 +1513,9 @@
         "nextLvlXp": 200
       },
       "resilience": {
-        "level": 2,
-        "currentLvlXp": 150,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
       }
     }
   },
@@ -1544,7 +1544,7 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 40,
+        "currentLvlXp": 30,
         "nextLvlXp": 300
       },
       "strength": {
@@ -1553,9 +1553,49 @@
         "nextLvlXp": 200
       },
       "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "02/28",
+    "weight": 165.6,
+    "waistNavel": 33.73,
+    "waistPlus2": null,
+    "waistMinus2": null,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1950,
+    "protein": 25,
+    "sleep": 8.6,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 1,
+    "streak": 1,
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 1,
+        "currentLvlXp": 60,
+        "nextLvlXp": 100
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 35,
+        "nextLvlXp": 300
+      },
+      "strength": {
         "level": 2,
-        "currentLvlXp": 130,
+        "currentLvlXp": 125,
         "nextLvlXp": 200
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
       }
     }
   }

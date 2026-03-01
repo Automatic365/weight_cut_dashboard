@@ -8,6 +8,68 @@ import {
   PROTEIN_FLOOR, XP,
 } from '../src/config.js';
 
+function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function parseLabeledValue(text, label) {
+    const pattern = new RegExp(`(?:^|\\n)\\s*(?:[-*]\\s*)?(?:\\*\\*)?${label}(?:\\*\\*)?:\\s*([^\\n]+)`, 'i');
+    const match = text.match(pattern);
+    return match ? match[1].trim() : null;
+}
+
+function normalizeNullableValue(value) {
+    if (!value) return null;
+    const cleaned = value.replace(/\*\*/g, '').trim();
+    if (/^(null|none|n\/a|na)$/i.test(cleaned)) return null;
+    return cleaned;
+}
+
+function parseAdherencePercentFromLine(valueText) {
+    const normalized = valueText.replace(/\*\*/g, '').trim();
+    const rangeMatch = normalized.match(/(\d{2,3})\D+(\d{2,3})\s*%/);
+    if (rangeMatch) {
+        const low = parseInt(rangeMatch[1], 10);
+        const high = parseInt(rangeMatch[2], 10);
+        if (!Number.isNaN(low) && !Number.isNaN(high)) {
+            return Math.round((low + high) / 2);
+        }
+    }
+
+    const pctMatch = normalized.match(/(\d{2,3})\s*%/);
+    if (pctMatch) {
+        const pct = parseInt(pctMatch[1], 10);
+        if (!Number.isNaN(pct)) return pct;
+    }
+
+    return null;
+}
+
+function buildExecutionText(dayText) {
+    const futureSectionHeading = /(forward plan|reality plan|tomorrow|next expected input|next day note|what to expect tomorrow|tomorrow plan|tomorrow priority|tomorrow directive|tomorrow preview|forecast|preview)/i;
+    const explicitPlanningLine = /\b(upcoming|forward plan|reality plan|forecast|preview|tomorrow)\b/i;
+    const lines = dayText.split('\n');
+    const keptLines = [];
+    let inFutureSection = false;
+
+    for (const line of lines) {
+        const headingMatch = line.match(/^###\s+(.+)$/);
+        if (headingMatch) {
+            if (futureSectionHeading.test(headingMatch[1])) {
+                inFutureSection = true;
+                continue;
+            }
+            inFutureSection = false;
+        }
+
+        if (inFutureSection) continue;
+        if (explicitPlanningLine.test(line)) continue;
+        keptLines.push(line);
+    }
+
+    return keptLines.join('\n');
+}
+
 function parseLogContent(content) {
     // Split on "## YYYY-MM-DD" exactly
     const dayBlocks = content.split(/^## (?=\d{4}-\d{2}-\d{2})/gm);
@@ -63,6 +125,8 @@ function parseLogContent(content) {
         } else if (dayText.toLowerCase().includes('fail (')) {
             status = 'Fail';
         }
+        // Normalize to binary status early. Anything not explicit Fail is treated as Pass.
+        status = /^fail$/i.test(status) ? 'Fail' : 'Pass';
 
         // Tier
         let tier = 'Tier 2';
@@ -136,19 +200,38 @@ function parseLogContent(content) {
 
         // Adherence Score
         let adherenceScore = null;
+        const adherenceScore010 = parseLabeledValue(dayText, 'Adherence Score \\(0-10\\)');
+        const adherencePercentField = parseLabeledValue(dayText, 'Daily Adherence (?:Percent|Score)');
+        const overallAdherenceLine = parseLabeledValue(dayText, 'Overall adherence');
+        const dailyAdherenceLine = parseLabeledValue(dayText, 'Daily Adherence');
+
+        if (adherencePercentField) {
+            const parsed = parseInt(adherencePercentField.replace(/[^0-9]/g, ''), 10);
+            if (!Number.isNaN(parsed)) adherenceScore = Math.max(0, Math.min(100, parsed));
+        } else if (overallAdherenceLine) {
+            const parsed = parseAdherencePercentFromLine(overallAdherenceLine);
+            if (parsed != null) adherenceScore = Math.max(0, Math.min(100, parsed));
+        } else if (dailyAdherenceLine) {
+            const parsed = parseAdherencePercentFromLine(dailyAdherenceLine);
+            if (parsed != null) adherenceScore = Math.max(0, Math.min(100, parsed));
+        } else if (adherenceScore010) {
+            const parsed = parseFloat(adherenceScore010);
+            if (!Number.isNaN(parsed)) adherenceScore = Math.max(0, Math.min(100, Math.round(parsed * 10)));
+        }
+
         // Check for out of 10 or 15 points first
         const adherenceScoreMatchFraction = dayText.match(/Adherence(?:\s+Score)?.*?(?:Final|\*\*Final|Score)?(?::\s*|\*\*\s*|\n- \*\*)?(\d+(?:\.\d+)?)\s*\/\s*(\d+)/i) ||
             dayText.match(/Total(?::\s*|\*\*\s*|\n- \*\*)?(\d+(?:\.\d+)?)\s*\/\s*(\d+)/i);
         // Check for percentage
         const adherenceScoreMatchPercentage = dayText.match(/Adherence(?:\s+Score)?.*?(?:Day|Final|Score|average|Overall)?(?::\s*|\*\*\s*|~|\n- \*\*.*?)?(\d{2,3})(?:%| %)/i);
 
-        if (adherenceScoreMatchFraction) {
+        if (adherenceScore == null && adherenceScoreMatchFraction) {
             const points = parseFloat(adherenceScoreMatchFraction[1]);
             const outOf = parseInt(adherenceScoreMatchFraction[2]);
             if (outOf > 0) {
                 adherenceScore = Math.round((points / outOf) * 100);
             }
-        } else if (adherenceScoreMatchPercentage) {
+        } else if (adherenceScore == null && adherenceScoreMatchPercentage) {
             adherenceScore = parseInt(adherenceScoreMatchPercentage[1]);
         }
 
@@ -156,9 +239,15 @@ function parseLogContent(content) {
         let isBossFight = false;
         let bossName = null;
 
-        const explicitMatch = dayText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
-        const eventKeywords = /(valentine|buffet|thanksgiving|christmas|holiday|party|vacation|wedding|family dinner|restaurant meal|outing|trip|lodge|travel)/i;
+        const executionText = buildExecutionText(dayText);
+        const explicitMatch = executionText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
+        const eventKeywords = /(valentine|buffet|thanksgiving|christmas|holiday|party|vacation|wedding|family dinner|restaurant meal|outing|lodge)/i;
         const planningKeywords = /(strategy|forecast|plan|contained|deviation|flex|indulgence|containment|controlled|honest)/i;
+        const executionHasEventKeyword = eventKeywords.test(executionText);
+        const explicitBossMode = normalizeNullableValue(parseLabeledValue(dayText, 'Boss Mode'));
+        const explicitBossName = normalizeNullableValue(parseLabeledValue(dayText, 'Boss Name'));
+        const explicitBossOutcome = normalizeNullableValue(parseLabeledValue(dayText, 'Boss Outcome'));
+        const hasExplicitBossMode = Boolean(explicitBossMode && /^(none|planning|execution)$/i.test(explicitBossMode));
 
         // Check for upcoming boss mentions to store them
         const upcomingMatch = dayText.match(/upcoming\s+([a-zA-Z0-9\s']+?)\s+(?:trip|event|vacation)/i) ||
@@ -171,51 +260,63 @@ function parseLogContent(content) {
         let mentionsPendingBoss = false;
         if (pendingBossName) {
             const bossWords = pendingBossName.split(/\s+/).filter(w => w.length > 3);
-            mentionsPendingBoss = bossWords.some(w => new RegExp(`\\b${w}\\b`, 'i').test(dayText));
+            mentionsPendingBoss = bossWords.some(w => new RegExp(`\\b${escapeRegExp(w)}\\b`, 'i').test(executionText));
         }
 
-        if (explicitMatch) {
-            isBossFight = true;
-            bossName = explicitMatch[1].trim();
-        } else if (mentionsPendingBoss && (eventKeywords.test(dayText) || planningKeywords.test(dayText))) {
-            if (!dayText.match(/upcoming|Reality Plan|Forward Plan/i)) { // Avoid triggering on the planning day itself
+        if (hasExplicitBossMode) {
+            const mode = explicitBossMode.toLowerCase();
+            if (mode === 'planning') {
+                if (explicitBossName) pendingBossName = explicitBossName;
+            } else if (mode === 'execution') {
+                isBossFight = true;
+                bossName = explicitBossName || pendingBossName;
+                if (explicitBossOutcome && /^pass$/i.test(explicitBossOutcome)) status = 'Pass';
+                if (explicitBossOutcome && /^fail$/i.test(explicitBossOutcome)) status = 'Fail';
+            }
+        } else {
+            if (explicitMatch) {
+                isBossFight = true;
+                bossName = explicitMatch[1].trim();
+            } else if (mentionsPendingBoss && executionHasEventKeyword) {
                 isBossFight = true;
                 bossName = pendingBossName;
+            } else if (results.length > 0) { // If it's a consecutive event day (e.g. multi-day trip), persist the Boss Fight status
+                const prevDay = results[results.length - 1];
+                if (prevDay.isBossFight && prevDay.bossName === pendingBossName && executionHasEventKeyword) {
+                    isBossFight = true;
+                    bossName = prevDay.bossName;
+                }
             }
-        } else if (results.length > 0) { // If it's a consecutive event day (e.g. multi-day trip), persist the Boss Fight status
-            const prevDay = results[results.length - 1];
-            if (prevDay.isBossFight && prevDay.bossName === pendingBossName && eventKeywords.test(dayText)) {
-                isBossFight = true;
-                bossName = prevDay.bossName;
+
+            // Generic fallback for un-planned Boss Battles
+            if (!isBossFight && executionHasEventKeyword && planningKeywords.test(executionText)) {
+                const match = executionText.match(eventKeywords);
+                if (match && match[1]) {
+                    isBossFight = true;
+                    bossName = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+                    if (bossName === 'Outing') bossName = 'Social Outing'; // Make it slightly more epic
+                }
+            }
+
+            // If it's a consecutive event day (e.g. multi-day trip), persist the Boss Fight status
+            if (!isBossFight && results.length > 0) {
+                const prevDay = results[results.length - 1];
+                if (prevDay.isBossFight && prevDay.bossName === pendingBossName && executionHasEventKeyword) {
+                    isBossFight = true;
+                    bossName = prevDay.bossName;
+                }
             }
         }
 
-        // Generic fallback for un-planned Boss Battles
-        if (!isBossFight && eventKeywords.test(dayText) && planningKeywords.test(dayText)) {
-            const match = dayText.match(eventKeywords);
-            if (match && match[1]) {
-                isBossFight = true;
-                bossName = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
-                if (bossName === 'Outing') bossName = 'Social Outing'; // Make it slightly more epic
-            }
-        }
-
-        // If it's a consecutive event day (e.g. multi-day trip), persist the Boss Fight status
-        if (!isBossFight && results.length > 0) {
-            const prevDay = results[results.length - 1];
-            if (prevDay.isBossFight && prevDay.bossName === pendingBossName && eventKeywords.test(dayText)) {
-                isBossFight = true;
-                bossName = prevDay.bossName;
-            }
+        // Binary adherence policy: <85 is Fail, >=85 is Pass.
+        if (adherenceScore != null) {
+            status = adherenceScore < 85 ? 'Fail' : 'Pass';
         }
 
         // Apply State Engine
         if (isBossFight) {
-            // If the user's log indicates it was planned/controlled, we count it as a Boss Defeat (Win)
-            const isControlled = /(controlled|planned|contained|containment|honest|structur)/i.test(dayText);
-
-            if (status === 'Pass' || isControlled) {
-                status = 'Pass'; // Enforce Pass for Gamification consistency so the UI shows the Trophy
+            if (status === 'Pass') {
+                // Boss trophies now require explicit pass status, never inferred from "controlled" language.
 
                 // Dynamic Shield Damage Formula
                 let damage = 0;

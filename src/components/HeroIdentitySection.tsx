@@ -3,38 +3,27 @@ import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   Tooltip, ResponsiveContainer
 } from 'recharts';
-import { User, Dumbbell, Heart, Brain, Shield } from 'lucide-react';
-import AvatarHero from './AvatarHero';
+import { Activity, Dumbbell, Heart, Brain, Shield } from 'lucide-react';
 import AttributeCard from './AttributeCard';
-import type { ProjectionStats, ChartDayEntry, Attributes, RadarDataPoint } from '../types';
+import type { Attributes, RadarDataPoint } from '../types';
 
 interface HeroIdentitySectionProps {
-  projectionStats: ProjectionStats;
-  latestData: ChartDayEntry;
   latestAttributes: Attributes;
   radarData: RadarDataPoint[];
 }
 
-// Hero Identity & Attributes section: Avatar, Spider Chart, and RPG attribute cards.
-const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({ projectionStats, latestData, latestAttributes, radarData }) => {
+// Attributes section: spider chart and RPG attribute cards.
+const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({ latestAttributes, radarData }) => {
   return (
     <div className="mt-4 bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-inner">
       <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mb-1 uppercase tracking-wider">
-        <User size={16} className="text-slate-400" /> Hero Identity & Attributes
+        <Activity size={16} className="text-slate-400" /> Performance Attributes
       </h3>
 
       <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 mt-6">
 
-        {/* Avatar Section */}
-        <div className="w-full md:w-1/3 flex flex-col items-center justify-center bg-slate-950/50 rounded-lg p-4 border border-slate-800/50">
-          <AvatarHero
-            lbsRemaining={parseFloat(projectionStats.lbsRemaining)}
-            shieldLevel={latestData.shield}
-          />
-        </div>
-
         {/* Spider Chart */}
-        <div className="w-full md:w-1/3 h-64 flex justify-center items-center">
+        <div className="w-full md:w-2/5 h-64 flex justify-center items-center">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
               <PolarGrid stroke="#334155" />
@@ -56,7 +45,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({ projectionSta
         </div>
 
         {/* Attribute Cards */}
-        <div className="w-full md:w-1/2 grid grid-cols-2 gap-3">
+        <div className="w-full md:w-3/5 grid grid-cols-2 gap-3">
           <AttributeCard
             name="Strength"
             icon={Dumbbell}

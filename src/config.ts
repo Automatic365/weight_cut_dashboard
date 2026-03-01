@@ -40,16 +40,3 @@ export const XP = {
   RESILIENCE_BOSS_WIN: 50,      // boss fight survived (Pass)
   RESILIENCE_BOSS_LOSS: -20,    // boss fight failed (Fail)
 } as const;
-
-// ─── Avatar / Body Fat ──────────────────────────────────────────────────────
-export const BF_GOAL_PERCENT = 10;          // estimated BF% at goal weight
-export const BF_LBS_SCALE = 0.667;          // BF% increase per lb above goal weight
-export const BODY_STAGE_THRESHOLDS = {
-  shredded: 10,    // BF% <= this → Stage 4
-  athletic: 15,    // BF% <= this → Stage 3
-  leaningOut: 20,  // BF% <= this → Stage 2; above this → Stage 1
-} as const;
-export const ARMOR_TIER_THRESHOLDS = {
-  full: 10,   // shield >= this → Tier 2 (Full Combat)
-  light: 5,   // shield >= this → Tier 1 (Light Gear); below → Tier 0 (Vulnerable)
-} as const;
