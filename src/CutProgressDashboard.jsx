@@ -319,28 +319,28 @@ export default function CutProgressDashboard() {
                 </ResponsiveContainer>
               </div>
               <div className="w-full md:w-1/2 grid grid-cols-2 gap-3">
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Strength: Hitting protein floor (>=190g) and logging workouts (Muay Thai, lifting, etc).">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Dumbbell size={14} className="text-red-400" /> Strength
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.strength.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.strength.currentLvlXp}/{latestAttributes.strength.nextLvlXp} XP</div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Vitality: Consistent sleep. >7 hours grants XP, <6 hours loses XP.">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Heart size={14} className="text-green-400" /> Vitality
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.vitality.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.vitality.currentLvlXp}/{latestAttributes.vitality.nextLvlXp} XP</div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Discipline: High adherence (>90%) and logging workouts. Drops significantly if adherence is <85%.">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Brain size={14} className="text-purple-400" /> Discipline
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.discipline.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.discipline.currentLvlXp}/{latestAttributes.discipline.nextLvlXp} XP</div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Resilience: Boss encounters. Huge XP for surviving, penalty for taking a Critical Hit from a Boss.">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Shield size={14} className="text-blue-400" /> Resilience
                   </div>
