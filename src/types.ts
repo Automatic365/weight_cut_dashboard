@@ -53,3 +53,44 @@ export interface RadarDataPoint {
   level: number;
   fullMark: number;
 }
+
+// ─── Consistency Engine Types ─────────────────────────────────────────────────
+
+export interface ConsistencyMilestone {
+  threshold: number;
+  label: string;
+  achieved: boolean;
+  achievedOn: string | null; // "MM/DD" date string from data.json
+}
+
+export interface ConsistencyMission {
+  id: 'adherence' | 'protein' | 'sleep';
+  title: string;
+  targetText: string;
+  actualText: string;
+  completed: boolean;
+}
+
+export interface ConsistencyFocusOption {
+  id: 'recovery_lock' | 'protein_anchor' | 'containment';
+  title: string;
+  why: string;
+  recommended: boolean;
+}
+
+export interface ConsistencyGameState {
+  currentStreak: number;
+  maxStreak: number;
+  passRate: number;
+  ladderTierLabel: string;
+  nextMilestone: number | null;
+  daysToNextMilestone: number | null;
+  milestones: ConsistencyMilestone[];
+  missions: ConsistencyMission[];
+  focusOptions: ConsistencyFocusOption[];
+  weekPasses: number;
+  weekRemainingSlots: number;
+  mysteryIntelTitle: string;
+  mysteryIntelBody: string;
+  mysterySeed: string;
+}
