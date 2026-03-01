@@ -69,8 +69,9 @@ export default function CutProgressDashboard() {
 
   // Goal Projection Calculations
   const projectionStats = useMemo(() => {
-    const startWeight = rawData[0].weight;
-    const currentWeight = rawData[rawData.length - 1].weight;
+    const validWeights = rawData.map(d => d.weight).filter(w => w !== null && w !== undefined);
+    const startWeight = validWeights[0] || 0;
+    const currentWeight = validWeights[validWeights.length - 1] || 0;
     let lbsRemaining = currentWeight - 155;
 
     // --- APPLY SIMULATIONS ---
