@@ -7,11 +7,12 @@ import {
 import {
   TrendingDown, Scale, Activity, Ruler, Info, Target,
   CalendarDays, CheckCircle2, XCircle, Moon, Utensils, Lightbulb,
-  Shield, Flame, Trophy, Heart, Dumbbell, Brain
+  Shield, Flame, Trophy, Heart, Dumbbell, Brain, User
 } from 'lucide-react';
 
 // Enriched data with Calories, Protein, Sleep, and Adherence Status
 import rawData from './data.json';
+import AvatarHero from './components/AvatarHero';
 
 // Custom Dot for Weight Chart to show context
 const CustomWeightDot = (props) => {
@@ -295,11 +296,21 @@ export default function CutProgressDashboard() {
           {/* RPG Hero Attributes */}
           <div className="mt-4 bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-inner">
             <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mb-1 uppercase tracking-wider">
-              Hero Attributes
+              <User size={16} className="text-slate-400" /> Hero Identity & Attributes
             </h3>
-            <div className="text-xs text-slate-400 mb-4">Level Progression (Max Lvl 10)</div>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <div className="w-full md:w-1/2 h-64 flex justify-center items-center">
+
+            <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 mt-6">
+
+              {/* Avatar Section */}
+              <div className="w-full md:w-1/3 flex flex-col items-center justify-center bg-slate-950/50 rounded-lg p-4 border border-slate-800/50">
+                <AvatarHero
+                  lbsRemaining={parseFloat(projectionStats.lbsRemaining)}
+                  shieldLevel={latestData.shield}
+                />
+              </div>
+
+              {/* Spider Chart */}
+              <div className="w-full md:w-1/3 h-64 flex justify-center items-center">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
                     <PolarGrid stroke="#334155" />
