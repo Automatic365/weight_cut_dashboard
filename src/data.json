@@ -24,12 +24,12 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 20,
+        "currentLvlXp": 15,
         "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 5,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -64,12 +64,12 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 20,
         "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 20,
+        "currentLvlXp": 10,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -104,12 +104,12 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 40,
+        "currentLvlXp": 25,
         "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 15,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -144,12 +144,12 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 50,
+        "currentLvlXp": 30,
         "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 40,
+        "currentLvlXp": 20,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -184,12 +184,12 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 70,
+        "currentLvlXp": 45,
         "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 50,
+        "currentLvlXp": 25,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -224,12 +224,12 @@
       },
       "discipline": {
         "level": 1,
-        "currentLvlXp": 80,
+        "currentLvlXp": 50,
         "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 60,
+        "currentLvlXp": 30,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -263,13 +263,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 2,
-        "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 65,
+        "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 70,
+        "currentLvlXp": 35,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -303,13 +303,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 2,
-        "currentLvlXp": 20,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 80,
+        "currentLvlXp": 40,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -343,13 +343,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 2,
-        "currentLvlXp": 40,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 95,
+        "nextLvlXp": 100
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 90,
+        "currentLvlXp": 45,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -384,13 +384,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 50,
+        "currentLvlXp": 0,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 0,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 50,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -423,14 +423,14 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 95,
+        "nextLvlXp": 100
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 10,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 55,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -464,13 +464,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 60,
+        "currentLvlXp": 0,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 20,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 60,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -504,13 +504,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 80,
+        "currentLvlXp": 15,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 30,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 65,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -544,13 +544,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 100,
+        "currentLvlXp": 30,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 40,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 70,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -584,13 +584,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 120,
+        "currentLvlXp": 45,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 75,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -624,13 +624,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 130,
+        "currentLvlXp": 50,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 60,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -664,13 +664,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 150,
+        "currentLvlXp": 65,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 70,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 85,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -704,13 +704,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 160,
+        "currentLvlXp": 70,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 80,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -744,13 +744,13 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 75,
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 90,
-        "nextLvlXp": 200
+        "level": 1,
+        "currentLvlXp": 95,
+        "nextLvlXp": 100
       },
       "resilience": {
         "level": 1,
@@ -784,12 +784,12 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 180,
+        "currentLvlXp": 80,
         "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 100,
+        "currentLvlXp": 0,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -824,12 +824,12 @@
       },
       "discipline": {
         "level": 2,
-        "currentLvlXp": 190,
+        "currentLvlXp": 85,
         "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 110,
+        "currentLvlXp": 5,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -863,13 +863,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 10,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 100,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 120,
+        "currentLvlXp": 10,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -903,13 +903,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 20,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 105,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 130,
+        "currentLvlXp": 15,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -943,13 +943,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 40,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 120,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 140,
+        "currentLvlXp": 20,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -983,13 +983,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 50,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 125,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 150,
+        "currentLvlXp": 25,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -1023,13 +1023,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 60,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 130,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 160,
+        "currentLvlXp": 30,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -1063,13 +1063,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 80,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 145,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 35,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -1103,13 +1103,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 90,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 150,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 180,
+        "currentLvlXp": 40,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -1143,13 +1143,13 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 100,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 155,
+        "nextLvlXp": 200
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 190,
+        "currentLvlXp": 45,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -1183,14 +1183,14 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 110,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 0,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1223,14 +1223,14 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 130,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 175,
+        "nextLvlXp": 200
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 10,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 55,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1263,14 +1263,14 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 140,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 180,
+        "nextLvlXp": 200
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 20,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 60,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1303,14 +1303,14 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 150,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 185,
+        "nextLvlXp": 200
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 30,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 65,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1343,14 +1343,14 @@
         "nextLvlXp": 100
       },
       "discipline": {
-        "level": 3,
-        "currentLvlXp": 160,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 195,
+        "nextLvlXp": 200
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 30,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 65,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1384,13 +1384,13 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 180,
+        "currentLvlXp": 10,
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 50,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 80,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1424,13 +1424,13 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 200,
+        "currentLvlXp": 25,
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 70,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 95,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1464,13 +1464,13 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 210,
+        "currentLvlXp": 30,
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 90,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 110,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1504,13 +1504,13 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 220,
+        "currentLvlXp": 35,
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 100,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 115,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,
@@ -1544,13 +1544,13 @@
       },
       "discipline": {
         "level": 3,
-        "currentLvlXp": 230,
+        "currentLvlXp": 40,
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 110,
-        "nextLvlXp": 300
+        "level": 2,
+        "currentLvlXp": 120,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 2,

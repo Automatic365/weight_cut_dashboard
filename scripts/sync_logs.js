@@ -253,11 +253,11 @@ function parseLogContent(content) {
             if (adherenceScore >= 90) xp.discipline += 10;
             else if (adherenceScore < 85) xp.discipline = Math.max(0, xp.discipline - 10);
         }
-        if (isWorkoutDay) xp.discipline += 10;
+        if (isWorkoutDay) xp.discipline += 5;
 
         // Strength
         if (protein >= 190) xp.strength += 10;
-        if (isWorkoutDay) xp.strength += 10;
+        if (isWorkoutDay) xp.strength += 5;
 
         // Resilience
         if (isBossFight) {
