@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 import { fileURLToPath } from 'url';
+import {
+  MAX_SHIELD, SHIELD_OVEREAT_THRESHOLD, SHIELD_DAMAGE_DENOMINATOR,
+  SLEEP_GOAL, SLEEP_POOR_PENALTY_THRESHOLD, ADHERENCE_HIGH, ADHERENCE_LOW,
+  PROTEIN_FLOOR, XP,
+} from '../src/config.js';
 
 function parseLogContent(content) {
     // Split on "## YYYY-MM-DD" exactly
@@ -213,11 +218,10 @@ function parseLogContent(content) {
                 status = 'Pass'; // Enforce Pass for Gamification consistency so the UI shows the Trophy
 
                 // Dynamic Shield Damage Formula
-                const OVEREAT_THRESHOLD = 2300;
                 let damage = 0;
-                if (calories && calories > OVEREAT_THRESHOLD) {
-                    const surplus = calories - OVEREAT_THRESHOLD;
-                    damage = Math.floor(surplus / 250);
+                if (calories && calories > SHIELD_OVEREAT_THRESHOLD) {
+                    const surplus = calories - SHIELD_OVEREAT_THRESHOLD;
+                    damage = Math.floor(surplus / SHIELD_DAMAGE_DENOMINATOR);
                 }
 
                 currentShield -= damage;
@@ -233,7 +237,7 @@ function parseLogContent(content) {
             }
         } else if (status === 'Pass') {
             currentStreak += 1;
-            currentShield = Math.min(14, currentShield + 1); // Max 14 shield capacity
+            currentShield = Math.min(MAX_SHIELD, currentShield + 1);
         } else if (status === 'Fail') {
             currentStreak = 0;
             currentShield = 0;
@@ -244,25 +248,25 @@ function parseLogContent(content) {
 
         // Vitality
         if (sleep) {
-            if (sleep > 7) xp.vitality += 10;
-            else if (sleep < 6) xp.vitality = Math.max(0, xp.vitality - 5);
+            if (sleep > SLEEP_GOAL) xp.vitality += XP.VITALITY_SLEEP;
+            else if (sleep < SLEEP_POOR_PENALTY_THRESHOLD) xp.vitality = Math.max(0, xp.vitality + XP.VITALITY_POOR_SLEEP);
         }
 
         // Discipline
         if (adherenceScore) {
-            if (adherenceScore >= 90) xp.discipline += 10;
-            else if (adherenceScore < 85) xp.discipline = Math.max(0, xp.discipline - 10);
+            if (adherenceScore >= ADHERENCE_HIGH) xp.discipline += XP.DISCIPLINE_HIGH;
+            else if (adherenceScore < ADHERENCE_LOW) xp.discipline = Math.max(0, xp.discipline + XP.DISCIPLINE_LOW);
         }
-        if (isWorkoutDay) xp.discipline += 5;
+        if (isWorkoutDay) xp.discipline += XP.DISCIPLINE_WORKOUT;
 
         // Strength
-        if (protein >= 190) xp.strength += 10;
-        if (isWorkoutDay) xp.strength += 5;
+        if (protein >= PROTEIN_FLOOR) xp.strength += XP.STRENGTH_PROTEIN;
+        if (isWorkoutDay) xp.strength += XP.STRENGTH_WORKOUT;
 
         // Resilience
         if (isBossFight) {
-            if (status === 'Pass') xp.resilience += 50;
-            else if (status === 'Fail') xp.resilience = Math.max(0, xp.resilience - 20);
+            if (status === 'Pass') xp.resilience += XP.RESILIENCE_BOSS_WIN;
+            else if (status === 'Fail') xp.resilience = Math.max(0, xp.resilience + XP.RESILIENCE_BOSS_LOSS);
         }
 
         const attributes = {
