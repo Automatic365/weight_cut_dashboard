@@ -320,33 +320,78 @@ export default function CutProgressDashboard() {
                 </ResponsiveContainer>
               </div>
               <div className="w-full md:w-1/2 grid grid-cols-2 gap-3">
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Strength: Hitting protein floor (>=190g) and logging workouts (Muay Thai, lifting, etc).">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between relative group cursor-help">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Dumbbell size={14} className="text-red-400" /> Strength
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.strength.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.strength.currentLvlXp}/{latestAttributes.strength.nextLvlXp} XP</div>
+
+                  {/* Custom Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block z-50 w-48 pointer-events-none">
+                    <div className="bg-slate-900 border border-slate-700 text-slate-300 text-[10px] leading-tight rounded-md p-2 shadow-xl text-center">
+                      <strong className="text-red-400 block mb-1">Strength XP</strong>
+                      +10 XP: Protein floor (≥190g)<br />
+                      +5 XP: Logging a workout
+                    </div>
+                    {/* Tooltip Arrow */}
+                    <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 border-4 border-transparent border-t-slate-700"></div>
+                  </div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Vitality: Consistent sleep. >7 hours grants XP, <6 hours loses XP.">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between relative group cursor-help">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Heart size={14} className="text-green-400" /> Vitality
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.vitality.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.vitality.currentLvlXp}/{latestAttributes.vitality.nextLvlXp} XP</div>
+
+                  {/* Custom Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block z-50 w-48 pointer-events-none">
+                    <div className="bg-slate-900 border border-slate-700 text-slate-300 text-[10px] leading-tight rounded-md p-2 shadow-xl text-center">
+                      <strong className="text-green-400 block mb-1">Vitality XP</strong>
+                      +10 XP: Sleep &gt;7 hours<br />
+                      -5 XP: Sleep &lt;6 hours
+                    </div>
+                    {/* Tooltip Arrow */}
+                    <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 border-4 border-transparent border-t-slate-700"></div>
+                  </div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Discipline: High adherence (>90%) and logging workouts. Drops significantly if adherence is <85%.">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between relative group cursor-help">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Brain size={14} className="text-purple-400" /> Discipline
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.discipline.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.discipline.currentLvlXp}/{latestAttributes.discipline.nextLvlXp} XP</div>
+
+                  {/* Custom Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block z-50 w-48 pointer-events-none">
+                    <div className="bg-slate-900 border border-slate-700 text-slate-300 text-[10px] leading-tight rounded-md p-2 shadow-xl text-center">
+                      <strong className="text-purple-400 block mb-1">Discipline XP</strong>
+                      +10 XP: Adherence ≥90%<br />
+                      +5 XP: Logging a workout<br />
+                      -10 XP: Adherence &lt;85%
+                    </div>
+                    {/* Tooltip Arrow */}
+                    <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 border-4 border-transparent border-t-slate-700"></div>
+                  </div>
                 </div>
-                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between" title="Resilience: Boss encounters. Huge XP for surviving, penalty for taking a Critical Hit from a Boss.">
+                <div className="bg-slate-800/50 border border-slate-700 p-3 rounded-lg flex flex-col justify-between relative group cursor-help">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-300 mb-2">
                     <Shield size={14} className="text-blue-400" /> Resilience
                   </div>
                   <div className="text-xl font-black text-white">Lvl {latestAttributes.resilience.level}</div>
                   <div className="text-[10px] text-slate-400 mt-1">{latestAttributes.resilience.currentLvlXp}/{latestAttributes.resilience.nextLvlXp} XP</div>
+
+                  {/* Custom Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block z-50 w-48 pointer-events-none">
+                    <div className="bg-slate-900 border border-slate-700 text-slate-300 text-[10px] leading-tight rounded-md p-2 shadow-xl text-center">
+                      <strong className="text-blue-400 block mb-1">Resilience XP</strong>
+                      +50 XP: Surviving a Boss Battle<br />
+                      -20 XP: Boss Critical Hit (Fail)
+                    </div>
+                    {/* Tooltip Arrow */}
+                    <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 border-4 border-transparent border-t-slate-700"></div>
+                  </div>
                 </div>
               </div>
             </div>
