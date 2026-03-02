@@ -77,7 +77,15 @@ export default function CutProgressDashboard() {
                 <Activity className="text-blue-600" />
                 Combat Nutrition Progress
               </h1>
-              <p className="text-slate-500 text-sm mt-1">Metabolic Audit & Linear Cut Block (Jan 19 - Feb 25)</p>
+              <p className="text-slate-500 text-sm mt-1">
+                {(() => {
+                  const fmt = (mmdd: string) => {
+                    const [m, d] = mmdd.split('/');
+                    return new Date(2026, +m - 1, +d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  };
+                  return `Metabolic Audit & Linear Cut Block (${fmt(chartData[0].date)} – ${fmt(latestData.date)})`;
+                })()}
+              </p>
             </div>
             <div className="mt-4 md:mt-0 flex items-center bg-slate-100 p-1 rounded-lg shrink-0">
               <button onClick={() => setFixSwaps(true)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Auto-Fix Waist Data</button>
