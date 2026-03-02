@@ -140,12 +140,17 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
                   <span className="text-[10px] text-slate-500">{mission.targetText}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className={`text-[10px] font-semibold ${mission.completed ? 'text-green-400' : 'text-slate-400'}`}>
+                  <span className={`text-[10px] font-semibold ${
+                    mission.pending    ? 'text-blue-400'  :
+                    mission.completed  ? 'text-green-400' : 'text-red-400'
+                  }`}>
                     {mission.actualText}
                   </span>
-                  {mission.completed
+                  {mission.pending
+                    ? <Target size={14} className="text-blue-400" />
+                    : mission.completed
                     ? <CheckCircle2 size={14} className="text-green-400" />
-                    : <XCircle size={14} className="text-amber-500/70" />
+                    : <XCircle size={14} className="text-red-500/70" />
                   }
                 </div>
               </div>

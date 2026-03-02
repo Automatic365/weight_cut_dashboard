@@ -78,6 +78,27 @@ export const MYSTERY_INTEL_POOL: Array<{ title: string; body: string }> = [
   },
 ];
 
+// ─── Weekly Schedule ─────────────────────────────────────────────────────────
+export interface DaySchedule {
+  nutritionLabel: string;
+  isFast: boolean;
+  calorieRange: [number, number] | null;
+  proteinMin: number | null;
+  proteinMax: number | null;
+  muayThaiTime: string | null;
+  strengthFocus: string;
+}
+
+export const WEEKLY_SCHEDULE: Record<number, DaySchedule> = {
+  0: { nutritionLabel: 'Fast',        isFast: true,  calorieRange: null,         proteinMin: null, proteinMax: null, muayThaiTime: null,      strengthFocus: 'Grip / Abs / Calves' },
+  1: { nutritionLabel: 'Linear',      isFast: false, calorieRange: [1550, 1650], proteinMin: 190,  proteinMax: null, muayThaiTime: null,      strengthFocus: 'Chest + Triceps' },
+  2: { nutritionLabel: 'Linear',      isFast: false, calorieRange: [1550, 1650], proteinMin: 190,  proteinMax: null, muayThaiTime: '7–9 PM',  strengthFocus: 'Back + Biceps' },
+  3: { nutritionLabel: 'PSMF',        isFast: false, calorieRange: [1100, 1200], proteinMin: 180,  proteinMax: 200,  muayThaiTime: null,      strengthFocus: 'Grip / Abs / Calves' },
+  4: { nutritionLabel: 'Linear',      isFast: false, calorieRange: [1550, 1650], proteinMin: 190,  proteinMax: null, muayThaiTime: '7–9 PM',  strengthFocus: 'Neck + Hips' },
+  5: { nutritionLabel: 'Maintenance', isFast: false, calorieRange: [2300, 2500], proteinMin: 180,  proteinMax: null, muayThaiTime: null,      strengthFocus: 'Legs or Shoulders' },
+  6: { nutritionLabel: 'Maintenance', isFast: false, calorieRange: [2300, 2500], proteinMin: 180,  proteinMax: null, muayThaiTime: '11 AM',   strengthFocus: 'Legs or Shoulders' },
+};
+
 // ─── XP Values ──────────────────────────────────────────────────────────────
 export const XP = {
   VITALITY_SLEEP: 10,           // sleep > SLEEP_GOAL

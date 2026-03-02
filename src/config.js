@@ -45,6 +45,16 @@ export const MYSTERY_INTEL_POOL = [
   { title: 'The Compound Effect', body: 'Forty disciplined days create a 5–6 lb trend. Sixty create a visible physique change. The math does not require heroics — it requires showing up 90% of the time.' },
 ];
 
+export const WEEKLY_SCHEDULE = {
+  0: { nutritionLabel: 'Fast',        isFast: true,  calorieRange: null,         proteinMin: null, proteinMax: null, muayThaiTime: null,      strengthFocus: 'Grip / Abs / Calves' },
+  1: { nutritionLabel: 'Linear',      isFast: false, calorieRange: [1550, 1650], proteinMin: 190,  proteinMax: null, muayThaiTime: null,      strengthFocus: 'Chest + Triceps' },
+  2: { nutritionLabel: 'Linear',      isFast: false, calorieRange: [1550, 1650], proteinMin: 190,  proteinMax: null, muayThaiTime: '7–9 PM',  strengthFocus: 'Back + Biceps' },
+  3: { nutritionLabel: 'PSMF',        isFast: false, calorieRange: [1100, 1200], proteinMin: 180,  proteinMax: 200,  muayThaiTime: null,      strengthFocus: 'Grip / Abs / Calves' },
+  4: { nutritionLabel: 'Linear',      isFast: false, calorieRange: [1550, 1650], proteinMin: 190,  proteinMax: null, muayThaiTime: '7–9 PM',  strengthFocus: 'Neck + Hips' },
+  5: { nutritionLabel: 'Maintenance', isFast: false, calorieRange: [2300, 2500], proteinMin: 180,  proteinMax: null, muayThaiTime: null,      strengthFocus: 'Legs or Shoulders' },
+  6: { nutritionLabel: 'Maintenance', isFast: false, calorieRange: [2300, 2500], proteinMin: 180,  proteinMax: null, muayThaiTime: '11 AM',   strengthFocus: 'Legs or Shoulders' },
+};
+
 export const XP = {
   VITALITY_SLEEP: 10,
   VITALITY_POOR_SLEEP: -5,

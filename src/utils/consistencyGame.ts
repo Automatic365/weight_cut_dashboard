@@ -6,8 +6,9 @@ import {
   PROTEIN_FLOOR,
   SLEEP_GOAL,
   ADHERENCE_HIGH,
+  WEEKLY_SCHEDULE,
 } from '../config';
-import type { ChartDayEntry, ConsistencyGameState } from '../types';
+import type { ChartDayEntry, ConsistencyGameState, ConsistencyFocusOption } from '../types';
 
 function parseEntryDate(dateStr: string): Date {
   const [month, day] = dateStr.split('/');
@@ -41,14 +42,14 @@ function buildSafeDefaults(): ConsistencyGameState {
       achievedOn: null,
     })),
     missions: [
-      { id: 'adherence', title: 'Behavioral Adherence', targetText: `≥${ADHERENCE_HIGH}%`, actualText: '—', completed: false },
-      { id: 'protein', title: 'Protein Floor', targetText: `≥${PROTEIN_FLOOR}g`, actualText: '—', completed: false },
-      { id: 'sleep', title: 'Sleep Target', targetText: `≥${SLEEP_GOAL}h`, actualText: '—', completed: false },
+      { id: 'adherence', title: 'Behavioral Adherence', targetText: `≥${ADHERENCE_HIGH}%`, actualText: '—', completed: false, pending: true },
+      { id: 'protein',   title: 'Protein Floor',        targetText: `≥${PROTEIN_FLOOR}g`,  actualText: '—', completed: false, pending: true },
+      { id: 'sleep',     title: 'Sleep Target',          targetText: `≥${SLEEP_GOAL}h`,    actualText: '—', completed: false, pending: true },
     ],
     focusOptions: [
-      { id: 'recovery_lock', title: 'Recovery Lock', why: 'Prioritize 7+ hours sleep tonight. Sleep is the cheapest anabolic in the protocol.', recommended: false },
-      { id: 'protein_anchor', title: 'Protein Anchor', why: 'Hit 190g protein before anything else. Protein compliance protects muscle during the cut.', recommended: false },
-      { id: 'containment', title: 'Containment Mode', why: 'Return to structure at the next meal — not the next day. One meal fixes it.', recommended: true },
+      { id: 'recovery_lock',  title: 'Recovery Lock',  why: 'Prioritize 7+ hours sleep tonight. Sleep is the cheapest anabolic in the protocol.',              recommended: false },
+      { id: 'protein_anchor', title: 'Protein Anchor', why: 'Hit 190g protein before anything else. Protein compliance protects muscle during the cut.',        recommended: false },
+      { id: 'containment',    title: 'Containment Mode', why: 'Return to structure at the next meal — not the next day. One meal fixes it.',                   recommended: true },
     ],
     weekPasses: 0,
     weekRemainingSlots: 7,
@@ -58,7 +59,10 @@ function buildSafeDefaults(): ConsistencyGameState {
   };
 }
 
-export function deriveConsistencyGameState(days: ChartDayEntry[]): ConsistencyGameState {
+export function deriveConsistencyGameState(
+  days: ChartDayEntry[],
+  todayDate: Date = new Date(),
+): ConsistencyGameState {
   if (days.length === 0) return buildSafeDefaults();
 
   const latest = days[days.length - 1];
@@ -87,60 +91,85 @@ export function deriveConsistencyGameState(days: ChartDayEntry[]): ConsistencyGa
     ? nextMilestoneThreshold - currentStreak
     : null;
 
-  // Daily missions from the latest logged day
+  // ── Today's schedule context ─────────────────────────────────────────────────
+  const todayDow = todayDate.getDay(); // 0=Sun … 6=Sat
+  const todaySchedule = WEEKLY_SCHEDULE[todayDow];
+
+  // ── Daily missions ───────────────────────────────────────────────────────────
+  // Adherence + protein: forward-looking against today's schedule.
+  //   Fast day  → already satisfied (completed=true, pending=false).
+  //   Eating day → target not yet confirmable until end of day (pending=true).
+  // Sleep: always backward-looking — last night's data from the latest log entry.
+
   const missions = [
     {
       id: 'adherence' as const,
-      title: 'Behavioral Adherence',
-      targetText: `≥${ADHERENCE_HIGH}%`,
-      actualText: latest.adherenceScore !== null ? `${latest.adherenceScore}%` : '—',
-      completed: latest.status === 'Pass',
+      title: todaySchedule.isFast ? 'Fasting today' : `Stay on ${todaySchedule.nutritionLabel}`,
+      targetText: todaySchedule.isFast
+        ? '0 kcal'
+        : `${todaySchedule.calorieRange![0]}–${todaySchedule.calorieRange![1]} kcal`,
+      actualText: '—',
+      completed: todaySchedule.isFast,
+      pending: !todaySchedule.isFast,
     },
     {
       id: 'protein' as const,
-      title: 'Protein Floor',
-      targetText: `≥${PROTEIN_FLOOR}g protein`,
-      actualText: latest.protein ? `${latest.protein}g` : '—',
-      completed: (latest.protein ?? 0) >= PROTEIN_FLOOR,
+      title: todaySchedule.isFast ? 'Protein suspended' : 'Hit protein target',
+      targetText: todaySchedule.isFast
+        ? 'Fast day'
+        : todaySchedule.proteinMax
+        ? `${todaySchedule.proteinMin}–${todaySchedule.proteinMax}g`
+        : `≥${todaySchedule.proteinMin}g`,
+      actualText: todaySchedule.isFast ? '0g' : '—',
+      completed: todaySchedule.isFast,
+      pending: !todaySchedule.isFast,
     },
     {
       id: 'sleep' as const,
-      title: 'Sleep Target',
-      targetText: `≥${SLEEP_GOAL}h sleep`,
-      actualText: latest.sleep !== null ? `${latest.sleep}h` : '— (not logged)',
-      completed: latest.sleep !== null && latest.sleep >= SLEEP_GOAL,
+      title: 'Sleep tonight',
+      targetText: `≥${SLEEP_GOAL}h`,
+      actualText: '—',
+      completed: false,
+      pending: true,
     },
   ];
 
-  // Focus recommendation: weakest signal drives priority
+  // ── Focus recommendation ──────────────────────────────────────────────────────
+  // Fast day always → Recovery Lock (rest and fasting are the whole agenda).
+  // Eating days → driven by T-1 signals (what went wrong yesterday).
   const failedAdherence = latest.status === 'Fail';
   const failedProtein = (latest.protein ?? 0) < PROTEIN_FLOOR;
-  const recommendedId = failedAdherence ? 'containment'
-    : failedProtein ? 'protein_anchor'
+
+  const recommendedId: ConsistencyFocusOption['id'] = todaySchedule.isFast
+    ? 'recovery_lock'
+    : failedAdherence
+    ? 'containment'
+    : failedProtein
+    ? 'protein_anchor'
     : 'recovery_lock';
 
-  const focusOptions = [
+  const focusOptions: ConsistencyFocusOption[] = [
     {
-      id: 'recovery_lock' as const,
+      id: 'recovery_lock',
       title: 'Recovery Lock',
       why: 'Prioritize 7+ hours sleep tonight. Sleep is the cheapest anabolic in the protocol.',
       recommended: recommendedId === 'recovery_lock',
     },
     {
-      id: 'protein_anchor' as const,
+      id: 'protein_anchor',
       title: 'Protein Anchor',
       why: `Hit ${PROTEIN_FLOOR}g protein before anything else. Protein compliance protects muscle during the cut.`,
       recommended: recommendedId === 'protein_anchor',
     },
     {
-      id: 'containment' as const,
+      id: 'containment',
       title: 'Containment Mode',
       why: 'Return to structure at the next meal — not the next day. One meal fixes it.',
       recommended: recommendedId === 'containment',
     },
   ];
 
-  // Weekly scarcity — Monday-start ISO week containing the latest day
+  // ── Weekly scarcity — Monday-start ISO week containing the latest day ────────
   const latestDate = parseEntryDate(latest.date);
   const dayOfWeek = (latestDate.getDay() + 6) % 7; // 0=Mon, 6=Sun
   const weekStart = new Date(latestDate);
@@ -155,7 +184,7 @@ export function deriveConsistencyGameState(days: ChartDayEntry[]): ConsistencyGa
   const weekPasses = daysInWeek.filter(d => d.status === 'Pass').length;
   const weekRemainingSlots = Math.max(0, 7 - daysInWeek.length);
 
-  // Mystery intel — deterministic hash from latest date + streak + weekPasses
+  // ── Mystery intel — deterministic hash from latest date + streak + weekPasses ─
   const mysterySeed = `${latest.date}_${currentStreak}_${weekPasses}`;
   const intelIndex = hashSeed(mysterySeed) % MYSTERY_INTEL_POOL.length;
   const intelCard = MYSTERY_INTEL_POOL[intelIndex];

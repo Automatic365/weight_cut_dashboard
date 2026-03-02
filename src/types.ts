@@ -69,6 +69,7 @@ export interface ConsistencyMission {
   targetText: string;
   actualText: string;
   completed: boolean;
+  pending: boolean; // true = forward-looking target not yet confirmable today
 }
 
 export interface ConsistencyFocusOption {
