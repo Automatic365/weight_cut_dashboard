@@ -27,10 +27,10 @@ const HeatmapCell: React.FC<HeatmapCellProps> = ({ day }) => {
 
       {/* Custom Tooltip */}
       <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover:block z-50">
-        <div className="bg-slate-900 text-white text-xs rounded-md py-1.5 px-3 whitespace-nowrap shadow-xl border border-slate-700">
+        <div className="ui-tooltip text-xs py-1.5 px-3 whitespace-nowrap">
           <div className="font-bold flex items-center gap-1.5">
             <span>{day.date}</span>
-            <span className="text-slate-400">|</span>
+            <span className="text-ui-muted">|</span>
             <span>{day.tier}</span>
           </div>
           <div className="flex flex-col mt-0.5 gap-0.5">
@@ -51,7 +51,7 @@ const HeatmapCell: React.FC<HeatmapCellProps> = ({ day }) => {
               </div>
             )}
             {day.isBossFight && (
-              <div className="flex justify-between gap-3 text-amber-300 mt-0.5 pt-0.5 border-t border-slate-700">
+              <div className="flex justify-between gap-3 text-amber-300 mt-0.5 pt-0.5 border-t border-ui-border">
                 <span>Boss:</span>
                 <span className="font-medium">{day.bossName}</span>
               </div>
@@ -59,7 +59,7 @@ const HeatmapCell: React.FC<HeatmapCellProps> = ({ day }) => {
           </div>
         </div>
         {/* Tooltip Arrow */}
-        <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
+        <div className="absolute left-1/2 -bottom-1 -translate-x-1/2 border-4 border-transparent border-t-ui-border"></div>
       </div>
     </div>
   );

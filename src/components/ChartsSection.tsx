@@ -17,9 +17,9 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ chartData }) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
       {/* Weight Chart */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+      <div className="ui-card p-6 flex flex-col justify-between">
         <div>
-          <h2 className="text-lg font-bold mb-1 flex items-center gap-2">Body Weight Trend & Context</h2>
+          <h2 className="ui-section-title mb-1">Body Weight Trend & Context</h2>
           <p className="text-xs text-slate-500 mb-4">Dots indicate training load & physiological context.</p>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -44,21 +44,21 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ chartData }) => {
 
         <CoachAnalysis colorScheme="slate">
           <li>
-            <strong className="text-slate-800 font-semibold">Effort Theater vs. Data Stability:</strong> Look at the 7-day average line. It filters out the daily noise and shows a clear downward slope.
+            <strong className="text-slate-100 font-semibold">Trend vs. Noise:</strong> The 7-day average filters daily noise and shows the real direction of change.
           </li>
           <li>
-            <strong className="text-slate-800 font-semibold">Contextual Spikes:</strong> Notice the red dots (Tier 1 Muay Thai days like Feb 10). They are almost always followed by a weight spike due to inflammation and glycogen refill, <em className="italic">not fat gain</em>.
+            <strong className="text-slate-100 font-semibold">Contextual Spikes:</strong> Hard training days often create temporary scale bumps from inflammation and glycogen, not fat gain.
           </li>
           <li>
-            <strong className="text-slate-800 font-semibold">Actionable Takeaway:</strong> Do not emotionally react to one weigh-in. Do not tighten calories after a post-training water bump. Trust the moving average.
+            <strong className="text-slate-100 font-semibold">Actionable Takeaway:</strong> React to moving averages, not single weigh-ins.
           </li>
         </CoachAnalysis>
       </div>
 
       {/* Waist Chart */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+      <div className="ui-card p-6 flex flex-col justify-between">
         <div>
-          <h2 className="text-lg font-bold mb-4 flex items-center gap-2">Abdomen & Waist Compression</h2>
+          <h2 className="ui-section-title mb-4">Abdomen & Waist Compression</h2>
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -77,13 +77,13 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ chartData }) => {
 
         <CoachAnalysis colorScheme="slate" className="mt-4">
           <li>
-            <strong className="text-slate-800 font-semibold">True Tissue Loss:</strong> The waist measurement (+2") establishes the true floor for fat loss. It has consistently compressed down toward the low 31" range.
+            <strong className="text-slate-100 font-semibold">True Tissue Signal:</strong> Waist (+2") is your cleaner fat-loss marker and has compressed toward the low 31" range.
           </li>
           <li>
-            <strong className="text-slate-800 font-semibold">Gut Volume Noise:</strong> The abdomen (navel) fluctuates far more dramatically due to digestion, food volume, and sodium.
+            <strong className="text-slate-100 font-semibold">Gut Volume Noise:</strong> Navel readings fluctuate more from digestion, food volume, and sodium.
           </li>
           <li>
-            <strong className="text-slate-800 font-semibold">Actionable Takeaway:</strong> When the scale stalls but the waist (+2") stays tight, it confirms recomposition and fat loss are still occurring.
+            <strong className="text-slate-100 font-semibold">Actionable Takeaway:</strong> If waist stays tight while weight stalls, recomposition is still working.
           </li>
         </CoachAnalysis>
       </div>

@@ -18,10 +18,10 @@ interface HeroIdentitySectionProps {
 // ── Radar chart icon vertices ───────────────────────────────────────────────
 
 const RADAR_ICONS: Record<string, { icon: LucideIcon; color: string }> = {
-  Strength:   { icon: Dumbbell, color: '#f87171' }, // red-400
-  Vitality:   { icon: Heart,    color: '#4ade80' }, // green-400
-  Resilience: { icon: Shield,   color: '#60a5fa' }, // blue-400
-  Discipline: { icon: Brain,    color: '#c084fc' }, // purple-400
+  Strength:   { icon: Dumbbell, color: '#f0a93e' },
+  Vitality:   { icon: Heart,    color: '#5ca6ff' },
+  Resilience: { icon: Shield,   color: '#f0a93e' },
+  Discipline: { icon: Brain,    color: '#5ca6ff' },
 };
 
 const RadarIconTick = ({ x, y, payload }: { x?: number; y?: number; payload?: { value: string } }) => {
@@ -45,7 +45,7 @@ function tierTag(tier: string): string {
 }
 
 const Tag: React.FC<{ label: string }> = ({ label }) => (
-  <span className="text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded border border-amber-500/40 bg-amber-500/10 text-amber-300">
+  <span className="ui-chip-accent">
     {label}
   </span>
 );
@@ -66,11 +66,11 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
   latestAttributes, radarData, tier, rankState,
 }) => {
   return (
-    <div className="mt-4 bg-[#0a0c14] border border-slate-700/60 rounded-xl overflow-hidden shadow-2xl">
+    <div className="mt-4 ui-card-dark overflow-hidden">
 
       {/* Section label */}
-      <div className="px-4 pt-3 pb-2 border-b border-slate-800/80">
-        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+      <div className="px-4 pt-3 pb-2 border-b border-ui-border/70">
+        <span className="ui-kicker">
           Performance Attributes
         </span>
       </div>
@@ -78,20 +78,20 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
       <div className="flex flex-col md:flex-row">
 
         {/* ── Left: Character Panel ───────────────────────────────────────── */}
-        <div className="md:w-1/4 bg-[#0d1117] border-b md:border-b-0 md:border-r border-slate-700/50 p-5 flex flex-col items-center justify-center gap-4">
+        <div className="md:w-1/4 bg-ui-surface border-b md:border-b-0 md:border-r border-ui-border/70 p-5 flex flex-col items-center justify-center gap-4">
 
           {/* Name */}
           <div className="text-center">
-            <div className="text-sm font-black text-white uppercase tracking-widest">Apex</div>
+            <div className="text-sm font-display font-bold text-ui-text uppercase tracking-widest">Apex</div>
           </div>
 
           {/* Avatar frame with amber corner brackets */}
           <div className="relative w-24 h-24">
             {/* Corner brackets */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-amber-500/80" />
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-amber-500/80" />
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-amber-500/80" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-amber-500/80" />
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-ui-accent/80" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-ui-accent/80" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-ui-accent/80" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-ui-accent/80" />
             {/* Hero avatar */}
             <img
               src="/weight_cut_dashboard/avatar.jpg"
@@ -102,17 +102,17 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
 
           {/* Rank */}
           <div className="text-center">
-            <div className="text-[9px] text-slate-500 uppercase tracking-widest mb-0.5">Rank</div>
+            <div className="text-[9px] text-ui-muted uppercase tracking-widest mb-0.5">Rank</div>
             <div className="relative inline-flex group">
               <button
                 type="button"
-                className="text-xs font-black text-amber-400 uppercase tracking-wider cursor-help"
+                className="text-xs font-display font-bold text-ui-accent uppercase tracking-wider cursor-help"
                 aria-label={`Current rank: ${rankState.currentRank}`}
               >
                 {rankState.currentRank}
               </button>
-              <div className="pointer-events-none absolute z-30 hidden group-hover:block group-focus-within:block top-full mt-2 left-1/2 -translate-x-1/2 w-56 rounded-md border border-slate-700 bg-slate-900 text-left shadow-xl">
-                <div className="px-2 py-1 border-b border-slate-700 text-[9px] uppercase tracking-widest text-amber-300 font-bold">
+              <div className="pointer-events-none absolute z-30 hidden group-hover:block group-focus-within:block top-full mt-2 left-1/2 -translate-x-1/2 w-56 ui-tooltip text-left">
+                <div className="px-2 py-1 border-b border-ui-border text-[9px] uppercase tracking-widest text-ui-accent font-bold">
                   Rank Briefing
                 </div>
                 <div className="px-2 py-1.5 text-[10px] text-slate-200 leading-relaxed">
@@ -123,19 +123,19 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             {rankState.xpToNextRank !== null && (
               <>
                 {/* Progress bar toward next rank */}
-                <div className="w-20 h-0.5 bg-slate-700 rounded-full mt-1.5 mx-auto overflow-hidden">
+                <div className="w-20 h-0.5 bg-ui-border rounded-full mt-1.5 mx-auto overflow-hidden">
                   <div
-                    className="h-full bg-amber-500/70 rounded-full transition-all duration-700"
+                    className="h-full bg-ui-accent/80 rounded-full transition-all duration-700"
                     style={{ width: `${rankState.rankProgress * 100}%` }}
                   />
                 </div>
-                <div className="text-[9px] text-slate-600 mt-1">
+                <div className="text-[9px] text-ui-muted mt-1">
                   {rankState.xpToNextRank} RXP → {rankState.nextRank}
                 </div>
               </>
             )}
             {rankState.nextRank === null && (
-              <div className="text-[9px] text-amber-500/60 mt-1">Max Rank</div>
+              <div className="text-[9px] text-ui-accent/70 mt-1">Max Rank</div>
             )}
           </div>
 
@@ -149,7 +149,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
 
         {/* ── Center: Attribute Rows ──────────────────────────────────────── */}
         <div className="md:w-1/2 p-5 flex flex-col justify-center">
-          <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-3">
+          <div className="ui-kicker mb-3">
             Attribute Levels
           </div>
           <div>
@@ -176,8 +176,8 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <AttributeRow
               name="Discipline"
               icon={Brain}
-              iconClass="text-purple-400"
-              barColorClass="bg-purple-500"
+              iconClass="text-ui-primary"
+              barColorClass="bg-ui-primary"
               level={latestAttributes.discipline.level}
               currentLvlXp={latestAttributes.discipline.currentLvlXp}
               nextLvlXp={latestAttributes.discipline.nextLvlXp}
@@ -186,8 +186,8 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <AttributeRow
               name="Resilience"
               icon={Shield}
-              iconClass="text-blue-400"
-              barColorClass="bg-blue-500"
+              iconClass="text-ui-accent"
+              barColorClass="bg-ui-accent"
               level={latestAttributes.resilience.level}
               currentLvlXp={latestAttributes.resilience.currentLvlXp}
               nextLvlXp={latestAttributes.resilience.nextLvlXp}
@@ -197,11 +197,11 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
         </div>
 
         {/* ── Right: Radar Chart ──────────────────────────────────────────── */}
-        <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-slate-700/50 p-4 flex items-center justify-center">
+        <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-ui-border/70 p-4 flex items-center justify-center">
           <div className="w-full h-60">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="58%" data={radarData}>
-                <PolarGrid stroke="#2d4a6a" />
+                <PolarGrid stroke="#314560" />
                 <PolarAngleAxis
                   dataKey="subject"
                   tick={(props: { x: number; y: number; payload: { value: string } }) => <RadarIconTick {...props} />}
@@ -219,14 +219,14 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
                 <Radar
                   name="Attributes"
                   dataKey="level"
-                  stroke="#f59e0b"
-                  fill="#f59e0b"
+                  stroke="#f0a93e"
+                  fill="#f0a93e"
                   fillOpacity={0.5}
                   strokeWidth={1.5}
                 />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0d1117', borderColor: '#f59e0b40', color: '#fff' }}
-                  itemStyle={{ color: '#fcd34d' }}
+                  contentStyle={{ backgroundColor: '#0f1724', borderColor: '#27374f', color: '#fff', borderRadius: '10px' }}
+                  itemStyle={{ color: '#f0a93e' }}
                 />
               </RadarChart>
             </ResponsiveContainer>

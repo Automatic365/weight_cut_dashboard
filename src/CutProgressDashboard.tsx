@@ -71,18 +71,18 @@ export default function CutProgressDashboard() {
   const rankState = useMemo(() => deriveRankState(chartData), [chartData]);
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="ui-page-shell font-body">
+      <div className="ui-page-width">
 
         {/* Header */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="ui-card-dark p-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
-              <h1 className="text-2xl font-bold flex items-center gap-2">
-                <Activity className="text-blue-600" />
+              <h1 className="text-2xl font-display font-semibold text-ui-text flex items-center gap-2">
+                <Activity className="text-ui-primary" />
                 Combat Nutrition Progress
               </h1>
-              <p className="text-slate-500 text-sm mt-1">
+              <p className="text-ui-muted text-sm mt-1">
                 {(() => {
                   const fmt = (mmdd: string) => {
                     const [m, d] = mmdd.split('/');
@@ -92,26 +92,26 @@ export default function CutProgressDashboard() {
                 })()}
               </p>
             </div>
-            <div className="mt-4 md:mt-0 flex items-center bg-slate-100 p-1 rounded-lg shrink-0">
-              <button onClick={() => setFixSwaps(true)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Auto-Fix Waist Data</button>
-              <button onClick={() => setFixSwaps(false)} className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${!fixSwaps ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>Raw Logs</button>
+            <div className="mt-4 md:mt-0 flex items-center bg-ui-surface p-1 rounded-ui-md shrink-0 border border-ui-border">
+              <button onClick={() => setFixSwaps(true)} className={`px-4 py-2 text-sm font-medium rounded-ui-sm transition-colors ${fixSwaps ? 'bg-ui-surface-2 text-ui-primary' : 'text-ui-muted hover:text-ui-text'}`}>Auto-Fix Waist Data</button>
+              <button onClick={() => setFixSwaps(false)} className={`px-4 py-2 text-sm font-medium rounded-ui-sm transition-colors ${!fixSwaps ? 'bg-ui-surface-2 text-ui-primary' : 'text-ui-muted hover:text-ui-text'}`}>Raw Logs</button>
             </div>
           </div>
-          <div className="mt-4 pt-4 border-t border-slate-100 flex gap-2 items-start">
-            <span className="text-blue-400 text-xl font-bold leading-none mt-0.5 select-none">"</span>
-            <p className="text-sm text-slate-600 italic leading-relaxed flex-1">{MISSION_STATEMENT}</p>
-            <span className="text-blue-400 text-xl font-bold leading-none self-end mb-0.5 select-none">"</span>
+          <div className="mt-4 pt-4 border-t border-ui-border/70 flex gap-2 items-start">
+            <span className="text-ui-primary text-xl font-bold leading-none mt-0.5 select-none">"</span>
+            <p className="text-sm text-slate-300 italic leading-relaxed flex-1">{MISSION_STATEMENT}</p>
+            <span className="text-ui-primary text-xl font-bold leading-none self-end mb-0.5 select-none">"</span>
           </div>
         </div>
 
         {/* Adherence Heatmap & Stats */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="ui-card p-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-            <h2 className="text-lg font-bold flex items-center gap-2">
+            <h2 className="ui-section-title text-slate-900">
               <CheckCircle2 className="text-green-500" size={20} />
               Behavioral Adherence Tracker
             </h2>
-            <div className="text-sm font-medium bg-slate-100 px-3 py-1 rounded-full mt-2 md:mt-0">
+            <div className="text-sm font-medium bg-slate-100 px-3 py-1 rounded-full mt-2 md:mt-0 border border-slate-200">
               Pass Rate: <span className={`${adherencePercent >= ADHERENCE_LOW ? 'text-green-600' : 'text-amber-600'} font-bold`}>{adherencePercent}%</span>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function CutProgressDashboard() {
           {/* Combat Readiness */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             {/* Shield Bar */}
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-center">
+            <div className="bg-slate-50 border border-slate-200 rounded-ui-lg p-4 flex flex-col justify-center">
               <div className="flex justify-between items-end mb-2">
                 <div className="text-sm font-bold text-slate-700 flex items-center gap-1.5"><Shield size={16} className="text-blue-500" /> Tactical Shield</div>
                 <div className="text-xs font-semibold text-slate-500 text-right">{currentShield} / {MAX_SHIELD} Charges</div>
@@ -144,7 +144,7 @@ export default function CutProgressDashboard() {
             </div>
 
             {/* Trophies & Streak */}
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex justify-between items-center">
+            <div className="bg-slate-50 border border-slate-200 rounded-ui-lg p-4 flex justify-between items-center">
               <div>
                 <div className="text-[10px] text-slate-500 font-semibold mb-1 uppercase tracking-widest">Active Streak</div>
                 <div className="text-3xl font-bold flex items-center gap-2">
@@ -195,7 +195,7 @@ export default function CutProgressDashboard() {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+          <div className="ui-card p-5 flex flex-col justify-between">
             <div className="flex justify-between items-center text-slate-500 mb-2">
               <span className="text-sm font-semibold">Current Weight</span>
               <Scale size={18} />
@@ -204,7 +204,7 @@ export default function CutProgressDashboard() {
             <div className="text-xs text-green-600 font-medium mt-2 flex items-center gap-1"><TrendingDown size={14} /> From Peak: -4.6 lbs</div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+          <div className="ui-card p-5 flex flex-col justify-between">
             <div className="flex justify-between items-center text-slate-500 mb-2">
               <span className="text-sm font-semibold">7-Day Trend (Avg)</span>
               <Activity size={18} />
@@ -213,7 +213,7 @@ export default function CutProgressDashboard() {
             <div className="text-xs text-slate-500 font-medium mt-2">Coach KPI metric</div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+          <div className="ui-card p-5 flex flex-col justify-between">
             <div className="flex justify-between items-center text-slate-500 mb-2">
               <span className="text-sm font-semibold">Abdomen (Navel)</span>
               <Ruler size={18} />
@@ -222,7 +222,7 @@ export default function CutProgressDashboard() {
             <div className="text-xs text-slate-500 font-medium mt-2">Lowest recorded: 31.39"</div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+          <div className="ui-card p-5 flex flex-col justify-between">
             <div className="flex justify-between items-center text-slate-500 mb-2">
               <span className="text-sm font-semibold">Block Status</span>
               <Activity size={18} />

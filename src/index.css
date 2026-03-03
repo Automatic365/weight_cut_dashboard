@@ -1,3 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-ui-bg text-ui-text antialiased;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(92, 166, 255, 0.12), transparent 26%),
+      radial-gradient(circle at 80% 0%, rgba(240, 169, 62, 0.09), transparent 24%),
+      linear-gradient(180deg, #060b12 0%, #0a111d 42%, #0b131f 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .ui-page-shell {
+    @apply min-h-screen p-4 md:p-8 text-ui-text;
+  }
+
+  .ui-page-width {
+    @apply max-w-7xl mx-auto space-y-6;
+  }
+
+  .ui-card {
+    @apply bg-white rounded-ui-xl shadow-ui-soft border border-slate-100;
+  }
+
+  .ui-card-dark {
+    @apply bg-ui-surface rounded-ui-xl border border-ui-border shadow-ui-panel;
+  }
+
+  .ui-section-title {
+    @apply text-lg md:text-xl font-display font-bold tracking-wide text-slate-900 flex items-center gap-2;
+  }
+
+  .ui-kicker {
+    @apply text-[10px] font-semibold uppercase tracking-[0.18em] text-ui-muted;
+  }
+
+  .ui-chip {
+    @apply text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-ui-md border border-ui-border bg-ui-surface-2 text-ui-muted;
+  }
+
+  .ui-chip-accent {
+    @apply ui-chip border-amber-400/45 bg-amber-400/10 text-amber-300;
+  }
+
+  .ui-tooltip {
+    @apply rounded-ui-md border border-ui-border bg-ui-surface text-ui-text text-[11px] leading-relaxed shadow-ui-panel;
+  }
+
+  .ui-progress-track {
+    @apply h-1.5 rounded-full bg-slate-700/60 overflow-hidden;
+  }
+
+  .ui-progress-fill {
+    @apply h-full rounded-full bg-ui-primary transition-all duration-700;
+  }
+
+  .ui-divider {
+    @apply border-t border-ui-border/70;
+  }
+}
