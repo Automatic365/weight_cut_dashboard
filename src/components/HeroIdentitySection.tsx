@@ -68,6 +68,11 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
         {/* ── Left: Character Panel ───────────────────────────────────────── */}
         <div className="md:w-1/4 bg-[#0d1117] border-b md:border-b-0 md:border-r border-slate-700/50 p-5 flex flex-col items-center justify-center gap-4">
 
+          {/* Name */}
+          <div className="text-center">
+            <div className="text-sm font-black text-white uppercase tracking-widest">Apex</div>
+          </div>
+
           {/* Avatar frame with amber corner brackets */}
           <div className="relative w-24 h-24">
             {/* Corner brackets */}
@@ -83,10 +88,9 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             />
           </div>
 
-          {/* Name + Rank */}
+          {/* Rank */}
           <div className="text-center">
-            <div className="text-sm font-black text-white uppercase tracking-widest">Operative</div>
-            <div className="text-[9px] text-amber-400/70 uppercase tracking-wider mt-0.5">
+            <div className="text-[9px] text-amber-400/70 uppercase tracking-wider">
               {ladderTierLabel}
             </div>
           </div>
