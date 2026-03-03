@@ -3,26 +3,30 @@ import { Lightbulb } from 'lucide-react';
 
 type ColorScheme = 'green' | 'slate' | 'orange' | 'indigo';
 
-const COLOR_SCHEMES: Record<ColorScheme, { wrapper: string; title: string; body: string }> = {
+const COLOR_SCHEMES: Record<ColorScheme, { wrapper: string; title: string; body: string; accent: string }> = {
   green: {
-    wrapper: 'bg-green-50/50 border border-green-100/80',
-    title: 'text-green-900',
-    body: 'text-green-800/90',
+    wrapper: 'bg-emerald-500/8 border border-emerald-400/25',
+    title: 'text-emerald-200',
+    body: 'text-slate-300',
+    accent: 'bg-emerald-300/35',
   },
   slate: {
-    wrapper: 'bg-slate-50/80 border border-slate-200/60',
-    title: 'text-slate-800',
-    body: 'text-slate-600',
+    wrapper: 'bg-ui-surface-2/60 border border-ui-border',
+    title: 'text-ui-text',
+    body: 'text-slate-300',
+    accent: 'bg-ui-primary/35',
   },
   orange: {
-    wrapper: 'bg-orange-50/50 border border-orange-100/80',
-    title: 'text-orange-900',
-    body: 'text-orange-800/90',
+    wrapper: 'bg-amber-500/8 border border-amber-400/25',
+    title: 'text-amber-200',
+    body: 'text-slate-300',
+    accent: 'bg-amber-300/35',
   },
   indigo: {
-    wrapper: 'bg-indigo-50/40 border border-indigo-100/60',
-    title: 'text-indigo-900',
-    body: 'text-indigo-800/80',
+    wrapper: 'bg-sky-500/8 border border-sky-400/25',
+    title: 'text-sky-200',
+    body: 'text-slate-300',
+    accent: 'bg-sky-300/35',
   },
 };
 
@@ -36,12 +40,13 @@ interface CoachAnalysisProps {
 const CoachAnalysis: React.FC<CoachAnalysisProps> = ({ colorScheme = 'slate', className = '', children }) => {
   const c = COLOR_SCHEMES[colorScheme];
   return (
-    <div className={`rounded-xl p-4 ${c.wrapper} ${className}`}>
-      <h3 className={`text-sm font-bold flex items-center gap-1.5 mb-2 ${c.title}`}>
-        <Lightbulb size={16} className="text-amber-500" />
+    <div className={`relative overflow-hidden rounded-ui-lg p-4 ${c.wrapper} ${className}`}>
+      <div className={`absolute inset-x-0 top-0 h-px ${c.accent}`} />
+      <h3 className={`text-xs md:text-sm font-display font-semibold flex items-center gap-1.5 mb-2 uppercase tracking-wide ${c.title}`}>
+        <Lightbulb size={16} className="text-ui-accent" />
         Coach's Analysis
       </h3>
-      <ul className={`text-xs space-y-2 ${c.body}`}>
+      <ul className={`text-xs leading-relaxed space-y-2 ${c.body}`}>
         {children}
       </ul>
     </div>

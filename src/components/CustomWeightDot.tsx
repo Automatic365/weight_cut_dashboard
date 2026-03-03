@@ -11,15 +11,15 @@ interface CustomWeightDotProps {
 const CustomWeightDot: React.FC<CustomWeightDotProps> = ({ cx, cy, payload }) => {
   if (!cx || !cy) return null;
 
-  let fill = "#3b82f6"; // Default Blue (Linear/Tier 2)
+  let fill = "#5ca6ff"; // Default Blue (Linear/Tier 2)
   const stroke = "#fff";
 
   if (payload?.status === 'Fail') {
-    fill = "#f59e0b"; // Orange/Yellow for slips
+    fill = "#f0a93e"; // Accent for slips
   } else if (payload?.tier === 'Tier 1') {
-    fill = "#ef4444"; // Red for Hard Muay Thai
+    fill = "#e56b6f"; // Danger for Hard Muay Thai
   } else if (payload?.tier === 'Tier 3') {
-    fill = "#22c55e"; // Green for Fasting
+    fill = "#41c48a"; // Success for Fasting
   }
 
   return (

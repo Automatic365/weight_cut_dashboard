@@ -66,3 +66,26 @@ export const XP = {
   RESILIENCE_BOSS_WIN: 50,
   RESILIENCE_BOSS_LOSS: -20,
 };
+
+export const ATTRIBUTE_THEME = {
+  strength: {
+    hex: '#ef4444',
+    iconClass: 'text-red-400',
+    barClass: 'bg-red-500',
+  },
+  vitality: {
+    hex: '#22c55e',
+    iconClass: 'text-emerald-400',
+    barClass: 'bg-emerald-500',
+  },
+  discipline: {
+    hex: '#5ca6ff',
+    iconClass: 'text-ui-primary',
+    barClass: 'bg-ui-primary',
+  },
+  resilience: {
+    hex: '#f0a93e',
+    iconClass: 'text-amber-400',
+    barClass: 'bg-amber-500',
+  },
+};

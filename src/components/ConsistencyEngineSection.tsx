@@ -3,6 +3,7 @@ import {
   CheckCircle2, XCircle, Dumbbell, Heart, Brain, Shield,
   Target, Zap, Radio, ChevronRight,
 } from 'lucide-react';
+import { ATTRIBUTE_THEME } from '../config';
 import type { ConsistencyGameState, ConsistencyMission, ConsistencyFocusOption } from '../types';
 
 interface ConsistencyEngineSectionProps {
@@ -15,19 +16,20 @@ const MISSION_META: Record<ConsistencyMission['id'], {
   icon: React.FC<{ size?: number; className?: string }>;
   colorClass: string;
 }> = {
-  adherence: { icon: Brain,    colorClass: 'text-purple-400' },
-  protein:   { icon: Dumbbell, colorClass: 'text-red-400' },
-  sleep:     { icon: Heart,    colorClass: 'text-green-400' },
+  adherence: { icon: Brain,    colorClass: ATTRIBUTE_THEME.discipline.iconClass },
+  protein:   { icon: Dumbbell, colorClass: ATTRIBUTE_THEME.strength.iconClass },
+  sleep:     { icon: Heart,    colorClass: ATTRIBUTE_THEME.vitality.iconClass },
 };
 
 // ─── Focus option icon lookup ─────────────────────────────────────────────────
 
 const FOCUS_META: Record<ConsistencyFocusOption['id'], {
   icon: React.FC<{ size?: number; className?: string }>;
+  colorClass: string;
 }> = {
-  recovery_lock:  { icon: Heart },
-  protein_anchor: { icon: Dumbbell },
-  containment:    { icon: Shield },
+  recovery_lock:  { icon: Heart, colorClass: ATTRIBUTE_THEME.vitality.iconClass },
+  protein_anchor: { icon: Dumbbell, colorClass: ATTRIBUTE_THEME.strength.iconClass },
+  containment:    { icon: Shield, colorClass: ATTRIBUTE_THEME.resilience.iconClass },
 };
 
 // ─── Milestone node ────────────────────────────────────────────────────────────
@@ -42,10 +44,10 @@ function MilestoneNode({
 }) {
   const base = 'w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-black border-2 transition-all';
   const style = achieved
-    ? 'bg-purple-600 border-purple-400 text-white shadow-[0_0_8px_rgba(139,92,246,0.6)]'
+    ? 'bg-ui-primary border-sky-300 text-white'
     : isNext
-    ? 'bg-slate-700 border-amber-500 text-amber-400'
-    : 'bg-slate-800 border-slate-600 text-slate-500';
+    ? 'bg-ui-surface-2 border-ui-accent text-ui-accent'
+    : 'bg-ui-surface border-ui-border text-ui-muted';
 
   return (
     <div className="flex flex-col items-center gap-1">
@@ -68,28 +70,28 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
   } = gameState;
 
   return (
-    <div className="bg-[#0a0c14] border border-slate-700/60 rounded-2xl p-5 shadow-lg space-y-5">
+    <div className="ui-card-dark ui-card-interactive p-5 space-y-5">
 
       {/* Section header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-bold text-white flex items-center gap-1.5 uppercase tracking-wider">
-          <Target size={16} className="text-slate-400" /> Consistency Engine
+        <h3 className="text-sm font-display font-semibold text-ui-text flex items-center gap-1.5 uppercase tracking-wider">
+          <Target size={16} className="text-ui-primary" /> Consistency Engine
         </h3>
-        <div className="text-[10px] text-slate-500 font-semibold">
+        <div className="text-[10px] text-ui-muted font-semibold">
           {passRate}% overall pass rate · Max streak: {maxStreak}d
         </div>
       </div>
 
       {/* ── Block 1: Consistency Ladder ────────────────────────────────────────── */}
-      <div className="bg-slate-800/30 border border-slate-700/60 rounded-xl p-4">
+      <div className="bg-ui-surface-2/55 border border-ui-border/80 rounded-ui-lg p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest mb-0.5">Current Tier</div>
-            <div className="text-sm font-bold text-purple-300">{ladderTierLabel}</div>
+            <div className="ui-kicker mb-0.5">Current Tier</div>
+            <div className="text-sm font-display font-semibold text-ui-primary">{ladderTierLabel}</div>
           </div>
           <div className="text-right">
-            <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest mb-0.5">Active Streak</div>
-            <div className="text-sm font-bold text-white">{currentStreak} days</div>
+            <div className="ui-kicker mb-0.5">Active Streak</div>
+            <div className="text-sm font-display font-semibold text-ui-text">{currentStreak} days</div>
           </div>
         </div>
 
@@ -104,7 +106,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
                 isNext={!m.achieved && (i === 0 || milestones[i - 1].achieved)}
               />
               {i < milestones.length - 1 && (
-                <div className={`flex-1 h-px mx-1 ${m.achieved ? 'bg-purple-600/60' : 'bg-slate-700'}`} />
+                <div className={`flex-1 h-px mx-1 ${m.achieved ? 'bg-ui-primary/70' : 'bg-ui-border'}`} />
               )}
             </React.Fragment>
           ))}
@@ -117,15 +119,15 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
           </div>
         )}
         {nextMilestone === null && (
-          <div className="mt-3 text-[11px] text-purple-400 font-semibold flex items-center gap-1">
+          <div className="mt-3 text-[11px] text-ui-primary font-semibold flex items-center gap-1">
             <CheckCircle2 size={12} /> All milestones achieved. Unbreakable System status locked in.
           </div>
         )}
       </div>
 
       {/* ── Block 2: Daily Missions ─────────────────────────────────────────────── */}
-      <div className="bg-slate-800/30 border border-slate-700/60 rounded-xl p-4">
-        <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest mb-3">
+      <div className="bg-ui-surface-2/55 border border-ui-border/80 rounded-ui-lg p-4">
+        <div className="ui-kicker mb-3">
           Today's Missions
         </div>
         <div className="space-y-2.5">
@@ -162,14 +164,15 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       {/* ── Block 3 + 4: Next Best Focus + Weekly Scarcity ──────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {focusOptions.map(option => {
-          const Icon = FOCUS_META[option.id].icon;
+          const meta = FOCUS_META[option.id];
+          const Icon = meta.icon;
           return (
             <div
               key={option.id}
-              className={`bg-slate-800/30 border rounded-xl p-3 flex flex-col gap-1.5 transition-all ${
+              className={`bg-ui-surface-2/40 border rounded-ui-md p-3 flex flex-col gap-1.5 transition-all ${
                 option.recommended
-                  ? 'border-amber-500/60 ring-1 ring-amber-500/30'
-                  : 'border-slate-700 opacity-60'
+                  ? 'border-amber-400/55 ring-1 ring-amber-400/30'
+                  : 'border-ui-border opacity-65'
               }`}
             >
               {option.recommended && (
@@ -178,11 +181,11 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
                 </div>
               )}
               <div className="flex items-center gap-1.5">
-                <Icon size={13} className={option.recommended ? 'text-amber-400' : 'text-slate-500'} />
-                <span className={`text-xs font-bold ${option.recommended ? 'text-white' : 'text-slate-400'}`}>
-                  {option.title}
-                </span>
-              </div>
+                <Icon size={13} className={option.recommended ? meta.colorClass : 'text-ui-muted'} />
+                  <span className={`text-xs font-display font-semibold ${option.recommended ? 'text-ui-text' : 'text-ui-muted'}`}>
+                    {option.title}
+                  </span>
+                </div>
               <p className="text-[10px] text-slate-400 leading-snug">{option.why}</p>
             </div>
           );
@@ -192,7 +195,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       {/* Weekly scarcity strip */}
       <div className={`flex items-center justify-between text-[11px] px-1 ${
         weekRemainingSlots === 0 ? 'text-green-400' :
-        weekRemainingSlots <= 2 ? 'text-amber-400' : 'text-slate-400'
+        weekRemainingSlots <= 2 ? 'text-ui-accent' : 'text-ui-muted'
       }`}>
         <span>
           This week: <strong>{weekPasses}</strong> pass{weekPasses !== 1 ? 'es' : ''}
@@ -208,14 +211,14 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       </div>
 
       {/* ── Block 5: Mystery Intel ───────────────────────────────────────────────── */}
-      <div className="bg-slate-800/30 border border-slate-700/60 rounded-xl p-4">
+      <div className="bg-ui-surface-2/55 border border-ui-border/80 rounded-ui-lg p-4">
         <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+          <div className="flex items-center gap-1.5 text-[10px] font-display font-semibold uppercase tracking-widest text-ui-muted">
             <Radio size={12} /> Daily Intel
           </div>
-          <span className="text-[9px] text-slate-600 font-mono">{mysterySeed}</span>
+          <span className="text-[9px] text-ui-muted/80 font-mono">{mysterySeed}</span>
         </div>
-        <div className="text-sm font-bold text-white mb-1">{mysteryIntelTitle}</div>
+        <div className="text-sm font-display font-semibold text-ui-text mb-1">{mysteryIntelTitle}</div>
         <p className="text-xs text-slate-400 leading-relaxed">{mysteryIntelBody}</p>
       </div>
 
