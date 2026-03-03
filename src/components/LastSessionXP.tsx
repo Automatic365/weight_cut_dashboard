@@ -19,7 +19,7 @@ interface LastSessionXPProps {
 
 const LastSessionXP: React.FC<LastSessionXPProps> = ({ session }) => {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+    <div className="bg-[#0a0c14] border border-amber-500/20 rounded-2xl p-5 shadow-lg">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
@@ -37,14 +37,14 @@ const LastSessionXP: React.FC<LastSessionXPProps> = ({ session }) => {
           const isPos = g.delta > 0;
           const isNeg = g.delta < 0;
           return (
-            <div key={g.attribute} className="flex items-center justify-between">
+            <div key={g.attribute} className="flex items-center justify-between border-l-2 border-amber-500/30 pl-2">
               <div className="flex items-center gap-2">
                 <Icon size={14} className={meta.colorClass} />
                 <span className="text-xs text-slate-300 font-medium w-20">{g.label}</span>
               </div>
               <div className="flex items-center gap-2">
                 {g.didLevelUp && (
-                  <span className="flex items-center gap-0.5 text-[9px] font-bold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+                  <span className="flex items-center gap-0.5 text-[9px] font-bold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-1.5 py-0.5 rounded-full uppercase tracking-wide shadow-[0_0_6px_rgba(245,158,11,0.4)]">
                     <TrendingUp size={9} /> Lvl {g.newLevel}
                   </span>
                 )}
@@ -60,7 +60,7 @@ const LastSessionXP: React.FC<LastSessionXPProps> = ({ session }) => {
       </div>
 
       {/* Total */}
-      <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+      <div className="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between">
         <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest">Session Total</span>
         <span className={`text-sm font-bold ${
           session.total > 0 ? 'text-green-400' :

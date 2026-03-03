@@ -3,103 +3,210 @@ import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   Tooltip, ResponsiveContainer
 } from 'recharts';
-import { Activity, Dumbbell, Heart, Brain, Shield } from 'lucide-react';
-import AttributeCard from './AttributeCard';
-import type { Attributes, RadarDataPoint } from '../types';
+import { Dumbbell, Heart, Brain, Shield } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import AttributeRow from './AttributeRow';
+import type { Attributes, RadarDataPoint, RankState } from '../types';
 
 interface HeroIdentitySectionProps {
   latestAttributes: Attributes;
   radarData: RadarDataPoint[];
+  tier: string;
+  rankState: RankState;
 }
 
-// Attributes section: spider chart and RPG attribute cards.
-const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({ latestAttributes, radarData }) => {
+// ── Radar chart icon vertices ───────────────────────────────────────────────
+
+const RADAR_ICONS: Record<string, { icon: LucideIcon; color: string }> = {
+  Strength:   { icon: Dumbbell, color: '#f87171' }, // red-400
+  Vitality:   { icon: Heart,    color: '#4ade80' }, // green-400
+  Resilience: { icon: Shield,   color: '#60a5fa' }, // blue-400
+  Discipline: { icon: Brain,    color: '#c084fc' }, // purple-400
+};
+
+const RadarIconTick = ({ x, y, payload }: { x?: number; y?: number; payload?: { value: string } }) => {
+  const meta = RADAR_ICONS[payload?.value ?? ''];
+  if (!meta || x == null || y == null) return null;
+  const { icon: Icon, color } = meta;
+  const size = 16;
   return (
-    <div className="mt-4 bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-inner">
-      <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mb-1 uppercase tracking-wider">
-        <Activity size={16} className="text-slate-400" /> Performance Attributes
-      </h3>
+    <g>
+      <Icon x={x - size / 2} y={y - size / 2} width={size} height={size} color={color} strokeWidth={1.5} />
+    </g>
+  );
+};
 
-      <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 mt-6">
+// Derive display tag from nutrition tier string
+function tierTag(tier: string): string {
+  if (tier === 'Linear') return 'LINEAR CUT';
+  if (tier === 'PSMF' || tier === 'Tier 2') return 'PSMF';
+  if (tier === 'Tier 3') return 'FAST';
+  return tier.toUpperCase();
+}
 
-        {/* Spider Chart */}
-        <div className="w-full md:w-2/5 h-64 flex justify-center items-center">
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
-              <PolarGrid stroke="#334155" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 'bold' }} />
-              <PolarRadiusAxis angle={30} domain={[0, 'dataMax']} tick={false} axisLine={false} />
-              <Radar
-                name="Hero Level"
-                dataKey="level"
-                stroke="#8b5cf6"
-                fill="#8b5cf6"
-                fillOpacity={0.5}
-              />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#fff' }}
-                itemStyle={{ color: '#c4b5fd' }}
-              />
-            </RadarChart>
-          </ResponsiveContainer>
+const Tag: React.FC<{ label: string }> = ({ label }) => (
+  <span className="text-[9px] font-bold uppercase tracking-wide px-2 py-0.5 rounded border border-amber-500/40 bg-amber-500/10 text-amber-300">
+    {label}
+  </span>
+);
+
+const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
+  latestAttributes, radarData, tier, rankState,
+}) => {
+  return (
+    <div className="mt-4 bg-[#0a0c14] border border-slate-700/60 rounded-xl overflow-hidden shadow-2xl">
+
+      {/* Section label */}
+      <div className="px-4 pt-3 pb-2 border-b border-slate-800/80">
+        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+          Performance Attributes
+        </span>
+      </div>
+
+      <div className="flex flex-col md:flex-row">
+
+        {/* ── Left: Character Panel ───────────────────────────────────────── */}
+        <div className="md:w-1/4 bg-[#0d1117] border-b md:border-b-0 md:border-r border-slate-700/50 p-5 flex flex-col items-center justify-center gap-4">
+
+          {/* Name */}
+          <div className="text-center">
+            <div className="text-sm font-black text-white uppercase tracking-widest">Apex</div>
+          </div>
+
+          {/* Avatar frame with amber corner brackets */}
+          <div className="relative w-24 h-24">
+            {/* Corner brackets */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-amber-500/80" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-amber-500/80" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-amber-500/80" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-amber-500/80" />
+            {/* Hero avatar */}
+            <img
+              src="/weight_cut_dashboard/avatar.jpg"
+              alt="Hero avatar"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+
+          {/* Rank */}
+          <div className="text-center">
+            <div className="text-[9px] text-slate-500 uppercase tracking-widest mb-0.5">Rank</div>
+            <div className="text-xs font-black text-amber-400 uppercase tracking-wider">
+              {rankState.currentRank}
+            </div>
+            {rankState.xpToNextRank !== null && (
+              <>
+                {/* Progress bar toward next rank */}
+                <div className="w-20 h-0.5 bg-slate-700 rounded-full mt-1.5 mx-auto overflow-hidden">
+                  <div
+                    className="h-full bg-amber-500/70 rounded-full transition-all duration-700"
+                    style={{ width: `${rankState.rankProgress * 100}%` }}
+                  />
+                </div>
+                <div className="text-[9px] text-slate-600 mt-1">
+                  {rankState.xpToNextRank} RXP → {rankState.nextRank}
+                </div>
+              </>
+            )}
+            {rankState.nextRank === null && (
+              <div className="text-[9px] text-amber-500/60 mt-1">Max Rank</div>
+            )}
+          </div>
+
+          {/* Tag chips */}
+          <div className="flex flex-wrap justify-center gap-1.5">
+            <Tag label={tierTag(tier)} />
+            <Tag label="Muay Thai" />
+            <Tag label="Fighter" />
+          </div>
         </div>
 
-        {/* Attribute Cards */}
-        <div className="w-full md:w-3/5 grid grid-cols-2 gap-3">
-          <AttributeCard
-            name="Strength"
-            icon={Dumbbell}
-            iconClass="text-red-400"
-            level={latestAttributes.strength.level}
-            currentLvlXp={latestAttributes.strength.currentLvlXp}
-            nextLvlXp={latestAttributes.strength.nextLvlXp}
-            tooltipAccentClass="text-red-400"
-            tooltipLines={[
-              '+10 XP: Protein floor (≥190g)',
-              '+5 XP: Logging a workout',
-            ]}
-          />
-          <AttributeCard
-            name="Vitality"
-            icon={Heart}
-            iconClass="text-green-400"
-            level={latestAttributes.vitality.level}
-            currentLvlXp={latestAttributes.vitality.currentLvlXp}
-            nextLvlXp={latestAttributes.vitality.nextLvlXp}
-            tooltipAccentClass="text-green-400"
-            tooltipLines={[
-              '+10 XP: Sleep >7 hours',
-              '-5 XP: Sleep <6 hours',
-            ]}
-          />
-          <AttributeCard
-            name="Discipline"
-            icon={Brain}
-            iconClass="text-purple-400"
-            level={latestAttributes.discipline.level}
-            currentLvlXp={latestAttributes.discipline.currentLvlXp}
-            nextLvlXp={latestAttributes.discipline.nextLvlXp}
-            tooltipAccentClass="text-purple-400"
-            tooltipLines={[
-              '+10 XP: Adherence ≥90%',
-              '+5 XP: Logging a workout',
-              '-10 XP: Adherence <85%',
-            ]}
-          />
-          <AttributeCard
-            name="Resilience"
-            icon={Shield}
-            iconClass="text-blue-400"
-            level={latestAttributes.resilience.level}
-            currentLvlXp={latestAttributes.resilience.currentLvlXp}
-            nextLvlXp={latestAttributes.resilience.nextLvlXp}
-            tooltipAccentClass="text-blue-400"
-            tooltipLines={[
-              '+50 XP: Surviving a Boss Battle',
-              '-20 XP: Boss Critical Hit (Fail)',
-            ]}
-          />
+        {/* ── Center: Attribute Rows ──────────────────────────────────────── */}
+        <div className="md:w-1/2 p-5 flex flex-col justify-center">
+          <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-3">
+            Attribute Levels
+          </div>
+          <div>
+            <AttributeRow
+              name="Strength"
+              icon={Dumbbell}
+              iconClass="text-red-400"
+              barColorClass="bg-red-500"
+              level={latestAttributes.strength.level}
+              currentLvlXp={latestAttributes.strength.currentLvlXp}
+              nextLvlXp={latestAttributes.strength.nextLvlXp}
+              tooltipLines={['+10 XP: Protein floor (≥190g)', '+5 XP: Logging a workout']}
+            />
+            <AttributeRow
+              name="Vitality"
+              icon={Heart}
+              iconClass="text-green-400"
+              barColorClass="bg-green-500"
+              level={latestAttributes.vitality.level}
+              currentLvlXp={latestAttributes.vitality.currentLvlXp}
+              nextLvlXp={latestAttributes.vitality.nextLvlXp}
+              tooltipLines={['+10 XP: Sleep >7 hours', '-5 XP: Sleep <6 hours']}
+            />
+            <AttributeRow
+              name="Discipline"
+              icon={Brain}
+              iconClass="text-purple-400"
+              barColorClass="bg-purple-500"
+              level={latestAttributes.discipline.level}
+              currentLvlXp={latestAttributes.discipline.currentLvlXp}
+              nextLvlXp={latestAttributes.discipline.nextLvlXp}
+              tooltipLines={['+10 XP: Adherence ≥90%', '+5 XP: Logging a workout', '-10 XP: Adherence <85%']}
+            />
+            <AttributeRow
+              name="Resilience"
+              icon={Shield}
+              iconClass="text-blue-400"
+              barColorClass="bg-blue-500"
+              level={latestAttributes.resilience.level}
+              currentLvlXp={latestAttributes.resilience.currentLvlXp}
+              nextLvlXp={latestAttributes.resilience.nextLvlXp}
+              tooltipLines={['+50 XP: Surviving a Boss Battle', '-20 XP: Boss Critical Hit (Fail)']}
+            />
+          </div>
         </div>
+
+        {/* ── Right: Radar Chart ──────────────────────────────────────────── */}
+        <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-slate-700/50 p-4 flex items-center justify-center">
+          <div className="w-full h-60">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="58%" data={radarData}>
+                <PolarGrid stroke="#2d4a6a" />
+                <PolarAngleAxis
+                  dataKey="subject"
+                  tick={(props: { x: number; y: number; payload: { value: string } }) => <RadarIconTick {...props} />}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                {/* tickCount=6 → rings at 0,2,4,6,8,10 = 5 visible level rings */}
+                <PolarRadiusAxis
+                  angle={30}
+                  domain={[0, 10]}
+                  tickCount={6}
+                  tick={false}
+                  axisLine={false}
+                />
+                <Radar
+                  name="Attributes"
+                  dataKey="level"
+                  stroke="#f59e0b"
+                  fill="#f59e0b"
+                  fillOpacity={0.5}
+                  strokeWidth={1.5}
+                />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#0d1117', borderColor: '#f59e0b40', color: '#fff' }}
+                  itemStyle={{ color: '#fcd34d' }}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
       </div>
     </div>
   );

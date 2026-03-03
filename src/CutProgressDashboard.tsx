@@ -19,6 +19,7 @@ import ConsistencyEngineSection from './components/ConsistencyEngineSection';
 import LastSessionXP from './components/LastSessionXP';
 import { deriveConsistencyGameState } from './utils/consistencyGame';
 import { computeSessionXP } from './utils/xpDelta';
+import { deriveRankState } from './utils/rankSystem';
 
 export default function CutProgressDashboard() {
   const [fixSwaps, setFixSwaps] = useState(true);
@@ -67,6 +68,7 @@ export default function CutProgressDashboard() {
 
   const gameState = useMemo(() => deriveConsistencyGameState(chartData), [chartData]);
   const sessionXP = useMemo(() => computeSessionXP(chartData), [chartData]);
+  const rankState = useMemo(() => deriveRankState(chartData), [chartData]);
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
@@ -170,6 +172,8 @@ export default function CutProgressDashboard() {
           <HeroIdentitySection
             latestAttributes={latestAttributes}
             radarData={radarData}
+            tier={latestData.tier}
+            rankState={rankState}
           />
 
           <CoachAnalysis colorScheme="green" className="mt-4">
