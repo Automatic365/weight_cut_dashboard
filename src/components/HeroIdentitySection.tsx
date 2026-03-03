@@ -50,6 +50,18 @@ const Tag: React.FC<{ label: string }> = ({ label }) => (
   </span>
 );
 
+function getRankWriteup(rank: string): string {
+  const byRank: Record<string, string> = {
+    Trainee: 'Building baseline discipline. The win condition is stacking clean Pass days and avoiding streak breaks.',
+    Operator: 'Execution is becoming consistent. Focus on boring repeatability and tighter recovery to keep momentum.',
+    Specialist: 'You are proving system control under normal stress. Keep pass-rate high and convert boss days into controlled wins.',
+    Enforcer: 'High reliability tier. Preserve structure during volatility days; this is where physique change compounds quickly.',
+    Vanguard: 'Elite consistency zone. Small leaks now matter most, so guard sleep and protein to protect the streak engine.',
+    Ghost: 'Top rank. You execute without drama. Maintain standards and mentor your own future decisions with data-first discipline.',
+  };
+  return byRank[rank] ?? 'Consistency rank derived from your long-term execution, streak integrity, and boss-day outcomes.';
+}
+
 const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
   latestAttributes, radarData, tier, rankState,
 }) => {
@@ -91,8 +103,22 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
           {/* Rank */}
           <div className="text-center">
             <div className="text-[9px] text-slate-500 uppercase tracking-widest mb-0.5">Rank</div>
-            <div className="text-xs font-black text-amber-400 uppercase tracking-wider">
-              {rankState.currentRank}
+            <div className="relative inline-flex group">
+              <button
+                type="button"
+                className="text-xs font-black text-amber-400 uppercase tracking-wider cursor-help"
+                aria-label={`Current rank: ${rankState.currentRank}`}
+              >
+                {rankState.currentRank}
+              </button>
+              <div className="pointer-events-none absolute z-30 hidden group-hover:block group-focus-within:block top-full mt-2 left-1/2 -translate-x-1/2 w-56 rounded-md border border-slate-700 bg-slate-900 text-left shadow-xl">
+                <div className="px-2 py-1 border-b border-slate-700 text-[9px] uppercase tracking-widest text-amber-300 font-bold">
+                  Rank Briefing
+                </div>
+                <div className="px-2 py-1.5 text-[10px] text-slate-200 leading-relaxed">
+                  {getRankWriteup(rankState.currentRank)}
+                </div>
+              </div>
             </div>
             {rankState.xpToNextRank !== null && (
               <>
