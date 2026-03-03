@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  RadarChart, PolarGrid, PolarRadiusAxis, Radar,
+  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   Tooltip, ResponsiveContainer
 } from 'recharts';
 import { Dumbbell, Heart, Brain, Shield, Sword } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import AttributeRow from './AttributeRow';
 import type { Attributes, RadarDataPoint } from '../types';
 
@@ -13,6 +14,27 @@ interface HeroIdentitySectionProps {
   tier: string;
   ladderTierLabel: string;
 }
+
+// ── Radar chart icon vertices ───────────────────────────────────────────────
+
+const RADAR_ICONS: Record<string, { icon: LucideIcon; color: string }> = {
+  Strength:   { icon: Dumbbell, color: '#f87171' }, // red-400
+  Vitality:   { icon: Heart,    color: '#4ade80' }, // green-400
+  Resilience: { icon: Shield,   color: '#60a5fa' }, // blue-400
+  Discipline: { icon: Brain,    color: '#c084fc' }, // purple-400
+};
+
+const RadarIconTick = ({ x, y, payload }: { x?: number; y?: number; payload?: { value: string } }) => {
+  const meta = RADAR_ICONS[payload?.value ?? ''];
+  if (!meta || x == null || y == null) return null;
+  const { icon: Icon, color } = meta;
+  const size = 16;
+  return (
+    <g>
+      <Icon x={x - size / 2} y={y - size / 2} width={size} height={size} color={color} strokeWidth={1.5} />
+    </g>
+  );
+};
 
 // Derive display tag from nutrition tier string
 function tierTag(tier: string): string {
@@ -128,8 +150,14 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
         <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-slate-700/50 p-4 flex items-center justify-center">
           <div className="w-full h-52">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="72%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="60%" data={radarData}>
                 <PolarGrid stroke="#1e293b" />
+                <PolarAngleAxis
+                  dataKey="subject"
+                  tick={(props: { x: number; y: number; payload: { value: string } }) => <RadarIconTick {...props} />}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <PolarRadiusAxis
                   angle={30}
                   domain={[0, 'dataMax']}
