@@ -150,7 +150,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
         <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-slate-700/50 p-4 flex items-center justify-center">
           <div className="w-full h-52">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="60%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="50%" data={radarData}>
                 <PolarGrid stroke="#1e293b" />
                 <PolarAngleAxis
                   dataKey="subject"
@@ -158,9 +158,11 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
                   tickLine={false}
                   axisLine={false}
                 />
+                {/* tickCount=11 → rings at 0,1,2…10 = 10 visible level rings */}
                 <PolarRadiusAxis
                   angle={30}
-                  domain={[0, 'dataMax']}
+                  domain={[0, 10]}
+                  tickCount={11}
                   tick={false}
                   axisLine={false}
                 />
