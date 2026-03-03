@@ -68,7 +68,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
   } = gameState;
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-5">
+    <div className="bg-[#0a0c14] border border-slate-700/60 rounded-2xl p-5 shadow-lg space-y-5">
 
       {/* Section header */}
       <div className="flex items-center justify-between">
@@ -81,7 +81,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       </div>
 
       {/* ── Block 1: Consistency Ladder ────────────────────────────────────────── */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+      <div className="bg-slate-800/30 border border-slate-700/60 rounded-xl p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
             <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest mb-0.5">Current Tier</div>
@@ -124,7 +124,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       </div>
 
       {/* ── Block 2: Daily Missions ─────────────────────────────────────────────── */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+      <div className="bg-slate-800/30 border border-slate-700/60 rounded-xl p-4">
         <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest mb-3">
           Today's Missions
         </div>
@@ -166,7 +166,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
           return (
             <div
               key={option.id}
-              className={`bg-slate-800/50 border rounded-xl p-3 flex flex-col gap-1.5 transition-all ${
+              className={`bg-slate-800/30 border rounded-xl p-3 flex flex-col gap-1.5 transition-all ${
                 option.recommended
                   ? 'border-amber-500/60 ring-1 ring-amber-500/30'
                   : 'border-slate-700 opacity-60'
@@ -208,7 +208,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       </div>
 
       {/* ── Block 5: Mystery Intel ───────────────────────────────────────────────── */}
-      <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-4">
+      <div className="bg-slate-800/30 border border-slate-700/60 rounded-xl p-4">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400">
             <Radio size={12} /> Daily Intel

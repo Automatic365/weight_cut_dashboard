@@ -170,6 +170,8 @@ export default function CutProgressDashboard() {
           <HeroIdentitySection
             latestAttributes={latestAttributes}
             radarData={radarData}
+            tier={latestData.tier}
+            ladderTierLabel={gameState.ladderTierLabel}
           />
 
           <CoachAnalysis colorScheme="green" className="mt-4">
