@@ -3,6 +3,7 @@ import {
   CheckCircle2, XCircle, Dumbbell, Heart, Brain, Shield,
   Target, Zap, Radio, ChevronRight,
 } from 'lucide-react';
+import { ATTRIBUTE_THEME } from '../config';
 import type { ConsistencyGameState, ConsistencyMission, ConsistencyFocusOption } from '../types';
 
 interface ConsistencyEngineSectionProps {
@@ -15,19 +16,20 @@ const MISSION_META: Record<ConsistencyMission['id'], {
   icon: React.FC<{ size?: number; className?: string }>;
   colorClass: string;
 }> = {
-  adherence: { icon: Brain,    colorClass: 'text-ui-primary' },
-  protein:   { icon: Dumbbell, colorClass: 'text-ui-accent' },
-  sleep:     { icon: Heart,    colorClass: 'text-ui-primary' },
+  adherence: { icon: Brain,    colorClass: ATTRIBUTE_THEME.discipline.iconClass },
+  protein:   { icon: Dumbbell, colorClass: ATTRIBUTE_THEME.strength.iconClass },
+  sleep:     { icon: Heart,    colorClass: ATTRIBUTE_THEME.vitality.iconClass },
 };
 
 // ─── Focus option icon lookup ─────────────────────────────────────────────────
 
 const FOCUS_META: Record<ConsistencyFocusOption['id'], {
   icon: React.FC<{ size?: number; className?: string }>;
+  colorClass: string;
 }> = {
-  recovery_lock:  { icon: Heart },
-  protein_anchor: { icon: Dumbbell },
-  containment:    { icon: Shield },
+  recovery_lock:  { icon: Heart, colorClass: ATTRIBUTE_THEME.vitality.iconClass },
+  protein_anchor: { icon: Dumbbell, colorClass: ATTRIBUTE_THEME.strength.iconClass },
+  containment:    { icon: Shield, colorClass: ATTRIBUTE_THEME.resilience.iconClass },
 };
 
 // ─── Milestone node ────────────────────────────────────────────────────────────
@@ -68,7 +70,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
   } = gameState;
 
   return (
-    <div className="ui-card-dark p-5 space-y-5">
+    <div className="ui-card-dark ui-card-interactive p-5 space-y-5">
 
       {/* Section header */}
       <div className="flex items-center justify-between">
@@ -162,7 +164,8 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       {/* ── Block 3 + 4: Next Best Focus + Weekly Scarcity ──────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {focusOptions.map(option => {
-          const Icon = FOCUS_META[option.id].icon;
+          const meta = FOCUS_META[option.id];
+          const Icon = meta.icon;
           return (
             <div
               key={option.id}
@@ -178,7 +181,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
                 </div>
               )}
               <div className="flex items-center gap-1.5">
-                <Icon size={13} className={option.recommended ? 'text-amber-400' : 'text-slate-500'} />
+                <Icon size={13} className={option.recommended ? meta.colorClass : 'text-ui-muted'} />
                   <span className={`text-xs font-display font-semibold ${option.recommended ? 'text-ui-text' : 'text-ui-muted'}`}>
                     {option.title}
                   </span>

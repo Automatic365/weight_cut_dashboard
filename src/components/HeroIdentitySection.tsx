@@ -6,6 +6,7 @@ import {
 import { Dumbbell, Heart, Brain, Shield } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import AttributeRow from './AttributeRow';
+import { ATTRIBUTE_THEME } from '../config';
 import type { Attributes, RadarDataPoint, RankState } from '../types';
 
 interface HeroIdentitySectionProps {
@@ -18,10 +19,10 @@ interface HeroIdentitySectionProps {
 // ── Radar chart icon vertices ───────────────────────────────────────────────
 
 const RADAR_ICONS: Record<string, { icon: LucideIcon; color: string }> = {
-  Strength:   { icon: Dumbbell, color: '#f0a93e' },
-  Vitality:   { icon: Heart,    color: '#5ca6ff' },
-  Resilience: { icon: Shield,   color: '#f0a93e' },
-  Discipline: { icon: Brain,    color: '#5ca6ff' },
+  Strength:   { icon: Dumbbell, color: ATTRIBUTE_THEME.strength.hex },
+  Vitality:   { icon: Heart,    color: ATTRIBUTE_THEME.vitality.hex },
+  Resilience: { icon: Shield,   color: ATTRIBUTE_THEME.resilience.hex },
+  Discipline: { icon: Brain,    color: ATTRIBUTE_THEME.discipline.hex },
 };
 
 const RadarIconTick = ({ x, y, payload }: { x?: number; y?: number; payload?: { value: string } }) => {
@@ -66,7 +67,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
   latestAttributes, radarData, tier, rankState,
 }) => {
   return (
-    <div className="mt-4 ui-card-dark overflow-hidden">
+    <div className="mt-4 ui-card-dark ui-card-interactive overflow-hidden">
 
       {/* Section label */}
       <div className="px-4 pt-3 pb-2 border-b border-ui-border/70">
@@ -96,7 +97,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <img
               src="/weight_cut_dashboard/avatar.jpg"
               alt="Hero avatar"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-top rounded-ui-sm border border-ui-border/80 shadow-ui-panel"
             />
           </div>
 
@@ -156,8 +157,8 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <AttributeRow
               name="Strength"
               icon={Dumbbell}
-              iconClass="text-red-400"
-              barColorClass="bg-red-500"
+              iconClass={ATTRIBUTE_THEME.strength.iconClass}
+              barColorClass={ATTRIBUTE_THEME.strength.barClass}
               level={latestAttributes.strength.level}
               currentLvlXp={latestAttributes.strength.currentLvlXp}
               nextLvlXp={latestAttributes.strength.nextLvlXp}
@@ -166,8 +167,8 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <AttributeRow
               name="Vitality"
               icon={Heart}
-              iconClass="text-green-400"
-              barColorClass="bg-green-500"
+              iconClass={ATTRIBUTE_THEME.vitality.iconClass}
+              barColorClass={ATTRIBUTE_THEME.vitality.barClass}
               level={latestAttributes.vitality.level}
               currentLvlXp={latestAttributes.vitality.currentLvlXp}
               nextLvlXp={latestAttributes.vitality.nextLvlXp}
@@ -176,8 +177,8 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <AttributeRow
               name="Discipline"
               icon={Brain}
-              iconClass="text-ui-primary"
-              barColorClass="bg-ui-primary"
+              iconClass={ATTRIBUTE_THEME.discipline.iconClass}
+              barColorClass={ATTRIBUTE_THEME.discipline.barClass}
               level={latestAttributes.discipline.level}
               currentLvlXp={latestAttributes.discipline.currentLvlXp}
               nextLvlXp={latestAttributes.discipline.nextLvlXp}
@@ -186,8 +187,8 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <AttributeRow
               name="Resilience"
               icon={Shield}
-              iconClass="text-ui-accent"
-              barColorClass="bg-ui-accent"
+              iconClass={ATTRIBUTE_THEME.resilience.iconClass}
+              barColorClass={ATTRIBUTE_THEME.resilience.barClass}
               level={latestAttributes.resilience.level}
               currentLvlXp={latestAttributes.resilience.currentLvlXp}
               nextLvlXp={latestAttributes.resilience.nextLvlXp}

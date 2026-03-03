@@ -1,5 +1,6 @@
 import React from 'react';
 import { Zap, Dumbbell, Heart, Brain, Shield, TrendingUp } from 'lucide-react';
+import { ATTRIBUTE_THEME } from '../config';
 import type { Attributes } from '../types';
 import type { SessionXP } from '../utils/xpDelta';
 
@@ -7,10 +8,10 @@ const ATTR_META: Record<keyof Attributes, {
   icon: React.FC<{ size?: number; className?: string }>;
   colorClass: string;
 }> = {
-  strength:   { icon: Dumbbell, colorClass: 'text-ui-accent' },
-  vitality:   { icon: Heart,    colorClass: 'text-ui-primary' },
-  discipline: { icon: Brain,    colorClass: 'text-ui-primary' },
-  resilience: { icon: Shield,   colorClass: 'text-ui-accent' },
+  strength:   { icon: Dumbbell, colorClass: ATTRIBUTE_THEME.strength.iconClass },
+  vitality:   { icon: Heart,    colorClass: ATTRIBUTE_THEME.vitality.iconClass },
+  discipline: { icon: Brain,    colorClass: ATTRIBUTE_THEME.discipline.iconClass },
+  resilience: { icon: Shield,   colorClass: ATTRIBUTE_THEME.resilience.iconClass },
 };
 
 interface LastSessionXPProps {
@@ -19,7 +20,7 @@ interface LastSessionXPProps {
 
 const LastSessionXP: React.FC<LastSessionXPProps> = ({ session }) => {
   return (
-    <div className="ui-card-dark p-5">
+    <div className="ui-card-dark ui-card-interactive p-5">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">

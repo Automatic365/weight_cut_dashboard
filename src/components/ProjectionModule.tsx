@@ -18,8 +18,9 @@ const ProjectionModule: React.FC<ProjectionModuleProps> = ({
   simulatedDaily, setSimulatedDaily,
 }) => {
   return (
-    <div className="ui-card overflow-hidden flex flex-col">
+    <div className="ui-card ui-card-interactive overflow-hidden flex flex-col">
       <div className="bg-gradient-to-r from-[#102136] to-[#152a46] p-6 text-white border-b border-ui-border/60">
+        <div className="ui-kicker text-ui-primary/80 mb-2">Projection Console</div>
         <div className="flex items-center gap-2 mb-5">
           <Target size={22} className="text-ui-primary" />
           <h2 className="text-xl font-display font-semibold tracking-wide">{GOAL_WEIGHT} lbs Goal Projection</h2>
@@ -54,7 +55,7 @@ const ProjectionModule: React.FC<ProjectionModuleProps> = ({
                   min="-7000" max="7000" step="500"
                   value={simulatedOneOff}
                   onChange={(e) => setSimulatedOneOff(Number(e.target.value))}
-                  className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                  className="ui-slider"
                 />
                 <div className="flex justify-between text-[10px] text-white/50 mt-1">
                   <span>-48h Fast</span>
@@ -73,7 +74,7 @@ const ProjectionModule: React.FC<ProjectionModuleProps> = ({
                   min="-1000" max="1000" step="100"
                   value={simulatedDaily}
                   onChange={(e) => setSimulatedDaily(Number(e.target.value))}
-                  className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                  className="ui-slider"
                 />
                 <div className="flex justify-between text-[10px] text-white/50 mt-1">
                   <span>Extra Deficit</span>
@@ -114,12 +115,12 @@ const ProjectionModule: React.FC<ProjectionModuleProps> = ({
         </div>
       </div>
 
-      <div className="bg-slate-50 p-4">
+      <div className="bg-ui-surface-2/45 p-4 border-t border-ui-border/70">
         <div className="flex gap-2">
           <Lightbulb size={16} className="text-ui-accent shrink-0 mt-0.5" />
-          <div className="text-xs text-slate-600 space-y-1">
-            <p><strong className="text-slate-800">The Arithmetic:</strong> At {projectionStats.historicalRate} lbs/week, you are inside a sustainable fat-loss range.</p>
-            <p><strong className="text-slate-800">Actionable Takeaway:</strong> Keep the linear process steady; consistency gets you to {GOAL_WEIGHT} without metabolic whiplash.</p>
+          <div className="text-xs text-ui-muted space-y-1">
+            <p><strong className="text-ui-text">The Arithmetic:</strong> At {projectionStats.historicalRate} lbs/week, you are inside a sustainable fat-loss range.</p>
+            <p><strong className="text-ui-text">Actionable Takeaway:</strong> Keep the linear process steady; consistency gets you to {GOAL_WEIGHT} without metabolic whiplash.</p>
           </div>
         </div>
       </div>

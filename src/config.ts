@@ -1,3 +1,5 @@
+import type { Attributes } from './types';
+
 // ─── Narrative Anchor ────────────────────────────────────────────────────────
 export const MISSION_STATEMENT =
   "Reach 155 lbs by May without sacrificing muscle, metabolic health, or training output. " +
@@ -114,3 +116,31 @@ export const XP = {
   RESILIENCE_BOSS_WIN: 50,      // boss fight survived (Pass)
   RESILIENCE_BOSS_LOSS: -20,    // boss fight failed (Fail)
 } as const;
+
+// ─── Attribute Visual Theme ──────────────────────────────────────────────────
+export const ATTRIBUTE_THEME: Record<keyof Attributes, {
+  hex: string;
+  iconClass: string;
+  barClass: string;
+}> = {
+  strength: {
+    hex: '#ef4444',
+    iconClass: 'text-red-400',
+    barClass: 'bg-red-500',
+  },
+  vitality: {
+    hex: '#22c55e',
+    iconClass: 'text-emerald-400',
+    barClass: 'bg-emerald-500',
+  },
+  discipline: {
+    hex: '#5ca6ff',
+    iconClass: 'text-ui-primary',
+    barClass: 'bg-ui-primary',
+  },
+  resilience: {
+    hex: '#f0a93e',
+    iconClass: 'text-amber-400',
+    barClass: 'bg-amber-500',
+  },
+};
