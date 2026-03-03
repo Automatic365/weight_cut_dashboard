@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Weight Cut Tracker">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d4ed8" />
+      <stop offset="1" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f59e0b" />
+      <stop offset="1" stop-color="#f97316" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bg)" />
+  <path d="M32 11 48 18v13c0 11-8 18-16 22-8-4-16-11-16-22V18z" fill="#e2e8f0" opacity=".95" />
+  <circle cx="32" cy="30" r="9.5" fill="url(#accent)" />
+  <rect x="23.5" y="38" width="17" height="3.5" rx="1.75" fill="#f8fafc" />
+  <circle cx="32" cy="30" r="3.2" fill="#fff7ed" />
+</svg>

@@ -16,7 +16,9 @@ import ProjectionModule from './components/ProjectionModule';
 import ChartsSection from './components/ChartsSection';
 import InputsSection from './components/InputsSection';
 import ConsistencyEngineSection from './components/ConsistencyEngineSection';
+import LastSessionXP from './components/LastSessionXP';
 import { deriveConsistencyGameState } from './utils/consistencyGame';
+import { computeSessionXP } from './utils/xpDelta';
 
 export default function CutProgressDashboard() {
   const [fixSwaps, setFixSwaps] = useState(true);
@@ -64,6 +66,7 @@ export default function CutProgressDashboard() {
   ), [chartData]);
 
   const gameState = useMemo(() => deriveConsistencyGameState(chartData), [chartData]);
+  const sessionXP = useMemo(() => computeSessionXP(chartData), [chartData]);
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
@@ -181,6 +184,8 @@ export default function CutProgressDashboard() {
             </li>
           </CoachAnalysis>
         </div>
+
+        {sessionXP && <LastSessionXP session={sessionXP} />}
 
         <ConsistencyEngineSection gameState={gameState} />
 
