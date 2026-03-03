@@ -3,7 +3,7 @@ import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   Tooltip, ResponsiveContainer
 } from 'recharts';
-import { Dumbbell, Heart, Brain, Shield, Sword } from 'lucide-react';
+import { Dumbbell, Heart, Brain, Shield } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import AttributeRow from './AttributeRow';
 import type { Attributes, RadarDataPoint } from '../types';
@@ -75,10 +75,12 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
             <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-amber-500/80" />
             <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-amber-500/80" />
             <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-amber-500/80" />
-            {/* Avatar placeholder */}
-            <div className="w-full h-full bg-slate-800/80 flex items-center justify-center">
-              <Sword size={40} className="text-amber-400/50" />
-            </div>
+            {/* Hero avatar */}
+            <img
+              src="/weight_cut_dashboard/avatar.jpg"
+              alt="Hero avatar"
+              className="w-full h-full object-cover object-top"
+            />
           </div>
 
           {/* Name + Rank */}
