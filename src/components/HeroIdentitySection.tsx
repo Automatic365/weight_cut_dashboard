@@ -150,10 +150,10 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
 
         {/* ── Right: Radar Chart ──────────────────────────────────────────── */}
         <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-slate-700/50 p-4 flex items-center justify-center">
-          <div className="w-full h-52">
+          <div className="w-full h-60">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="50%" data={radarData}>
-                <PolarGrid stroke="#1e293b" />
+              <RadarChart cx="50%" cy="50%" outerRadius="58%" data={radarData}>
+                <PolarGrid stroke="#2d4a6a" />
                 <PolarAngleAxis
                   dataKey="subject"
                   tick={(props: { x: number; y: number; payload: { value: string } }) => <RadarIconTick {...props} />}
@@ -173,7 +173,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
                   dataKey="level"
                   stroke="#f59e0b"
                   fill="#f59e0b"
-                  fillOpacity={0.35}
+                  fillOpacity={0.5}
                   strokeWidth={1.5}
                 />
                 <Tooltip
