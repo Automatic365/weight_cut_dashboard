@@ -6,13 +6,13 @@ import {
 import { Dumbbell, Heart, Brain, Shield } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import AttributeRow from './AttributeRow';
-import type { Attributes, RadarDataPoint } from '../types';
+import type { Attributes, RadarDataPoint, RankState } from '../types';
 
 interface HeroIdentitySectionProps {
   latestAttributes: Attributes;
   radarData: RadarDataPoint[];
   tier: string;
-  ladderTierLabel: string;
+  rankState: RankState;
 }
 
 // ── Radar chart icon vertices ───────────────────────────────────────────────
@@ -51,7 +51,7 @@ const Tag: React.FC<{ label: string }> = ({ label }) => (
 );
 
 const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
-  latestAttributes, radarData, tier, ladderTierLabel,
+  latestAttributes, radarData, tier, rankState,
 }) => {
   return (
     <div className="mt-4 bg-[#0a0c14] border border-slate-700/60 rounded-xl overflow-hidden shadow-2xl">
@@ -90,9 +90,27 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
 
           {/* Rank */}
           <div className="text-center">
-            <div className="text-[9px] text-amber-400/70 uppercase tracking-wider">
-              {ladderTierLabel}
+            <div className="text-[9px] text-slate-500 uppercase tracking-widest mb-0.5">Rank</div>
+            <div className="text-xs font-black text-amber-400 uppercase tracking-wider">
+              {rankState.currentRank}
             </div>
+            {rankState.xpToNextRank !== null && (
+              <>
+                {/* Progress bar toward next rank */}
+                <div className="w-20 h-0.5 bg-slate-700 rounded-full mt-1.5 mx-auto overflow-hidden">
+                  <div
+                    className="h-full bg-amber-500/70 rounded-full transition-all duration-700"
+                    style={{ width: `${rankState.rankProgress * 100}%` }}
+                  />
+                </div>
+                <div className="text-[9px] text-slate-600 mt-1">
+                  {rankState.xpToNextRank} RXP → {rankState.nextRank}
+                </div>
+              </>
+            )}
+            {rankState.nextRank === null && (
+              <div className="text-[9px] text-amber-500/60 mt-1">Max Rank</div>
+            )}
           </div>
 
           {/* Tag chips */}
@@ -164,11 +182,11 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
                   tickLine={false}
                   axisLine={false}
                 />
-                {/* tickCount=11 → rings at 0,1,2…10 = 10 visible level rings */}
+                {/* tickCount=6 → rings at 0,2,4,6,8,10 = 5 visible level rings */}
                 <PolarRadiusAxis
                   angle={30}
                   domain={[0, 10]}
-                  tickCount={11}
+                  tickCount={6}
                   tick={false}
                   axisLine={false}
                 />

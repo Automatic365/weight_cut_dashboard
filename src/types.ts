@@ -79,6 +79,16 @@ export interface ConsistencyFocusOption {
   recommended: boolean;
 }
 
+// ─── Rank System Types ────────────────────────────────────────────────────────
+
+export interface RankState {
+  totalRankXP: number;
+  currentRank: string;
+  nextRank: string | null;
+  xpToNextRank: number | null;
+  rankProgress: number;   // 0–1 fraction through current rank tier
+}
+
 export interface ConsistencyGameState {
   currentStreak: number;
   maxStreak: number;
