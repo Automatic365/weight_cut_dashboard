@@ -27,7 +27,9 @@ export function computeDataWarnings(days: ChartDayEntry[]): DataWarning[] {
     });
   }
 
-  const missingSleep = days.filter(d => d.sleep == null).length;
+  // Dates where sleep data is permanently unavailable (not a logging gap)
+  const SLEEP_UNAVAILABLE = new Set(['02/01']);
+  const missingSleep = days.filter(d => d.sleep == null && !SLEEP_UNAVAILABLE.has(d.date)).length;
   if (missingSleep > 0) {
     warnings.push({
       id: 'missing_sleep',
