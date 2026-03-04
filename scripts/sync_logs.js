@@ -87,6 +87,14 @@ function getLevelInfo(totalXp) {
   return { level, currentLvlXp: remainingXp, nextLvlXp: xpRequired };
 }
 
+// Extract the structured "### App Parse Block" section appended by the AI coach.
+// Returns the block text if present, or null. Used as the primary data source —
+// fields found here are authoritative; body-text regex serves as fallback only.
+function extractAppParseBlock(dayText) {
+  const match = dayText.match(/###\s*App Parse Block\s*\n([\s\S]*?)(?=\n##|\n###|$)/i);
+  return match ? match[1] : null;
+}
+
 function extractRawFields(dayText, context = {}) {
   const lines = dayText.split('\n');
   const headerLine = lines[0];
@@ -97,6 +105,9 @@ function extractRawFields(dayText, context = {}) {
   if (!dateMatch) return null;
   const [, , month, day] = dateMatch;
   const date = `${month}/${day}`;
+
+  // Extract the App Parse Block once; used as primary source for quantitative fields
+  const appBlock = extractAppParseBlock(dayText);
 
   let status = 'Pass';
   const statusMatch = dayText.match(/### Status\n([A-Za-z]+)/) || dayText.match(/\*\*Status:\*\* ([A-Za-z]+)/);
@@ -114,80 +125,148 @@ function extractRawFields(dayText, context = {}) {
   else if (dayText.includes('Tier 1')) tier = 'Tier 1';
   else if (dayText.includes('Tier 3')) tier = 'Tier 3';
 
+  // Weight — App Parse Block: "Weight: 163.0"
   let weight = null;
-  const weightMatch = dayText.match(/\*\*Weight:\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*Weight \(latest shown\):\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/Weight:\s*\*\*([0-9.]+)/);
-  if (weightMatch) weight = parseFloat(weightMatch[1]);
-
-  let waistNavel = null;
-  const waistNavelMatch =
-    dayText.match(/\*\*Waist \(navel\):\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*Abdomen \((?:at )?navel\):\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/Abdomen \((?:at )?navel\):\s*\*\*([0-9.]+)/)
-    || dayText.match(/Waist \(navel\):\s*\*\*([0-9.]+)/)
-    || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/);
-  if (waistNavelMatch) waistNavel = parseFloat(waistNavelMatch[1]);
-
-  let waistPlus2 = null;
-  const waistPlus2Match =
-    dayText.match(/\*\*Waist \(\+2[^)]*\) ?:\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*Waist \(above navel\):\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*\+2[^:]*:\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/Waist \(\+2[^)]*\):\s*\*\*([0-9.]+)/);
-  if (waistPlus2Match) waistPlus2 = parseFloat(waistPlus2Match[1]);
-
-  let waistMinus2 = null;
-  const waistMinus2Match =
-    dayText.match(/\*\*Waist \([\u2212\-]2[^)]*\):\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*Below [Aa]bdomen[^:]*:\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*Below \([^)]*\):\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*[\u2212\-]2[^:]*:\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/)
-    || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/);
-  if (waistMinus2Match) waistMinus2 = parseFloat(waistMinus2Match[1]);
-
-  let sleep = null;
-  const sleepMatch1 = dayText.match(/\*\*Sleep:\*\*\s*([0-9]+)h[ ]?([0-9]+)m/)
-    || dayText.match(/Sleep:\s*\*\*([0-9]+)h[ ]?([0-9]+)m/);
-  if (sleepMatch1) {
-    sleep = Number(sleepMatch1[1]) + (Number(sleepMatch1[2]) / 60);
-    sleep = parseFloat(sleep.toFixed(1));
-  } else {
-    const sleepMatch2 = dayText.match(/\*\*Sleep:\*\*\s*~?([0-9.]+)/)
-      || dayText.match(/Sleep:\s*\*\*([0-9.]+)/);
-    if (sleepMatch2) sleep = parseFloat(sleepMatch2[1]);
+  if (appBlock) {
+    const m = appBlock.match(/^Weight:\s*([0-9.]+)/m);
+    if (m) weight = parseFloat(m[1]);
+  }
+  if (weight == null) {
+    const weightMatch = dayText.match(/\*\*Weight:\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*Weight \(latest shown\):\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/Weight:\s*\*\*([0-9.]+)/);
+    if (weightMatch) weight = parseFloat(weightMatch[1]);
   }
 
+  // Waist Navel — App Parse Block: "Abdomen (navel): 31.44"
+  let waistNavel = null;
+  if (appBlock) {
+    const m = appBlock.match(/^Abdomen \(navel\):\s*([0-9.]+)/m);
+    if (m) waistNavel = parseFloat(m[1]);
+  }
+  if (waistNavel == null) {
+    const waistNavelMatch =
+      dayText.match(/\*\*Waist \(navel\):\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*Abdomen \((?:at )?navel\):\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/Abdomen \((?:at )?navel\):\s*\*\*([0-9.]+)/)
+      || dayText.match(/Waist \(navel\):\s*\*\*([0-9.]+)/)
+      || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/);
+    if (waistNavelMatch) waistNavel = parseFloat(waistNavelMatch[1]);
+  }
+
+  // Waist +2" — App Parse Block: '+2": 30.47'
+  let waistPlus2 = null;
+  if (appBlock) {
+    const m = appBlock.match(/^\+2["\u2033\u2032]?:\s*([0-9.]+)/m);
+    if (m) waistPlus2 = parseFloat(m[1]);
+  }
+  if (waistPlus2 == null) {
+    const waistPlus2Match =
+      dayText.match(/\*\*Waist \(\+2[^)]*\) ?:\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*Waist \(above navel\):\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*\+2[^:]*:\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/Waist \(\+2[^)]*\):\s*\*\*([0-9.]+)/);
+    if (waistPlus2Match) waistPlus2 = parseFloat(waistPlus2Match[1]);
+  }
+
+  // Waist -2" — App Parse Block: "Below: 31.89"
+  let waistMinus2 = null;
+  if (appBlock) {
+    const m = appBlock.match(/^Below:\s*([0-9.]+)/m);
+    if (m) waistMinus2 = parseFloat(m[1]);
+  }
+  if (waistMinus2 == null) {
+    const waistMinus2Match =
+      dayText.match(/\*\*Waist \([\u2212\-]2[^)]*\):\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*Below [Aa]bdomen[^:]*:\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*Below \([^)]*\):\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*[\u2212\-]2[^:]*:\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/)
+      || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/);
+    if (waistMinus2Match) waistMinus2 = parseFloat(waistMinus2Match[1]);
+  }
+
+  // Sleep — App Parse Block: "Sleep: 7h 03m"
+  // Use toFixed(2) not toFixed(1): "7h 03m" = 7.049999... in float, toFixed(1) rounds to "7.0"
+  let sleep = null;
+  if (appBlock) {
+    const m = appBlock.match(/^Sleep:\s*([0-9]+)h\s*([0-9]+)m/m);
+    if (m) {
+      sleep = Number(m[1]) + (Number(m[2]) / 60);
+      sleep = parseFloat(sleep.toFixed(2));
+    }
+  }
+  if (sleep == null) {
+    const sleepMatch1 = dayText.match(/\*\*Sleep:\*\*\s*([0-9]+)h[ ]?([0-9]+)m/)
+      || dayText.match(/Sleep:\s*\*\*([0-9]+)h[ ]?([0-9]+)m/);
+    if (sleepMatch1) {
+      sleep = Number(sleepMatch1[1]) + (Number(sleepMatch1[2]) / 60);
+      sleep = parseFloat(sleep.toFixed(2));
+    } else {
+      const sleepMatch2 = dayText.match(/\*\*Sleep:\*\*\s*~?([0-9.]+)/)
+        || dayText.match(/Sleep:\s*\*\*([0-9.]+)/);
+      if (sleepMatch2) sleep = parseFloat(sleepMatch2[1]);
+    }
+  }
+
+  // Calories — App Parse Block: "Calories: 2040"
   let calories = null;
   if (tier === 'Tier 3') {
     calories = 0;
   } else {
-    const adjustedMatch = dayText.match(/Adjusted.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)\s*effective/i)
-      || dayText.match(/Adjusted.*?:.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)/i);
-    const rangeMatch = dayText.match(/(?:Calories|Total|Midpoint log estimate|Realistic range).*?(?:~|\b)[0-9,]+(?:–|-)([0-9,]+)/i);
-    const calMatch = dayText.match(/evaluated:\s*~?([0-9,]+)/)
-      || dayText.match(/Total:\s*~?([0-9,]+)/)
-      || dayText.match(/~([0-9,]+)\s*kcal/)
-      || dayText.match(/Calories:\s*~?([0-9,]+)/);
+    if (appBlock) {
+      const m = appBlock.match(/^Calories:\s*([0-9,]+)/m);
+      if (m) calories = parseInt(m[1].replace(/,/g, ''), 10);
+    }
+    if (calories == null) {
+      const adjustedMatch = dayText.match(/Adjusted.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)\s*effective/i)
+        || dayText.match(/Adjusted.*?:.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)/i);
+      const rangeMatch = dayText.match(/(?:Calories|Total|Midpoint log estimate|Realistic range).*?(?:~|\b)[0-9,]+(?:–|-)([0-9,]+)/i);
+      const calMatch = dayText.match(/evaluated:\s*~?([0-9,]+)/)
+        || dayText.match(/Total:\s*~?([0-9,]+)/)
+        || dayText.match(/~([0-9,]+)\s*kcal/)
+        || dayText.match(/Calories:\s*~?([0-9,]+)/);
 
-    if (adjustedMatch) {
-      calories = parseInt(adjustedMatch[1].replace(/,/g, ''), 10);
-    } else if (rangeMatch) {
-      calories = parseInt(rangeMatch[1].replace(/,/g, ''), 10);
-    } else if (calMatch) {
-      calories = parseInt(calMatch[1].replace(/,/g, ''), 10);
+      if (adjustedMatch) {
+        calories = parseInt(adjustedMatch[1].replace(/,/g, ''), 10);
+      } else if (rangeMatch) {
+        calories = parseInt(rangeMatch[1].replace(/,/g, ''), 10);
+      } else if (calMatch) {
+        calories = parseInt(calMatch[1].replace(/,/g, ''), 10);
+      }
     }
   }
 
+  // Protein — App Parse Block: "Protein: 175g"
   let protein = null;
   if (tier === 'Tier 3') {
     protein = 0;
   } else {
-    const protMatch = dayText.match(/(?:protein|Protein):\s*~?([0-9]+)g/)
-      || dayText.match(/~([0-9]+)g protein/)
-      || dayText.match(/Protein:\s*~?([0-9]+)/);
-    if (protMatch) protein = parseInt(protMatch[1], 10);
+    if (appBlock) {
+      const m = appBlock.match(/^Protein:\s*([0-9]+)g?/m);
+      if (m) protein = parseInt(m[1], 10);
+    }
+    if (protein == null) {
+      // Daily total — bold-value format with optional range: "Protein:** ~185–195g" or "Protein:** ~195g"
+      // Must match before the generic fallbacks which can grab per-meal values (e.g. "~50g protein")
+      const protBoldMatch = dayText.match(/Protein:\s*\*\*?\s*~?([0-9]+)(?:[–\-]([0-9]+))?g/i);
+      if (protBoldMatch) {
+        const lo = parseInt(protBoldMatch[1], 10);
+        const hi = protBoldMatch[2] ? parseInt(protBoldMatch[2], 10) : lo;
+        protein = Math.round((lo + hi) / 2);
+      }
+    }
+    if (protein == null) {
+      // Adjusted total line: "Protein (-20%): **~175g" or "Protein (−20%): **~175g"
+      const protAdjMatch = dayText.match(/Protein\s*\([^)]*\):\s*\*\*\s*~?([0-9]+)/i);
+      if (protAdjMatch) protein = parseInt(protAdjMatch[1], 10);
+    }
+    if (protein == null) {
+      // Last-resort generic patterns — lower priority to avoid per-meal false matches
+      const protMatch = dayText.match(/~([0-9]+)g protein/)
+        || dayText.match(/Protein:\s*~?([0-9]+)/);
+      if (protMatch) protein = parseInt(protMatch[1], 10);
+    }
   }
 
   let adherenceScore = null;

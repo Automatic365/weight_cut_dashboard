@@ -21,7 +21,7 @@
   "02/09": { "protein": 190, "sleep": 6.93 },
   "02/10": { "protein": 190, "sleep": 7.05 },
   "02/11": { "protein": 190 },
-  "02/14": { "sleep": 7.12 },
+  "02/14": { "sleep": 7.12, "protein": 190 },
   "02/16": { "protein": 190 },
   "02/17": { "protein": 190 },
   "02/18": { "protein": 190 },
@@ -29,6 +29,5 @@
   "02/20": { "protein": 190 },
   "02/21": { "protein": 190 },
   "02/26": { "protein": 190 },
-  "02/27": { "protein": 190 },
-  "03/03": { "weight": 163.0, "sleep": 7.05, "waistNavel": 31.44, "waistPlus2": 30.47, "waistMinus2": 31.89 }
+  "02/27": { "protein": 190 }
 }
