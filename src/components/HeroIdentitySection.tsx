@@ -12,6 +12,7 @@ import type { Attributes, RadarDataPoint, RankState } from '../types';
 interface HeroIdentitySectionProps {
   latestAttributes: Attributes;
   radarData: RadarDataPoint[];
+  radarMax: number;
   tier: string;
   rankState: RankState;
 }
@@ -64,7 +65,7 @@ function getRankWriteup(rank: string): string {
 }
 
 const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
-  latestAttributes, radarData, tier, rankState,
+  latestAttributes, radarData, radarMax, tier, rankState,
 }) => {
   return (
     <div className="mt-4 ui-card-dark ui-card-interactive overflow-hidden">
@@ -79,7 +80,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
       <div className="flex flex-col md:flex-row">
 
         {/* ── Left: Character Panel ───────────────────────────────────────── */}
-        <div className="md:w-1/4 bg-ui-surface border-b md:border-b-0 md:border-r border-ui-border/70 p-5 flex flex-col items-center justify-center gap-4">
+        <div className="md:w-[23%] bg-gradient-to-b from-ui-surface to-[#080e18] border-b md:border-b-0 md:border-r border-ui-border/70 p-5 flex flex-col items-center justify-center gap-4">
 
           {/* Name */}
           <div className="text-center">
@@ -149,7 +150,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
         </div>
 
         {/* ── Center: Attribute Rows ──────────────────────────────────────── */}
-        <div className="md:w-1/2 p-5 flex flex-col justify-center">
+        <div className="md:w-[42%] p-5 flex flex-col justify-center">
           <div className="ui-kicker mb-3">
             Attribute Levels
           </div>
@@ -198,10 +199,11 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
         </div>
 
         {/* ── Right: Radar Chart ──────────────────────────────────────────── */}
-        <div className="md:w-1/4 border-t md:border-t-0 md:border-l border-ui-border/70 p-4 flex items-center justify-center">
-          <div className="w-full h-60">
+        <div className="md:w-[35%] border-t md:border-t-0 md:border-l border-ui-border/70 p-4 flex flex-col items-center justify-center gap-2">
+          <div className="ui-kicker">Stat Radar</div>
+          <div className="w-full h-[280px]">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="58%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
                 <PolarGrid stroke="#314560" />
                 <PolarAngleAxis
                   dataKey="subject"
@@ -209,10 +211,9 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
                   tickLine={false}
                   axisLine={false}
                 />
-                {/* tickCount=6 → rings at 0,2,4,6,8,10 = 5 visible level rings */}
                 <PolarRadiusAxis
                   angle={30}
-                  domain={[0, 10]}
+                  domain={[0, radarMax]}
                   tickCount={6}
                   tick={false}
                   axisLine={false}

@@ -59,12 +59,23 @@ export default function CutProgressDashboard() {
     resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100 }
   };
 
+  const radarMax = useMemo(() => {
+    const maxLevel = Math.max(
+      latestAttributes.strength.level,
+      latestAttributes.vitality.level,
+      latestAttributes.resilience.level,
+      latestAttributes.discipline.level,
+    );
+    // Scale: always show at least 5 rings worth; cap at 10
+    return Math.min(10, Math.max(5, maxLevel + 2));
+  }, [latestAttributes]);
+
   const radarData = useMemo(() => [
-    { subject: 'Strength', level: latestAttributes.strength.level, fullMark: Math.max(10, latestAttributes.strength.level + 2) },
-    { subject: 'Vitality', level: latestAttributes.vitality.level, fullMark: Math.max(10, latestAttributes.vitality.level + 2) },
-    { subject: 'Resilience', level: latestAttributes.resilience.level, fullMark: Math.max(10, latestAttributes.resilience.level + 2) },
-    { subject: 'Discipline', level: latestAttributes.discipline.level, fullMark: Math.max(10, latestAttributes.discipline.level + 2) },
-  ], [latestAttributes]);
+    { subject: 'Strength',   level: latestAttributes.strength.level,   fullMark: radarMax },
+    { subject: 'Vitality',   level: latestAttributes.vitality.level,   fullMark: radarMax },
+    { subject: 'Resilience', level: latestAttributes.resilience.level, fullMark: radarMax },
+    { subject: 'Discipline', level: latestAttributes.discipline.level, fullMark: radarMax },
+  ], [latestAttributes, radarMax]);
 
   const trophies = useMemo(() => (
     chartData
@@ -76,12 +87,37 @@ export default function CutProgressDashboard() {
   const sessionXP = useMemo(() => computeSessionXP(chartData), [chartData]);
   const rankState = useMemo(() => deriveRankState(chartData), [chartData]);
 
+  const NAV_SECTIONS = [
+    { id: 'overview',    label: 'Overview'    },
+    { id: 'attributes',  label: 'Attributes'  },
+    { id: 'consistency', label: 'Consistency' },
+    { id: 'stats',       label: 'Stats'       },
+    { id: 'projections', label: 'Projections' },
+    { id: 'charts',      label: 'Charts'      },
+  ];
+
   return (
+    <>
+      {/* Sticky nav */}
+      <nav className="sticky top-0 z-50 bg-[#060b12]/90 backdrop-blur-md border-b border-ui-border/40">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center overflow-x-auto scrollbar-hide">
+          {NAV_SECTIONS.map(s => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className="text-[10px] uppercase tracking-[0.14em] font-semibold text-ui-muted hover:text-amber-300 px-4 py-3 transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-amber-400/50"
+            >
+              {s.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
     <div className="ui-page-shell">
       <div className="ui-page-width">
 
         {/* Header */}
-        <div className="ui-card-dark ui-card-interactive p-6">
+        <div id="overview" className="ui-card-dark ui-card-interactive p-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
               <h1 className="text-2xl font-display font-semibold text-ui-text flex items-center gap-2">
@@ -175,12 +211,15 @@ export default function CutProgressDashboard() {
             </div>
           </div>
 
-          <HeroIdentitySection
-            latestAttributes={latestAttributes}
-            radarData={radarData}
-            tier={latestData.tier}
-            rankState={rankState}
-          />
+          <div id="attributes">
+            <HeroIdentitySection
+              latestAttributes={latestAttributes}
+              radarData={radarData}
+              radarMax={radarMax}
+              tier={latestData.tier}
+              rankState={rankState}
+            />
+          </div>
 
           <CoachAnalysis colorScheme="green" className="mt-4">
             <li>
@@ -197,10 +236,10 @@ export default function CutProgressDashboard() {
 
         {sessionXP && <LastSessionXP session={sessionXP} />}
 
-        <ConsistencyEngineSection gameState={gameState} />
+        <div id="consistency"><ConsistencyEngineSection gameState={gameState} /></div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div id="stats" className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="ui-stat-card">
             <div className="flex justify-between items-center text-ui-muted mb-2">
               <span className="text-sm font-semibold">Current Weight</span>
@@ -238,6 +277,7 @@ export default function CutProgressDashboard() {
           </div>
         </div>
 
+        <div id="projections" />
         <ProjectionModule
           projectionStats={projectionStats}
           simulatedOneOff={simulatedOneOff}
@@ -246,11 +286,12 @@ export default function CutProgressDashboard() {
           setSimulatedDaily={setSimulatedDaily}
         />
 
-        <ChartsSection chartData={chartData} />
+        <div id="charts"><ChartsSection chartData={chartData} /></div>
 
         <InputsSection chartData={chartData} />
 
       </div>
     </div>
+    </>
   );
 }
