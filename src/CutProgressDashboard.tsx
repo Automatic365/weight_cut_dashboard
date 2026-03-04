@@ -23,6 +23,7 @@ import WeeklyDebriefCard from './components/WeeklyDebriefCard';
 import { computeWeeklyDebrief, computeCoachInsights } from './utils/insightEngine';
 import DataIntegrityBanner from './components/DataIntegrityBanner';
 import RiskAlertPanel from './components/RiskAlertPanel';
+import IncomingBossAlert from './components/IncomingBossAlert';
 import { computeDataWarnings } from './utils/dataIntegrity';
 import { computeRiskAlerts } from './utils/riskEngine';
 import { deriveConsistencyGameState } from './utils/consistencyGame';
@@ -85,6 +86,13 @@ export default function CutProgressDashboard() {
 
   const latestWeightEntry = [...allChartData].reverse().find(d => typeof d.weight === 'number' && Number.isFinite(d.weight));
   const latestWeightDate = latestWeightEntry?.date ?? null;
+
+  // Upcoming boss battle — most recent planning entry that hasn't been resolved by an execution day
+  const lastBossExecution = [...allChartData].reverse().find(d => d.isBossFight);
+  const upcomingBossEntry = [...allChartData].reverse().find(d => d.upcomingBossName);
+  const upcomingBoss = upcomingBossEntry && (!lastBossExecution || upcomingBossEntry.date > lastBossExecution.date)
+    ? upcomingBossEntry.upcomingBossName
+    : null;
 
   const latestAttributes: Attributes = latestData?.attributes || {
     vitality: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
@@ -224,6 +232,14 @@ export default function CutProgressDashboard() {
         </div>
 
         <WeeklyScheduleCard latestDate={latestData.date} />
+
+        {upcomingBoss && (
+          <IncomingBossAlert
+            bossName={upcomingBoss}
+            shieldCharges={currentShield}
+            maxShield={MAX_SHIELD}
+          />
+        )}
 
         {/* Risk alerts */}
         {riskAlerts.length > 0 && <RiskAlertPanel alerts={riskAlerts} />}

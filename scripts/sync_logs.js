@@ -265,6 +265,7 @@ function parseLogContent(content, overrides = {}) {
         // Gamification: Boss Battles (Heuristic Detection)
         let isBossFight = false;
         let bossName = null;
+        let upcomingBossName = null; // set on planning days; visible to dashboard
 
         const executionText = buildExecutionText(dayText);
         const explicitMatch = executionText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
@@ -293,7 +294,10 @@ function parseLogContent(content, overrides = {}) {
         if (hasExplicitBossMode) {
             const mode = explicitBossMode.toLowerCase();
             if (mode === 'planning') {
-                if (explicitBossName) pendingBossName = explicitBossName;
+                if (explicitBossName) {
+                    pendingBossName = explicitBossName;
+                    upcomingBossName = explicitBossName; // surface to dashboard
+                }
             } else if (mode === 'execution') {
                 isBossFight = true;
                 bossName = explicitBossName || pendingBossName;
@@ -430,6 +434,7 @@ function parseLogContent(content, overrides = {}) {
             notes: '',
             isBossFight,
             bossName,
+            upcomingBossName,
             shield: currentShield,
             streak: currentStreak,
             adherenceScore,

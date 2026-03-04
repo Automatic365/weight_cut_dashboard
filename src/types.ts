@@ -28,6 +28,7 @@ export interface DayEntry {
   notes: string;
   isBossFight: boolean;
   bossName: string | null;
+  upcomingBossName: string | null;
   shield: number;
   streak: number;
   adherenceScore: number | null;
