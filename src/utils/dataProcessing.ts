@@ -87,12 +87,36 @@ export function computeProjectionStats(
   const projectedDateTarget = new Date(endDate);
   projectedDateTarget.setDate(projectedDateTarget.getDate() + daysRemainingTarget);
 
+  // Waist (navel) trend projection
+  let navelCurrentRate: string | null = null;
+  let navelAtGoalDate: string | null = null;
+
+  const navelReadings = rawData
+    .map((d, i) => ({ date: parseDate(d.date), val: d.waistNavel, i }))
+    .filter((r): r is { date: Date; val: number; i: number } => r.val != null);
+
+  if (navelReadings.length >= 2) {
+    const firstNavel = navelReadings[0];
+    const lastNavel = navelReadings[navelReadings.length - 1];
+    const navelDays = (lastNavel.date.getTime() - firstNavel.date.getTime()) / (1000 * 60 * 60 * 24);
+    if (navelDays > 0) {
+      const navelRatePerWeek = ((lastNavel.val - firstNavel.val) / navelDays) * 7;
+      navelCurrentRate = navelRatePerWeek.toFixed(3);
+      // Project from current last navel value to the simulated goal date
+      const daysToGoalSimulated = daysRemainingSimulated;
+      const projectedNavel = lastNavel.val + (navelRatePerWeek / 7) * daysToGoalSimulated;
+      navelAtGoalDate = projectedNavel.toFixed(2);
+    }
+  }
+
   return {
     historicalRate: historicalRatePerWeek.toFixed(2),
     simulatedRate: simulatedRatePerWeek.toFixed(2),
     targetRate: targetRatePerWeek.toFixed(2),
     lbsRemaining: lbsRemaining.toFixed(1),
     dateSimulated: projectedDateSimulated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    dateTarget: projectedDateTarget.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    dateTarget: projectedDateTarget.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    navelCurrentRate,
+    navelAtGoalDate,
   };
 }

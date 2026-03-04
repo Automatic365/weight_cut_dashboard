@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Lightbulb, CalendarDays } from 'lucide-react';
+import { Target, Lightbulb, CalendarDays, Ruler } from 'lucide-react';
 import { GOAL_WEIGHT } from '../config';
 import type { ProjectionStats } from '../types';
 
@@ -114,6 +114,26 @@ const ProjectionModule: React.FC<ProjectionModuleProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Waist projection strip */}
+      {projectionStats.navelAtGoalDate && projectionStats.navelCurrentRate && (
+        <div className="bg-ui-surface-2/30 px-6 py-3 border-t border-ui-border/60 flex items-center gap-3 flex-wrap">
+          <Ruler size={14} className="text-ui-muted shrink-0" />
+          <div className="text-[10px] text-ui-muted uppercase tracking-widest shrink-0">Abdomen Trend</div>
+          <div className="flex items-center gap-4 flex-wrap">
+            <div>
+              <span className="text-[10px] text-ui-muted">Current rate: </span>
+              <span className={`text-xs font-bold ${parseFloat(projectionStats.navelCurrentRate) < 0 ? 'text-green-400' : 'text-amber-400'}`}>
+                {parseFloat(projectionStats.navelCurrentRate) > 0 ? '+' : ''}{projectionStats.navelCurrentRate} in/wk
+              </span>
+            </div>
+            <div>
+              <span className="text-[10px] text-ui-muted">At goal date: </span>
+              <span className="text-xs font-bold text-ui-text">{projectionStats.navelAtGoalDate}"</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="bg-ui-surface-2/45 p-4 border-t border-ui-border/70">
         <div className="flex gap-2">

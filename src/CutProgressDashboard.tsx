@@ -17,39 +17,63 @@ import ChartsSection from './components/ChartsSection';
 import InputsSection from './components/InputsSection';
 import ConsistencyEngineSection from './components/ConsistencyEngineSection';
 import LastSessionXP from './components/LastSessionXP';
+import NotesFeed from './components/NotesFeed';
+import WeeklyScheduleCard from './components/WeeklyScheduleCard';
+import WeeklyDebriefCard from './components/WeeklyDebriefCard';
+import { computeWeeklyDebrief, computeCoachInsights } from './utils/insightEngine';
+import DataIntegrityBanner from './components/DataIntegrityBanner';
+import RiskAlertPanel from './components/RiskAlertPanel';
+import { computeDataWarnings } from './utils/dataIntegrity';
+import { computeRiskAlerts } from './utils/riskEngine';
 import { deriveConsistencyGameState } from './utils/consistencyGame';
 import { computeSessionXP } from './utils/xpDelta';
 import { deriveRankState } from './utils/rankSystem';
+
+type RangeKey = 'all' | '30d' | '14d' | '7d';
+const RANGE_OPTIONS: { key: RangeKey; label: string }[] = [
+  { key: '7d',  label: 'Last 7D'  },
+  { key: '14d', label: 'Last 14D' },
+  { key: '30d', label: 'Last 30D' },
+  { key: 'all', label: 'All'      },
+];
 
 export default function CutProgressDashboard() {
   const [fixSwaps, setFixSwaps] = useState(true);
   const [simulatedOneOff, setSimulatedOneOff] = useState(0);
   const [simulatedDaily, setSimulatedDaily] = useState(0);
+  const [rangeKey, setRangeKey] = useState<RangeKey>('all');
 
-  const chartData = useMemo(() => {
+  const allChartData = useMemo(() => {
     const cleaned = applyWaistSwapFix(rawData as DayEntry[], fixSwaps);
     return compute7DayAvg(cleaned);
   }, [fixSwaps]);
+
+  const chartData = useMemo(() => {
+    const limits: Record<RangeKey, number> = { '7d': 7, '14d': 14, '30d': 30, 'all': Infinity };
+    const limit = limits[rangeKey];
+    return limit === Infinity ? allChartData : allChartData.slice(-limit);
+  }, [allChartData, rangeKey]);
 
   const projectionStats = useMemo(() => (
     computeProjectionStats(rawData as DayEntry[], simulatedOneOff, simulatedDaily)
   ), [simulatedOneOff, simulatedDaily]);
 
-  const latestData = chartData[chartData.length - 1];
+  // Always use full dataset for persistent/cumulative stats
+  const latestData = allChartData[allChartData.length - 1];
   const currentAvg = latestData.weightAvg ?? 0;
   const latestWeight = latestData.weight ?? currentAvg;
 
-  const totalDays = chartData.length;
-  const passDays = chartData.filter(d => d.status === 'Pass').length;
+  const totalDays = allChartData.length;
+  const passDays = allChartData.filter(d => d.status === 'Pass').length;
   const adherencePercent = Math.round((passDays / totalDays) * 100);
 
   const currentStreak = latestData?.streak || 0;
   const currentShield = latestData?.shield || 0;
   const shieldPercent = Math.min(100, Math.max(0, (currentShield / MAX_SHIELD) * 100));
-  const numericWeights = chartData.flatMap((d) => (typeof d.weight === 'number' ? [d.weight] : []));
+  const numericWeights = allChartData.flatMap((d) => (typeof d.weight === 'number' ? [d.weight] : []));
   const peakWeight = numericWeights.length ? Math.max(...numericWeights) : latestWeight;
   const fromPeak = +(peakWeight - latestWeight).toFixed(1);
-  const lowestNavelVal = Math.min(...chartData.map((d) => d.waistNavel).filter((v): v is number => v != null));
+  const lowestNavelVal = Math.min(...allChartData.map((d) => d.waistNavel).filter((v): v is number => v != null));
   const lowestNavel = Number.isFinite(lowestNavelVal) ? lowestNavelVal : (latestData.waistNavel ?? 0);
 
   const latestAttributes: Attributes = latestData?.attributes || {
@@ -77,15 +101,22 @@ export default function CutProgressDashboard() {
     { subject: 'Discipline', level: latestAttributes.discipline.level, fullMark: radarMax },
   ], [latestAttributes, radarMax]);
 
+  // Cumulative/persistent: always use full dataset
   const trophies = useMemo(() => (
-    chartData
+    allChartData
       .filter(d => d.isBossFight && d.status === 'Pass' && d.bossName)
       .map(d => d.bossName as string)
-  ), [chartData]);
+  ), [allChartData]);
 
-  const gameState = useMemo(() => deriveConsistencyGameState(chartData), [chartData]);
-  const sessionXP = useMemo(() => computeSessionXP(chartData), [chartData]);
-  const rankState = useMemo(() => deriveRankState(chartData), [chartData]);
+  const gameState = useMemo(() => deriveConsistencyGameState(allChartData), [allChartData]);
+  const dataWarnings = useMemo(() => computeDataWarnings(allChartData), [allChartData]);
+  const riskAlerts = useMemo(() => computeRiskAlerts(allChartData), [allChartData]);
+  const weeklyDebrief = useMemo(() => computeWeeklyDebrief(allChartData), [allChartData]);
+  const sessionXP = useMemo(() => computeSessionXP(allChartData), [allChartData]);
+  const rankState = useMemo(() => deriveRankState(allChartData), [allChartData]);
+
+  // Range-sensitive: use filtered chartData
+  const coachInsights = useMemo(() => computeCoachInsights(chartData), [chartData]);
 
   const NAV_SECTIONS = [
     { id: 'overview',    label: 'Overview'    },
@@ -100,16 +131,34 @@ export default function CutProgressDashboard() {
     <>
       {/* Sticky nav */}
       <nav className="sticky top-0 z-50 bg-[#060b12]/90 backdrop-blur-md border-b border-ui-border/40">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center overflow-x-auto scrollbar-hide">
-          {NAV_SECTIONS.map(s => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className="text-[10px] uppercase tracking-[0.14em] font-semibold text-ui-muted hover:text-amber-300 px-4 py-3 transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-amber-400/50"
-            >
-              {s.label}
-            </a>
-          ))}
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center">
+          <div className="flex items-center overflow-x-auto scrollbar-hide shrink-0">
+            {NAV_SECTIONS.map(s => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className="text-[10px] uppercase tracking-[0.14em] font-semibold text-ui-muted hover:text-amber-300 px-4 py-3 transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-amber-400/50"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+          {/* Today's missions — persistent in nav */}
+          <div className="ml-auto pl-4 hidden md:flex items-center gap-2 shrink-0 py-2">
+            {gameState.missions.map(m => (
+              <div
+                key={m.id}
+                className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded-full border font-semibold whitespace-nowrap ${
+                  m.pending    ? 'border-blue-500/40 text-blue-300 bg-blue-500/10' :
+                  m.completed  ? 'border-green-500/40 text-green-300 bg-green-500/10' :
+                                 'border-red-500/40 text-red-400 bg-red-500/10'
+                }`}
+              >
+                <span>{m.title}:</span>
+                <span>{m.targetText}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </nav>
 
@@ -130,13 +179,26 @@ export default function CutProgressDashboard() {
                     const [m, d] = mmdd.split('/');
                     return new Date(2026, +m - 1, +d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                   };
-                  return `Metabolic Audit & Linear Cut Block (${fmt(chartData[0].date)} – ${fmt(latestData.date)})`;
+                  return `Metabolic Audit & Linear Cut Block (${fmt(allChartData[0].date)} – ${fmt(latestData.date)})`;
                 })()}
               </p>
             </div>
-            <div className="ui-control-rail">
-              <button onClick={() => setFixSwaps(true)} className={`ui-control-btn ${fixSwaps ? 'ui-control-btn-active' : ''}`}>Auto-Fix Waist Data</button>
-              <button onClick={() => setFixSwaps(false)} className={`ui-control-btn ${!fixSwaps ? 'ui-control-btn-active' : ''}`}>Raw Logs</button>
+            <div className="flex flex-col gap-2 items-end mt-2 md:mt-0">
+              <div className="ui-control-rail">
+                <button onClick={() => setFixSwaps(true)} className={`ui-control-btn ${fixSwaps ? 'ui-control-btn-active' : ''}`}>Auto-Fix Waist Data</button>
+                <button onClick={() => setFixSwaps(false)} className={`ui-control-btn ${!fixSwaps ? 'ui-control-btn-active' : ''}`}>Raw Logs</button>
+              </div>
+              <div className="ui-control-rail">
+                {RANGE_OPTIONS.map(r => (
+                  <button
+                    key={r.key}
+                    onClick={() => setRangeKey(r.key)}
+                    className={`ui-control-btn ${rangeKey === r.key ? 'ui-control-btn-active' : ''}`}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-ui-border/70 flex gap-2 items-start">
@@ -144,7 +206,17 @@ export default function CutProgressDashboard() {
             <p className="text-sm text-slate-300 italic leading-relaxed flex-1">{MISSION_STATEMENT}</p>
             <span className="text-ui-primary text-xl font-bold leading-none self-end mb-0.5 select-none">"</span>
           </div>
+          {dataWarnings.length > 0 && (
+            <div className="mt-4">
+              <DataIntegrityBanner warnings={dataWarnings} />
+            </div>
+          )}
         </div>
+
+        <WeeklyScheduleCard latestDate={latestData.date} />
+
+        {/* Risk alerts */}
+        {riskAlerts.length > 0 && <RiskAlertPanel alerts={riskAlerts} />}
 
         {/* Adherence Heatmap & Stats */}
         <div className="ui-card p-6">
@@ -237,6 +309,7 @@ export default function CutProgressDashboard() {
         {sessionXP && <LastSessionXP session={sessionXP} />}
 
         <div id="consistency"><ConsistencyEngineSection gameState={gameState} /></div>
+        {weeklyDebrief && <WeeklyDebriefCard debrief={weeklyDebrief} />}
 
         {/* KPI Cards */}
         <div id="stats" className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -286,9 +359,11 @@ export default function CutProgressDashboard() {
           setSimulatedDaily={setSimulatedDaily}
         />
 
-        <div id="charts"><ChartsSection chartData={chartData} /></div>
+        <div id="charts"><ChartsSection chartData={chartData} coachInsights={coachInsights} /></div>
 
-        <InputsSection chartData={chartData} />
+        <InputsSection chartData={chartData} coachInsights={coachInsights} />
+
+        <NotesFeed chartData={chartData} />
 
       </div>
     </div>
