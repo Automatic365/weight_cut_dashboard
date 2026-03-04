@@ -66,7 +66,7 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
     nextMilestone, daysToNextMilestone, milestones,
     missions, focusOptions,
     weekPasses, weekRemainingSlots,
-    mysteryIntelTitle, mysteryIntelBody, mysterySeed,
+    mysteryIntelTitle, mysteryIntelBody,
   } = gameState;
 
   return (
@@ -86,8 +86,9 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
       <div className="bg-ui-surface-2/55 border border-ui-border/80 rounded-ui-lg p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <div className="ui-kicker mb-0.5">Current Tier</div>
+            <div className="ui-kicker mb-0.5">Streak Tier</div>
             <div className="text-sm font-display font-semibold text-ui-primary">{ladderTierLabel}</div>
+            <div className="text-[9px] text-ui-muted/60 mt-0.5">resets on fail</div>
           </div>
           <div className="text-right">
             <div className="ui-kicker mb-0.5">Active Streak</div>
@@ -216,7 +217,6 @@ const ConsistencyEngineSection: React.FC<ConsistencyEngineSectionProps> = ({ gam
           <div className="flex items-center gap-1.5 text-[10px] font-display font-semibold uppercase tracking-widest text-ui-muted">
             <Radio size={12} /> Daily Intel
           </div>
-          <span className="text-[9px] text-ui-muted/80 font-mono">{mysterySeed}</span>
         </div>
         <div className="text-sm font-display font-semibold text-ui-text mb-1">{mysteryIntelTitle}</div>
         <p className="text-xs text-slate-400 leading-relaxed">{mysteryIntelBody}</p>
