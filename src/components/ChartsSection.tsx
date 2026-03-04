@@ -32,7 +32,7 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ chartData }) => {
                 <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#8ea2bd' }} tickMargin={10} minTickGap={20} />
                 <YAxis domain={['dataMin - 1', 'dataMax + 1']} tick={{ fontSize: 12, fill: '#8ea2bd' }} />
                 <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #27374f', backgroundColor: '#0f1724', boxShadow: '0 12px 24px rgba(4, 9, 18, 0.35)' }} labelStyle={{ color: '#e5edf8' }} itemStyle={{ color: '#c8d7eb' }} />
-                <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+                <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px', color: '#c8d7eb' }} />
                 <Line type="monotone" dataKey="weightAvg" name="7-Day Avg" stroke="#94a3b8" strokeWidth={3} dot={false} connectNulls={true} />
                 <Line type="monotone" dataKey="weight" name="Daily Weight" stroke="#cbd5e1" strokeWidth={1} activeDot={{ r: 6 }} connectNulls={true} dot={<CustomWeightDot />} />
               </LineChart>
@@ -73,10 +73,10 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ chartData }) => {
                 <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#8ea2bd' }} tickMargin={10} minTickGap={20} />
                 <YAxis domain={[31, 34.5]} tick={{ fontSize: 12, fill: '#8ea2bd' }} />
                 <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #27374f', backgroundColor: '#0f1724', boxShadow: '0 12px 24px rgba(4, 9, 18, 0.35)' }} labelStyle={{ color: '#e5edf8' }} itemStyle={{ color: '#c8d7eb' }} />
-                <Legend verticalAlign="top" height={36} iconType="circle" />
-                <Line type="monotone" dataKey="waistNavel" name="Abdomen (Navel)" stroke="#0f172a" strokeWidth={2} dot={{ r: 3 }} connectNulls={true} />
-                <Line type="monotone" dataKey="waistPlus2" name="Waist (+2&quot;)" stroke="#3b82f6" strokeWidth={2} dot={{ r: 2 }} connectNulls={true} />
-                <Line type="monotone" dataKey="waistMinus2" name="Below Abdomen" stroke="#cbd5e1" strokeWidth={2} dot={{ r: 2 }} connectNulls={true} />
+                <Legend verticalAlign="top" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px', color: '#c8d7eb' }} />
+                <Line type="monotone" dataKey="waistNavel" name="Abdomen (Navel)" stroke="#f59e0b" strokeWidth={2.75} dot={{ r: 3, fill: '#f59e0b' }} connectNulls={true} />
+                <Line type="monotone" dataKey="waistPlus2" name="Waist (+2&quot;)" stroke="#5ca6ff" strokeWidth={2.25} dot={{ r: 2.5, fill: '#5ca6ff' }} connectNulls={true} />
+                <Line type="monotone" dataKey="waistMinus2" name="Below Abdomen" stroke="#34d399" strokeWidth={2.25} dot={{ r: 2.5, fill: '#34d399' }} connectNulls={true} />
               </LineChart>
             </ResponsiveContainer>
           </div>
