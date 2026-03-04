@@ -30,5 +30,5 @@
   "02/21": { "protein": 190 },
   "02/26": { "protein": 190 },
   "02/27": { "protein": 190 },
-  "03/03": { "weight": 163.0, "sleep": 7.05, "waistNavel": 31.44 }
+  "03/03": { "weight": 163.0, "sleep": 7.05, "waistNavel": 31.44, "waistPlus2": 30.47, "waistMinus2": 31.89 }
 }

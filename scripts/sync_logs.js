@@ -135,33 +135,49 @@ function parseLogContent(content) {
         else if (dayText.includes('Tier 3')) tier = 'Tier 3';
 
         // Weight
+        // Supports both: **Weight:** 163.0  and  Weight: **163.0 lbs**
         let weight = null;
-        const weightMatch = dayText.match(/\*\*Weight:\*\*\s*~?([0-9.]+)/) || dayText.match(/\*\*Weight \(latest shown\):\*\*\s*~?([0-9.]+)/);
+        const weightMatch = dayText.match(/\*\*Weight:\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/\*\*Weight \(latest shown\):\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/Weight:\s*\*\*([0-9.]+)/);
         if (weightMatch) weight = parseFloat(weightMatch[1]);
 
         // Waist Navel
+        // Supports both: **Abdomen (navel):** 31.44  and  Abdomen (navel): **31.44″**
         let waistNavel = null;
-        const waistNavelMatch = dayText.match(/\*\*Waist \(navel\):\*\*\s*~?([0-9.]+)/) || dayText.match(/\*\*Abdomen \(navel\):\*\*\s*~?([0-9.]+)/) || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/);
+        const waistNavelMatch = dayText.match(/\*\*Waist \(navel\):\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/\*\*Abdomen \(navel\):\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/Abdomen \(navel\):\s*\*\*([0-9.]+)/)
+            || dayText.match(/Waist \(navel\):\s*\*\*([0-9.]+)/);
         if (waistNavelMatch) waistNavel = parseFloat(waistNavelMatch[1]);
 
         // Waist Plus 2
+        // Supports both: **+2":** 32.99  and  Waist (+2"): **30.47″**
         let waistPlus2 = null;
-        const waistPlus2Match = dayText.match(/\*\*\+2":\*\*\s*~?([0-9.]+)/);
+        const waistPlus2Match = dayText.match(/\*\*\+2":\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/Waist \(\+2"\):\s*\*\*([0-9.]+)/);
         if (waistPlus2Match) waistPlus2 = parseFloat(waistPlus2Match[1]);
 
         // Waist Minus 2
+        // Supports both: **−2":** 32.64  and  Below (−2"): **31.89″**
         let waistMinus2 = null;
-        const waistMinus2Match = dayText.match(/\*\*−2":\*\*\s*~?([0-9.]+)/) || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/);
+        const waistMinus2Match = dayText.match(/\*\*−2":\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/)
+            || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/);
         if (waistMinus2Match) waistMinus2 = parseFloat(waistMinus2Match[1]);
 
         // Sleep
+        // Supports both: **Sleep:** 7h 03m  and  Sleep: **7h 03m**
         let sleep = null;
-        const sleepMatch1 = dayText.match(/\*\*Sleep:\*\*\s*([0-9]+)h[ ]?([0-9]+)m/);
+        const sleepMatch1 = dayText.match(/\*\*Sleep:\*\*\s*([0-9]+)h[ ]?([0-9]+)m/)
+            || dayText.match(/Sleep:\s*\*\*([0-9]+)h[ ]?([0-9]+)m/);
         if (sleepMatch1) {
             sleep = Number(sleepMatch1[1]) + (Number(sleepMatch1[2]) / 60);
             sleep = parseFloat(sleep.toFixed(1));
         } else {
-            const sleepMatch2 = dayText.match(/\*\*Sleep:\*\*\s*~?([0-9.]+)/);
+            const sleepMatch2 = dayText.match(/\*\*Sleep:\*\*\s*~?([0-9.]+)/)
+                || dayText.match(/Sleep:\s*\*\*([0-9.]+)/);
             if (sleepMatch2) sleep = parseFloat(sleepMatch2[1]);
         }
 
