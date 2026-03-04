@@ -9,15 +9,6 @@ export interface DataWarning {
 export function computeDataWarnings(days: ChartDayEntry[]): DataWarning[] {
   const warnings: DataWarning[] = [];
 
-  const missingWeight = days.filter(d => d.weight == null).length;
-  if (missingWeight > 0) {
-    warnings.push({
-      id: 'missing_weight',
-      severity: 'warn',
-      message: `${missingWeight} day${missingWeight > 1 ? 's' : ''} missing weight — trend average and projections may be skewed.`,
-    });
-  }
-
   const missingProtein = days.filter(d => d.protein == null || d.protein === 0).length;
   if (missingProtein > 0) {
     warnings.push({
