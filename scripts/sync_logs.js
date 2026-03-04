@@ -142,29 +142,40 @@ function parseLogContent(content) {
             || dayText.match(/Weight:\s*\*\*([0-9.]+)/);
         if (weightMatch) weight = parseFloat(weightMatch[1]);
 
-        // Waist Navel
-        // Supports both: **Abdomen (navel):** 31.44  and  Abdomen (navel): **31.44″**
+        // Waist Navel (abdomen at navel)
+        // Observed labels: "Waist (navel):", "Abdomen (navel):", "Abdomen (at navel):"
+        // New bold-value format: "Abdomen (navel): **value**"
         let waistNavel = null;
-        const waistNavelMatch = dayText.match(/\*\*Waist \(navel\):\*\*\s*~?([0-9.]+)/)
-            || dayText.match(/\*\*Abdomen \(navel\):\*\*\s*~?([0-9.]+)/)
-            || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/)
-            || dayText.match(/Abdomen \(navel\):\s*\*\*([0-9.]+)/)
-            || dayText.match(/Waist \(navel\):\s*\*\*([0-9.]+)/);
+        const waistNavelMatch =
+            dayText.match(/\*\*Waist \(navel\):\*\*\s*~?([0-9.]+)/)              // **Waist (navel):**
+            || dayText.match(/\*\*Abdomen \((?:at )?navel\):\*\*\s*~?([0-9.]+)/) // **Abdomen (navel):** / **Abdomen (at navel):**
+            || dayText.match(/Abdomen \((?:at )?navel\):\s*\*\*([0-9.]+)/)        // Abdomen (navel): **value** (new format)
+            || dayText.match(/Waist \(navel\):\s*\*\*([0-9.]+)/)                  // Waist (navel): **value** (new format)
+            || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/);                     // **Waist:** (fallback, no qualifier)
         if (waistNavelMatch) waistNavel = parseFloat(waistNavelMatch[1]);
 
-        // Waist Plus 2
-        // Supports both: **+2":** 32.99  and  Waist (+2"): **30.47″**
+        // Waist Plus 2 (above navel, ~+2" above)
+        // Observed labels: "Waist (+2"):", "Waist (+2" above navel):", "Waist (above navel):", "+2":", "+2" Above:"
+        // Also Unicode double-prime ″ variants. Feb 21 has a space before colon: "Waist (+2") :"
         let waistPlus2 = null;
-        const waistPlus2Match = dayText.match(/\*\*\+2":\*\*\s*~?([0-9.]+)/)
-            || dayText.match(/Waist \(\+2"\):\s*\*\*([0-9.]+)/);
+        const waistPlus2Match =
+            dayText.match(/\*\*Waist \(\+2[^)]*\) ?:\*\*\s*~?([0-9.]+)/)         // **Waist (+2"...):** or **Waist (+2") :**
+            || dayText.match(/\*\*Waist \(above navel\):\*\*\s*~?([0-9.]+)/)      // **Waist (above navel):**
+            || dayText.match(/\*\*\+2[^:]*:\*\*\s*~?([0-9.]+)/)                   // **+2":** / **+2" Above:**
+            || dayText.match(/Waist \(\+2[^)]*\):\s*\*\*([0-9.]+)/);              // Waist (+2"...): **value** (new format)
         if (waistPlus2Match) waistPlus2 = parseFloat(waistPlus2Match[1]);
 
-        // Waist Minus 2
-        // Supports both: **−2":** 32.64  and  Below (−2"): **31.89″**
+        // Waist Minus 2 (below navel, ~−2" below)
+        // Observed labels: "−2":", "Waist (−2"):", "Below Abdomen (−2"...):", "Below abdomen:", "Below (−2"):", "Below:"
+        // Unicode minus sign − (U+2212) and double-prime ″ variants throughout
         let waistMinus2 = null;
-        const waistMinus2Match = dayText.match(/\*\*−2":\*\*\s*~?([0-9.]+)/)
-            || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/)
-            || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/);
+        const waistMinus2Match =
+            dayText.match(/\*\*Waist \([\u2212\-]2[^)]*\):\*\*\s*~?([0-9.]+)/)   // **Waist (−2"...):**
+            || dayText.match(/\*\*Below [Aa]bdomen[^:]*:\*\*\s*~?([0-9.]+)/)       // **Below Abdomen...:** / **Below abdomen:**
+            || dayText.match(/\*\*Below \([^)]*\):\*\*\s*~?([0-9.]+)/)             // **Below (−2"):**
+            || dayText.match(/\*\*[\u2212\-]2[^:]*:\*\*\s*~?([0-9.]+)/)            // **−2":** / **−2" Below:**
+            || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/)                        // **Below:**
+            || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/);                // Below (...): **value** (new format)
         if (waistMinus2Match) waistMinus2 = parseFloat(waistMinus2Match[1]);
 
         // Sleep
