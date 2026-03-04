@@ -70,7 +70,7 @@ function buildExecutionText(dayText) {
     return keptLines.join('\n');
 }
 
-function parseLogContent(content) {
+function parseLogContent(content, overrides = {}) {
     // Split on "## YYYY-MM-DD" exactly
     const dayBlocks = content.split(/^## (?=\d{4}-\d{2}-\d{2})/gm);
 
@@ -371,6 +371,18 @@ function parseLogContent(content) {
             currentShield = 0;
         }
 
+        // Apply per-day overrides BEFORE XP computation so corrected values
+        // (sleep, protein, etc.) are reflected in the attribute totals
+        if (overrides[date]) {
+            const ov = overrides[date];
+            if (ov.sleep     != null) sleep     = ov.sleep;
+            if (ov.protein   != null) protein   = ov.protein;
+            if (ov.weight    != null) weight    = ov.weight;
+            if (ov.waistNavel  != null) waistNavel  = ov.waistNavel;
+            if (ov.waistPlus2  != null) waistPlus2  = ov.waistPlus2;
+            if (ov.waistMinus2 != null) waistMinus2 = ov.waistMinus2;
+        }
+
         // RPG Attributes Logic
         const isWorkoutDay = /(muay thai|lift|workout|training|hard set)/i.test(dayText);
 
@@ -474,21 +486,15 @@ async function main() {
 
     // Parse and Save
     try {
-        const entries = parseLogContent(content);
-
-        // Apply manual overrides (corrections that aren't in the raw log)
+        // Load overrides BEFORE parsing so corrected values feed into XP computation
         const overridesPath = path.resolve(__dirname, '../src/data-overrides.json');
+        let overrides = {};
         if (fs.existsSync(overridesPath)) {
-            const overrides = JSON.parse(fs.readFileSync(overridesPath, 'utf-8'));
-            let overrideCount = 0;
-            for (const entry of entries) {
-                if (overrides[entry.date]) {
-                    Object.assign(entry, overrides[entry.date]);
-                    overrideCount++;
-                }
-            }
-            if (overrideCount > 0) console.log(`Applied overrides to ${overrideCount} days.`);
+            overrides = JSON.parse(fs.readFileSync(overridesPath, 'utf-8'));
+            console.log(`Loaded overrides for ${Object.keys(overrides).length} days.`);
         }
+
+        const entries = parseLogContent(content, overrides);
 
         fs.writeFileSync(OUTPUT_PATH, JSON.stringify(entries, null, 2));
         console.log(`Successfully wrote ${entries.length} days to ${OUTPUT_PATH}`);

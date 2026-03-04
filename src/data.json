@@ -29,7 +29,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 5,
+        "currentLvlXp": 15,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -69,7 +69,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 30,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -109,7 +109,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 15,
+        "currentLvlXp": 45,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -149,7 +149,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 20,
+        "currentLvlXp": 60,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -189,7 +189,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 25,
+        "currentLvlXp": 75,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -229,7 +229,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 80,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -269,7 +269,7 @@
       },
       "strength": {
         "level": 1,
-        "currentLvlXp": 35,
+        "currentLvlXp": 95,
         "nextLvlXp": 100
       },
       "resilience": {
@@ -308,9 +308,9 @@
         "nextLvlXp": 100
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 40,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 10,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -348,9 +348,9 @@
         "nextLvlXp": 100
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 45,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 25,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -388,9 +388,9 @@
         "nextLvlXp": 100
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 50,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 40,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -428,9 +428,9 @@
         "nextLvlXp": 100
       },
       "strength": {
-        "level": 1,
+        "level": 2,
         "currentLvlXp": 55,
-        "nextLvlXp": 100
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -468,9 +468,9 @@
         "nextLvlXp": 100
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 60,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 70,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -508,9 +508,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 65,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 75,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -548,9 +548,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 70,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 90,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -563,8 +563,8 @@
     "date": "02/03",
     "weight": 164.8,
     "waistNavel": 33.18,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.61,
+    "waistMinus2": 33.05,
     "tier": "Tier 1",
     "status": "Pass",
     "calories": 0,
@@ -588,9 +588,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 75,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 105,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -602,9 +602,9 @@
   {
     "date": "02/04",
     "weight": 166.1,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistNavel": 33.03,
+    "waistPlus2": 31.67,
+    "waistMinus2": 33.92,
     "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
@@ -628,9 +628,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 80,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 120,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -643,7 +643,7 @@
     "date": "02/05",
     "weight": 163.4,
     "waistNavel": 32.38,
-    "waistPlus2": null,
+    "waistPlus2": 31.53,
     "waistMinus2": null,
     "tier": "Tier 1",
     "status": "Pass",
@@ -668,9 +668,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 85,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 135,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -682,9 +682,9 @@
   {
     "date": "02/06",
     "weight": 163.3,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistNavel": 33.15,
+    "waistPlus2": 31.74,
+    "waistMinus2": 32.98,
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 0,
@@ -708,9 +708,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 90,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 150,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -722,9 +722,9 @@
   {
     "date": "02/07",
     "weight": 161.8,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistNavel": 32.74,
+    "waistPlus2": 31.18,
+    "waistMinus2": 32.7,
     "tier": "Tier 2",
     "status": "Fail",
     "calories": 3000,
@@ -739,7 +739,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 20,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -748,9 +748,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 1,
-        "currentLvlXp": 95,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 165,
+        "nextLvlXp": 200
       },
       "resilience": {
         "level": 1,
@@ -762,9 +762,9 @@
   {
     "date": "02/08",
     "weight": 165.3,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistNavel": 32.91,
+    "waistPlus2": 31.76,
+    "waistMinus2": 32.75,
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 0,
@@ -779,7 +779,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 30,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -789,7 +789,7 @@
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 0,
+        "currentLvlXp": 170,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -802,9 +802,9 @@
   {
     "date": "02/09",
     "weight": 166.9,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistNavel": 33.09,
+    "waistPlus2": 32.36,
+    "waistMinus2": 33.12,
     "tier": "Tier 1",
     "status": "Pass",
     "calories": 2100,
@@ -819,7 +819,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 30,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -829,7 +829,7 @@
       },
       "strength": {
         "level": 2,
-        "currentLvlXp": 5,
+        "currentLvlXp": 185,
         "nextLvlXp": 200
       },
       "resilience": {
@@ -843,8 +843,8 @@
     "date": "02/10",
     "weight": 168.4,
     "waistNavel": 33.52,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 32.57,
+    "waistMinus2": 33.11,
     "tier": "Tier 1",
     "status": "Pass",
     "calories": 0,
@@ -859,7 +859,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 40,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -868,9 +868,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 10,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 0,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -883,8 +883,8 @@
     "date": "02/11",
     "weight": 167.5,
     "waistNavel": 33.06,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 32.12,
+    "waistMinus2": 33.29,
     "tier": "Tier 1",
     "status": "Pass",
     "calories": 1650,
@@ -899,7 +899,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 40,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -908,9 +908,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
+        "level": 3,
         "currentLvlXp": 15,
-        "nextLvlXp": 200
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -924,7 +924,7 @@
     "weight": 164.2,
     "waistNavel": 31.43,
     "waistPlus2": null,
-    "waistMinus2": null,
+    "waistMinus2": 33.3,
     "tier": "Linear",
     "status": "Pass",
     "calories": 1700,
@@ -939,7 +939,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 40,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -948,9 +948,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
+        "level": 3,
         "currentLvlXp": 20,
-        "nextLvlXp": 200
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -963,8 +963,8 @@
     "date": "02/13",
     "weight": 164.5,
     "waistNavel": 32.39,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.47,
+    "waistMinus2": 33.31,
     "tier": "Linear",
     "status": "Pass",
     "calories": 400,
@@ -979,7 +979,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 40,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -988,9 +988,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
+        "level": 3,
         "currentLvlXp": 25,
-        "nextLvlXp": 200
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1003,8 +1003,8 @@
     "date": "02/14",
     "weight": 164.6,
     "waistNavel": 32.64,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.54,
+    "waistMinus2": 32.68,
     "tier": "Linear",
     "status": "Fail",
     "calories": 2900,
@@ -1019,7 +1019,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 50,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1028,9 +1028,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
+        "level": 3,
         "currentLvlXp": 30,
-        "nextLvlXp": 200
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1043,8 +1043,8 @@
     "date": "02/15",
     "weight": 165.3,
     "waistNavel": 33.09,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.88,
+    "waistMinus2": 32.62,
     "tier": "Linear",
     "status": "Pass",
     "calories": 0,
@@ -1059,7 +1059,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 10,
+        "currentLvlXp": 50,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1068,9 +1068,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
+        "level": 3,
         "currentLvlXp": 35,
-        "nextLvlXp": 200
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1083,8 +1083,8 @@
     "date": "02/16",
     "weight": 165.2,
     "waistNavel": 32.74,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 32.01,
+    "waistMinus2": 33.02,
     "tier": "Linear",
     "status": "Pass",
     "calories": 1630,
@@ -1099,7 +1099,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 20,
+        "currentLvlXp": 60,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1108,9 +1108,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 40,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 50,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1122,9 +1122,9 @@
   {
     "date": "02/17",
     "weight": 165,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistNavel": 32.72,
+    "waistPlus2": 31.43,
+    "waistMinus2": 33.05,
     "tier": "Linear",
     "status": "Pass",
     "calories": 435,
@@ -1139,7 +1139,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1148,9 +1148,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 45,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 65,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1163,8 +1163,8 @@
     "date": "02/18",
     "weight": 165.1,
     "waistNavel": 32.99,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 32.3,
+    "waistMinus2": 32.96,
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 1750,
@@ -1179,7 +1179,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1188,9 +1188,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 50,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 80,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1203,8 +1203,8 @@
     "date": "02/19",
     "weight": 164.9,
     "waistNavel": 31.42,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 32.92,
+    "waistMinus2": 32.51,
     "tier": "Linear",
     "status": "Pass",
     "calories": 400,
@@ -1219,7 +1219,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1228,9 +1228,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 55,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 95,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1259,7 +1259,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1268,9 +1268,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 60,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 110,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1283,8 +1283,8 @@
     "date": "02/21",
     "weight": 165.2,
     "waistNavel": 32.51,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.87,
+    "waistMinus2": 32.83,
     "tier": "Linear",
     "status": "Pass",
     "calories": 0,
@@ -1299,7 +1299,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1308,9 +1308,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 65,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 125,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1323,8 +1323,8 @@
     "date": "02/22",
     "weight": 166.1,
     "waistNavel": 31.83,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 32.57,
+    "waistMinus2": 32.94,
     "tier": "Linear",
     "status": "Pass",
     "calories": 0,
@@ -1339,7 +1339,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1348,9 +1348,9 @@
         "nextLvlXp": 200
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 65,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 125,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1364,7 +1364,7 @@
     "weight": 164.2,
     "waistNavel": 32.62,
     "waistPlus2": null,
-    "waistMinus2": null,
+    "waistMinus2": 32.88,
     "tier": "Linear",
     "status": "Pass",
     "calories": 1855,
@@ -1379,7 +1379,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 30,
+        "currentLvlXp": 70,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1388,9 +1388,9 @@
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 80,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 140,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1419,7 +1419,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 40,
+        "currentLvlXp": 80,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1428,9 +1428,9 @@
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 95,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 155,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1459,7 +1459,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 40,
+        "currentLvlXp": 80,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1468,9 +1468,9 @@
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 110,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 170,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1483,8 +1483,8 @@
     "date": "02/26",
     "weight": 163.1,
     "waistNavel": 32.33,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.43,
+    "waistMinus2": 32.48,
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 2200,
@@ -1499,7 +1499,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 50,
+        "currentLvlXp": 90,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1508,9 +1508,9 @@
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 115,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 185,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1539,7 +1539,7 @@
     "attributes": {
       "vitality": {
         "level": 1,
-        "currentLvlXp": 50,
+        "currentLvlXp": 90,
         "nextLvlXp": 100
       },
       "discipline": {
@@ -1548,9 +1548,9 @@
         "nextLvlXp": 300
       },
       "strength": {
-        "level": 2,
-        "currentLvlXp": 120,
-        "nextLvlXp": 200
+        "level": 3,
+        "currentLvlXp": 200,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
@@ -1563,8 +1563,8 @@
     "date": "02/28",
     "weight": 165.6,
     "waistNavel": 33.73,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "waistPlus2": 31.94,
+    "waistMinus2": 32.6,
     "tier": "Linear",
     "status": "Pass",
     "calories": 1950,
@@ -1578,9 +1578,9 @@
     "adherenceScore": null,
     "attributes": {
       "vitality": {
-        "level": 1,
-        "currentLvlXp": 60,
-        "nextLvlXp": 100
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200
       },
       "discipline": {
         "level": 3,
@@ -1588,9 +1588,129 @@
         "nextLvlXp": 300
       },
       "strength": {
+        "level": 3,
+        "currentLvlXp": 205,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/01",
+    "weight": 166.9,
+    "waistNavel": 32.99,
+    "waistPlus2": 32.11,
+    "waistMinus2": 32.79,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 6.8,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 2,
+    "streak": 2,
+    "adherenceScore": 98,
+    "attributes": {
+      "vitality": {
         "level": 2,
-        "currentLvlXp": 125,
+        "currentLvlXp": 0,
         "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 50,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 210,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/02",
+    "weight": 161.7,
+    "waistNavel": 31.87,
+    "waistPlus2": 31.11,
+    "waistMinus2": 32.13,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1790,
+    "protein": 233,
+    "sleep": 7.9,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 3,
+    "streak": 3,
+    "adherenceScore": 93,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 10,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 65,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 225,
+        "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/03",
+    "weight": 163,
+    "waistNavel": 31.44,
+    "waistPlus2": 30.47,
+    "waistMinus2": 31.89,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1200,
+    "protein": 175,
+    "sleep": 7.05,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "shield": 4,
+    "streak": 4,
+    "adherenceScore": 99,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 20,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 80,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 3,
+        "currentLvlXp": 230,
+        "nextLvlXp": 300
       },
       "resilience": {
         "level": 1,
