@@ -46,6 +46,9 @@ export interface ProjectionStats {
   lbsRemaining: string;
   dateSimulated: string;
   dateTarget: string;
+  // Waist projection
+  navelCurrentRate: string | null;   // inches/week (negative = shrinking)
+  navelAtGoalDate: string | null;    // projected navel measurement at goal date
 }
 
 export interface RadarDataPoint {
