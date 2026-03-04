@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`computeProjectionStats > regression: matches snapshot against real data.json 1`] = `
+{
+  "dateSimulated": "May 1, 2026",
+  "dateTarget": "Apr 28, 2026",
+  "historicalRate": "0.94",
+  "lbsRemaining": "8.0",
+  "navelAtGoalDate": "30.67",
+  "navelCurrentRate": "-0.091",
+  "simulatedRate": "0.94",
+  "targetRate": "1.00",
+}
+`;
