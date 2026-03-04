@@ -16,10 +16,8 @@ const TIER_COLOR: Record<string, string> = {
   Maintenance: 'text-green-300 border-green-500/40 bg-green-900/20',
 };
 
-const WeeklyScheduleCard: React.FC<WeeklyScheduleCardProps> = ({ latestDate }) => {
-  const [m, d] = latestDate.split('/');
-  const today = new Date(DATA_YEAR, +m - 1, +d);
-  const todayDow = today.getDay(); // 0=Sun
+const WeeklyScheduleCard: React.FC<WeeklyScheduleCardProps> = ({ latestDate: _latestDate }) => {
+  const todayDow = new Date().getDay(); // 0=Sun — use actual current date
 
   return (
     <div className="ui-card-dark ui-card-interactive p-5">

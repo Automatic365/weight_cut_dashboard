@@ -1,4 +1,10 @@
 import type { ChartDayEntry } from '../types';
+import { WEEKLY_SCHEDULE, DATA_YEAR } from '../config';
+
+function getDow(date: string): number {
+  const [m, d] = date.split('/');
+  return new Date(DATA_YEAR, +m - 1, +d).getDay();
+}
 
 export interface DataWarning {
   id: string;
@@ -9,7 +15,10 @@ export interface DataWarning {
 export function computeDataWarnings(days: ChartDayEntry[]): DataWarning[] {
   const warnings: DataWarning[] = [];
 
-  const missingProtein = days.filter(d => d.protein == null || d.protein === 0).length;
+  const missingProtein = days.filter(d => {
+    if (d.protein != null && d.protein !== 0) return false;
+    return !WEEKLY_SCHEDULE[getDow(d.date)]?.isFast; // exclude intentional fast days
+  }).length;
   if (missingProtein > 0) {
     warnings.push({
       id: 'missing_protein',

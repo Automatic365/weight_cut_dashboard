@@ -61,7 +61,10 @@ export default function CutProgressDashboard() {
   // Always use full dataset for persistent/cumulative stats
   const latestData = allChartData[allChartData.length - 1];
   const currentAvg = latestData.weightAvg ?? 0;
-  const latestWeight = latestData.weight ?? currentAvg;
+  const latestLoggedWeight = [...allChartData]
+    .reverse()
+    .find((d) => typeof d.weight === 'number' && Number.isFinite(d.weight))?.weight;
+  const latestWeight = latestLoggedWeight ?? currentAvg;
 
   const totalDays = allChartData.length;
   const passDays = allChartData.filter(d => d.status === 'Pass').length;
@@ -75,6 +78,13 @@ export default function CutProgressDashboard() {
   const fromPeak = +(peakWeight - latestWeight).toFixed(1);
   const lowestNavelVal = Math.min(...allChartData.map((d) => d.waistNavel).filter((v): v is number => v != null));
   const lowestNavel = Number.isFinite(lowestNavelVal) ? lowestNavelVal : (latestData.waistNavel ?? 0);
+
+  const latestNavelEntry = [...allChartData].reverse().find(d => d.waistNavel != null);
+  const latestNavel = latestNavelEntry?.waistNavel ?? null;
+  const latestNavelDate = latestNavelEntry?.date ?? null;
+
+  const latestWeightEntry = [...allChartData].reverse().find(d => typeof d.weight === 'number' && Number.isFinite(d.weight));
+  const latestWeightDate = latestWeightEntry?.date ?? null;
 
   const latestAttributes: Attributes = latestData?.attributes || {
     vitality: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
@@ -319,7 +329,10 @@ export default function CutProgressDashboard() {
               <span className="ui-stat-icon"><Scale size={16} /></span>
             </div>
             <div className="text-3xl font-bold">{latestWeight} <span className="text-base font-normal text-ui-muted">lbs</span></div>
-            <div className="text-xs text-green-400 font-medium mt-2 flex items-center gap-1"><TrendingDown size={14} /> From Peak: -{fromPeak} lbs</div>
+            <div className="text-xs text-green-400 font-medium mt-2 flex items-center gap-1">
+              <TrendingDown size={14} /> From Peak: -{fromPeak} lbs
+              {latestWeightDate && <span className="text-ui-muted ml-1">· as of {latestWeightDate}</span>}
+            </div>
           </div>
 
           <div className="ui-stat-card">
@@ -336,8 +349,11 @@ export default function CutProgressDashboard() {
               <span className="text-sm font-semibold">Abdomen (Navel)</span>
               <span className="ui-stat-icon"><Ruler size={16} /></span>
             </div>
-            <div className="text-3xl font-bold">{latestData.waistNavel?.toFixed(2)} <span className="text-base font-normal text-ui-muted">in</span></div>
-            <div className="text-xs text-ui-muted font-medium mt-2">Lowest recorded: {lowestNavel.toFixed(2)}"</div>
+            <div className="text-3xl font-bold">{latestNavel != null ? latestNavel.toFixed(2) : '—'} <span className="text-base font-normal text-ui-muted">in</span></div>
+            <div className="text-xs text-ui-muted font-medium mt-2 flex items-center gap-1">
+              Lowest: {lowestNavel.toFixed(2)}"
+              {latestNavelDate && <span className="ml-1">· as of {latestNavelDate}</span>}
+            </div>
           </div>
 
           <div className="ui-stat-card">
