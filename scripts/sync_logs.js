@@ -70,6 +70,37 @@ function buildExecutionText(dayText) {
   return keptLines.join('\n');
 }
 
+function parseProteinValue(text, re) {
+  const m = text.match(re);
+  if (!m) return null;
+  const lo = parseInt(m[1], 10);
+  const hi = m[2] ? parseInt(m[2], 10) : lo;
+  if (Number.isNaN(lo) || Number.isNaN(hi)) return null;
+  return Math.round((lo + hi) / 2);
+}
+
+function parseRawDailyProtein(dayText) {
+  const reportedBlock = parseProteinValue(
+    dayText,
+    /Reported Intake[\s\S]{0,260}?Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
+  );
+  if (reportedBlock != null) return reportedBlock;
+
+  const loggedBlock = parseProteinValue(
+    dayText,
+    /Logged intake[\s\S]{0,260}?Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
+  );
+  if (loggedBlock != null) return loggedBlock;
+
+  const totalsBlock = parseProteinValue(
+    dayText,
+    /(?:Daily Intake Totals|Totals?)[\s\S]{0,320}?Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
+  );
+  if (totalsBlock != null) return totalsBlock;
+
+  return null;
+}
+
 function getLevelInfo(totalXp) {
   let safeXp = totalXp;
   if (safeXp < 0) safeXp = 0;
@@ -237,15 +268,15 @@ function extractRawFields(dayText, context = {}) {
     }
   }
 
-  // Protein — App Parse Block: "Protein: 175g"
+  // Protein — prefer RAW daily totals over adjusted/App Parse Block values.
+  // App Parse Block often contains adjusted protein (−20%) for protocol scoring,
+  // while compliance chart should reflect raw daily intake.
   let protein = null;
   if (tier === 'Tier 3') {
     protein = 0;
   } else {
-    if (appBlock) {
-      const m = appBlock.match(/^Protein:\s*([0-9]+)g?/m);
-      if (m) protein = parseInt(m[1], 10);
-    }
+    protein = parseRawDailyProtein(dayText);
+
     if (protein == null) {
       // Daily total — bold-value format with optional range: "Protein:** ~185–195g" or "Protein:** ~195g"
       // Must match before the generic fallbacks which can grab per-meal values (e.g. "~50g protein")
@@ -266,6 +297,12 @@ function extractRawFields(dayText, context = {}) {
       const protMatch = dayText.match(/~([0-9]+)g protein/)
         || dayText.match(/Protein:\s*~?([0-9]+)/);
       if (protMatch) protein = parseInt(protMatch[1], 10);
+    }
+
+    // Final fallback to App Parse Block only if no reliable raw total was found.
+    if (protein == null && appBlock) {
+      const m = appBlock.match(/^Protein:\s*([0-9]+)g?/m);
+      if (m) protein = parseInt(m[1], 10);
     }
   }
 

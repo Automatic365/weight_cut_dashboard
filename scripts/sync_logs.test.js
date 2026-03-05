@@ -114,3 +114,45 @@ Boss Mode: none
     expect(entries.map((e) => e.adherenceScore)).toEqual([95, 93, 95, 85]);
   });
 });
+
+describe('sync_logs raw protein extraction', () => {
+  it('uses raw daily total protein, not first meal-level protein value', () => {
+    const content = `# Daily Log
+
+## 2026-03-04 — Wednesday
+Daily Handover
+
+Nutrition Log
+Meal 1
+Protein: ~48 g
+
+Meal 2
+Protein: ~74 g
+
+Reported Intake
+Calories: ~1,240
+Protein: ~209 g
+
+Protocol Adjusted
+Protein (−20%): 167 g
+
+### App Parse Block
+Status: Pass
+Weight: 162.6
+Abdomen (navel): 31.94
++2": 31.66
+Below: 32.69
+Sleep: 7h 3m
+Calories: 1550
+Protein: 167g
+Daily Adherence Score: 96
+Boss Mode: planning
+Boss Name: Friday Dinner Out
+Boss Outcome: none
+`;
+
+    const entries = parseLogContent(content, {}, { printDiagnostics: false });
+    expect(entries).toHaveLength(1);
+    expect(entries[0].protein).toBe(209);
+  });
+});

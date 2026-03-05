@@ -255,7 +255,7 @@
     "status": "Pass",
     "calories": 2400,
     "protein": 190,
-    "sleep": 6.6,
+    "sleep": 6.58,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -951,8 +951,8 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 1700,
-    "protein": 50,
-    "sleep": 6.5,
+    "protein": 190,
+    "sleep": 6.55,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -973,7 +973,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 20,
+        "currentLvlXp": 30,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -992,8 +992,8 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 400,
-    "protein": 50,
-    "sleep": 6.5,
+    "protein": 195,
+    "sleep": 6.55,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1014,7 +1014,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 25,
+        "currentLvlXp": 45,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1033,7 +1033,7 @@
     "tier": "Linear",
     "status": "Fail",
     "calories": 2900,
-    "protein": 50,
+    "protein": 190,
     "sleep": 7.12,
     "notes": "",
     "isBossFight": true,
@@ -1055,7 +1055,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 30,
+        "currentLvlXp": 60,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1074,8 +1074,8 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 0,
-    "protein": 0,
-    "sleep": 6.3,
+    "protein": 223,
+    "sleep": 6.33,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1096,7 +1096,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 35,
+        "currentLvlXp": 75,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1116,7 +1116,7 @@
     "status": "Pass",
     "calories": 1630,
     "protein": 190,
-    "sleep": 8,
+    "sleep": 7.97,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1137,7 +1137,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 50,
+        "currentLvlXp": 90,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1178,7 +1178,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 65,
+        "currentLvlXp": 105,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1219,7 +1219,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 80,
+        "currentLvlXp": 120,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1260,7 +1260,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 95,
+        "currentLvlXp": 135,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1301,7 +1301,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 110,
+        "currentLvlXp": 150,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1321,7 +1321,7 @@
     "status": "Pass",
     "calories": 0,
     "protein": 190,
-    "sleep": 6.5,
+    "sleep": 6.48,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1342,7 +1342,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 125,
+        "currentLvlXp": 165,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1362,7 +1362,7 @@
     "status": "Pass",
     "calories": 0,
     "protein": 0,
-    "sleep": 6.2,
+    "sleep": 6.18,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1383,7 +1383,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 125,
+        "currentLvlXp": 165,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1403,7 +1403,7 @@
     "status": "Pass",
     "calories": 1855,
     "protein": 227,
-    "sleep": 6.9,
+    "sleep": 6.87,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1424,7 +1424,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 140,
+        "currentLvlXp": 180,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1444,7 +1444,7 @@
     "status": "Pass",
     "calories": 2150,
     "protein": 240,
-    "sleep": 7.2,
+    "sleep": 7.23,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1465,7 +1465,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 155,
+        "currentLvlXp": 195,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1485,7 +1485,7 @@
     "status": "Pass",
     "calories": 114,
     "protein": 222,
-    "sleep": 7,
+    "sleep": 6.95,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1506,7 +1506,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 170,
+        "currentLvlXp": 210,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1526,7 +1526,7 @@
     "status": "Pass",
     "calories": 2200,
     "protein": 190,
-    "sleep": 7.5,
+    "sleep": 7.47,
     "notes": "",
     "isBossFight": true,
     "bossName": "Great Wolf Lodge",
@@ -1547,7 +1547,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 185,
+        "currentLvlXp": 225,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1588,7 +1588,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 200,
+        "currentLvlXp": 240,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1607,8 +1607,8 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 1950,
-    "protein": 25,
-    "sleep": 8.6,
+    "protein": 203,
+    "sleep": 8.55,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1629,7 +1629,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 205,
+        "currentLvlXp": 255,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1670,7 +1670,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 210,
+        "currentLvlXp": 260,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1688,9 +1688,9 @@
     "waistMinus2": 32.13,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 1790,
+    "calories": 2240,
     "protein": 233,
-    "sleep": 7.9,
+    "sleep": 7.92,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1711,7 +1711,7 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 225,
+        "currentLvlXp": 275,
         "nextLvlXp": 300
       },
       "resilience": {
@@ -1729,8 +1729,8 @@
     "waistMinus2": 31.89,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 1200,
-    "protein": 175,
+    "calories": 2040,
+    "protein": 218,
     "sleep": 7.05,
     "notes": "",
     "isBossFight": false,
@@ -1752,8 +1752,49 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 230,
+        "currentLvlXp": 290,
         "nextLvlXp": 300
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/04",
+    "weight": null,
+    "waistNavel": null,
+    "waistPlus2": null,
+    "waistMinus2": null,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 240,
+    "protein": 209,
+    "sleep": null,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": "Friday Dinner Out",
+    "shield": 5,
+    "streak": 5,
+    "adherenceScore": 96,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 20,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 95,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 5,
+        "nextLvlXp": 400
       },
       "resilience": {
         "level": 1,
