@@ -1802,5 +1802,46 @@
         "nextLvlXp": 100
       }
     }
+  },
+  {
+    "date": "03/05",
+    "weight": 162.9,
+    "waistNavel": 32.38,
+    "waistPlus2": 31.53,
+    "waistMinus2": 32.79,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1550,
+    "protein": 190,
+    "sleep": 7.13,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 6,
+    "streak": 6,
+    "adherenceScore": 94,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 30,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 110,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 20,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
   }
 ]
