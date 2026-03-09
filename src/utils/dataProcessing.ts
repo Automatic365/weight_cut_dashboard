@@ -99,15 +99,21 @@ export function computeProjectionStats(
     .filter((r): r is { date: Date; val: number; i: number } => r.val != null);
 
   if (navelReadings.length >= 2) {
-    const firstNavel = navelReadings[0];
-    const lastNavel = navelReadings[navelReadings.length - 1];
-    const navelDays = (lastNavel.date.getTime() - firstNavel.date.getTime()) / (1000 * 60 * 60 * 24);
+    // Use 7-day rolling averages at each end — raw navel readings swing ±1-2" daily
+    // from bloating/meal timing, making endpoint-to-endpoint rates pure noise.
+    const first7Navel = navelReadings.slice(0, 7);
+    const last7Navel = navelReadings.slice(-7);
+    const avgFirstNavel = first7Navel.reduce((s, r) => s + r.val, 0) / first7Navel.length;
+    const avgLastNavel = last7Navel.reduce((s, r) => s + r.val, 0) / last7Navel.length;
+    const avgFirstDate = first7Navel[Math.floor(first7Navel.length / 2)].date;
+    const avgLastDate = last7Navel[Math.floor(last7Navel.length / 2)].date;
+    const navelDays = (avgLastDate.getTime() - avgFirstDate.getTime()) / (1000 * 60 * 60 * 24);
     if (navelDays > 0) {
-      const navelRatePerWeek = ((lastNavel.val - firstNavel.val) / navelDays) * 7;
+      const navelRatePerWeek = ((avgLastNavel - avgFirstNavel) / navelDays) * 7;
       navelCurrentRate = navelRatePerWeek.toFixed(3);
-      // Project from current last navel value to the simulated goal date
+      // Project from current 7-day avg navel to the simulated goal date
       const daysToGoalSimulated = daysRemainingSimulated;
-      const projectedNavel = lastNavel.val + (navelRatePerWeek / 7) * daysToGoalSimulated;
+      const projectedNavel = avgLastNavel + (navelRatePerWeek / 7) * daysToGoalSimulated;
       navelAtGoalDate = projectedNavel.toFixed(2);
     }
   }
