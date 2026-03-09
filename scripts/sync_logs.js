@@ -142,6 +142,11 @@ function extractRawFields(dayText, context = {}) {
   // Extract the App Parse Block once; used as primary source for quantitative fields
   const appBlock = extractAppParseBlock(dayText);
 
+  // Body text = dayText with the App Parse Block stripped out.
+  // Used for fallback parsers so they don't accidentally match values inside the App Parse Block.
+  const appBlockStart = dayText.search(/(?:^|\n)(?:#{1,3}\s*)?App Parse Block/i);
+  const bodyText = appBlockStart >= 0 ? dayText.slice(0, appBlockStart) : dayText;
+
   let status = 'Pass';
   const statusMatch = dayText.match(/### Status\n([A-Za-z]+)/) || dayText.match(/\*\*Status:\*\* ([A-Za-z]+)/);
   if (statusMatch) {
@@ -306,12 +311,13 @@ function extractRawFields(dayText, context = {}) {
   if (tier === 'Tier 3') {
     protein = 0;
   } else {
-    protein = parseRawDailyProtein(dayText);
+    protein = parseRawDailyProtein(bodyText);
 
     if (protein == null) {
       // Daily total — bold-value format with optional range: "Protein:** ~185–195g" or "Protein:** ~195g"
       // Must match before the generic fallbacks which can grab per-meal values (e.g. "~50g protein")
-      const protBoldMatch = dayText.match(/Protein:\s*\*\*?\s*~?([0-9]+)(?:[–\-]([0-9]+))?g/i);
+      // Use bodyText (App Parse Block stripped) so we don't match bold-label App Parse Block values.
+      const protBoldMatch = bodyText.match(/Protein:\s*\*\*?\s*~?([0-9]+)(?:[–\-]([0-9]+))?g/i);
       if (protBoldMatch) {
         const lo = parseInt(protBoldMatch[1], 10);
         const hi = protBoldMatch[2] ? parseInt(protBoldMatch[2], 10) : lo;
@@ -320,13 +326,13 @@ function extractRawFields(dayText, context = {}) {
     }
     if (protein == null) {
       // Adjusted total line: "Protein (-20%): **~175g" or "Protein (−20%): **~175g"
-      const protAdjMatch = dayText.match(/Protein\s*\([^)]*\):\s*\*\*\s*~?([0-9]+)/i);
+      const protAdjMatch = bodyText.match(/Protein\s*\([^)]*\):\s*\*\*\s*~?([0-9]+)/i);
       if (protAdjMatch) protein = parseInt(protAdjMatch[1], 10);
     }
     if (protein == null) {
       // Last-resort generic patterns — lower priority to avoid per-meal false matches
-      const protMatch = dayText.match(/~([0-9]+)g protein/)
-        || dayText.match(/Protein:\s*~?([0-9]+)/);
+      const protMatch = bodyText.match(/~([0-9]+)g protein/)
+        || bodyText.match(/Protein:\s*~?([0-9]+)/);
       if (protMatch) protein = parseInt(protMatch[1], 10);
     }
 
