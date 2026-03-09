@@ -122,7 +122,9 @@ function getLevelInfo(totalXp) {
 // Returns the block text if present, or null. Used as the primary data source —
 // fields found here are authoritative; body-text regex serves as fallback only.
 function extractAppParseBlock(dayText) {
-  const match = dayText.match(/###\s*App Parse Block\s*\n([\s\S]*?)(?=\n##|\n###|$)/i);
+  // Match "### App Parse Block" (with heading) or plain "App Parse Block" (without).
+  // No 'm' flag: $ = end of string, so non-greedy capture extends to end of day block correctly.
+  const match = dayText.match(/(?:^|\n)(?:#{1,3}\s*)?App Parse Block\s*\n([\s\S]*?)(?=\n#{1,3}\s|\n## \d{4}|$)/i);
   return match ? match[1] : null;
 }
 
@@ -168,6 +170,11 @@ function extractRawFields(dayText, context = {}) {
       || dayText.match(/Weight:\s*\*\*([0-9.]+)/);
     if (weightMatch) weight = parseFloat(weightMatch[1]);
   }
+  // Tab-table fallback: "Weight\t165.0 lbs" (03/08 style)
+  if (weight == null) {
+    const m = dayText.match(/^Weight\t([0-9.]+)/m);
+    if (m) weight = parseFloat(m[1]);
+  }
 
   // Waist Navel — App Parse Block: "Abdomen (navel): 31.44"
   let waistNavel = null;
@@ -184,6 +191,11 @@ function extractRawFields(dayText, context = {}) {
       || dayText.match(/\*\*Waist:\*\*\s*~?([0-9.]+)/);
     if (waistNavelMatch) waistNavel = parseFloat(waistNavelMatch[1]);
   }
+  // Tab-table fallback: "Abdomen (navel)\t32.32"" (03/08 style)
+  if (waistNavel == null) {
+    const m = dayText.match(/^Abdomen \(navel\)\t([0-9.]+)/m);
+    if (m) waistNavel = parseFloat(m[1]);
+  }
 
   // Waist +2" — App Parse Block: '+2": 30.47'
   let waistPlus2 = null;
@@ -199,6 +211,11 @@ function extractRawFields(dayText, context = {}) {
       || dayText.match(/Waist \(\+2[^)]*\):\s*\*\*([0-9.]+)/);
     if (waistPlus2Match) waistPlus2 = parseFloat(waistPlus2Match[1]);
   }
+  // Tab-table fallback: "Waist (+2\")\t31.52"" (03/08 style)
+  if (waistPlus2 == null) {
+    const m = dayText.match(/^Waist \(\+2[^)]*\)\t([0-9.]+)/m);
+    if (m) waistPlus2 = parseFloat(m[1]);
+  }
 
   // Waist -2" — App Parse Block: "Below: 31.89"
   let waistMinus2 = null;
@@ -213,8 +230,14 @@ function extractRawFields(dayText, context = {}) {
       || dayText.match(/\*\*Below \([^)]*\):\*\*\s*~?([0-9.]+)/)
       || dayText.match(/\*\*[\u2212\-]2[^:]*:\*\*\s*~?([0-9.]+)/)
       || dayText.match(/\*\*Below:\*\*\s*~?([0-9.]+)/)
-      || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/);
+      || dayText.match(/Below\s*\([^)]*\):\s*\*\*([0-9.]+)/)
+      || dayText.match(/Below abdomen:\s*\*\*([0-9.]+)/);       // "Below abdomen: **32.47"**"
     if (waistMinus2Match) waistMinus2 = parseFloat(waistMinus2Match[1]);
+  }
+  // Tab-table fallback: "Below abdomen\t32.63"" (03/08 style)
+  if (waistMinus2 == null) {
+    const m = dayText.match(/^Below(?:\s+abdomen)?\t([0-9.]+)/m);
+    if (m) waistMinus2 = parseFloat(m[1]);
   }
 
   // Sleep — App Parse Block: "Sleep: 7h 03m"
@@ -237,6 +260,14 @@ function extractRawFields(dayText, context = {}) {
       const sleepMatch2 = dayText.match(/\*\*Sleep:\*\*\s*~?([0-9.]+)/)
         || dayText.match(/Sleep:\s*\*\*([0-9.]+)/);
       if (sleepMatch2) sleep = parseFloat(sleepMatch2[1]);
+    }
+  }
+  // Tab-table fallback: "Sleep\t8h 04m" (03/08 style)
+  if (sleep == null) {
+    const m = dayText.match(/^Sleep\t([0-9]+)h\s*([0-9]+)m/m);
+    if (m) {
+      sleep = Number(m[1]) + (Number(m[2]) / 60);
+      sleep = parseFloat(sleep.toFixed(2));
     }
   }
 
