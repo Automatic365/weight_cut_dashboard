@@ -48,7 +48,10 @@ export function computeProjectionStats(
 ): ProjectionStats {
   const validWeights = rawData.map(d => d.weight).filter((w): w is number => w !== null && w !== undefined);
   const startWeight = validWeights[0] || 0;
-  const currentWeight = validWeights[validWeights.length - 1] || 0;
+  // Use 7-day rolling average as effective current weight — daily weigh-ins are too noisy
+  // (sodium spikes after restaurant meals, hydration shifts, etc. can skew the endpoint by 2+ lbs)
+  const last7Weights = validWeights.slice(-7);
+  const currentWeight = last7Weights.reduce((s, w) => s + w, 0) / last7Weights.length;
   let lbsRemaining = currentWeight - GOAL_WEIGHT;
 
   // 1. One-Off Event: 3,500 kcal = 1lb
