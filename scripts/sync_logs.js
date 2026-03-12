@@ -330,9 +330,11 @@ function extractRawFields(dayText, context = {}) {
       if (protAdjMatch) protein = parseInt(protAdjMatch[1], 10);
     }
     if (protein == null) {
-      // Last-resort generic patterns — lower priority to avoid per-meal false matches
-      const protMatch = bodyText.match(/~([0-9]+)g protein/)
-        || bodyText.match(/Protein:\s*~?([0-9]+)/);
+      // Last-resort generic patterns. Try labeled "Protein: ~213g" first (daily total),
+      // then fall back to "~55g protein" (per-meal inline) as absolute last resort.
+      // bodyText has App Parse Block stripped so "Protein: 0g" in App Block won't match.
+      const protMatch = bodyText.match(/Protein:\s*~?([0-9]+)/)
+        || bodyText.match(/~([0-9]+)g protein/);
       if (protMatch) protein = parseInt(protMatch[1], 10);
     }
 

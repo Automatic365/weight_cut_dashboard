@@ -2058,7 +2058,7 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 0,
-    "protein": 55,
+    "protein": 213,
     "sleep": 6.77,
     "notes": "",
     "isBossFight": false,
@@ -2080,7 +2080,7 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 80,
+        "currentLvlXp": 90,
         "nextLvlXp": 400
       },
       "resilience": {
