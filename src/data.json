@@ -1764,15 +1764,15 @@
   },
   {
     "date": "03/04",
-    "weight": null,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "weight": 162.6,
+    "waistNavel": 31.94,
+    "waistPlus2": 31.66,
+    "waistMinus2": 32.69,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 240,
+    "calories": 1550,
     "protein": 209,
-    "sleep": null,
+    "sleep": 7.05,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -1783,7 +1783,7 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 20,
+        "currentLvlXp": 30,
         "nextLvlXp": 200
       },
       "discipline": {
@@ -1824,7 +1824,7 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 30,
+        "currentLvlXp": 40,
         "nextLvlXp": 200
       },
       "discipline": {
@@ -1840,6 +1840,252 @@
       "resilience": {
         "level": 1,
         "currentLvlXp": 30,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/06",
+    "weight": 163.3,
+    "waistNavel": 31.99,
+    "waistPlus2": 31.03,
+    "waistMinus2": 32.47,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 2000,
+    "protein": 165,
+    "sleep": 6.9,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Friday Dumpling Dinner",
+    "upcomingBossName": null,
+    "shield": 6,
+    "streak": 6,
+    "adherenceScore": 92,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 40,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 125,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 25,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/07",
+    "weight": 164.7,
+    "waistNavel": 32.51,
+    "waistPlus2": 31.45,
+    "waistMinus2": 32.56,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 443,
+    "protein": 200,
+    "sleep": 6.62,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 7,
+    "streak": 7,
+    "adherenceScore": 95,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 40,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 140,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 40,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/08",
+    "weight": 165,
+    "waistNavel": 32.32,
+    "waistPlus2": 31.52,
+    "waistMinus2": 32.63,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 8.07,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": "Parents’ House — Travel Week",
+    "shield": 8,
+    "streak": 8,
+    "adherenceScore": 92,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 155,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 45,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/09",
+    "weight": 163.1,
+    "waistNavel": 31.96,
+    "waistPlus2": 31.41,
+    "waistMinus2": 32.15,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1665,
+    "protein": 240,
+    "sleep": 6.42,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": "Parents’ House — Travel Week",
+    "shield": 9,
+    "streak": 9,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 170,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 60,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/10",
+    "weight": 162.1,
+    "waistNavel": 31.82,
+    "waistPlus2": 31.24,
+    "waistMinus2": 32.81,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 2394,
+    "protein": 243,
+    "sleep": 6.67,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 10,
+    "streak": 10,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 185,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 75,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/11",
+    "weight": 162.6,
+    "waistNavel": 32.32,
+    "waistPlus2": 30.77,
+    "waistMinus2": 32.55,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 55,
+    "sleep": 6.77,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 11,
+    "streak": 11,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 50,
+        "nextLvlXp": 200
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 200,
+        "nextLvlXp": 300
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 80,
+        "nextLvlXp": 400
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
         "nextLvlXp": 100
       }
     }

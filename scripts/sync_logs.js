@@ -380,7 +380,11 @@ function extractRawFields(dayText, context = {}) {
   let upcomingBossName = null;
 
   const executionText = buildExecutionText(dayText);
-  const explicitMatch = executionText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
+  const _explicitMatchRaw = executionText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
+  // Reject if captured text starts with a temporal preposition — means the log is referencing
+  // a future fight ("boss fight on March 13"), not declaring today as a boss fight.
+  const explicitMatch = (_explicitMatchRaw && !/^\s*(on|for|at|in|next|until|through|from)\b/i.test(_explicitMatchRaw[1]))
+    ? _explicitMatchRaw : null;
   const eventKeywords = /(valentine|buffet|thanksgiving|christmas|holiday|party|vacation|wedding|family dinner|restaurant meal|outing|lodge)/i;
   const planningKeywords = /(strategy|forecast|plan|contained|deviation|flex|indulgence|containment|controlled|honest)/i;
   const executionHasEventKeyword = eventKeywords.test(executionText);
