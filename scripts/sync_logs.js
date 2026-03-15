@@ -115,7 +115,7 @@ function getLevelInfo(totalXp) {
     xpRequired = level * 100;
   }
 
-  return { level, currentLvlXp: remainingXp, nextLvlXp: xpRequired };
+  return { level, currentLvlXp: remainingXp, nextLvlXp: xpRequired, totalXp: safeXp };
 }
 
 // Extract the structured "### App Parse Block" section appended by the AI coach.

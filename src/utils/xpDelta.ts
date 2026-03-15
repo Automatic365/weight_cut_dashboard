@@ -22,14 +22,13 @@ const ATTR_LABELS: Record<keyof Attributes, string> = {
 };
 
 function xpDelta(
-  prev: { level: number; currentLvlXp: number; nextLvlXp: number },
-  curr: { level: number; currentLvlXp: number; nextLvlXp: number },
+  prev: { level: number; currentLvlXp: number; nextLvlXp: number; totalXp: number },
+  curr: { level: number; currentLvlXp: number; nextLvlXp: number; totalXp: number },
 ): number {
-  if (curr.level === prev.level) {
-    return curr.currentLvlXp - prev.currentLvlXp;
-  }
-  // Level-up: XP needed to fill prev level + any XP earned into new level
-  return (prev.nextLvlXp - prev.currentLvlXp) + curr.currentLvlXp;
+  // Use raw totalXp when available — correctly handles both level-ups AND level-downs.
+  // The old level-based formula only worked for level-ups; on a de-level it produced
+  // a large spurious positive (e.g. +280 XP after a boss loss that dropped a level).
+  return curr.totalXp - prev.totalXp;
 }
 
 export function computeSessionXP(days: ChartDayEntry[]): SessionXP | null {

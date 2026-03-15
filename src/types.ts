@@ -2,6 +2,7 @@ export interface AttributeLevel {
   level: number;
   currentLvlXp: number;
   nextLvlXp: number;
+  totalXp: number;  // raw accumulated XP — used by xpDelta to correctly handle level-downs
 }
 
 export interface Attributes {
