@@ -2296,15 +2296,15 @@
   },
   {
     "date": "03/12",
-    "weight": null,
-    "waistNavel": null,
-    "waistPlus2": null,
-    "waistMinus2": null,
+    "weight": 163.8,
+    "waistNavel": 32.23,
+    "waistPlus2": 31.5,
+    "waistMinus2": 32.34,
     "tier": "Tier 2",
     "status": "Pass",
-    "calories": 1595,
+    "calories": 1866,
     "protein": 216,
-    "sleep": null,
+    "sleep": 5.03,
     "notes": "",
     "isBossFight": true,
     "bossName": "Parents’ House — Travel Week",
@@ -2315,9 +2315,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 50,
+        "currentLvlXp": 45,
         "nextLvlXp": 200,
-        "totalXp": 150
+        "totalXp": 145
       },
       "discipline": {
         "level": 3,
@@ -2360,9 +2360,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 50,
+        "currentLvlXp": 45,
         "nextLvlXp": 200,
-        "totalXp": 150
+        "totalXp": 145
       },
       "discipline": {
         "level": 3,
@@ -2405,9 +2405,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 60,
+        "currentLvlXp": 55,
         "nextLvlXp": 200,
-        "totalXp": 160
+        "totalXp": 155
       },
       "discipline": {
         "level": 3,

@@ -125,7 +125,14 @@ function extractAppParseBlock(dayText) {
   // Match "### App Parse Block" (with heading) or plain "App Parse Block" (without).
   // No 'm' flag: $ = end of string, so non-greedy capture extends to end of day block correctly.
   const match = dayText.match(/(?:^|\n)(?:#{1,3}\s*)?App Parse Block\s*\n([\s\S]*?)(?=\n#{1,3}\s|\n## \d{4}|$)/i);
-  return match ? match[1] : null;
+  if (!match) return null;
+  // Normalize compact single-line format where the AI coach writes all fields on one line:
+  //   "Status: Pass Weight: 163.8 Sleep: 5h 02m ..."
+  // Insert a newline before each known field name so parseLabeledValue can find them.
+  return match[1].replace(
+    / (?=(?:Status|Weight|Abdomen|Below|Sleep|Calories|Protein|Daily Adherence Score|Boss Mode|Boss Name|Adherence|\+2")\s*[:("])/gi,
+    '\n'
+  );
 }
 
 function extractRawFields(dayText, context = {}) {
