@@ -359,8 +359,16 @@ function extractRawFields(dayText, context = {}) {
   const dailyAdherenceLine = parseLabeledValue(dayText, 'Daily Adherence');
 
   if (adherencePercentField) {
-    const parsed = parseInt(adherencePercentField.replace(/[^0-9]/g, ''), 10);
-    if (!Number.isNaN(parsed)) adherenceScore = Math.max(0, Math.min(100, parsed));
+    const apfClean = adherencePercentField.replace(/\*\*/g, '').trim();
+    const apfFrac = apfClean.match(/^(\d+)\s*\/\s*(\d+)/);
+    if (apfFrac) {
+      // "58/100" → treat as fraction, not raw digits (stripping "/" would give "58100")
+      const points = parseInt(apfFrac[1], 10), outOf = parseInt(apfFrac[2], 10);
+      if (outOf > 0) adherenceScore = Math.round((points / outOf) * 100);
+    } else {
+      const parsed = parseInt(apfClean.replace(/[^0-9]/g, ''), 10);
+      if (!Number.isNaN(parsed)) adherenceScore = Math.max(0, Math.min(100, parsed));
+    }
   } else if (overallAdherenceLine) {
     const parsed = parseAdherencePercentFromLine(overallAdherenceLine);
     if (parsed != null) adherenceScore = Math.max(0, Math.min(100, parsed));

@@ -2428,5 +2428,275 @@
         "totalXp": 90
       }
     }
+  },
+  {
+    "date": "03/15",
+    "weight": 167.6,
+    "waistNavel": 32.67,
+    "waistPlus2": 31.55,
+    "waistMinus2": 32.94,
+    "tier": "Tier 1",
+    "status": "Fail",
+    "calories": 2563,
+    "protein": 80,
+    "sleep": 6.82,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Parents' House / Trip",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 64,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 55,
+        "nextLvlXp": 200,
+        "totalXp": 155
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 200,
+        "nextLvlXp": 300,
+        "totalXp": 500
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 120,
+        "nextLvlXp": 400,
+        "totalXp": 720
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 70,
+        "nextLvlXp": 100,
+        "totalXp": 70
+      }
+    }
+  },
+  {
+    "date": "03/16",
+    "weight": 169.7,
+    "waistNavel": 32.35,
+    "waistPlus2": 31.71,
+    "waistMinus2": 32.98,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1850,
+    "protein": 200,
+    "sleep": 8.62,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Parents Trip",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 91,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 65,
+        "nextLvlXp": 200,
+        "totalXp": 165
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 215,
+        "nextLvlXp": 300,
+        "totalXp": 515
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 135,
+        "nextLvlXp": 400,
+        "totalXp": 735
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 20,
+        "nextLvlXp": 200,
+        "totalXp": 120
+      }
+    }
+  },
+  {
+    "date": "03/17",
+    "weight": 166.8,
+    "waistNavel": 31.85,
+    "waistPlus2": 31.34,
+    "waistMinus2": 32.29,
+    "tier": "Linear",
+    "status": "Fail",
+    "calories": 2860,
+    "protein": 166,
+    "sleep": 7,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Dinner Out with Wife",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 86,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 65,
+        "nextLvlXp": 200,
+        "totalXp": 165
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 220,
+        "nextLvlXp": 300,
+        "totalXp": 520
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 140,
+        "nextLvlXp": 400,
+        "totalXp": 740
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 0,
+        "nextLvlXp": 200,
+        "totalXp": 100
+      }
+    }
+  },
+  {
+    "date": "03/18",
+    "weight": 165,
+    "waistNavel": 32.32,
+    "waistPlus2": 31.3,
+    "waistMinus2": 32.45,
+    "tier": "Linear",
+    "status": "Fail",
+    "calories": 3375,
+    "protein": 108,
+    "sleep": 7.33,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Parents’ House Travel Week — Family Outing",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 74,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 75,
+        "nextLvlXp": 200,
+        "totalXp": 175
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 215,
+        "nextLvlXp": 300,
+        "totalXp": 515
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 145,
+        "nextLvlXp": 400,
+        "totalXp": 745
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 80,
+        "nextLvlXp": 100,
+        "totalXp": 80
+      }
+    }
+  },
+  {
+    "date": "03/19",
+    "weight": 167.8,
+    "waistNavel": 32.56,
+    "waistPlus2": 31.37,
+    "waistMinus2": 32.91,
+    "tier": "Linear",
+    "status": "Fail",
+    "calories": 3375,
+    "protein": 104,
+    "sleep": 6.9,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Parents’ House / Travel Week",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 72,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 75,
+        "nextLvlXp": 200,
+        "totalXp": 175
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 210,
+        "nextLvlXp": 300,
+        "totalXp": 510
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 150,
+        "nextLvlXp": 400,
+        "totalXp": 750
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 60,
+        "nextLvlXp": 100,
+        "totalXp": 60
+      }
+    }
+  },
+  {
+    "date": "03/20",
+    "weight": 167.2,
+    "waistNavel": 32.16,
+    "waistPlus2": 31.38,
+    "waistMinus2": 32.59,
+    "tier": "Tier 2",
+    "status": "Fail",
+    "calories": 600,
+    "protein": 46,
+    "sleep": 9.63,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Parents' House / Travel Week",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 58,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 85,
+        "nextLvlXp": 200,
+        "totalXp": 185
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 205,
+        "nextLvlXp": 300,
+        "totalXp": 505
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 155,
+        "nextLvlXp": 400,
+        "totalXp": 755
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    }
   }
 ]
