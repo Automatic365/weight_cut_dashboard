@@ -2698,5 +2698,95 @@
         "totalXp": 40
       }
     }
+  },
+  {
+    "date": "03/21",
+    "weight": 168.3,
+    "waistNavel": 32.38,
+    "waistPlus2": 31.31,
+    "waistMinus2": 32.45,
+    "tier": "Tier 3",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 7.32,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 1,
+    "streak": 1,
+    "adherenceScore": 91,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 95,
+        "nextLvlXp": 200,
+        "totalXp": 195
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 220,
+        "nextLvlXp": 300,
+        "totalXp": 520
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 160,
+        "nextLvlXp": 400,
+        "totalXp": 760
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    }
+  },
+  {
+    "date": "03/22",
+    "weight": 169,
+    "waistNavel": 32.5,
+    "waistPlus2": 31.94,
+    "waistMinus2": 32.32,
+    "tier": "Tier 3",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 8.18,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 2,
+    "streak": 2,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 105,
+        "nextLvlXp": 200,
+        "totalXp": 205
+      },
+      "discipline": {
+        "level": 3,
+        "currentLvlXp": 235,
+        "nextLvlXp": 300,
+        "totalXp": 535
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 165,
+        "nextLvlXp": 400,
+        "totalXp": 765
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    }
   }
 ]

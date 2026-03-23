@@ -64,6 +64,10 @@ function buildExecutionText(dayText) {
 
     if (inFutureSection) continue;
     if (explicitPlanningLine.test(line)) continue;
+    // Skip Markdown table rows — they're always retrospective summaries (e.g. weekly recap
+    // tables referencing past boss fights), never today's execution context. Without this,
+    // "| Thu 3/19 | Boss Fight | 72 — Fail |" causes "72" to be parsed as today's boss name.
+    if (/^\s*\|/.test(line)) continue;
     keptLines.push(line);
   }
 
