@@ -102,6 +102,13 @@ function parseRawDailyProtein(dayText) {
   );
   if (totalsBlock != null) return totalsBlock;
 
+  // Markdown table daily total: "| Protein | ~198g |"
+  const tableBlock = parseProteinValue(
+    dayText,
+    /\|\s*Protein\s*\|\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
+  );
+  if (tableBlock != null) return tableBlock;
+
   return null;
 }
 
@@ -158,6 +165,10 @@ function extractRawFields(dayText, context = {}) {
   const appBlockStart = dayText.search(/(?:^|\n)(?:#{1,3}\s*)?App Parse Block/i);
   const bodyText = appBlockStart >= 0 ? dayText.slice(0, appBlockStart) : dayText;
 
+  // Execution text = bodyText with forward-looking sections and table rows stripped.
+  // Hoisted here (instead of near boss detection) so tier detection can also use it.
+  const executionText = buildExecutionText(bodyText);
+
   let status = 'Pass';
   const statusMatch = dayText.match(/### Status\n([A-Za-z]+)/) || dayText.match(/\*\*Status:\*\* ([A-Za-z]+)/);
   if (statusMatch) {
@@ -169,10 +180,13 @@ function extractRawFields(dayText, context = {}) {
   }
   status = /^fail$/i.test(status) ? 'Fail' : 'Pass';
 
+  // Tier detection — use bodyText (App Parse Block stripped) so the App Parse Block's
+  // own "Tier:" label doesn't interfere, and use executionText (forward-sections stripped)
+  // so "Tomorrow Tier + Rules: Tier 3 — Sunday Fast" doesn't pollute today's tier.
   let tier = 'Tier 2';
-  if (dayText.includes('Linear')) tier = 'Linear';
-  else if (dayText.includes('Tier 1')) tier = 'Tier 1';
-  else if (dayText.includes('Tier 3')) tier = 'Tier 3';
+  if (executionText.includes('Linear')) tier = 'Linear';
+  else if (executionText.includes('Tier 1')) tier = 'Tier 1';
+  else if (executionText.includes('Tier 3')) tier = 'Tier 3';
 
   // Weight — App Parse Block: "Weight: 163.0"
   let weight = null;
@@ -293,7 +307,7 @@ function extractRawFields(dayText, context = {}) {
     calories = 0;
   } else {
     if (appBlock) {
-      const m = appBlock.match(/^Calories:\s*([0-9,]+)/m);
+      const m = appBlock.match(/^(?:\*\*)?Calories:(?:\*\*)?\s*([0-9,]+)/m);
       if (m) calories = parseInt(m[1].replace(/,/g, ''), 10);
     }
     if (calories == null) {
@@ -351,7 +365,7 @@ function extractRawFields(dayText, context = {}) {
 
     // Final fallback to App Parse Block only if no reliable raw total was found.
     if (protein == null && appBlock) {
-      const m = appBlock.match(/^Protein:\s*([0-9]+)g?/m);
+      const m = appBlock.match(/^(?:\*\*)?Protein:(?:\*\*)?\s*([0-9]+)g?/m);
       if (m) protein = parseInt(m[1], 10);
     }
   }
@@ -400,7 +414,6 @@ function extractRawFields(dayText, context = {}) {
   let bossName = null;
   let upcomingBossName = null;
 
-  const executionText = buildExecutionText(dayText);
   const _explicitMatchRaw = executionText.match(/Boss\s*(?:Fight|Battle)[^a-zA-Z0-9]*([a-zA-Z0-9\s']+)/i);
   // Reject if captured text starts with a temporal preposition — means the log is referencing
   // a future fight ("boss fight on March 13"), not declaring today as a boss fight.

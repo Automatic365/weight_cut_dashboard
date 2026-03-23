@@ -5,7 +5,7 @@
     "waistNavel": 32,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 1",
+    "tier": "Tier 2",
     "status": "Pass",
     "calories": 2800,
     "protein": 190,
@@ -50,9 +50,9 @@
     "waistNavel": null,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 1",
+    "tier": "Tier 3",
     "status": "Pass",
-    "calories": 2850,
+    "calories": 0,
     "protein": 190,
     "sleep": 6.88,
     "notes": "",
@@ -320,7 +320,7 @@
     "waistNavel": 31.53,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 3",
+    "tier": "Tier 2",
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -590,7 +590,7 @@
     "waistNavel": null,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 1",
+    "tier": "Tier 2",
     "status": "Pass",
     "calories": 2400,
     "protein": 190,
@@ -1490,7 +1490,7 @@
     "waistNavel": 31.83,
     "waistPlus2": 32.57,
     "waistMinus2": 32.94,
-    "tier": "Linear",
+    "tier": "Tier 2",
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -1715,7 +1715,7 @@
     "waistNavel": null,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Linear",
+    "tier": "Tier 2",
     "status": "Fail",
     "calories": 5600,
     "protein": 190,
@@ -1805,7 +1805,7 @@
     "waistNavel": 32.99,
     "waistPlus2": 32.11,
     "waistMinus2": 32.79,
-    "tier": "Linear",
+    "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -1987,7 +1987,7 @@
     "waistMinus2": 32.79,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 1550,
+    "calories": 1875,
     "protein": 190,
     "sleep": 7.13,
     "notes": "",
@@ -2032,7 +2032,7 @@
     "waistMinus2": 32.47,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 2000,
+    "calories": 2500,
     "protein": 165,
     "sleep": 6.9,
     "notes": "",
@@ -2077,7 +2077,7 @@
     "waistMinus2": 32.56,
     "tier": "Linear",
     "status": "Pass",
-    "calories": 443,
+    "calories": 2310,
     "protein": 200,
     "sleep": 6.62,
     "notes": "",
@@ -2120,7 +2120,7 @@
     "waistNavel": 32.32,
     "waistPlus2": 31.52,
     "waistMinus2": 32.63,
-    "tier": "Linear",
+    "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -2255,10 +2255,10 @@
     "waistNavel": 32.32,
     "waistPlus2": 30.77,
     "waistMinus2": 32.55,
-    "tier": "Linear",
+    "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
-    "protein": 213,
+    "protein": 0,
     "sleep": 6.77,
     "notes": "",
     "isBossFight": false,
@@ -2282,9 +2282,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 90,
+        "currentLvlXp": 80,
         "nextLvlXp": 400,
-        "totalXp": 690
+        "totalXp": 680
       },
       "resilience": {
         "level": 1,
@@ -2327,9 +2327,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 105,
+        "currentLvlXp": 95,
         "nextLvlXp": 400,
-        "totalXp": 705
+        "totalXp": 695
       },
       "resilience": {
         "level": 2,
@@ -2372,9 +2372,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 110,
+        "currentLvlXp": 100,
         "nextLvlXp": 400,
-        "totalXp": 710
+        "totalXp": 700
       },
       "resilience": {
         "level": 2,
@@ -2417,9 +2417,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 115,
+        "currentLvlXp": 105,
         "nextLvlXp": 400,
-        "totalXp": 715
+        "totalXp": 705
       },
       "resilience": {
         "level": 1,
@@ -2462,9 +2462,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 120,
+        "currentLvlXp": 110,
         "nextLvlXp": 400,
-        "totalXp": 720
+        "totalXp": 710
       },
       "resilience": {
         "level": 1,
@@ -2507,9 +2507,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 135,
+        "currentLvlXp": 125,
         "nextLvlXp": 400,
-        "totalXp": 735
+        "totalXp": 725
       },
       "resilience": {
         "level": 2,
@@ -2552,9 +2552,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 140,
+        "currentLvlXp": 130,
         "nextLvlXp": 400,
-        "totalXp": 740
+        "totalXp": 730
       },
       "resilience": {
         "level": 2,
@@ -2597,9 +2597,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 145,
+        "currentLvlXp": 135,
         "nextLvlXp": 400,
-        "totalXp": 745
+        "totalXp": 735
       },
       "resilience": {
         "level": 1,
@@ -2642,9 +2642,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 150,
+        "currentLvlXp": 140,
         "nextLvlXp": 400,
-        "totalXp": 750
+        "totalXp": 740
       },
       "resilience": {
         "level": 1,
@@ -2662,7 +2662,7 @@
     "waistMinus2": 32.59,
     "tier": "Tier 2",
     "status": "Fail",
-    "calories": 600,
+    "calories": 3500,
     "protein": 46,
     "sleep": 9.63,
     "notes": "",
@@ -2687,9 +2687,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 155,
+        "currentLvlXp": 145,
         "nextLvlXp": 400,
-        "totalXp": 755
+        "totalXp": 745
       },
       "resilience": {
         "level": 1,
@@ -2705,10 +2705,10 @@
     "waistNavel": 32.38,
     "waistPlus2": 31.31,
     "waistMinus2": 32.45,
-    "tier": "Tier 3",
+    "tier": "Tier 2",
     "status": "Pass",
-    "calories": 0,
-    "protein": 0,
+    "calories": 1690,
+    "protein": 198,
     "sleep": 7.32,
     "notes": "",
     "isBossFight": false,
