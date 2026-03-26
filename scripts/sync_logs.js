@@ -302,10 +302,10 @@ function extractRawFields(dayText, context = {}) {
   }
 
   // Calories — App Parse Block: "Calories: 2040"
+  // No Tier 3 shortcircuit: PSMF days (also Tier 3) have real food; let the App Parse Block
+  // determine 0-calorie days (e.g. Sunday fasts have "Calories: 0" in their block).
   let calories = null;
-  if (tier === 'Tier 3') {
-    calories = 0;
-  } else {
+  {
     if (appBlock) {
       const m = appBlock.match(/^(?:\*\*)?Calories:(?:\*\*)?\s*([0-9,]+)/m);
       if (m) calories = parseInt(m[1].replace(/,/g, ''), 10);
@@ -333,9 +333,7 @@ function extractRawFields(dayText, context = {}) {
   // App Parse Block often contains adjusted protein (−20%) for protocol scoring,
   // while compliance chart should reflect raw daily intake.
   let protein = null;
-  if (tier === 'Tier 3') {
-    protein = 0;
-  } else {
+  {
     protein = parseRawDailyProtein(bodyText);
 
     if (protein == null) {
@@ -510,7 +508,7 @@ function applyOverrides(raw, dayOverride) {
 
   if (!dayOverride) return { corrected, overrideFields };
 
-  const overrideKeys = ['sleep', 'protein', 'weight', 'waistNavel', 'waistPlus2', 'waistMinus2'];
+  const overrideKeys = ['sleep', 'protein', 'weight', 'waistNavel', 'waistPlus2', 'waistMinus2', 'calories'];
   for (const key of overrideKeys) {
     if (dayOverride[key] != null) {
       corrected[key] = dayOverride[key];
