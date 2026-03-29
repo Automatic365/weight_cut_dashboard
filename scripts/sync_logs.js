@@ -48,11 +48,20 @@ function parseAdherencePercentFromLine(valueText) {
 function buildExecutionText(dayText) {
   const futureSectionHeading = /(forward plan|reality plan|tomorrow|next expected input|next day note|what to expect tomorrow|tomorrow plan|tomorrow priority|tomorrow directive|tomorrow preview|forecast|preview)/i;
   const explicitPlanningLine = /\b(upcoming|forward plan|reality plan|forecast|preview|tomorrow)\b/i;
+  // "Tomorrow — Thursday" style standalone section headers (not ### headings)
+  const tomorrowSectionHeader = /^Tomorrow\s*[—\-]\s*\w/i;
   const lines = dayText.split('\n');
   const keptLines = [];
   let inFutureSection = false;
 
   for (const line of lines) {
+    // --- dividers reset future-section state (each --- introduces a new section)
+    if (/^---+\s*$/.test(line)) {
+      inFutureSection = false;
+      keptLines.push(line);
+      continue;
+    }
+
     const headingMatch = line.match(/^###\s+(.+)$/);
     if (headingMatch) {
       if (futureSectionHeading.test(headingMatch[1])) {
@@ -63,6 +72,13 @@ function buildExecutionText(dayText) {
     }
 
     if (inFutureSection) continue;
+
+    // Standalone "Tomorrow — Dayname" lines start a future section (content after it is forward-looking)
+    if (tomorrowSectionHeader.test(line)) {
+      inFutureSection = true;
+      continue;
+    }
+
     if (explicitPlanningLine.test(line)) continue;
     // Skip Markdown table rows — they're always retrospective summaries (e.g. weekly recap
     // tables referencing past boss fights), never today's execution context. Without this,

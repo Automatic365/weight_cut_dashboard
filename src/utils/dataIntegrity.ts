@@ -17,7 +17,9 @@ export function computeDataWarnings(days: ChartDayEntry[]): DataWarning[] {
 
   const missingProtein = days.filter(d => {
     if (d.protein != null && d.protein !== 0) return false;
-    return !WEEKLY_SCHEDULE[getDow(d.date)]?.isFast; // exclude intentional fast days
+    if (WEEKLY_SCHEDULE[getDow(d.date)]?.isFast) return false; // exclude scheduled fast days
+    if (d.tier === 'Tier 3') return false; // exclude ad-hoc full fast days
+    return true;
   }).length;
   if (missingProtein > 0) {
     warnings.push({
