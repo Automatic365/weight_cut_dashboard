@@ -93,7 +93,12 @@ export function deriveConsistencyGameState(
 
   // ── Today's schedule context ─────────────────────────────────────────────────
   const todayDow = todayDate.getDay(); // 0=Sun … 6=Sat
-  const todaySchedule = WEEKLY_SCHEDULE[todayDow];
+  const baseSchedule = WEEKLY_SCHEDULE[todayDow];
+  // Some days (e.g. Wednesday) can be either PSMF or a full fast depending on the week.
+  // If the latest log entry says Tier 3, treat today as a fast regardless of the schedule.
+  const todaySchedule = latest.tier === 'Tier 3'
+    ? { ...baseSchedule, isFast: true, nutritionLabel: 'Fast', calorieRange: null, proteinMin: null, proteinMax: null }
+    : baseSchedule;
 
   // ── Daily missions ───────────────────────────────────────────────────────────
   // Adherence + protein: forward-looking against today's schedule.
