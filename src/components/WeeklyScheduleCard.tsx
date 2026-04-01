@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalendarDays } from 'lucide-react';
-import { WEEKLY_SCHEDULE, DATA_YEAR } from '../config';
+import { WEEKLY_SCHEDULE, DAY_ALT_LABELS, DATA_YEAR } from '../config';
 import type { ChartDayEntry } from '../types';
 
 interface WeeklyScheduleCardProps {
@@ -29,6 +29,7 @@ const WeeklyScheduleCard: React.FC<WeeklyScheduleCardProps> = ({ latestDate: _la
       <div className="grid grid-cols-7 gap-1.5">
         {[0, 1, 2, 3, 4, 5, 6].map(dow => {
           const sched = WEEKLY_SCHEDULE[dow];
+          const altLabel = DAY_ALT_LABELS[dow];
           const isToday = dow === todayDow;
           const tierColor = TIER_COLOR[sched.nutritionLabel] ?? 'text-ui-muted border-ui-border bg-ui-surface';
 
@@ -45,6 +46,11 @@ const WeeklyScheduleCard: React.FC<WeeklyScheduleCardProps> = ({ latestDate: _la
               <div className="text-[10px] font-semibold leading-tight">
                 {sched.nutritionLabel}
               </div>
+              {altLabel && (
+                <div className="text-[8px] text-ui-muted/60 leading-tight -mt-0.5">
+                  {altLabel}
+                </div>
+              )}
               {sched.calorieRange ? (
                 <div className="text-[9px] text-ui-muted leading-tight">
                   {sched.calorieRange[0]}–{sched.calorieRange[1]}<br />kcal

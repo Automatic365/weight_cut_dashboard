@@ -55,6 +55,11 @@ export const WEEKLY_SCHEDULE = {
   6: { nutritionLabel: 'Maintenance', isFast: false, calorieRange: [2300, 2500], proteinMin: 180,  proteinMax: null, muayThaiTime: '11 AM',   strengthFocus: 'Legs or Shoulders' },
 };
 
+// Days where the nutrition protocol can vary week-to-week (shown as secondary label in schedule card)
+export const DAY_ALT_LABELS = {
+  3: 'or Fast', // Wednesday: normally PSMF, sometimes a full fast
+};
+
 export const XP = {
   VITALITY_SLEEP: 10,
   VITALITY_POOR_SLEEP: -5,
