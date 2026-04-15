@@ -42,6 +42,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -87,6 +99,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -132,6 +157,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -177,6 +213,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -222,6 +270,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -233,7 +292,7 @@
     "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
-    "protein": 0,
+    "protein": null,
     "sleep": 7,
     "notes": "",
     "isBossFight": false,
@@ -267,6 +326,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -312,6 +380,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -357,6 +437,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -402,6 +493,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -447,6 +551,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -492,6 +609,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -537,6 +667,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -548,7 +691,7 @@
     "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
-    "protein": 0,
+    "protein": null,
     "sleep": null,
     "notes": "",
     "isBossFight": false,
@@ -582,6 +725,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "weight"
+      ]
     }
   },
   {
@@ -627,6 +781,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -672,6 +839,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -717,6 +896,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -762,6 +954,19 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein",
+        "weight"
+      ]
     }
   },
   {
@@ -807,6 +1012,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -852,6 +1069,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -863,7 +1092,7 @@
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 0,
-    "protein": 0,
+    "protein": null,
     "sleep": 7.03,
     "notes": "",
     "isBossFight": false,
@@ -897,6 +1126,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep"
+      ]
     }
   },
   {
@@ -942,6 +1182,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -987,6 +1239,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -1032,6 +1296,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1077,6 +1352,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1122,6 +1406,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1167,6 +1460,18 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "sleep",
+        "protein"
+      ]
     }
   },
   {
@@ -1212,6 +1517,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1257,6 +1571,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1302,6 +1627,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1347,6 +1683,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1392,6 +1739,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1437,6 +1795,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1482,6 +1851,17 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1493,7 +1873,7 @@
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 0,
-    "protein": 0,
+    "protein": null,
     "sleep": 6.18,
     "notes": "",
     "isBossFight": false,
@@ -1527,6 +1907,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1538,7 +1927,7 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 1855,
-    "protein": 227,
+    "protein": null,
     "sleep": 6.87,
     "notes": "",
     "isBossFight": false,
@@ -1562,9 +1951,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 180,
+        "currentLvlXp": 170,
         "nextLvlXp": 300,
-        "totalXp": 480
+        "totalXp": 470
       },
       "resilience": {
         "level": 1,
@@ -1572,6 +1961,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1583,7 +1981,7 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 2150,
-    "protein": 240,
+    "protein": 190,
     "sleep": 7.23,
     "notes": "",
     "isBossFight": false,
@@ -1607,9 +2005,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 195,
+        "currentLvlXp": 185,
         "nextLvlXp": 300,
-        "totalXp": 495
+        "totalXp": 485
       },
       "resilience": {
         "level": 1,
@@ -1617,6 +2015,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1628,7 +2035,7 @@
     "tier": "Tier 2",
     "status": "Pass",
     "calories": 114,
-    "protein": 222,
+    "protein": null,
     "sleep": 6.95,
     "notes": "",
     "isBossFight": false,
@@ -1652,9 +2059,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 210,
+        "currentLvlXp": 190,
         "nextLvlXp": 300,
-        "totalXp": 510
+        "totalXp": 490
       },
       "resilience": {
         "level": 1,
@@ -1662,6 +2069,15 @@
         "nextLvlXp": 100,
         "totalXp": 0
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1697,9 +2113,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 225,
+        "currentLvlXp": 205,
         "nextLvlXp": 300,
-        "totalXp": 525
+        "totalXp": 505
       },
       "resilience": {
         "level": 1,
@@ -1707,6 +2123,17 @@
         "nextLvlXp": 100,
         "totalXp": 50
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1742,9 +2169,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 240,
+        "currentLvlXp": 220,
         "nextLvlXp": 300,
-        "totalXp": 540
+        "totalXp": 520
       },
       "resilience": {
         "level": 1,
@@ -1752,6 +2179,17 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -1787,9 +2225,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 255,
+        "currentLvlXp": 235,
         "nextLvlXp": 300,
-        "totalXp": 555
+        "totalXp": 535
       },
       "resilience": {
         "level": 1,
@@ -1797,6 +2235,15 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1808,7 +2255,7 @@
     "tier": "Tier 3",
     "status": "Pass",
     "calories": 0,
-    "protein": 0,
+    "protein": null,
     "sleep": 6.8,
     "notes": "",
     "isBossFight": false,
@@ -1832,9 +2279,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 260,
+        "currentLvlXp": 240,
         "nextLvlXp": 300,
-        "totalXp": 560
+        "totalXp": 540
       },
       "resilience": {
         "level": 1,
@@ -1842,6 +2289,15 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 0,
+      "selectedAppParseBlockIndex": null,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1853,7 +2309,7 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 2240,
-    "protein": 233,
+    "protein": 186,
     "sleep": 7.92,
     "notes": "",
     "isBossFight": false,
@@ -1877,9 +2333,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 275,
+        "currentLvlXp": 245,
         "nextLvlXp": 300,
-        "totalXp": 575
+        "totalXp": 545
       },
       "resilience": {
         "level": 1,
@@ -1887,6 +2343,15 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1922,9 +2387,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 290,
+        "currentLvlXp": 260,
         "nextLvlXp": 300,
-        "totalXp": 590
+        "totalXp": 560
       },
       "resilience": {
         "level": 1,
@@ -1932,6 +2397,15 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -1966,10 +2440,10 @@
         "totalXp": 395
       },
       "strength": {
-        "level": 4,
-        "currentLvlXp": 5,
-        "nextLvlXp": 400,
-        "totalXp": 605
+        "level": 3,
+        "currentLvlXp": 275,
+        "nextLvlXp": 300,
+        "totalXp": 575
       },
       "resilience": {
         "level": 1,
@@ -1977,6 +2451,15 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2011,10 +2494,10 @@
         "totalXp": 410
       },
       "strength": {
-        "level": 4,
-        "currentLvlXp": 20,
-        "nextLvlXp": 400,
-        "totalXp": 620
+        "level": 3,
+        "currentLvlXp": 290,
+        "nextLvlXp": 300,
+        "totalXp": 590
       },
       "resilience": {
         "level": 1,
@@ -2022,6 +2505,17 @@
         "nextLvlXp": 100,
         "totalXp": 30
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2033,7 +2527,7 @@
     "tier": "Linear",
     "status": "Pass",
     "calories": 2500,
-    "protein": 165,
+    "protein": 190,
     "sleep": 6.9,
     "notes": "",
     "isBossFight": true,
@@ -2057,9 +2551,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 25,
+        "currentLvlXp": 5,
         "nextLvlXp": 400,
-        "totalXp": 625
+        "totalXp": 605
       },
       "resilience": {
         "level": 1,
@@ -2067,6 +2561,15 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2102,9 +2605,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 40,
+        "currentLvlXp": 20,
         "nextLvlXp": 400,
-        "totalXp": 640
+        "totalXp": 620
       },
       "resilience": {
         "level": 1,
@@ -2112,6 +2615,15 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2147,9 +2659,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 45,
+        "currentLvlXp": 25,
         "nextLvlXp": 400,
-        "totalXp": 645
+        "totalXp": 625
       },
       "resilience": {
         "level": 1,
@@ -2157,6 +2669,15 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2192,9 +2713,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 60,
+        "currentLvlXp": 40,
         "nextLvlXp": 400,
-        "totalXp": 660
+        "totalXp": 640
       },
       "resilience": {
         "level": 1,
@@ -2202,6 +2723,15 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2237,9 +2767,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 75,
+        "currentLvlXp": 55,
         "nextLvlXp": 400,
-        "totalXp": 675
+        "totalXp": 655
       },
       "resilience": {
         "level": 1,
@@ -2247,6 +2777,15 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2258,7 +2797,7 @@
     "tier": "Tier 3",
     "status": "Pass",
     "calories": 1413,
-    "protein": 213,
+    "protein": 0,
     "sleep": 6.77,
     "notes": "",
     "isBossFight": false,
@@ -2282,9 +2821,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 90,
+        "currentLvlXp": 60,
         "nextLvlXp": 400,
-        "totalXp": 690
+        "totalXp": 660
       },
       "resilience": {
         "level": 1,
@@ -2292,6 +2831,17 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "calories"
+      ]
     }
   },
   {
@@ -2327,9 +2877,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 105,
+        "currentLvlXp": 75,
         "nextLvlXp": 400,
-        "totalXp": 705
+        "totalXp": 675
       },
       "resilience": {
         "level": 2,
@@ -2337,6 +2887,15 @@
         "nextLvlXp": 200,
         "totalXp": 130
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2348,7 +2907,7 @@
     "tier": "Tier 2",
     "status": "Fail",
     "calories": 4000,
-    "protein": 100,
+    "protein": 190,
     "sleep": 6.7,
     "notes": "",
     "isBossFight": true,
@@ -2372,9 +2931,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 110,
+        "currentLvlXp": 90,
         "nextLvlXp": 400,
-        "totalXp": 710
+        "totalXp": 690
       },
       "resilience": {
         "level": 2,
@@ -2382,6 +2941,17 @@
         "nextLvlXp": 200,
         "totalXp": 110
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2393,7 +2963,7 @@
     "tier": "Tier 2",
     "status": "Fail",
     "calories": 3688,
-    "protein": 155,
+    "protein": 190,
     "sleep": 9.38,
     "notes": "",
     "isBossFight": true,
@@ -2417,9 +2987,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 115,
+        "currentLvlXp": 105,
         "nextLvlXp": 400,
-        "totalXp": 715
+        "totalXp": 705
       },
       "resilience": {
         "level": 1,
@@ -2427,6 +2997,17 @@
         "nextLvlXp": 100,
         "totalXp": 90
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2438,7 +3019,7 @@
     "tier": "Tier 1",
     "status": "Fail",
     "calories": 2563,
-    "protein": 80,
+    "protein": 190,
     "sleep": 6.82,
     "notes": "",
     "isBossFight": true,
@@ -2472,6 +3053,17 @@
         "nextLvlXp": 100,
         "totalXp": 70
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2517,6 +3109,15 @@
         "nextLvlXp": 200,
         "totalXp": 120
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2528,7 +3129,7 @@
     "tier": "Linear",
     "status": "Fail",
     "calories": 2860,
-    "protein": 166,
+    "protein": 190,
     "sleep": 7,
     "notes": "",
     "isBossFight": true,
@@ -2552,9 +3153,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 140,
+        "currentLvlXp": 150,
         "nextLvlXp": 400,
-        "totalXp": 740
+        "totalXp": 750
       },
       "resilience": {
         "level": 2,
@@ -2562,6 +3163,17 @@
         "nextLvlXp": 200,
         "totalXp": 100
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2573,7 +3185,7 @@
     "tier": "Linear",
     "status": "Fail",
     "calories": 3375,
-    "protein": 108,
+    "protein": 190,
     "sleep": 7.33,
     "notes": "",
     "isBossFight": true,
@@ -2597,9 +3209,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 145,
+        "currentLvlXp": 165,
         "nextLvlXp": 400,
-        "totalXp": 745
+        "totalXp": 765
       },
       "resilience": {
         "level": 1,
@@ -2607,6 +3219,17 @@
         "nextLvlXp": 100,
         "totalXp": 80
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2618,7 +3241,7 @@
     "tier": "Linear",
     "status": "Fail",
     "calories": 3375,
-    "protein": 104,
+    "protein": 190,
     "sleep": 6.9,
     "notes": "",
     "isBossFight": true,
@@ -2642,9 +3265,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 150,
+        "currentLvlXp": 180,
         "nextLvlXp": 400,
-        "totalXp": 750
+        "totalXp": 780
       },
       "resilience": {
         "level": 1,
@@ -2652,6 +3275,17 @@
         "nextLvlXp": 100,
         "totalXp": 60
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2663,7 +3297,7 @@
     "tier": "Tier 2",
     "status": "Fail",
     "calories": 3500,
-    "protein": 46,
+    "protein": 190,
     "sleep": 9.63,
     "notes": "",
     "isBossFight": true,
@@ -2687,9 +3321,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 155,
+        "currentLvlXp": 195,
         "nextLvlXp": 400,
-        "totalXp": 755
+        "totalXp": 795
       },
       "resilience": {
         "level": 1,
@@ -2697,6 +3331,17 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2732,9 +3377,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 170,
+        "currentLvlXp": 210,
         "nextLvlXp": 400,
-        "totalXp": 770
+        "totalXp": 810
       },
       "resilience": {
         "level": 1,
@@ -2742,6 +3387,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2777,9 +3431,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 175,
+        "currentLvlXp": 215,
         "nextLvlXp": 400,
-        "totalXp": 775
+        "totalXp": 815
       },
       "resilience": {
         "level": 1,
@@ -2787,6 +3441,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2822,9 +3485,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 190,
+        "currentLvlXp": 230,
         "nextLvlXp": 400,
-        "totalXp": 790
+        "totalXp": 830
       },
       "resilience": {
         "level": 1,
@@ -2832,6 +3495,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2867,9 +3539,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 205,
+        "currentLvlXp": 245,
         "nextLvlXp": 400,
-        "totalXp": 805
+        "totalXp": 845
       },
       "resilience": {
         "level": 1,
@@ -2877,6 +3549,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2912,9 +3593,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 210,
+        "currentLvlXp": 250,
         "nextLvlXp": 400,
-        "totalXp": 810
+        "totalXp": 850
       },
       "resilience": {
         "level": 1,
@@ -2922,6 +3603,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -2957,9 +3647,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 225,
+        "currentLvlXp": 265,
         "nextLvlXp": 400,
-        "totalXp": 825
+        "totalXp": 865
       },
       "resilience": {
         "level": 1,
@@ -2967,6 +3657,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -3002,9 +3701,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 235,
+        "currentLvlXp": 275,
         "nextLvlXp": 400,
-        "totalXp": 835
+        "totalXp": 875
       },
       "resilience": {
         "level": 1,
@@ -3012,6 +3711,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -3047,9 +3755,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 240,
+        "currentLvlXp": 280,
         "nextLvlXp": 400,
-        "totalXp": 840
+        "totalXp": 880
       },
       "resilience": {
         "level": 1,
@@ -3057,6 +3765,15 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   },
   {
@@ -3092,9 +3809,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 245,
+        "currentLvlXp": 285,
         "nextLvlXp": 400,
-        "totalXp": 845
+        "totalXp": 885
       },
       "resilience": {
         "level": 1,
@@ -3102,6 +3819,621 @@
         "nextLvlXp": 100,
         "totalXp": 40
       }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "03/30",
+    "weight": 161.3,
+    "waistNavel": 30.92,
+    "waistPlus2": 30.7,
+    "waistMinus2": 31.73,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1840,
+    "protein": 201,
+    "sleep": 7.8,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 6,
+    "streak": 6,
+    "adherenceScore": 96,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 145,
+        "nextLvlXp": 200,
+        "totalXp": 245
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 20,
+        "nextLvlXp": 400,
+        "totalXp": 620
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 300,
+        "nextLvlXp": 400,
+        "totalXp": 900
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "03/31",
+    "weight": 163.4,
+    "waistNavel": 32.07,
+    "waistPlus2": 30.89,
+    "waistMinus2": 32.07,
+    "tier": "Tier 2",
+    "status": "Pass",
+    "calories": 2200,
+    "protein": 190,
+    "sleep": 7.2,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 7,
+    "streak": 7,
+    "adherenceScore": 95,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 155,
+        "nextLvlXp": 200,
+        "totalXp": 255
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 35,
+        "nextLvlXp": 400,
+        "totalXp": 635
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 315,
+        "nextLvlXp": 400,
+        "totalXp": 915
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
+    }
+  },
+  {
+    "date": "04/01",
+    "weight": 165.3,
+    "waistNavel": 31.7,
+    "waistPlus2": 31.03,
+    "waistMinus2": 32.2,
+    "tier": "Tier 3",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 6.6,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 8,
+    "streak": 8,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 155,
+        "nextLvlXp": 200,
+        "totalXp": 255
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 50,
+        "nextLvlXp": 400,
+        "totalXp": 650
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 320,
+        "nextLvlXp": 400,
+        "totalXp": 920
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "04/02",
+    "weight": 161.4,
+    "waistNavel": 31.48,
+    "waistPlus2": 30.96,
+    "waistMinus2": 7,
+    "tier": "Linear",
+    "status": "Fail",
+    "calories": 2875,
+    "protein": 190,
+    "sleep": 4.63,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 76,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 150,
+        "nextLvlXp": 200,
+        "totalXp": 250
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 45,
+        "nextLvlXp": 400,
+        "totalXp": 645
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 335,
+        "nextLvlXp": 400,
+        "totalXp": 935
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
+    }
+  },
+  {
+    "date": "04/03",
+    "weight": 162.6,
+    "waistNavel": 31.48,
+    "waistPlus2": 31.37,
+    "waistMinus2": 32.46,
+    "tier": "Tier 2",
+    "status": "Pass",
+    "calories": 3000,
+    "protein": 190,
+    "sleep": 8.18,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 1,
+    "streak": 1,
+    "adherenceScore": 91,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200,
+        "totalXp": 260
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 60,
+        "nextLvlXp": 400,
+        "totalXp": 660
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 350,
+        "nextLvlXp": 400,
+        "totalXp": 950
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 2,
+      "selectedAppParseBlockIndex": 2,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": true,
+      "proteinSource": "app_block",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
+    }
+  },
+  {
+    "date": "04/06",
+    "weight": 166.1,
+    "waistNavel": 31.5,
+    "waistPlus2": 31.17,
+    "waistMinus2": 31.94,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1650,
+    "protein": 200,
+    "sleep": 6.43,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 2,
+    "streak": 2,
+    "adherenceScore": 91,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200,
+        "totalXp": 260
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 75,
+        "nextLvlXp": 400,
+        "totalXp": 675
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 365,
+        "nextLvlXp": 400,
+        "totalXp": 965
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 2,
+      "selectedAppParseBlockIndex": 2,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": true,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
+    }
+  },
+  {
+    "date": "04/08",
+    "weight": 164.9,
+    "waistNavel": 31.8,
+    "waistPlus2": 31.19,
+    "waistMinus2": 32.18,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 6.12,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 3,
+    "streak": 3,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200,
+        "totalXp": 260
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 90,
+        "nextLvlXp": 400,
+        "totalXp": 690
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 370,
+        "nextLvlXp": 400,
+        "totalXp": 970
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "04/09",
+    "weight": 161.2,
+    "waistNavel": 30.98,
+    "waistPlus2": 30.81,
+    "waistMinus2": 31.85,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1875,
+    "protein": 190,
+    "sleep": 6.3,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 4,
+    "streak": 4,
+    "adherenceScore": 92,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200,
+        "totalXp": 260
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 105,
+        "nextLvlXp": 400,
+        "totalXp": 705
+      },
+      "strength": {
+        "level": 4,
+        "currentLvlXp": 385,
+        "nextLvlXp": 400,
+        "totalXp": 985
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 40,
+        "nextLvlXp": 100,
+        "totalXp": 40
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
+    }
+  },
+  {
+    "date": "04/10",
+    "weight": 163.3,
+    "waistNavel": 31.7,
+    "waistPlus2": 30.98,
+    "waistMinus2": 32.2,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 2300,
+    "protein": 190,
+    "sleep": 6.4,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Timeline to Goal\n\nStart",
+    "upcomingBossName": null,
+    "shield": 4,
+    "streak": 4,
+    "adherenceScore": 95,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 160,
+        "nextLvlXp": 200,
+        "totalXp": 260
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 120,
+        "nextLvlXp": 400,
+        "totalXp": 720
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 0,
+        "nextLvlXp": 500,
+        "totalXp": 1000
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100,
+        "totalXp": 90
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 2,
+      "selectedAppParseBlockIndex": 2,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": true,
+      "proteinSource": "protein_hit_assertion",
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
+    }
+  },
+  {
+    "date": "04/12",
+    "weight": 161.9,
+    "waistNavel": 31.31,
+    "waistPlus2": 30.62,
+    "waistMinus2": 31.51,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 8.45,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 5,
+    "streak": 5,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 170,
+        "nextLvlXp": 200,
+        "totalXp": 270
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 135,
+        "nextLvlXp": 400,
+        "totalXp": 735
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 5,
+        "nextLvlXp": 500,
+        "totalXp": 1005
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100,
+        "totalXp": 90
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "04/13",
+    "weight": 161.2,
+    "waistNavel": 30.58,
+    "waistPlus2": 30.37,
+    "waistMinus2": 31.25,
+    "tier": "Linear",
+    "status": "Pass",
+    "calories": 1840,
+    "protein": 200,
+    "sleep": 6.4,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 6,
+    "streak": 6,
+    "adherenceScore": 96,
+    "attributes": {
+      "vitality": {
+        "level": 2,
+        "currentLvlXp": 170,
+        "nextLvlXp": 200,
+        "totalXp": 270
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 150,
+        "nextLvlXp": 400,
+        "totalXp": 750
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 20,
+        "nextLvlXp": 500,
+        "totalXp": 1020
+      },
+      "resilience": {
+        "level": 1,
+        "currentLvlXp": 90,
+        "nextLvlXp": 100,
+        "totalXp": 90
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 2,
+      "selectedAppParseBlockIndex": 2,
+      "hasCorrectedAppParseBlock": true,
+      "hasConflictingAppParseBlocks": true,
+      "proteinSource": "raw_daily_total",
+      "hasOverrides": false,
+      "overrideFields": []
     }
   }
 ]

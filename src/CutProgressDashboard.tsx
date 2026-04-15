@@ -5,9 +5,10 @@ import {
 } from 'lucide-react';
 
 import rawData from './data.json';
+import syncMetadata from './sync-metadata.json';
 import { MAX_SHIELD, ADHERENCE_LOW, MISSION_STATEMENT } from './config';
 import { applyWaistSwapFix, compute7DayAvg, computeProjectionStats } from './utils/dataProcessing';
-import type { DayEntry, Attributes } from './types';
+import type { DayEntry, Attributes, SyncMetadata } from './types';
 
 import HeatmapCell from './components/HeatmapCell';
 import HeroIdentitySection from './components/HeroIdentitySection';
@@ -24,7 +25,7 @@ import { computeWeeklyDebrief, computeCoachInsights } from './utils/insightEngin
 import DataIntegrityBanner from './components/DataIntegrityBanner';
 import RiskAlertPanel from './components/RiskAlertPanel';
 import IncomingBossAlert from './components/IncomingBossAlert';
-import { computeDataWarnings } from './utils/dataIntegrity';
+import { computeDataIntegrityReport } from './utils/dataIntegrity';
 import { computeRiskAlerts } from './utils/riskEngine';
 import { deriveConsistencyGameState } from './utils/consistencyGame';
 import { computeSessionXP } from './utils/xpDelta';
@@ -127,7 +128,7 @@ export default function CutProgressDashboard() {
   ), [allChartData]);
 
   const gameState = useMemo(() => deriveConsistencyGameState(allChartData), [allChartData]);
-  const dataWarnings = useMemo(() => computeDataWarnings(allChartData), [allChartData]);
+  const dataIntegrity = useMemo(() => computeDataIntegrityReport(allChartData), [allChartData]);
   const riskAlerts = useMemo(() => computeRiskAlerts(allChartData), [allChartData]);
   const weeklyDebrief = useMemo(() => computeWeeklyDebrief(allChartData), [allChartData]);
   const sessionXP = useMemo(() => computeSessionXP(allChartData), [allChartData]);
@@ -135,6 +136,11 @@ export default function CutProgressDashboard() {
 
   // Range-sensitive: use filtered chartData
   const coachInsights = useMemo(() => computeCoachInsights(chartData), [chartData]);
+
+  const syncInfo = syncMetadata as SyncMetadata;
+  const syncTimestamp = Number.isNaN(Date.parse(syncInfo.generatedAt))
+    ? syncInfo.generatedAt
+    : new Date(syncInfo.generatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 
   const NAV_SECTIONS = [
     { id: 'overview',    label: 'Overview'    },
@@ -200,6 +206,9 @@ export default function CutProgressDashboard() {
                   return `Metabolic Audit & Linear Cut Block (${fmt(allChartData[0].date)} – ${fmt(latestData.date)})`;
                 })()}
               </p>
+              <p className="text-[11px] text-ui-muted mt-1">
+                Last Sync: <span className="text-slate-300">{syncTimestamp}</span> | Trigger: <span className="text-slate-300">{syncInfo.trigger}</span> | Last Log: <span className="text-slate-300">{syncInfo.lastLogDate ?? 'n/a'}</span>
+              </p>
             </div>
             <div className="flex flex-col gap-2 items-end mt-2 md:mt-0">
               <div className="ui-control-rail">
@@ -224,9 +233,9 @@ export default function CutProgressDashboard() {
             <p className="text-sm text-slate-300 italic leading-relaxed flex-1">{MISSION_STATEMENT}</p>
             <span className="text-ui-primary text-xl font-bold leading-none self-end mb-0.5 select-none">"</span>
           </div>
-          {dataWarnings.length > 0 && (
+          {(dataIntegrity.warnings.length > 0 || dataIntegrity.badges.some((b) => b.count > 0)) && (
             <div className="mt-4">
-              <DataIntegrityBanner warnings={dataWarnings} />
+              <DataIntegrityBanner report={dataIntegrity} />
             </div>
           )}
         </div>

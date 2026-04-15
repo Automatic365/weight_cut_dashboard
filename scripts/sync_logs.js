@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
+import os from 'os';
+import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import {
   MAX_SHIELD, SHIELD_OVEREAT_THRESHOLD, SHIELD_DAMAGE_DENOMINATOR,
@@ -100,6 +102,12 @@ function parseProteinValue(text, re) {
 }
 
 function parseRawDailyProtein(dayText) {
+  const rawDailySection = parseProteinValue(
+    dayText,
+    /(?:Daily Intake\s*\(RAW\)|Calories & Protein\s*\(Raw\)|Corrected day total|Corrected rough total|Corrected protein)[\s\S]{0,320}?Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
+  );
+  if (rawDailySection != null) return rawDailySection;
+
   const reportedBlock = parseProteinValue(
     dayText,
     /Reported Intake[\s\S]{0,260}?Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
@@ -128,6 +136,14 @@ function parseRawDailyProtein(dayText) {
   return null;
 }
 
+function isProteinHitAsserted(text) {
+  const negative = /\b(protein miss|protein too low|protein shortfall|below target|under target|missed protein)\b/i;
+  if (negative.test(text)) return false;
+
+  const positive = /\b(protein hit|hit protein|strong protein|protein anchor|protein bias maintained|protein front-?loaded|protein[- ]supported|maintain protein)\b/i;
+  return positive.test(text);
+}
+
 function getLevelInfo(totalXp) {
   let safeXp = totalXp;
   if (safeXp < 0) safeXp = 0;
@@ -145,21 +161,72 @@ function getLevelInfo(totalXp) {
   return { level, currentLvlXp: remainingXp, nextLvlXp: xpRequired, totalXp: safeXp };
 }
 
-// Extract the structured "### App Parse Block" section appended by the AI coach.
-// Returns the block text if present, or null. Used as the primary data source —
-// fields found here are authoritative; body-text regex serves as fallback only.
-function extractAppParseBlock(dayText) {
-  // Match "### App Parse Block" (with heading) or plain "App Parse Block" (without).
-  // No 'm' flag: $ = end of string, so non-greedy capture extends to end of day block correctly.
-  const match = dayText.match(/(?:^|\n)(?:#{1,3}\s*)?App Parse Block\s*\n([\s\S]*?)(?=\n#{1,3}\s|\n## \d{4}|$)/i);
-  if (!match) return null;
-  // Normalize compact single-line format where the AI coach writes all fields on one line:
-  //   "Status: Pass Weight: 163.8 Sleep: 5h 02m ..."
-  // Insert a newline before each known field name so parseLabeledValue can find them.
-  return match[1].replace(
-    / (?=(?:Status|Weight|Abdomen|Below|Sleep|Calories|Protein|Daily Adherence Score|Boss Mode|Boss Name|Adherence|\+2")\s*[:("])/gi,
+const APP_PARSE_BLOCK_HEADER_RE = /(?:^|\n)\s*(?:#+\s*)?(?:\*{0,2})?(?:Corrected\s+)?App Parse Block(?:\*{0,2})?\s*\n/gi;
+
+function normalizeAppParseBlock(blockText) {
+  return blockText.replace(
+    / (?=(?:Status|Weight|Abdomen|Below|Sleep|Calories|Protein|Daily Adherence Score|Boss Mode|Boss Name|Boss Outcome|Adherence|\+2")\s*[:("])/gi,
     '\n'
   );
+}
+
+function summarizeAppBlock(blockText) {
+  const read = (re) => {
+    const m = blockText.match(re);
+    return m ? m[1] : null;
+  };
+  return {
+    status: read(/^(?:\*\*)?Status:(?:\*\*)?\s*([^\n]+)/im),
+    calories: read(/^(?:\*\*)?Calories:(?:\*\*)?\s*([0-9,]+)/im),
+    protein: read(/^(?:\*\*)?Protein:(?:\*\*)?\s*([0-9]+)/im),
+    adherence: read(/^(?:\*\*)?(?:Daily Adherence Score|Adherence Score|Daily Adherence):(?:\*\*)?\s*([^\n]+)/im),
+  };
+}
+
+// Extract all App Parse Blocks for a day and select the last one as authoritative.
+function extractAppParseBlocks(dayText) {
+  const headerMatches = [...dayText.matchAll(APP_PARSE_BLOCK_HEADER_RE)];
+  if (headerMatches.length === 0) {
+    return {
+      selectedBlock: null,
+      selectedBlockIndex: null,
+      blocks: [],
+      hasCorrectedBlock: false,
+      hasConflictingBlocks: false,
+      bodyText: dayText,
+    };
+  }
+
+  const blocks = headerMatches.map((match, index) => {
+    const start = match.index + match[0].length;
+    const end = index + 1 < headerMatches.length ? headerMatches[index + 1].index : dayText.length;
+    return {
+      start: match.index,
+      end,
+      text: normalizeAppParseBlock(dayText.slice(start, end)),
+      isCorrected: /Corrected\s+App Parse Block/i.test(match[0]),
+    };
+  });
+
+  // Remove all parse blocks from body text so fallback parsers only see free-text content.
+  let bodyText = dayText;
+  for (let i = blocks.length - 1; i >= 0; i--) {
+    bodyText = bodyText.slice(0, blocks[i].start) + bodyText.slice(blocks[i].end);
+  }
+
+  const signatures = blocks.map((b) => JSON.stringify(summarizeAppBlock(b.text)));
+  const hasConflictingBlocks = new Set(signatures).size > 1;
+  const selectedBlockIndex = blocks.length - 1;
+  const selectedBlock = blocks[selectedBlockIndex].text;
+
+  return {
+    selectedBlock,
+    selectedBlockIndex,
+    blocks,
+    hasCorrectedBlock: blocks.some((b) => b.isCorrected),
+    hasConflictingBlocks,
+    bodyText,
+  };
 }
 
 function extractRawFields(dayText, context = {}) {
@@ -173,13 +240,10 @@ function extractRawFields(dayText, context = {}) {
   const [, , month, day] = dateMatch;
   const date = `${month}/${day}`;
 
-  // Extract the App Parse Block once; used as primary source for quantitative fields
-  const appBlock = extractAppParseBlock(dayText);
-
-  // Body text = dayText with the App Parse Block stripped out.
-  // Used for fallback parsers so they don't accidentally match values inside the App Parse Block.
-  const appBlockStart = dayText.search(/(?:^|\n)(?:#{1,3}\s*)?App Parse Block/i);
-  const bodyText = appBlockStart >= 0 ? dayText.slice(0, appBlockStart) : dayText;
+  // App Parse Block policy: if multiple blocks exist, use the final block as authoritative.
+  const parseBlockInfo = extractAppParseBlocks(dayText);
+  const appBlock = parseBlockInfo.selectedBlock;
+  const bodyText = parseBlockInfo.bodyText;
 
   // Execution text = bodyText with forward-looking sections and table rows stripped.
   // Hoisted here (instead of near boss detection) so tier detection can also use it.
@@ -345,42 +409,29 @@ function extractRawFields(dayText, context = {}) {
     }
   }
 
-  // Protein — prefer RAW daily totals over adjusted/App Parse Block values.
-  // App Parse Block often contains adjusted protein (−20%) for protocol scoring,
-  // while compliance chart should reflect raw daily intake.
+  // Protein source priority:
+  // 1) Strict raw daily totals in body text
+  // 2) Selected (last) App Parse Block
+  // 3) null if ambiguous/unknown (never infer from meal-level lines)
   let protein = null;
+  let proteinSource = 'unknown';
   {
-    protein = parseRawDailyProtein(bodyText);
-
-    if (protein == null) {
-      // Daily total — bold-value format with optional range: "Protein:** ~185–195g" or "Protein:** ~195g"
-      // Must match before the generic fallbacks which can grab per-meal values (e.g. "~50g protein")
-      // Use bodyText (App Parse Block stripped) so we don't match bold-label App Parse Block values.
-      const protBoldMatch = bodyText.match(/Protein:\s*\*\*?\s*~?([0-9]+)(?:[–\-]([0-9]+))?g/i);
-      if (protBoldMatch) {
-        const lo = parseInt(protBoldMatch[1], 10);
-        const hi = protBoldMatch[2] ? parseInt(protBoldMatch[2], 10) : lo;
-        protein = Math.round((lo + hi) / 2);
+    const rawProtein = parseRawDailyProtein(bodyText);
+    if (rawProtein != null) {
+      protein = rawProtein;
+      proteinSource = 'raw_daily_total';
+    } else if (appBlock) {
+      const m = appBlock.match(/^(?:\*\*)?Protein:(?:\*\*)?\s*([0-9]+)g?/m);
+      if (m) {
+        protein = parseInt(m[1], 10);
+        proteinSource = 'app_block';
       }
     }
-    if (protein == null) {
-      // Adjusted total line: "Protein (-20%): **~175g" or "Protein (−20%): **~175g"
-      const protAdjMatch = bodyText.match(/Protein\s*\([^)]*\):\s*\*\*\s*~?([0-9]+)/i);
-      if (protAdjMatch) protein = parseInt(protAdjMatch[1], 10);
-    }
-    if (protein == null) {
-      // Last-resort generic patterns. Try labeled "Protein: ~213g" first (daily total),
-      // then fall back to "~55g protein" (per-meal inline) as absolute last resort.
-      // bodyText has App Parse Block stripped so "Protein: 0g" in App Block won't match.
-      const protMatch = bodyText.match(/Protein:\s*~?([0-9]+)/)
-        || bodyText.match(/~([0-9]+)g protein/);
-      if (protMatch) protein = parseInt(protMatch[1], 10);
-    }
 
-    // Final fallback to App Parse Block only if no reliable raw total was found.
-    if (protein == null && appBlock) {
-      const m = appBlock.match(/^(?:\*\*)?Protein:(?:\*\*)?\s*([0-9]+)g?/m);
-      if (m) protein = parseInt(m[1], 10);
+    const likelyFastDay = tier === 'Tier 3' || calories === 0;
+    if (!likelyFastDay && (protein == null || protein < PROTEIN_FLOOR) && isProteinHitAsserted(bodyText)) {
+      protein = PROTEIN_FLOOR;
+      proteinSource = 'protein_hit_assertion';
     }
   }
 
@@ -514,6 +565,15 @@ function extractRawFields(dayText, context = {}) {
     bossName,
     upcomingBossName,
     pendingBossName,
+    parseVerification: {
+      appParseBlockCount: parseBlockInfo.blocks.length,
+      selectedAppParseBlockIndex: parseBlockInfo.selectedBlockIndex == null ? null : parseBlockInfo.selectedBlockIndex + 1,
+      hasCorrectedAppParseBlock: parseBlockInfo.hasCorrectedBlock,
+      hasConflictingAppParseBlocks: parseBlockInfo.hasConflictingBlocks,
+      proteinSource,
+      hasOverrides: false,
+      overrideFields: [],
+    },
     notes: '',
   };
 }
@@ -531,6 +591,12 @@ function applyOverrides(raw, dayOverride) {
       overrideFields.push(key);
     }
   }
+
+  corrected.parseVerification = {
+    ...corrected.parseVerification,
+    hasOverrides: overrideFields.length > 0,
+    overrideFields,
+  };
 
   return { corrected, overrideFields };
 }
@@ -586,7 +652,7 @@ function computeGameState(corrected, runningState, dayText) {
   }
   if (isWorkoutDay) xp.discipline += XP.DISCIPLINE_WORKOUT;
 
-  if (corrected.protein >= PROTEIN_FLOOR) xp.strength += XP.STRENGTH_PROTEIN;
+  if (corrected.protein != null && corrected.protein >= PROTEIN_FLOOR) xp.strength += XP.STRENGTH_PROTEIN;
   if (isWorkoutDay) xp.strength += XP.STRENGTH_WORKOUT;
 
   if (corrected.isBossFight) {
@@ -629,8 +695,8 @@ function assembleEntry(finalized) {
     waistMinus2: finalized.waistMinus2,
     tier: finalized.tier,
     status: finalized.status,
-    calories: finalized.calories || 0,
-    protein: finalized.protein || 0,
+    calories: finalized.calories ?? 0,
+    protein: finalized.protein,
     sleep: finalized.sleep,
     notes: finalized.notes || '',
     isBossFight: finalized.isBossFight,
@@ -640,6 +706,7 @@ function assembleEntry(finalized) {
     streak: finalized.streak,
     adherenceScore: finalized.adherenceScore,
     attributes: finalized.attributes,
+    parseVerification: finalized.parseVerification,
   };
 }
 
@@ -750,14 +817,17 @@ function fetchUrl(url) {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const LOCAL_PATH = path.resolve(__dirname, '../../Personal AI /combat_nutrition_coach/daily_log.md');
+const LOCAL_PATH = path.join(os.homedir(), 'Repo/Personal AI/combat_nutrition_coach/daily_log.md');
 const OUTPUT_PATH = path.resolve(__dirname, '../src/data.json');
+const SYNC_META_OUTPUT_PATH = path.resolve(__dirname, '../src/sync-metadata.json');
 
 async function main() {
   let content = '';
+  let contentSource = 'local_file';
 
   const REMOTE_URL = process.env.DAILY_LOG_URL;
   if (REMOTE_URL) {
+    contentSource = 'remote_url';
     console.log(`Fetching from remote URL: ${REMOTE_URL}`);
     try {
       content = await fetchUrl(REMOTE_URL);
@@ -782,9 +852,40 @@ async function main() {
     }
 
     const entries = parseLogContent(content, overrides, { printDiagnostics: true });
+    const syncMetadata = {
+      generatedAt: new Date().toISOString(),
+      trigger: process.env.GITHUB_EVENT_NAME || process.env.SYNC_TRIGGER || 'manual',
+      source: contentSource,
+      remoteUrl: REMOTE_URL || null,
+      lastLogDate: entries.length > 0 ? entries[entries.length - 1].date : null,
+      totalDays: entries.length,
+    };
 
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(entries, null, 2));
+    fs.writeFileSync(SYNC_META_OUTPUT_PATH, JSON.stringify(syncMetadata, null, 2));
     console.log(`Successfully wrote ${entries.length} days to ${OUTPUT_PATH}`);
+    console.log(`Sync metadata written to ${SYNC_META_OUTPUT_PATH}`);
+
+    // Copy to any active git worktrees so all dev servers stay in sync
+    try {
+      const repoRoot = path.resolve(__dirname, '..');
+      const wtOutput = execSync('git worktree list --porcelain', { cwd: repoRoot }).toString();
+      const worktreePaths = wtOutput.split('\n\n')
+        .map(block => block.match(/^worktree (.+)/m)?.[1])
+        .filter(Boolean)
+        .filter(p => p !== repoRoot);
+      for (const wtPath of worktreePaths) {
+        const dataDest = path.join(wtPath, 'src/data.json');
+        const metadataDest = path.join(wtPath, 'src/sync-metadata.json');
+        if (fs.existsSync(path.join(wtPath, 'src'))) {
+          fs.copyFileSync(OUTPUT_PATH, dataDest);
+          fs.copyFileSync(SYNC_META_OUTPUT_PATH, metadataDest);
+          console.log(`  → copied to worktree: ${path.basename(wtPath)}`);
+        }
+      }
+    } catch {
+      // not in a git repo or no worktrees — skip silently
+    }
   } catch (e) {
     console.error('Error parsing log:', e);
     process.exit(1);

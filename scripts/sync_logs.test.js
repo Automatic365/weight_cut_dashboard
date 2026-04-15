@@ -116,7 +116,7 @@ Boss Mode: none
 });
 
 describe('sync_logs raw protein extraction', () => {
-  it('uses raw daily total protein, not first meal-level protein value', () => {
+  it('prefers explicit raw daily totals over app block protein values', () => {
     const content = `# Daily Log
 
 ## 2026-03-04 — Wednesday
@@ -154,5 +154,87 @@ Boss Outcome: none
     const entries = parseLogContent(content, {}, { printDiagnostics: false });
     expect(entries).toHaveLength(1);
     expect(entries[0].protein).toBe(209);
+    expect(entries[0].parseVerification?.proteinSource).toBe('raw_daily_total');
+  });
+
+  it('uses the last parse block when multiple blocks exist and flags conflict', () => {
+    const content = `# Daily Log
+
+## 2026-04-13 — Monday
+### App Parse Block
+Status: Pass
+Calories: 1700
+Protein: 200g
+
+### Corrected App Parse Block
+Status: Pass
+Calories: 1840
+Protein: 205g
+`;
+
+    const entries = parseLogContent(content, {}, { printDiagnostics: false });
+    expect(entries).toHaveLength(1);
+    expect(entries[0].calories).toBe(1840);
+    expect(entries[0].protein).toBe(205);
+    expect(entries[0].parseVerification?.appParseBlockCount).toBe(2);
+    expect(entries[0].parseVerification?.selectedAppParseBlockIndex).toBe(2);
+    expect(entries[0].parseVerification?.hasCorrectedAppParseBlock).toBe(true);
+    expect(entries[0].parseVerification?.hasConflictingAppParseBlocks).toBe(true);
+  });
+
+  it('does not infer protein from meal-level lines when daily total is missing', () => {
+    const content = `# Daily Log
+
+## 2026-04-14 — Tuesday
+Meal 1
+Protein: ~48 g
+
+Meal 2
+~52g protein
+
+Calories: 1650
+`;
+
+    const entries = parseLogContent(content, {}, { printDiagnostics: false });
+    expect(entries).toHaveLength(1);
+    expect(entries[0].protein).toBeNull();
+    expect(entries[0].parseVerification?.proteinSource).toBe('unknown');
+  });
+
+  it('prefers raw daily total over app block when both are present', () => {
+    const content = `# Daily Log
+
+## 2026-04-15 — Wednesday
+## Daily Intake (RAW)
+Protein: ~205g
+
+### App Parse Block
+Status: Pass
+Calories: 1800
+Protein: 160g
+`;
+
+    const entries = parseLogContent(content, {}, { printDiagnostics: false });
+    expect(entries).toHaveLength(1);
+    expect(entries[0].protein).toBe(205);
+    expect(entries[0].parseVerification?.proteinSource).toBe('raw_daily_total');
+  });
+
+  it('uses protein-hit assertion floor on non-fast days when parser value is below floor', () => {
+    const content = `# Daily Log
+
+## 2026-04-16 — Thursday
+Protein hit ✅
+
+### App Parse Block
+Status: Pass
+Calories: 2200
+Protein: 140g
+`;
+
+    const entries = parseLogContent(content, {}, { printDiagnostics: false });
+    expect(entries).toHaveLength(1);
+    expect(entries[0].protein).toBe(190);
+    expect(entries[0].parseVerification?.proteinSource).toBe('protein_hit_assertion');
   });
 });

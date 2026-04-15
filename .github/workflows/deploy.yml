@@ -12,10 +12,6 @@ on:
   repository_dispatch:
     types: [update_logs]
 
-  # Optional: Schedule to run automatically every morning at 7am
-  schedule:
-    - cron: '0 12 * * *'
-
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -48,6 +44,7 @@ jobs:
         run: npm run sync
         env:
           DAILY_LOG_URL: 'https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md'
+          SYNC_TRIGGER: ${{ github.event_name }}
           
       - name: Build Vite App
         run: npm run build

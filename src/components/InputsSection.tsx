@@ -11,6 +11,7 @@ import {
 } from '../config';
 import type { ChartDayEntry } from '../types';
 import type { CoachInsights } from '../utils/insightEngine';
+import { computeProteinComplianceStats } from '../utils/proteinCompliance';
 
 interface InputsSectionProps {
   chartData: ChartDayEntry[];
@@ -36,14 +37,10 @@ const InputsSection: React.FC<InputsSectionProps> = ({ chartData, coachInsights 
   }, [chartData]);
 
   // Protein compliance stats
-  const proteinStats = useMemo(() => {
-    const tracked = chartData.filter(d => d.protein != null && d.protein > 0);
-    const met = tracked.filter(d => d.protein! >= PROTEIN_FLOOR).length;
-    return {
-      complianceRate: tracked.length > 0 ? Math.round((met / tracked.length) * 100) : null,
-      trackedDays: tracked.length,
-    };
-  }, [chartData]);
+  const proteinStats = useMemo(
+    () => computeProteinComplianceStats(chartData, PROTEIN_FLOOR),
+    [chartData]
+  );
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -19,15 +19,16 @@ function makeDay(overrides: Partial<ChartDayEntry> = {}): ChartDayEntry {
     notes: '',
     isBossFight: false,
     bossName: null,
+    upcomingBossName: null,
     shield: 10,
     streak: 0,
     adherenceScore: null,
     weightAvg: null,
     attributes: {
-      vitality:   { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
-      discipline: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
-      strength:   { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
-      resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
+      vitality:   { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
+      discipline: { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
+      strength:   { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
+      resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
     },
     ...overrides,
   };
@@ -100,10 +101,10 @@ describe('computeRankXP', () => {
       status: 'Pass',
       streak: 2,
       attributes: {
-        vitality:   { level: 2, currentLvlXp: 0, nextLvlXp: 200 }, // level up!
-        discipline: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
-        strength:   { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
-        resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100 },
+        vitality:   { level: 2, currentLvlXp: 0, nextLvlXp: 200, totalXp: 100 }, // level up!
+        discipline: { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
+        strength:   { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
+        resilience: { level: 1, currentLvlXp: 0, nextLvlXp: 100, totalXp: 0 },
       },
     });
     // 2 pass × 1 = 2, plus 1 level-up × 1 = 1 → total 3

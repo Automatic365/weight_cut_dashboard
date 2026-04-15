@@ -12,20 +12,41 @@ export interface DataWarning {
   message: string;
 }
 
-export function computeDataWarnings(days: ChartDayEntry[]): DataWarning[] {
+export interface IntegrityBadge {
+  id: 'parse_conflicts' | 'override_days' | 'unknown_protein_days';
+  label: string;
+  count: number;
+}
+
+export interface DataIntegrityReport {
+  warnings: DataWarning[];
+  badges: IntegrityBadge[];
+}
+
+function isFastDay(day: ChartDayEntry): boolean {
+  if (WEEKLY_SCHEDULE[getDow(day.date)]?.isFast) return true;
+  if (day.tier === 'Tier 3') return true;
+  return false;
+}
+
+export function computeDataIntegrityReport(days: ChartDayEntry[]): DataIntegrityReport {
   const warnings: DataWarning[] = [];
 
-  const missingProtein = days.filter(d => {
-    if (d.protein != null && d.protein !== 0) return false;
-    if (WEEKLY_SCHEDULE[getDow(d.date)]?.isFast) return false; // exclude scheduled fast days
-    if (d.tier === 'Tier 3') return false; // exclude ad-hoc full fast days
-    return true;
-  }).length;
+  const conflictingParseBlocks = days.filter((d) => d.parseVerification?.hasConflictingAppParseBlocks).length;
+  const overrideDays = days.filter((d) => d.parseVerification?.hasOverrides).length;
+  const missingProtein = days.filter((d) => d.protein == null && !isFastDay(d)).length;
+
+  const badges: IntegrityBadge[] = [
+    { id: 'parse_conflicts', label: 'Parse Conflicts', count: conflictingParseBlocks },
+    { id: 'override_days', label: 'Override Days', count: overrideDays },
+    { id: 'unknown_protein_days', label: 'Unknown Protein', count: missingProtein },
+  ];
+
   if (missingProtein > 0) {
     warnings.push({
       id: 'missing_protein',
       severity: 'info',
-      message: `${missingProtein} day${missingProtein > 1 ? 's' : ''} with no protein logged — Strength XP and compliance rate may be understated.`,
+      message: `${missingProtein} day${missingProtein > 1 ? 's' : ''} with unknown protein on non-fast days — Strength XP and compliance rate may be understated.`,
     });
   }
 
@@ -40,5 +61,5 @@ export function computeDataWarnings(days: ChartDayEntry[]): DataWarning[] {
     });
   }
 
-  return warnings;
+  return { warnings, badges };
 }

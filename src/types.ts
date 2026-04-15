@@ -14,6 +14,26 @@ export interface Attributes {
 
 export type Tier = 'Tier 1' | 'Tier 2' | 'Tier 3' | 'Linear';
 export type Status = 'Pass' | 'Fail';
+export type ProteinSource = 'app_block' | 'raw_daily_total' | 'protein_hit_assertion' | 'unknown';
+
+export interface ParseVerification {
+  appParseBlockCount: number;
+  selectedAppParseBlockIndex: number | null; // 1-based in source day block
+  hasCorrectedAppParseBlock: boolean;
+  hasConflictingAppParseBlocks: boolean;
+  proteinSource: ProteinSource;
+  hasOverrides: boolean;
+  overrideFields: string[];
+}
+
+export interface SyncMetadata {
+  generatedAt: string;
+  trigger: string;
+  source: 'local_file' | 'remote_url';
+  remoteUrl: string | null;
+  lastLogDate: string | null;
+  totalDays: number;
+}
 
 export interface DayEntry {
   date: string;
@@ -24,7 +44,7 @@ export interface DayEntry {
   tier: Tier;
   status: Status;
   calories: number;
-  protein: number;
+  protein: number | null;
   sleep: number | null;
   notes: string;
   isBossFight: boolean;
@@ -34,6 +54,7 @@ export interface DayEntry {
   streak: number;
   adherenceScore: number | null;
   attributes: Attributes;
+  parseVerification?: ParseVerification;
 }
 
 // After compute7DayAvg adds the rolling average field
