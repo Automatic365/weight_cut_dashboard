@@ -1,0 +1,176 @@
+name: Sync Dashboard Data Artifacts
+
+on:
+  repository_dispatch:
+    types: [update_logs]
+  schedule:
+    - cron: '15 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: "sync-data"
+  cancel-in-progress: false
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Markdown Logs to JSON
+        run: npm run sync
+        env:
+          DAILY_LOG_URL: 'https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md'
+          SYNC_TRIGGER: ${{ github.event_name }}
+
+      - name: Validate Sync Artifacts
+        id: validate_sync
+        run: |
+          set -euo pipefail
+          if [[ -f scripts/validate_sync_output.js ]]; then
+            npm run validate:sync
+            exit 0
+          fi
+
+          node - <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('src/data.json', 'utf8'));
+          const metadata = JSON.parse(fs.readFileSync('src/sync-metadata.json', 'utf8'));
+          if (!Array.isArray(data) || data.length === 0) {
+            throw new Error('src/data.json must be a non-empty array');
+          }
+          if (!metadata || typeof metadata !== 'object') {
+            throw new Error('src/sync-metadata.json must be an object');
+          }
+
+          const generatedAt = metadata.generatedAt;
+          const generatedAtDate = new Date(generatedAt);
+          if (!generatedAt || Number.isNaN(generatedAtDate.getTime())) {
+            throw new Error('sync-metadata.generatedAt must be a valid ISO timestamp');
+          }
+
+          const totalDays = metadata.totalDays;
+          if (!Number.isInteger(totalDays) || totalDays !== data.length) {
+            throw new Error(`sync-metadata.totalDays (${totalDays}) must match data length (${data.length})`);
+          }
+
+          const lastLogDate = metadata.lastLogDate ?? 'n/a';
+          const stale = (Date.now() - generatedAtDate.getTime()) > (24 * 60 * 60 * 1000);
+          const output = process.env.GITHUB_OUTPUT;
+          if (output) {
+            fs.appendFileSync(output, `sync_generated_at=${generatedAtDate.toISOString()}\n`);
+            fs.appendFileSync(output, `sync_last_log_date=${lastLogDate}\n`);
+            fs.appendFileSync(output, `sync_total_days=${String(totalDays)}\n`);
+            fs.appendFileSync(output, `sync_is_stale=${String(stale)}\n`);
+          }
+          console.log(`Inline validation passed. totalDays=${totalDays} stale=${stale}`);
+          NODE
+
+      - name: Publish artifacts to data branch
+        run: |
+          set -euo pipefail
+          BRANCH="data"
+          ARTIFACT_DIR="artifacts"
+          WT_DIR="$(mktemp -d)"
+
+          if git ls-remote --exit-code --heads origin "${BRANCH}" >/dev/null; then
+            git worktree add -B "${BRANCH}" "${WT_DIR}" "origin/${BRANCH}"
+          else
+            git worktree add -b "${BRANCH}" "${WT_DIR}"
+          fi
+
+          mkdir -p "${WT_DIR}/${ARTIFACT_DIR}"
+          cp src/data.json "${WT_DIR}/${ARTIFACT_DIR}/data.json"
+          cp src/sync-metadata.json "${WT_DIR}/${ARTIFACT_DIR}/sync-metadata.json"
+
+          cd "${WT_DIR}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${ARTIFACT_DIR}/data.json" "${ARTIFACT_DIR}/sync-metadata.json"
+
+          if git diff --cached --quiet; then
+            echo "No artifact changes to publish."
+          else
+            git commit -m "sync: update dashboard artifacts"
+            git push origin HEAD:${BRANCH}
+          fi
+
+          cd -
+          git worktree remove "${WT_DIR}" --force
+
+      - name: Open or update freshness alert issue
+        if: steps.validate_sync.outputs.sync_is_stale == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const label = 'data-freshness';
+            const title = 'Data freshness alert: sync is stale (>24h)';
+            const body = [
+              'The sync pipeline produced stale data.',
+              '',
+              `- Generated At: ${process.env.SYNC_GENERATED_AT}`,
+              `- Last Log Date: ${process.env.SYNC_LAST_LOG_DATE}`,
+              `- Total Days: ${process.env.SYNC_TOTAL_DAYS}`,
+              `- Workflow Run: ${process.env.GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}`,
+              '',
+              'This alert is non-blocking by design and should be resolved by investigating source log recency or sync failures.',
+            ].join('\n');
+
+            const { data: labels } = await github.rest.issues.listLabelsOnRepo({ owner, repo, per_page: 100 });
+            if (!labels.find((l) => l.name === label)) {
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: label,
+                color: 'd73a4a',
+                description: 'Automated data freshness alert',
+              });
+            }
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'open',
+              labels: label,
+              per_page: 20,
+            });
+
+            const existing = issues.find((issue) => !issue.pull_request && issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: [label],
+              });
+            }
+        env:
+          SYNC_GENERATED_AT: ${{ steps.validate_sync.outputs.sync_generated_at }}
+          SYNC_LAST_LOG_DATE: ${{ steps.validate_sync.outputs.sync_last_log_date }}
+          SYNC_TOTAL_DAYS: ${{ steps.validate_sync.outputs.sync_total_days }}

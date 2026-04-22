@@ -2,13 +2,13 @@
 
 exports[`computeProjectionStats > regression: matches snapshot against real data.json 1`] = `
 {
-  "dateSimulated": "Aug 7, 2026",
-  "dateTarget": "Jun 8, 2026",
-  "historicalRate": "0.48",
-  "lbsRemaining": "8.0",
-  "navelAtGoalDate": "29.25",
-  "navelCurrentRate": "-0.125",
-  "simulatedRate": "0.48",
+  "dateSimulated": "Jul 20, 2026",
+  "dateTarget": "Jun 5, 2026",
+  "historicalRate": "0.53",
+  "lbsRemaining": "7.2",
+  "navelAtGoalDate": "29.83",
+  "navelCurrentRate": "-0.114",
+  "simulatedRate": "0.53",
   "targetRate": "1.00",
 }
 `;

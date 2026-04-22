@@ -4,11 +4,9 @@ import {
   CheckCircle2, Shield, Flame, Trophy
 } from 'lucide-react';
 
-import rawData from './data.json';
-import syncMetadata from './sync-metadata.json';
 import { MAX_SHIELD, ADHERENCE_LOW, MISSION_STATEMENT } from './config';
 import { applyWaistSwapFix, compute7DayAvg, computeProjectionStats } from './utils/dataProcessing';
-import type { DayEntry, Attributes, SyncMetadata } from './types';
+import type { DayEntry, Attributes, DashboardDataSource, SyncMetadata } from './types';
 
 import HeatmapCell from './components/HeatmapCell';
 import HeroIdentitySection from './components/HeroIdentitySection';
@@ -30,6 +28,7 @@ import { computeRiskAlerts } from './utils/riskEngine';
 import { deriveConsistencyGameState } from './utils/consistencyGame';
 import { computeSessionXP } from './utils/xpDelta';
 import { deriveRankState } from './utils/rankSystem';
+import { deriveSyncFreshness } from './utils/syncStatus';
 
 type RangeKey = 'all' | '30d' | '14d' | '7d';
 const RANGE_OPTIONS: { key: RangeKey; label: string }[] = [
@@ -39,7 +38,21 @@ const RANGE_OPTIONS: { key: RangeKey; label: string }[] = [
   { key: 'all', label: 'All'      },
 ];
 
-export default function CutProgressDashboard() {
+interface CutProgressDashboardProps {
+  rawData: DayEntry[];
+  syncMetadata: SyncMetadata;
+  dataSource: DashboardDataSource;
+  dataUrl?: string;
+  errorMessage?: string;
+}
+
+export default function CutProgressDashboard({
+  rawData,
+  syncMetadata,
+  dataSource,
+  dataUrl,
+  errorMessage,
+}: CutProgressDashboardProps) {
   const [fixSwaps, setFixSwaps] = useState(true);
   const [simulatedOneOff, setSimulatedOneOff] = useState(0);
   const [simulatedDaily, setSimulatedDaily] = useState(0);
@@ -137,10 +150,8 @@ export default function CutProgressDashboard() {
   // Range-sensitive: use filtered chartData
   const coachInsights = useMemo(() => computeCoachInsights(chartData), [chartData]);
 
-  const syncInfo = syncMetadata as SyncMetadata;
-  const syncTimestamp = Number.isNaN(Date.parse(syncInfo.generatedAt))
-    ? syncInfo.generatedAt
-    : new Date(syncInfo.generatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  const syncInfo = syncMetadata;
+  const syncFreshness = useMemo(() => deriveSyncFreshness(syncInfo), [syncInfo]);
 
   const NAV_SECTIONS = [
     { id: 'overview',    label: 'Overview'    },
@@ -207,8 +218,20 @@ export default function CutProgressDashboard() {
                 })()}
               </p>
               <p className="text-[11px] text-ui-muted mt-1">
-                Last Sync: <span className="text-slate-300">{syncTimestamp}</span> | Trigger: <span className="text-slate-300">{syncInfo.trigger}</span> | Last Log: <span className="text-slate-300">{syncInfo.lastLogDate ?? 'n/a'}</span>
+                Last Sync: <span className="text-slate-300">{syncFreshness.syncTimestampLabel}</span> | Status: <span className={syncFreshness.statusLabel === 'Stale' ? 'text-amber-300 font-semibold' : syncFreshness.statusLabel === 'Fresh' ? 'text-emerald-300 font-semibold' : 'text-slate-300 font-semibold'}>{syncFreshness.statusLabel}</span> | Trigger: <span className="text-slate-300">{syncInfo.trigger}</span> | Last Log: <span className="text-slate-300">{syncInfo.lastLogDate ?? 'n/a'}</span> | Last Log ISO: <span className="text-slate-300">{syncFreshness.lastLogDateIso ?? 'n/a'}</span> | Data Source: <span className={dataSource === 'live' ? 'text-emerald-300 font-semibold' : dataSource === 'fallback' ? 'text-amber-300 font-semibold' : 'text-red-300 font-semibold'}>{dataSource}</span>
               </p>
+              {dataSource === 'fallback' && (
+                <div className="mt-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[11px] text-amber-200">
+                  Using bundled fallback snapshot because live data could not be loaded.
+                  {dataUrl && <span> Endpoint: <span className="text-amber-100">{dataUrl}</span>.</span>}
+                  {errorMessage && <span> Reason: <span className="text-amber-100">{errorMessage}</span>.</span>}
+                </div>
+              )}
+              {syncFreshness.isStale && (
+                <div className="mt-2 inline-flex items-center rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-[11px] text-amber-200">
+                  Sync freshness warning: data is older than 24 hours (last sync {syncFreshness.syncTimestampLabel}).
+                </div>
+              )}
             </div>
             <div className="flex flex-col gap-2 items-end mt-2 md:mt-0">
               <div className="ui-control-rail">

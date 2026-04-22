@@ -1,0 +1,27 @@
+name: Workflow Guardrails
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/sync-data.yml'
+      - '.github/workflows/workflow-guard.yml'
+      - 'scripts/check_sync_workflow_triggers.sh'
+  push:
+    branches: ["main"]
+    paths:
+      - '.github/workflows/sync-data.yml'
+      - '.github/workflows/workflow-guard.yml'
+      - 'scripts/check_sync_workflow_triggers.sh'
+
+permissions:
+  contents: read
+
+jobs:
+  guard-sync-workflow-triggers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify sync-data workflow triggers
+        run: bash scripts/check_sync_workflow_triggers.sh

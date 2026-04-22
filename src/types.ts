@@ -20,7 +20,7 @@ export interface ParseVerification {
   appParseBlockCount: number;
   selectedAppParseBlockIndex: number | null; // 1-based in source day block
   hasCorrectedAppParseBlock: boolean;
-  hasConflictingAppParseBlocks: boolean;
+  hasConflictingAppParseBlocks: boolean; // unresolved same-day conflicts after parser disambiguation/supersession
   proteinSource: ProteinSource;
   hasOverrides: boolean;
   overrideFields: string[];
@@ -32,7 +32,18 @@ export interface SyncMetadata {
   source: 'local_file' | 'remote_url';
   remoteUrl: string | null;
   lastLogDate: string | null;
+  lastLogDateIso?: string | null;
   totalDays: number;
+}
+
+export type DashboardDataSource = 'live' | 'fallback' | 'error';
+
+export interface DashboardDataLoadResult {
+  dataSource: DashboardDataSource;
+  dataUrl?: string;
+  errorMessage?: string;
+  data: DayEntry[] | null;
+  syncMetadata: SyncMetadata | null;
 }
 
 export interface DayEntry {
