@@ -7,6 +7,8 @@
         "dev": "vite",
         "build": "vite build",
         "sync": "node scripts/sync_logs.js",
+        "validate:sync": "node scripts/validate_sync_output.js",
+        "watch": "node scripts/watch_sync.js",
         "test": "vitest run",
         "typecheck": "tsc",
         "lint": "eslint .",

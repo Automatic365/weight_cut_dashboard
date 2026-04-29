@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-04-15T14:00:14.133Z",
+  "generatedAt": "2026-04-29T14:26:24.198Z",
   "trigger": "manual",
   "source": "local_file",
   "remoteUrl": null,
-  "lastLogDate": "04/13",
-  "totalDays": 80
+  "lastLogDate": "04/28",
+  "lastLogDateIso": "2026-04-28",
+  "totalDays": 92
 }

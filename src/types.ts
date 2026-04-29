@@ -22,6 +22,7 @@ export interface ParseVerification {
   hasCorrectedAppParseBlock: boolean;
   hasConflictingAppParseBlocks: boolean; // unresolved same-day conflicts after parser disambiguation/supersession
   proteinSource: ProteinSource;
+  isFastDay: boolean;
   hasOverrides: boolean;
   overrideFields: string[];
 }
@@ -53,6 +54,7 @@ export interface DayEntry {
   waistPlus2: number | null;
   waistMinus2: number | null;
   tier: Tier;
+  isFast: boolean;
   status: Status;
   calories: number;
   protein: number | null;

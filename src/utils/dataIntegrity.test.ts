@@ -10,6 +10,7 @@ function makeDay(overrides: Partial<ChartDayEntry> = {}): ChartDayEntry {
     waistPlus2: null,
     waistMinus2: null,
     tier: 'Linear',
+    isFast: false,
     status: 'Pass',
     calories: 1700,
     protein: 190,
@@ -34,6 +35,7 @@ function makeDay(overrides: Partial<ChartDayEntry> = {}): ChartDayEntry {
       hasCorrectedAppParseBlock: false,
       hasConflictingAppParseBlocks: false,
       proteinSource: 'app_block',
+      isFastDay: false,
       hasOverrides: false,
       overrideFields: [],
     },
@@ -57,10 +59,21 @@ describe('computeDataIntegrityReport', () => {
 
   it('does not count null protein on fast days as unknown', () => {
     const report = computeDataIntegrityReport([
-      makeDay({ date: '04/12', tier: 'Tier 3', protein: null }),
+      makeDay({ date: '04/12', tier: 'Tier 3', isFast: true, protein: null }),
     ]);
 
     const unknown = report.badges.find((b) => b.id === 'unknown_protein_days');
     expect(unknown?.count).toBe(0);
+  });
+
+  it('flags zero protein on non-fast days separately from unknown protein', () => {
+    const report = computeDataIntegrityReport([
+      makeDay({ protein: 0, calories: 1700, isFast: false }),
+      makeDay({ protein: 0, calories: 0, isFast: true }),
+    ]);
+
+    const zeroNonFast = report.badges.find((b) => b.id === 'zero_protein_nonfast_days');
+    expect(zeroNonFast?.count).toBe(1);
+    expect(report.warnings.some((w) => w.id === 'zero_protein_nonfast')).toBe(true);
   });
 });

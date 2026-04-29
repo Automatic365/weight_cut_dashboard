@@ -9,6 +9,7 @@ const validData = [
     waistPlus2: 30.5,
     waistMinus2: 31.0,
     tier: 'Linear',
+    isFast: false,
     status: 'Pass',
     calories: 1950,
     protein: 185,

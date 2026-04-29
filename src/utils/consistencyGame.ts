@@ -95,8 +95,8 @@ export function deriveConsistencyGameState(
   const todayDow = todayDate.getDay(); // 0=Sun … 6=Sat
   const baseSchedule = WEEKLY_SCHEDULE[todayDow];
   // Some days (e.g. Wednesday) can be either PSMF or a full fast depending on the week.
-  // If the latest log entry says Tier 3, treat today as a fast regardless of the schedule.
-  const todaySchedule = latest.tier === 'Tier 3'
+  // If the latest log entry confirms a fast, treat today as a fast regardless of the schedule.
+  const todaySchedule = latest.isFast || latest.parseVerification?.isFastDay
     ? { ...baseSchedule, isFast: true, nutritionLabel: 'Fast', calorieRange: null, proteinMin: null, proteinMax: null }
     : baseSchedule;
 

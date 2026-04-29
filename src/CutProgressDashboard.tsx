@@ -347,6 +347,7 @@ export default function CutProgressDashboard({
               radarData={radarData}
               radarMax={radarMax}
               tier={latestData.tier}
+              isFast={latestData.isFast}
               rankState={rankState}
             />
           </div>
@@ -409,7 +410,7 @@ export default function CutProgressDashboard({
               <span className="text-sm font-semibold">Block Status</span>
               <span className="ui-stat-icon"><Activity size={16} /></span>
             </div>
-            <div className="text-xl font-bold text-ui-primary">{latestData.tier === 'Linear' ? 'Linear Cut' : latestData.tier}</div>
+            <div className="text-xl font-bold text-ui-primary">{latestData.isFast ? 'Fast' : latestData.tier === 'Linear' ? 'Linear Cut' : latestData.tier}</div>
             <div className="text-xs text-ui-muted font-medium mt-2">Target: 1550-1650 kcal</div>
           </div>
         </div>

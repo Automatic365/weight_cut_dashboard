@@ -7,8 +7,29 @@ import { fileURLToPath } from 'url';
 import {
   MAX_SHIELD, SHIELD_OVEREAT_THRESHOLD, SHIELD_DAMAGE_DENOMINATOR,
   SLEEP_GOAL, SLEEP_POOR_PENALTY_THRESHOLD, ADHERENCE_HIGH, ADHERENCE_LOW,
-  PROTEIN_FLOOR, XP,
+  PROTEIN_FLOOR, XP, DATA_YEAR,
 } from '../src/config.js';
+
+function toIsoDateFromMonthDay(monthDay, year = DATA_YEAR) {
+  if (!monthDay) return null;
+  const match = monthDay.match(/^(\d{1,2})\/(\d{1,2})$/);
+  if (!match) return null;
+
+  const month = parseInt(match[1], 10);
+  const day = parseInt(match[2], 10);
+  if (Number.isNaN(month) || Number.isNaN(day)) return null;
+
+  const candidate = new Date(Date.UTC(year, month - 1, day));
+  if (
+    candidate.getUTCFullYear() !== year
+    || candidate.getUTCMonth() !== month - 1
+    || candidate.getUTCDate() !== day
+  ) {
+    return null;
+  }
+
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -51,7 +72,7 @@ function buildExecutionText(dayText) {
   const futureSectionHeading = /(forward plan|reality plan|tomorrow|next expected input|next day note|what to expect tomorrow|tomorrow plan|tomorrow priority|tomorrow directive|tomorrow preview|forecast|preview)/i;
   const explicitPlanningLine = /\b(upcoming|forward plan|reality plan|forecast|preview|tomorrow)\b/i;
   // "Tomorrow — Thursday" style standalone section headers (not ### headings)
-  const tomorrowSectionHeader = /^Tomorrow\s*[—\-]\s*\w/i;
+  const tomorrowSectionHeader = /^(?:.*\b)?Tomorrow(?:'s)?\s*(?:[—\-:]\s*\w|Battle Plan|Plan|Rules|Tier)/i;
   const lines = dayText.split('\n');
   const keptLines = [];
   let inFutureSection = false;
@@ -101,7 +122,66 @@ function parseProteinValue(text, re) {
   return Math.round((lo + hi) / 2);
 }
 
+function parseCalorieValue(text, re) {
+  const m = text.match(re);
+  if (!m) return null;
+  const lo = parseInt(m[1].replace(/,/g, ''), 10);
+  const hi = m[2] ? parseInt(m[2].replace(/,/g, ''), 10) : lo;
+  if (Number.isNaN(lo) || Number.isNaN(hi)) return null;
+  return hi;
+}
+
+function extractUnadjustedTotalsWindow(dayText) {
+  const header = dayText.match(
+    /(?:^|\n)\s*(?:#+\s*)?(?:\*\*)?(?:Unadjusted(?:\s+Totals?)?|Raw Intake(?:\s*\(true\))?)(?:\*\*)?[^\n]*\n/i
+  );
+  if (!header || typeof header.index !== 'number') return null;
+  const start = header.index + header[0].length;
+  return dayText.slice(start, start + 340);
+}
+
+function parseUnadjustedDailyProtein(dayText) {
+  const section = extractUnadjustedTotalsWindow(dayText);
+  if (!section) return null;
+
+  const labeled = parseProteinValue(
+    section,
+    /Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
+  );
+  if (labeled != null) return labeled;
+
+  const inline = parseProteinValue(
+    section,
+    /~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g\s*protein\b/i
+  );
+  if (inline != null) return inline;
+
+  return null;
+}
+
+function parseUnadjustedDailyCalories(dayText) {
+  const section = extractUnadjustedTotalsWindow(dayText);
+  if (!section) return null;
+
+  const labeled = parseCalorieValue(
+    section,
+    /Calories:\s*\*{0,2}\s*~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?/i
+  );
+  if (labeled != null) return labeled;
+
+  const inline = parseCalorieValue(
+    section,
+    /~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?\s*kcal\b/i
+  );
+  if (inline != null) return inline;
+
+  return null;
+}
+
 function parseRawDailyProtein(dayText) {
+  const unadjustedProtein = parseUnadjustedDailyProtein(dayText);
+  if (unadjustedProtein != null) return unadjustedProtein;
+
   const rawDailySection = parseProteinValue(
     dayText,
     /(?:Daily Intake\s*\(RAW\)|Calories & Protein\s*\(Raw\)|Corrected day total|Corrected rough total|Corrected protein)[\s\S]{0,320}?Protein:\s*\*{0,2}\s*~?([0-9]+)(?:\s*[–\-]\s*([0-9]+))?\s*g/i
@@ -136,6 +216,25 @@ function parseRawDailyProtein(dayText) {
   return null;
 }
 
+function parseRawDailyCalories(dayText) {
+  const unadjustedCalories = parseUnadjustedDailyCalories(dayText);
+  if (unadjustedCalories != null) return unadjustedCalories;
+
+  const rawDailySection = parseCalorieValue(
+    dayText,
+    /(?:Daily Intake\s*\(RAW\)|Calories & Protein\s*\(Raw\)|Corrected day total|Corrected rough total|Reported Intake|Logged intake|Daily Intake Totals|Totals?)[\s\S]{0,320}?Calories:\s*\*{0,2}\s*~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?/i
+  );
+  if (rawDailySection != null) return rawDailySection;
+
+  const inlineRaw = parseCalorieValue(
+    dayText,
+    /(?:Daily Intake\s*\(RAW\)|Reported Intake|Logged intake|Daily Intake Totals|Totals?)[\s\S]{0,220}?~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?\s*kcal\b/i
+  );
+  if (inlineRaw != null) return inlineRaw;
+
+  return null;
+}
+
 function isProteinHitAsserted(text) {
   const negative = /\b(protein miss|protein too low|protein shortfall|below target|under target|missed protein)\b/i;
   if (negative.test(text)) return false;
@@ -165,9 +264,37 @@ const APP_PARSE_BLOCK_HEADER_RE = /(?:^|\n)\s*(?:#+\s*)?(?:\*{0,2})?(?:Corrected
 
 function normalizeAppParseBlock(blockText) {
   return blockText.replace(
-    / (?=(?:Status|Weight|Abdomen|Below|Sleep|Calories|Protein|Daily Adherence Score|Boss Mode|Boss Name|Boss Outcome|Adherence|\+2")\s*[:("])/gi,
+    / (?=(?:Status|Weight|Abdomen|Below|Sleep|Calories|Protein|Fast|Fasting|Is Fast|Daily Adherence Score|Boss Mode|Boss Name|Boss Outcome|Adherence|\+2")\s*[:("])/gi,
     '\n'
   );
+}
+
+function readBlockLine(blockText, label) {
+  if (!blockText) return null;
+  const escapedLabel = escapeRegExp(label);
+  const match = blockText.match(new RegExp(`^(?:[-*]\\s*)?(?:\\*\\*)?${escapedLabel}(?:\\*\\*)?:\\s*(?:\\*\\*)?\\s*([^\\n]+)`, 'im'));
+  return match ? match[1].replace(/\*\*/g, '').trim() : null;
+}
+
+function parseBooleanLike(value) {
+  if (value == null) return null;
+  const cleaned = value.replace(/\*\*/g, '').trim();
+  if (/^(true|yes|y|fast|fasted|full fast|clean fast|completed|complete)$/i.test(cleaned)) return true;
+  if (/^(false|no|n|none|not fast|not fasting)$/i.test(cleaned)) return false;
+  return null;
+}
+
+function parseExplicitFastFlag(appBlock) {
+  if (!appBlock) return null;
+  for (const label of ['Is Fast', 'Fasting', 'Fast']) {
+    const parsed = parseBooleanLike(readBlockLine(appBlock, label));
+    if (parsed != null) return parsed;
+  }
+  return null;
+}
+
+function hasFullFastLanguage(text) {
+  return /\b(full\s+fast|clean\s+fast|fast(?:ing)?\s+(?:completed|complete|confirmed|day|status)|24-?hour\s+fast|0\s*kcal\b[\s\S]{0,120}\bfast)\b/i.test(text);
 }
 
 function summarizeAppBlock(blockText) {
@@ -176,15 +303,74 @@ function summarizeAppBlock(blockText) {
     return m ? m[1] : null;
   };
   return {
-    status: read(/^(?:\*\*)?Status:(?:\*\*)?\s*([^\n]+)/im),
-    calories: read(/^(?:\*\*)?Calories:(?:\*\*)?\s*([0-9,]+)/im),
-    protein: read(/^(?:\*\*)?Protein:(?:\*\*)?\s*([0-9]+)/im),
-    adherence: read(/^(?:\*\*)?(?:Daily Adherence Score|Adherence Score|Daily Adherence):(?:\*\*)?\s*([^\n]+)/im),
+    status: read(/^(?:[-*]\s*)?(?:\*\*)?Status(?:\*\*)?:\s*(?:\*\*)?\s*([^\n]+)/im),
+    calories: read(/^(?:[-*]\s*)?(?:\*\*)?Calories(?:\*\*)?:\s*(?:\*\*)?\s*([0-9,]+)/im),
+    protein: read(/^(?:[-*]\s*)?(?:\*\*)?Protein(?:\*\*)?:\s*(?:\*\*)?\s*([0-9]+)/im),
+    adherence: read(/^(?:[-*]\s*)?(?:\*\*)?(?:Daily Adherence Score|Adherence Score|Daily Adherence)(?:\*\*)?:\s*(?:\*\*)?\s*([^\n]+)/im),
   };
 }
 
-// Extract all App Parse Blocks for a day and select the last one as authoritative.
-function extractAppParseBlocks(dayText) {
+const MONTH_INDEX = {
+  january: 0,
+  february: 1,
+  march: 2,
+  april: 3,
+  may: 4,
+  june: 5,
+  july: 6,
+  august: 7,
+  september: 8,
+  october: 9,
+  november: 10,
+  december: 11,
+};
+
+function toIsoFromParts(year, monthIndex, day) {
+  const yearNum = Number(year);
+  const monthNum = Number(monthIndex);
+  const dayNum = Number(day);
+  const date = new Date(Date.UTC(yearNum, monthNum, dayNum));
+  if (
+    Number.isNaN(date.getTime())
+    || date.getUTCFullYear() !== yearNum
+    || date.getUTCMonth() !== monthNum
+    || date.getUTCDate() !== dayNum
+  ) {
+    return null;
+  }
+  return `${String(yearNum).padStart(4, '0')}-${String(monthNum + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+}
+
+function parseIsoDateFromText(text) {
+  const isoMatch = text.match(/\b(\d{4})-(\d{2})-(\d{2})\b/);
+  if (!isoMatch) return null;
+  return toIsoFromParts(isoMatch[1], Number(isoMatch[2]) - 1, isoMatch[3]);
+}
+
+function parseMonthNameDateFromText(text) {
+  const monthMatch = text.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),\s*(\d{4})\b/i);
+  if (!monthMatch) return null;
+  const monthIndex = MONTH_INDEX[monthMatch[1].toLowerCase()];
+  if (monthIndex == null) return null;
+  return toIsoFromParts(monthMatch[3], monthIndex, monthMatch[2]);
+}
+
+function extractBlockReferencedIsoDate(blockText) {
+  const lines = blockText.split('\n');
+  for (const line of lines) {
+    if (!/\b(date|today|confirmed)\b/i.test(line)) continue;
+    const iso = parseIsoDateFromText(line) || parseMonthNameDateFromText(line);
+    if (iso) return iso;
+  }
+
+  const fallbackIso = parseIsoDateFromText(blockText);
+  if (fallbackIso) return fallbackIso;
+
+  return null;
+}
+
+// Extract all App Parse Blocks for a day and select the most-relevant one as authoritative.
+function extractAppParseBlocks(dayText, entryDateIso = null) {
   const headerMatches = [...dayText.matchAll(APP_PARSE_BLOCK_HEADER_RE)];
   if (headerMatches.length === 0) {
     return {
@@ -200,11 +386,14 @@ function extractAppParseBlocks(dayText) {
   const blocks = headerMatches.map((match, index) => {
     const start = match.index + match[0].length;
     const end = index + 1 < headerMatches.length ? headerMatches[index + 1].index : dayText.length;
+    const normalizedText = normalizeAppParseBlock(dayText.slice(start, end));
     return {
+      originalIndex: index,
       start: match.index,
       end,
-      text: normalizeAppParseBlock(dayText.slice(start, end)),
+      text: normalizedText,
       isCorrected: /Corrected\s+App Parse Block/i.test(match[0]),
+      explicitDateIso: extractBlockReferencedIsoDate(normalizedText),
     };
   });
 
@@ -214,16 +403,27 @@ function extractAppParseBlocks(dayText) {
     bodyText = bodyText.slice(0, blocks[i].start) + bodyText.slice(blocks[i].end);
   }
 
-  const signatures = blocks.map((b) => JSON.stringify(summarizeAppBlock(b.text)));
-  const hasConflictingBlocks = new Set(signatures).size > 1;
-  const selectedBlockIndex = blocks.length - 1;
-  const selectedBlock = blocks[selectedBlockIndex].text;
+  const sameDayBlocks = entryDateIso
+    ? blocks.filter((b) => b.explicitDateIso == null || b.explicitDateIso === entryDateIso)
+    : blocks;
+  const eligibleBlocks = sameDayBlocks.length > 0 ? sameDayBlocks : blocks;
+  const correctedEligibleBlocks = eligibleBlocks.filter((b) => b.isCorrected);
+  const selectedPool = correctedEligibleBlocks.length > 0 ? correctedEligibleBlocks : eligibleBlocks;
+  const selectedBlockMeta = selectedPool[selectedPool.length - 1] ?? null;
+  const selectedBlock = selectedBlockMeta ? selectedBlockMeta.text : null;
+  const selectedBlockIndex = selectedBlockMeta ? selectedBlockMeta.originalIndex : null;
+
+  // Conflicts only represent unresolved disagreement among blocks that are still in play
+  // after date disambiguation and corrected-block supersession.
+  const conflictPool = correctedEligibleBlocks.length > 0 ? correctedEligibleBlocks : eligibleBlocks;
+  const signatures = conflictPool.map((b) => JSON.stringify(summarizeAppBlock(b.text)));
+  const hasConflictingBlocks = signatures.length > 1 && new Set(signatures).size > 1;
 
   return {
     selectedBlock,
     selectedBlockIndex,
     blocks,
-    hasCorrectedBlock: blocks.some((b) => b.isCorrected),
+    hasCorrectedBlock: correctedEligibleBlocks.length > 0,
     hasConflictingBlocks,
     bodyText,
   };
@@ -237,11 +437,13 @@ function extractRawFields(dayText, context = {}) {
 
   const dateMatch = headerLine.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (!dateMatch) return null;
-  const [, , month, day] = dateMatch;
+  const [ , year, month, day ] = dateMatch;
   const date = `${month}/${day}`;
+  const entryDateIso = `${year}-${month}-${day}`;
 
-  // App Parse Block policy: if multiple blocks exist, use the final block as authoritative.
-  const parseBlockInfo = extractAppParseBlocks(dayText);
+  // App Parse Block policy: filter cross-day contamination first, then prefer corrected blocks,
+  // then use the latest eligible block.
+  const parseBlockInfo = extractAppParseBlocks(dayText, entryDateIso);
   const appBlock = parseBlockInfo.selectedBlock;
   const bodyText = parseBlockInfo.bodyText;
 
@@ -264,14 +466,17 @@ function extractRawFields(dayText, context = {}) {
   // own "Tier:" label doesn't interfere, and use executionText (forward-sections stripped)
   // so "Tomorrow Tier + Rules: Tier 3 — Sunday Fast" doesn't pollute today's tier.
   let tier = 'Tier 2';
-  if (executionText.includes('Linear')) tier = 'Linear';
+  const explicitFastFlag = parseExplicitFastFlag(appBlock);
+  const explicitFullFast = explicitFastFlag === true || hasFullFastLanguage(executionText);
+  if (explicitFullFast) tier = 'Tier 3';
+  else if (executionText.includes('Linear')) tier = 'Linear';
   else if (executionText.includes('Tier 1')) tier = 'Tier 1';
   else if (executionText.includes('Tier 3')) tier = 'Tier 3';
 
   // Weight — App Parse Block: "Weight: 163.0"
   let weight = null;
   if (appBlock) {
-    const m = appBlock.match(/^Weight:\s*([0-9.]+)/m);
+    const m = appBlock.match(/^(?:\*\*)?Weight(?:\*\*)?:\s*(?:\*\*)?\s*([0-9.]+)/m);
     if (m) weight = parseFloat(m[1]);
   }
   if (weight == null) {
@@ -289,7 +494,7 @@ function extractRawFields(dayText, context = {}) {
   // Waist Navel — App Parse Block: "Abdomen (navel): 31.44"
   let waistNavel = null;
   if (appBlock) {
-    const m = appBlock.match(/^Abdomen \(navel\):\s*([0-9.]+)/m);
+    const m = appBlock.match(/^(?:\*\*)?Abdomen \(navel\)(?:\*\*)?:\s*(?:\*\*)?\s*([0-9.]+)/m);
     if (m) waistNavel = parseFloat(m[1]);
   }
   if (waistNavel == null) {
@@ -310,7 +515,7 @@ function extractRawFields(dayText, context = {}) {
   // Waist +2" — App Parse Block: '+2": 30.47'
   let waistPlus2 = null;
   if (appBlock) {
-    const m = appBlock.match(/^\+2["\u2033\u2032]?:\s*([0-9.]+)/m);
+    const m = appBlock.match(/^(?:\*\*)?\+2["\u2033\u2032]?(?:\*\*)?:\s*(?:\*\*)?\s*([0-9.]+)/m);
     if (m) waistPlus2 = parseFloat(m[1]);
   }
   if (waistPlus2 == null) {
@@ -330,7 +535,7 @@ function extractRawFields(dayText, context = {}) {
   // Waist -2" — App Parse Block: "Below: 31.89"
   let waistMinus2 = null;
   if (appBlock) {
-    const m = appBlock.match(/^Below:\s*([0-9.]+)/m);
+    const m = appBlock.match(/^(?:\*\*)?Below(?:\*\*)?:\s*(?:\*\*)?\s*([0-9.]+)/m);
     if (m) waistMinus2 = parseFloat(m[1]);
   }
   if (waistMinus2 == null) {
@@ -354,7 +559,7 @@ function extractRawFields(dayText, context = {}) {
   // Use toFixed(2) not toFixed(1): "7h 03m" = 7.049999... in float, toFixed(1) rounds to "7.0"
   let sleep = null;
   if (appBlock) {
-    const m = appBlock.match(/^Sleep:\s*([0-9]+)h\s*([0-9]+)m/m);
+    const m = appBlock.match(/^(?:\*\*)?Sleep(?:\*\*)?:\s*(?:\*\*)?\s*([0-9]+)h\s*([0-9]+)m/m);
     if (m) {
       sleep = Number(m[1]) + (Number(m[2]) / 60);
       sleep = parseFloat(sleep.toFixed(2));
@@ -387,22 +592,25 @@ function extractRawFields(dayText, context = {}) {
   let calories = null;
   {
     if (appBlock) {
-      const m = appBlock.match(/^(?:\*\*)?Calories:(?:\*\*)?\s*([0-9,]+)/m);
+      const m = appBlock.match(/^(?:\*\*)?Calories(?:\*\*)?:\s*(?:\*\*)?\s*([0-9,]+)/m);
       if (m) calories = parseInt(m[1].replace(/,/g, ''), 10);
     }
     if (calories == null) {
-      const adjustedMatch = dayText.match(/Adjusted.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)\s*effective/i)
-        || dayText.match(/Adjusted.*?:.*?[~+]*[0-9,]+(?:–|-)([0-9,]+)/i);
-      const rangeMatch = dayText.match(/(?:Calories|Total|Midpoint log estimate|Realistic range).*?(?:~|\b)[0-9,]+(?:–|-)([0-9,]+)/i);
-      const calMatch = dayText.match(/evaluated:\s*~?([0-9,]+)/)
-        || dayText.match(/Total:\s*~?([0-9,]+)/)
-        || dayText.match(/~([0-9,]+)\s*kcal/)
-        || dayText.match(/Calories:\s*~?([0-9,]+)/);
+      const rawCalories = parseRawDailyCalories(bodyText);
+      if (rawCalories != null) calories = rawCalories;
+    }
+    if (calories == null) {
+      const adjustedMatch = bodyText.match(/Adjusted.*?[~+]*([0-9,]+)(?:–|-)([0-9,]+)\s*effective/i)
+        || bodyText.match(/Adjusted.*?:.*?[~+]*([0-9,]+)(?:–|-)([0-9,]+)/i);
+      const rangeMatch = bodyText.match(/(?:Calories|Total|Midpoint log estimate|Realistic range|Actual Intake).*?(?:~|\b)([0-9,]+)(?:–|-)([0-9,]+)/i);
+      const calMatch = bodyText.match(/evaluated:\s*~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?/i)
+        || bodyText.match(/(?:^|\n)\s*(?:[-*]\s*)?(?:\*\*)?Total(?:\s+Intake)?(?:\*\*)?:\s*~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?/im)
+        || bodyText.match(/(?:^|\n)\s*(?:[-*]\s*)?(?:\*\*)?Calories(?:\*\*)?:\s*~?([0-9,]+)(?:\s*[–\-]\s*([0-9,]+))?/im);
 
       if (adjustedMatch) {
-        calories = parseInt(adjustedMatch[1].replace(/,/g, ''), 10);
+        calories = parseInt(adjustedMatch[2].replace(/,/g, ''), 10);
       } else if (rangeMatch) {
-        calories = parseInt(rangeMatch[1].replace(/,/g, ''), 10);
+        calories = parseInt(rangeMatch[2].replace(/,/g, ''), 10);
       } else if (calMatch) {
         calories = parseInt(calMatch[1].replace(/,/g, ''), 10);
       }
@@ -421,19 +629,26 @@ function extractRawFields(dayText, context = {}) {
       protein = rawProtein;
       proteinSource = 'raw_daily_total';
     } else if (appBlock) {
-      const m = appBlock.match(/^(?:\*\*)?Protein:(?:\*\*)?\s*([0-9]+)g?/m);
+      const m = appBlock.match(/^(?:\*\*)?Protein(?:\*\*)?:\s*(?:\*\*)?\s*([0-9]+)g?/m);
       if (m) {
         protein = parseInt(m[1], 10);
         proteinSource = 'app_block';
       }
     }
 
-    const likelyFastDay = tier === 'Tier 3' || calories === 0;
+    const likelyFastDay = explicitFullFast || (calories === 0 && hasFullFastLanguage(executionText));
     if (!likelyFastDay && (protein == null || protein < PROTEIN_FLOOR) && isProteinHitAsserted(bodyText)) {
       protein = PROTEIN_FLOOR;
       proteinSource = 'protein_hit_assertion';
     }
   }
+
+  const zeroIntakeFast = calories === 0 && protein === 0 && (tier === 'Tier 3' || hasFullFastLanguage(executionText));
+  const isFastDay = explicitFastFlag === false
+    ? false
+    : explicitFastFlag === true
+      ? true
+      : zeroIntakeFast;
 
   let adherenceScore = null;
   const adherenceScore010 = parseLabeledValue(dayText, 'Adherence Score \\(0-10\\)');
@@ -556,6 +771,7 @@ function extractRawFields(dayText, context = {}) {
     waistPlus2,
     waistMinus2,
     tier,
+    isFast: isFastDay,
     status,
     calories,
     protein,
@@ -571,6 +787,7 @@ function extractRawFields(dayText, context = {}) {
       hasCorrectedAppParseBlock: parseBlockInfo.hasCorrectedBlock,
       hasConflictingAppParseBlocks: parseBlockInfo.hasConflictingBlocks,
       proteinSource,
+      isFastDay,
       hasOverrides: false,
       overrideFields: [],
     },
@@ -584,7 +801,7 @@ function applyOverrides(raw, dayOverride) {
 
   if (!dayOverride) return { corrected, overrideFields };
 
-  const overrideKeys = ['sleep', 'protein', 'weight', 'waistNavel', 'waistPlus2', 'waistMinus2', 'calories'];
+  const overrideKeys = ['sleep', 'protein', 'weight', 'waistNavel', 'waistPlus2', 'waistMinus2', 'calories', 'isFast', 'tier'];
   for (const key of overrideKeys) {
     if (dayOverride[key] != null) {
       corrected[key] = dayOverride[key];
@@ -594,6 +811,7 @@ function applyOverrides(raw, dayOverride) {
 
   corrected.parseVerification = {
     ...corrected.parseVerification,
+    isFastDay: corrected.isFast,
     hasOverrides: overrideFields.length > 0,
     overrideFields,
   };
@@ -694,6 +912,7 @@ function assembleEntry(finalized) {
     waistPlus2: finalized.waistPlus2,
     waistMinus2: finalized.waistMinus2,
     tier: finalized.tier,
+    isFast: finalized.isFast,
     status: finalized.status,
     calories: finalized.calories ?? 0,
     protein: finalized.protein,
@@ -817,9 +1036,18 @@ function fetchUrl(url) {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const LOCAL_PATH = path.join(os.homedir(), 'Repo/Personal AI/combat_nutrition_coach/daily_log.md');
+const DEFAULT_LOCAL_PATH = path.join(os.homedir(), 'Repo/Personal AI/combat_nutrition_coach/daily_log.md');
 const OUTPUT_PATH = path.resolve(__dirname, '../src/data.json');
 const SYNC_META_OUTPUT_PATH = path.resolve(__dirname, '../src/sync-metadata.json');
+
+function resolveLocalLogPath() {
+  const configuredPath = process.env.DAILY_LOG_PATH || process.env.SYNC_LOG_PATH;
+  if (!configuredPath) return DEFAULT_LOCAL_PATH;
+  if (configuredPath.startsWith('~/')) {
+    return path.join(os.homedir(), configuredPath.slice(2));
+  }
+  return path.resolve(configuredPath);
+}
 
 async function main() {
   let content = '';
@@ -835,12 +1063,14 @@ async function main() {
       console.error(e.message);
       process.exit(1);
     }
-  } else if (fs.existsSync(LOCAL_PATH)) {
-    console.log(`Reading from local path: ${LOCAL_PATH}`);
-    content = fs.readFileSync(LOCAL_PATH, 'utf-8');
   } else {
-    console.error(`ERROR: No DAILY_LOG_URL provided and local file ${LOCAL_PATH} not found.`);
-    process.exit(1);
+    const localPath = resolveLocalLogPath();
+    if (!fs.existsSync(localPath)) {
+      console.error(`ERROR: No DAILY_LOG_URL provided and local file ${localPath} not found.`);
+      process.exit(1);
+    }
+    console.log(`Reading from local path: ${localPath}`);
+    content = fs.readFileSync(localPath, 'utf-8');
   }
 
   try {
@@ -852,12 +1082,14 @@ async function main() {
     }
 
     const entries = parseLogContent(content, overrides, { printDiagnostics: true });
+    const lastLogDate = entries.length > 0 ? entries[entries.length - 1].date : null;
     const syncMetadata = {
       generatedAt: new Date().toISOString(),
       trigger: process.env.GITHUB_EVENT_NAME || process.env.SYNC_TRIGGER || 'manual',
       source: contentSource,
       remoteUrl: REMOTE_URL || null,
-      lastLogDate: entries.length > 0 ? entries[entries.length - 1].date : null,
+      lastLogDate,
+      lastLogDateIso: toIsoDateFromMonthDay(lastLogDate),
       totalDays: entries.length,
     };
 

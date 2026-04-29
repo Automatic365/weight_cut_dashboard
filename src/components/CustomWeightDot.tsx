@@ -18,7 +18,7 @@ const CustomWeightDot: React.FC<CustomWeightDotProps> = ({ cx, cy, payload }) =>
     fill = "#f0a93e"; // Accent for slips
   } else if (payload?.tier === 'Tier 1') {
     fill = "#e56b6f"; // Danger for Hard Muay Thai
-  } else if (payload?.tier === 'Tier 3') {
+  } else if (payload?.isFast || payload?.parseVerification?.isFastDay || payload?.tier === 'Tier 3') {
     fill = "#41c48a"; // Success for Fasting
   }
 

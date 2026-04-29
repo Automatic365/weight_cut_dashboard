@@ -14,6 +14,7 @@ interface HeroIdentitySectionProps {
   radarData: RadarDataPoint[];
   radarMax: number;
   tier: string;
+  isFast: boolean;
   rankState: RankState;
 }
 
@@ -39,10 +40,10 @@ const RadarIconTick = ({ x, y, payload }: { x?: number; y?: number; payload?: { 
 };
 
 // Derive display tag from nutrition tier string
-function tierTag(tier: string): string {
+function tierTag(tier: string, isFast: boolean): string {
+  if (isFast) return 'FAST';
   if (tier === 'Linear') return 'LINEAR CUT';
   if (tier === 'PSMF' || tier === 'Tier 2') return 'PSMF';
-  if (tier === 'Tier 3') return 'FAST';
   return tier.toUpperCase();
 }
 
@@ -65,7 +66,7 @@ function getRankWriteup(rank: string): string {
 }
 
 const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
-  latestAttributes, radarData, radarMax, tier, rankState,
+  latestAttributes, radarData, radarMax, tier, isFast, rankState,
 }) => {
   return (
     <div className="mt-4 ui-card-dark ui-card-interactive overflow-hidden">
@@ -143,7 +144,7 @@ const HeroIdentitySection: React.FC<HeroIdentitySectionProps> = ({
 
           {/* Tag chips */}
           <div className="flex flex-wrap justify-center gap-1.5">
-            <Tag label={tierTag(tier)} />
+            <Tag label={tierTag(tier, isFast)} />
             <Tag label="Muay Thai" />
             <Tag label="Fighter" />
           </div>

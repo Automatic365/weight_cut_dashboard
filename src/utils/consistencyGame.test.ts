@@ -12,6 +12,7 @@ function makeDay(overrides: Partial<ChartDayEntry> = {}): ChartDayEntry {
     waistPlus2: null,
     waistMinus2: null,
     tier: 'Linear',
+    isFast: false,
     status: 'Pass',
     calories: 1600,
     protein: 195,
