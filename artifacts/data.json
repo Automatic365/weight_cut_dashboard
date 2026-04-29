@@ -6,8 +6,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
-    "calories": 2800,
+    "calories": 0,
     "protein": 190,
     "sleep": 6.88,
     "notes": "",
@@ -49,6 +50,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -63,6 +65,7 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 2850,
     "protein": 190,
@@ -106,6 +109,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -121,8 +125,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
-    "calories": 2288,
+    "calories": 0,
     "protein": 190,
     "sleep": 5,
     "notes": "",
@@ -164,6 +169,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -177,6 +183,7 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 2200,
     "protein": 190,
@@ -220,6 +227,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -233,7 +241,8 @@
     "waistNavel": null,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 2",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -277,6 +286,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -290,6 +300,7 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": null,
@@ -333,6 +344,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -344,8 +356,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
-    "calories": 2400,
+    "calories": 2040,
     "protein": 190,
     "sleep": 6.58,
     "notes": "",
@@ -387,6 +400,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein",
@@ -400,7 +414,8 @@
     "waistNavel": 31.53,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 2",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -444,6 +459,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -457,8 +473,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
-    "calories": 2800,
+    "calories": 0,
     "protein": 190,
     "sleep": 6.88,
     "notes": "",
@@ -500,6 +517,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -515,6 +533,7 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -558,6 +577,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -573,8 +593,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Fail",
-    "calories": 2940,
+    "calories": 2350,
     "protein": 190,
     "sleep": 6.88,
     "notes": "",
@@ -616,6 +637,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -630,7 +652,8 @@
     "waistNavel": null,
     "waistPlus2": null,
     "waistMinus2": null,
-    "tier": "Tier 2",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Fail",
     "calories": 3700,
     "protein": 190,
@@ -674,6 +697,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -689,6 +713,7 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": null,
@@ -732,6 +757,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "weight"
@@ -745,8 +771,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
-    "calories": 2400,
+    "calories": 0,
     "protein": 190,
     "sleep": 6.73,
     "notes": "",
@@ -788,6 +815,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -803,6 +831,7 @@
     "waistPlus2": 31.61,
     "waistMinus2": 33.05,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -846,6 +875,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -860,6 +890,7 @@
     "waistPlus2": 31.67,
     "waistMinus2": 33.92,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -903,6 +934,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -918,6 +950,7 @@
     "waistPlus2": 31.53,
     "waistMinus2": null,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -961,6 +994,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -976,6 +1010,7 @@
     "waistPlus2": 31.74,
     "waistMinus2": 32.98,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -1019,6 +1054,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -1033,8 +1069,9 @@
     "waistPlus2": 31.18,
     "waistMinus2": 32.7,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Fail",
-    "calories": 3000,
+    "calories": 0,
     "protein": 190,
     "sleep": 8,
     "notes": "",
@@ -1076,6 +1113,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -1090,6 +1128,7 @@
     "waistPlus2": 31.76,
     "waistMinus2": 32.75,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": null,
@@ -1133,6 +1172,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep"
@@ -1146,6 +1186,7 @@
     "waistPlus2": 32.36,
     "waistMinus2": 33.12,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
     "calories": 2100,
     "protein": 190,
@@ -1189,6 +1230,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -1203,6 +1245,7 @@
     "waistPlus2": 32.57,
     "waistMinus2": 33.11,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -1246,6 +1289,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -1259,7 +1303,8 @@
     "waistNavel": 33.06,
     "waistPlus2": 32.12,
     "waistMinus2": 33.29,
-    "tier": "Tier 1",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 1650,
     "protein": 190,
@@ -1303,6 +1348,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1316,6 +1362,7 @@
     "waistPlus2": null,
     "waistMinus2": 33.3,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1700,
     "protein": 190,
@@ -1359,6 +1406,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -1370,8 +1418,9 @@
     "waistPlus2": 31.47,
     "waistMinus2": 33.31,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
-    "calories": 400,
+    "calories": 1595,
     "protein": 195,
     "sleep": 6.55,
     "notes": "",
@@ -1413,6 +1462,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -1424,6 +1474,7 @@
     "waistPlus2": 31.54,
     "waistMinus2": 32.68,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 2900,
     "protein": 190,
@@ -1467,6 +1518,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "sleep",
@@ -1481,8 +1533,9 @@
     "waistPlus2": 31.88,
     "waistMinus2": 32.62,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
-    "calories": 0,
+    "calories": 1671,
     "protein": 223,
     "sleep": 6.33,
     "notes": "",
@@ -1524,6 +1577,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -1535,6 +1589,7 @@
     "waistPlus2": 32.01,
     "waistMinus2": 33.02,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1630,
     "protein": 190,
@@ -1578,6 +1633,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1591,8 +1647,9 @@
     "waistPlus2": 31.43,
     "waistMinus2": 33.05,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
-    "calories": 435,
+    "calories": 0,
     "protein": 190,
     "sleep": 8,
     "notes": "",
@@ -1634,6 +1691,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1647,6 +1705,7 @@
     "waistPlus2": 32.3,
     "waistMinus2": 32.96,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 1750,
     "protein": 190,
@@ -1690,6 +1749,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1703,8 +1763,9 @@
     "waistPlus2": 32.92,
     "waistMinus2": 32.51,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
-    "calories": 400,
+    "calories": 1650,
     "protein": 190,
     "sleep": 6.1,
     "notes": "",
@@ -1746,6 +1807,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1759,8 +1821,9 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
-    "calories": 120,
+    "calories": 2200,
     "protein": 190,
     "sleep": 7,
     "notes": "",
@@ -1802,6 +1865,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1814,7 +1878,8 @@
     "waistNavel": 32.51,
     "waistPlus2": 31.87,
     "waistMinus2": 32.83,
-    "tier": "Linear",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": 190,
@@ -1858,6 +1923,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -1870,7 +1936,8 @@
     "waistNavel": 31.83,
     "waistPlus2": 32.57,
     "waistMinus2": 32.94,
-    "tier": "Tier 2",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": null,
@@ -1914,6 +1981,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -1925,9 +1993,10 @@
     "waistPlus2": null,
     "waistMinus2": 32.88,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1855,
-    "protein": null,
+    "protein": 227,
     "sleep": 6.87,
     "notes": "",
     "isBossFight": false,
@@ -1951,9 +2020,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 170,
+        "currentLvlXp": 180,
         "nextLvlXp": 300,
-        "totalXp": 470
+        "totalXp": 480
       },
       "resilience": {
         "level": 1,
@@ -1967,7 +2036,8 @@
       "selectedAppParseBlockIndex": null,
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
-      "proteinSource": "unknown",
+      "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -1979,6 +2049,7 @@
     "waistPlus2": 32.99,
     "waistMinus2": 32.64,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2150,
     "protein": 190,
@@ -2005,9 +2076,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 185,
+        "currentLvlXp": 195,
         "nextLvlXp": 300,
-        "totalXp": 485
+        "totalXp": 495
       },
       "resilience": {
         "level": 1,
@@ -2022,6 +2093,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2033,9 +2105,10 @@
     "waistPlus2": null,
     "waistMinus2": 32.51,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
-    "calories": 114,
-    "protein": null,
+    "calories": 1360,
+    "protein": 222,
     "sleep": 6.95,
     "notes": "",
     "isBossFight": false,
@@ -2059,9 +2132,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 190,
+        "currentLvlXp": 210,
         "nextLvlXp": 300,
-        "totalXp": 490
+        "totalXp": 510
       },
       "resilience": {
         "level": 1,
@@ -2075,7 +2148,8 @@
       "selectedAppParseBlockIndex": null,
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
-      "proteinSource": "unknown",
+      "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2087,6 +2161,7 @@
     "waistPlus2": 31.43,
     "waistMinus2": 32.48,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 2200,
     "protein": 190,
@@ -2113,9 +2188,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 205,
+        "currentLvlXp": 225,
         "nextLvlXp": 300,
-        "totalXp": 505
+        "totalXp": 525
       },
       "resilience": {
         "level": 1,
@@ -2130,6 +2205,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -2143,6 +2219,7 @@
     "waistPlus2": null,
     "waistMinus2": null,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Fail",
     "calories": 5600,
     "protein": 190,
@@ -2169,9 +2246,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 220,
+        "currentLvlXp": 240,
         "nextLvlXp": 300,
-        "totalXp": 520
+        "totalXp": 540
       },
       "resilience": {
         "level": 1,
@@ -2186,6 +2263,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -2199,6 +2277,7 @@
     "waistPlus2": 31.94,
     "waistMinus2": 32.6,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1950,
     "protein": 203,
@@ -2225,9 +2304,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 235,
+        "currentLvlXp": 255,
         "nextLvlXp": 300,
-        "totalXp": 535
+        "totalXp": 555
       },
       "resilience": {
         "level": 1,
@@ -2242,6 +2321,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2253,6 +2333,7 @@
     "waistPlus2": 32.11,
     "waistMinus2": 32.79,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 0,
     "protein": null,
@@ -2279,9 +2360,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 240,
+        "currentLvlXp": 260,
         "nextLvlXp": 300,
-        "totalXp": 540
+        "totalXp": 560
       },
       "resilience": {
         "level": 1,
@@ -2296,6 +2377,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2307,9 +2389,10 @@
     "waistPlus2": 31.11,
     "waistMinus2": 32.13,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2240,
-    "protein": 186,
+    "protein": 190,
     "sleep": 7.92,
     "notes": "",
     "isBossFight": false,
@@ -2333,9 +2416,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 245,
+        "currentLvlXp": 275,
         "nextLvlXp": 300,
-        "totalXp": 545
+        "totalXp": 575
       },
       "resilience": {
         "level": 1,
@@ -2350,8 +2433,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -2361,6 +2447,7 @@
     "waistPlus2": 30.47,
     "waistMinus2": 31.89,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2040,
     "protein": 218,
@@ -2387,9 +2474,9 @@
       },
       "strength": {
         "level": 3,
-        "currentLvlXp": 260,
+        "currentLvlXp": 290,
         "nextLvlXp": 300,
-        "totalXp": 560
+        "totalXp": 590
       },
       "resilience": {
         "level": 1,
@@ -2404,6 +2491,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2414,7 +2502,8 @@
     "waistNavel": 31.94,
     "waistPlus2": 31.66,
     "waistMinus2": 32.69,
-    "tier": "Linear",
+    "tier": "Tier 1",
+    "isFast": false,
     "status": "Pass",
     "calories": 1550,
     "protein": 209,
@@ -2440,10 +2529,10 @@
         "totalXp": 395
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 275,
-        "nextLvlXp": 300,
-        "totalXp": 575
+        "level": 4,
+        "currentLvlXp": 5,
+        "nextLvlXp": 400,
+        "totalXp": 605
       },
       "resilience": {
         "level": 1,
@@ -2458,6 +2547,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2469,6 +2559,7 @@
     "waistPlus2": 31.53,
     "waistMinus2": 32.79,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1875,
     "protein": 190,
@@ -2494,10 +2585,10 @@
         "totalXp": 410
       },
       "strength": {
-        "level": 3,
-        "currentLvlXp": 290,
-        "nextLvlXp": 300,
-        "totalXp": 590
+        "level": 4,
+        "currentLvlXp": 20,
+        "nextLvlXp": 400,
+        "totalXp": 620
       },
       "resilience": {
         "level": 1,
@@ -2512,6 +2603,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -2525,6 +2617,7 @@
     "waistPlus2": 31.03,
     "waistMinus2": 32.47,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2500,
     "protein": 190,
@@ -2551,9 +2644,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 5,
+        "currentLvlXp": 35,
         "nextLvlXp": 400,
-        "totalXp": 605
+        "totalXp": 635
       },
       "resilience": {
         "level": 1,
@@ -2568,6 +2661,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2579,6 +2673,7 @@
     "waistPlus2": 31.45,
     "waistMinus2": 32.56,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2310,
     "protein": 200,
@@ -2605,9 +2700,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 20,
+        "currentLvlXp": 50,
         "nextLvlXp": 400,
-        "totalXp": 620
+        "totalXp": 650
       },
       "resilience": {
         "level": 1,
@@ -2622,6 +2717,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2633,6 +2729,7 @@
     "waistPlus2": 31.52,
     "waistMinus2": 32.63,
     "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -2659,9 +2756,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 25,
+        "currentLvlXp": 55,
         "nextLvlXp": 400,
-        "totalXp": 625
+        "totalXp": 655
       },
       "resilience": {
         "level": 1,
@@ -2676,6 +2773,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2687,6 +2785,7 @@
     "waistPlus2": 31.41,
     "waistMinus2": 32.15,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1665,
     "protein": 240,
@@ -2713,9 +2812,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 40,
+        "currentLvlXp": 70,
         "nextLvlXp": 400,
-        "totalXp": 640
+        "totalXp": 670
       },
       "resilience": {
         "level": 1,
@@ -2729,7 +2828,8 @@
       "selectedAppParseBlockIndex": 1,
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
-      "proteinSource": "app_block",
+      "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2741,6 +2841,7 @@
     "waistPlus2": 31.24,
     "waistMinus2": 32.81,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2394,
     "protein": 243,
@@ -2767,9 +2868,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 55,
+        "currentLvlXp": 85,
         "nextLvlXp": 400,
-        "totalXp": 655
+        "totalXp": 685
       },
       "resilience": {
         "level": 1,
@@ -2784,6 +2885,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2795,9 +2897,10 @@
     "waistPlus2": 30.77,
     "waistMinus2": 32.55,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 1413,
-    "protein": 0,
+    "protein": 213,
     "sleep": 6.77,
     "notes": "",
     "isBossFight": false,
@@ -2821,9 +2924,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 60,
+        "currentLvlXp": 100,
         "nextLvlXp": 400,
-        "totalXp": 660
+        "totalXp": 700
       },
       "resilience": {
         "level": 1,
@@ -2837,7 +2940,8 @@
       "selectedAppParseBlockIndex": 1,
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
-      "proteinSource": "app_block",
+      "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "calories"
@@ -2851,6 +2955,7 @@
     "waistPlus2": 31.5,
     "waistMinus2": 32.34,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 1866,
     "protein": 216,
@@ -2877,9 +2982,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 75,
+        "currentLvlXp": 115,
         "nextLvlXp": 400,
-        "totalXp": 675
+        "totalXp": 715
       },
       "resilience": {
         "level": 2,
@@ -2894,6 +2999,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -2905,6 +3011,7 @@
     "waistPlus2": 30.75,
     "waistMinus2": 32.4,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Fail",
     "calories": 4000,
     "protein": 190,
@@ -2931,9 +3038,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 90,
+        "currentLvlXp": 130,
         "nextLvlXp": 400,
-        "totalXp": 690
+        "totalXp": 730
       },
       "resilience": {
         "level": 2,
@@ -2948,6 +3055,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -2961,6 +3069,7 @@
     "waistPlus2": 31.3,
     "waistMinus2": 32.4,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Fail",
     "calories": 3688,
     "protein": 190,
@@ -2987,9 +3096,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 105,
+        "currentLvlXp": 145,
         "nextLvlXp": 400,
-        "totalXp": 705
+        "totalXp": 745
       },
       "resilience": {
         "level": 1,
@@ -3004,6 +3113,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3017,6 +3127,7 @@
     "waistPlus2": 31.55,
     "waistMinus2": 32.94,
     "tier": "Tier 1",
+    "isFast": false,
     "status": "Fail",
     "calories": 2563,
     "protein": 190,
@@ -3043,9 +3154,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 120,
+        "currentLvlXp": 160,
         "nextLvlXp": 400,
-        "totalXp": 720
+        "totalXp": 760
       },
       "resilience": {
         "level": 1,
@@ -3060,6 +3171,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3073,6 +3185,7 @@
     "waistPlus2": 31.71,
     "waistMinus2": 32.98,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1850,
     "protein": 200,
@@ -3099,9 +3212,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 135,
+        "currentLvlXp": 175,
         "nextLvlXp": 400,
-        "totalXp": 735
+        "totalXp": 775
       },
       "resilience": {
         "level": 2,
@@ -3116,6 +3229,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3127,6 +3241,7 @@
     "waistPlus2": 31.34,
     "waistMinus2": 32.29,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 2860,
     "protein": 190,
@@ -3153,9 +3268,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 150,
+        "currentLvlXp": 190,
         "nextLvlXp": 400,
-        "totalXp": 750
+        "totalXp": 790
       },
       "resilience": {
         "level": 2,
@@ -3170,6 +3285,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3183,6 +3299,7 @@
     "waistPlus2": 31.3,
     "waistMinus2": 32.45,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 3375,
     "protein": 190,
@@ -3209,9 +3326,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 165,
+        "currentLvlXp": 205,
         "nextLvlXp": 400,
-        "totalXp": 765
+        "totalXp": 805
       },
       "resilience": {
         "level": 1,
@@ -3226,6 +3343,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3239,6 +3357,7 @@
     "waistPlus2": 31.37,
     "waistMinus2": 32.91,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 3375,
     "protein": 190,
@@ -3265,9 +3384,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 180,
+        "currentLvlXp": 220,
         "nextLvlXp": 400,
-        "totalXp": 780
+        "totalXp": 820
       },
       "resilience": {
         "level": 1,
@@ -3282,6 +3401,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3295,6 +3415,7 @@
     "waistPlus2": 31.38,
     "waistMinus2": 32.59,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Fail",
     "calories": 3500,
     "protein": 190,
@@ -3321,9 +3442,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 195,
+        "currentLvlXp": 235,
         "nextLvlXp": 400,
-        "totalXp": 795
+        "totalXp": 835
       },
       "resilience": {
         "level": 1,
@@ -3338,6 +3459,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "unknown",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3351,6 +3473,7 @@
     "waistPlus2": 31.31,
     "waistMinus2": 32.45,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 1690,
     "protein": 198,
@@ -3377,9 +3500,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 210,
+        "currentLvlXp": 250,
         "nextLvlXp": 400,
-        "totalXp": 810
+        "totalXp": 850
       },
       "resilience": {
         "level": 1,
@@ -3394,6 +3517,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3405,6 +3529,7 @@
     "waistPlus2": 31.94,
     "waistMinus2": 32.32,
     "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -3431,9 +3556,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 215,
+        "currentLvlXp": 255,
         "nextLvlXp": 400,
-        "totalXp": 815
+        "totalXp": 855
       },
       "resilience": {
         "level": 1,
@@ -3448,6 +3573,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3459,6 +3585,7 @@
     "waistPlus2": 31.01,
     "waistMinus2": 32.51,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1681,
     "protein": 206,
@@ -3485,9 +3612,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 230,
+        "currentLvlXp": 270,
         "nextLvlXp": 400,
-        "totalXp": 830
+        "totalXp": 870
       },
       "resilience": {
         "level": 1,
@@ -3502,6 +3629,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3513,6 +3641,7 @@
     "waistPlus2": 31.03,
     "waistMinus2": 32.46,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 2544,
     "protein": 202,
@@ -3539,9 +3668,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 245,
+        "currentLvlXp": 285,
         "nextLvlXp": 400,
-        "totalXp": 845
+        "totalXp": 885
       },
       "resilience": {
         "level": 1,
@@ -3556,6 +3685,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3567,6 +3697,7 @@
     "waistPlus2": 31.1,
     "waistMinus2": 32.23,
     "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -3593,9 +3724,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 250,
+        "currentLvlXp": 290,
         "nextLvlXp": 400,
-        "totalXp": 850
+        "totalXp": 890
       },
       "resilience": {
         "level": 1,
@@ -3610,6 +3741,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3621,6 +3753,7 @@
     "waistPlus2": 30.81,
     "waistMinus2": 32.24,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1700,
     "protein": 200,
@@ -3647,9 +3780,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 265,
+        "currentLvlXp": 305,
         "nextLvlXp": 400,
-        "totalXp": 865
+        "totalXp": 905
       },
       "resilience": {
         "level": 1,
@@ -3664,6 +3797,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3675,6 +3809,7 @@
     "waistPlus2": 30.51,
     "waistMinus2": 31.92,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 1750,
     "protein": 200,
@@ -3701,9 +3836,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 275,
+        "currentLvlXp": 315,
         "nextLvlXp": 400,
-        "totalXp": 875
+        "totalXp": 915
       },
       "resilience": {
         "level": 1,
@@ -3718,6 +3853,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3729,9 +3865,10 @@
     "waistPlus2": 30.72,
     "waistMinus2": 32.2,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 2420,
-    "protein": 173,
+    "protein": 190,
     "sleep": 10.5,
     "notes": "",
     "isBossFight": false,
@@ -3755,9 +3892,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 280,
+        "currentLvlXp": 330,
         "nextLvlXp": 400,
-        "totalXp": 880
+        "totalXp": 930
       },
       "resilience": {
         "level": 1,
@@ -3772,8 +3909,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -3782,7 +3922,8 @@
     "waistNavel": 31.98,
     "waistPlus2": 31.14,
     "waistMinus2": 32.32,
-    "tier": "Tier 2",
+    "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -3809,9 +3950,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 285,
+        "currentLvlXp": 335,
         "nextLvlXp": 400,
-        "totalXp": 885
+        "totalXp": 935
       },
       "resilience": {
         "level": 1,
@@ -3826,6 +3967,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3836,7 +3978,8 @@
     "waistNavel": 30.92,
     "waistPlus2": 30.7,
     "waistMinus2": 31.73,
-    "tier": "Linear",
+    "tier": "Tier 3",
+    "isFast": false,
     "status": "Pass",
     "calories": 1840,
     "protein": 201,
@@ -3863,9 +4006,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 300,
+        "currentLvlXp": 350,
         "nextLvlXp": 400,
-        "totalXp": 900
+        "totalXp": 950
       },
       "resilience": {
         "level": 1,
@@ -3879,7 +4022,8 @@
       "selectedAppParseBlockIndex": 1,
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
-      "proteinSource": "app_block",
+      "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3891,6 +4035,7 @@
     "waistPlus2": 30.89,
     "waistMinus2": 32.07,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 2200,
     "protein": 190,
@@ -3917,9 +4062,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 315,
+        "currentLvlXp": 365,
         "nextLvlXp": 400,
-        "totalXp": 915
+        "totalXp": 965
       },
       "resilience": {
         "level": 1,
@@ -3934,6 +4079,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -3947,6 +4093,7 @@
     "waistPlus2": 31.03,
     "waistMinus2": 32.2,
     "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -3973,9 +4120,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 320,
+        "currentLvlXp": 370,
         "nextLvlXp": 400,
-        "totalXp": 920
+        "totalXp": 970
       },
       "resilience": {
         "level": 1,
@@ -3990,6 +4137,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -3999,8 +4147,9 @@
     "weight": 161.4,
     "waistNavel": 31.48,
     "waistPlus2": 30.96,
-    "waistMinus2": 7,
+    "waistMinus2": 31.75,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 2875,
     "protein": 190,
@@ -4027,9 +4176,9 @@
       },
       "strength": {
         "level": 4,
-        "currentLvlXp": 335,
+        "currentLvlXp": 385,
         "nextLvlXp": 400,
-        "totalXp": 935
+        "totalXp": 985
       },
       "resilience": {
         "level": 1,
@@ -4044,6 +4193,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -4054,11 +4204,12 @@
     "date": "04/03",
     "weight": 162.6,
     "waistNavel": 31.48,
-    "waistPlus2": 31.37,
-    "waistMinus2": 32.46,
+    "waistPlus2": 30.96,
+    "waistMinus2": 32.2,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
-    "calories": 3000,
+    "calories": 2500,
     "protein": 190,
     "sleep": 8.18,
     "notes": "",
@@ -4082,10 +4233,10 @@
         "totalXp": 660
       },
       "strength": {
-        "level": 4,
-        "currentLvlXp": 350,
-        "nextLvlXp": 400,
-        "totalXp": 950
+        "level": 5,
+        "currentLvlXp": 0,
+        "nextLvlXp": 500,
+        "totalXp": 1000
       },
       "resilience": {
         "level": 1,
@@ -4096,10 +4247,11 @@
     },
     "parseVerification": {
       "appParseBlockCount": 2,
-      "selectedAppParseBlockIndex": 2,
+      "selectedAppParseBlockIndex": 1,
       "hasCorrectedAppParseBlock": false,
-      "hasConflictingAppParseBlocks": true,
+      "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -4113,6 +4265,7 @@
     "waistPlus2": 31.17,
     "waistMinus2": 31.94,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1650,
     "protein": 200,
@@ -4138,10 +4291,10 @@
         "totalXp": 675
       },
       "strength": {
-        "level": 4,
-        "currentLvlXp": 365,
-        "nextLvlXp": 400,
-        "totalXp": 965
+        "level": 5,
+        "currentLvlXp": 15,
+        "nextLvlXp": 500,
+        "totalXp": 1015
       },
       "resilience": {
         "level": 1,
@@ -4154,8 +4307,9 @@
       "appParseBlockCount": 2,
       "selectedAppParseBlockIndex": 2,
       "hasCorrectedAppParseBlock": false,
-      "hasConflictingAppParseBlocks": true,
+      "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -4168,7 +4322,8 @@
     "waistNavel": 31.8,
     "waistPlus2": 31.19,
     "waistMinus2": 32.18,
-    "tier": "Linear",
+    "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -4194,10 +4349,10 @@
         "totalXp": 690
       },
       "strength": {
-        "level": 4,
-        "currentLvlXp": 370,
-        "nextLvlXp": 400,
-        "totalXp": 970
+        "level": 5,
+        "currentLvlXp": 20,
+        "nextLvlXp": 500,
+        "totalXp": 1020
       },
       "resilience": {
         "level": 1,
@@ -4212,6 +4367,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4223,6 +4379,7 @@
     "waistPlus2": 30.81,
     "waistMinus2": 31.85,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1875,
     "protein": 190,
@@ -4248,10 +4405,10 @@
         "totalXp": 705
       },
       "strength": {
-        "level": 4,
-        "currentLvlXp": 385,
-        "nextLvlXp": 400,
-        "totalXp": 985
+        "level": 5,
+        "currentLvlXp": 35,
+        "nextLvlXp": 500,
+        "totalXp": 1035
       },
       "resilience": {
         "level": 1,
@@ -4266,6 +4423,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "protein_hit_assertion",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -4274,15 +4432,16 @@
   },
   {
     "date": "04/10",
-    "weight": 163.3,
-    "waistNavel": 31.7,
+    "weight": 162.3,
+    "waistNavel": 31.35,
     "waistPlus2": 30.98,
-    "waistMinus2": 32.2,
+    "waistMinus2": 32.14,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2300,
     "protein": 190,
-    "sleep": 6.4,
+    "sleep": 8,
     "notes": "",
     "isBossFight": true,
     "bossName": "Timeline to Goal\n\nStart",
@@ -4293,9 +4452,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 160,
+        "currentLvlXp": 170,
         "nextLvlXp": 200,
-        "totalXp": 260
+        "totalXp": 270
       },
       "discipline": {
         "level": 4,
@@ -4305,9 +4464,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 0,
+        "currentLvlXp": 50,
         "nextLvlXp": 500,
-        "totalXp": 1000
+        "totalXp": 1050
       },
       "resilience": {
         "level": 1,
@@ -4320,8 +4479,9 @@
       "appParseBlockCount": 2,
       "selectedAppParseBlockIndex": 2,
       "hasCorrectedAppParseBlock": false,
-      "hasConflictingAppParseBlocks": true,
-      "proteinSource": "protein_hit_assertion",
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": true,
       "overrideFields": [
         "protein"
@@ -4334,7 +4494,8 @@
     "waistNavel": 31.31,
     "waistPlus2": 30.62,
     "waistMinus2": 31.51,
-    "tier": "Linear",
+    "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -4349,9 +4510,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 180,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 280
       },
       "discipline": {
         "level": 4,
@@ -4361,9 +4522,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 5,
+        "currentLvlXp": 55,
         "nextLvlXp": 500,
-        "totalXp": 1005
+        "totalXp": 1055
       },
       "resilience": {
         "level": 1,
@@ -4378,21 +4539,23 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
   },
   {
     "date": "04/13",
-    "weight": 161.2,
-    "waistNavel": 30.58,
-    "waistPlus2": 30.37,
-    "waistMinus2": 31.25,
+    "weight": 162.5,
+    "waistNavel": 31.44,
+    "waistPlus2": 30.58,
+    "waistMinus2": 31.82,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1840,
     "protein": 200,
-    "sleep": 6.4,
+    "sleep": 7.18,
     "notes": "",
     "isBossFight": false,
     "bossName": null,
@@ -4403,9 +4566,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 190,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 290
       },
       "discipline": {
         "level": 4,
@@ -4415,9 +4578,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 20,
+        "currentLvlXp": 70,
         "nextLvlXp": 500,
-        "totalXp": 1020
+        "totalXp": 1070
       },
       "resilience": {
         "level": 1,
@@ -4430,8 +4593,9 @@
       "appParseBlockCount": 2,
       "selectedAppParseBlockIndex": 2,
       "hasCorrectedAppParseBlock": true,
-      "hasConflictingAppParseBlocks": true,
+      "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4442,7 +4606,8 @@
     "waistNavel": 31.98,
     "waistPlus2": 30.81,
     "waistMinus2": 32.05,
-    "tier": "Linear",
+    "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -4457,9 +4622,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 190,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 290
       },
       "discipline": {
         "level": 4,
@@ -4469,9 +4634,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 25,
+        "currentLvlXp": 75,
         "nextLvlXp": 500,
-        "totalXp": 1025
+        "totalXp": 1075
       },
       "resilience": {
         "level": 1,
@@ -4486,6 +4651,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4497,9 +4663,10 @@
     "waistPlus2": 30.67,
     "waistMinus2": 31.44,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1969,
-    "protein": 188,
+    "protein": 190,
     "sleep": 6.6,
     "notes": "",
     "isBossFight": true,
@@ -4511,9 +4678,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 190,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 290
       },
       "discipline": {
         "level": 4,
@@ -4523,9 +4690,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 30,
+        "currentLvlXp": 90,
         "nextLvlXp": 500,
-        "totalXp": 1030
+        "totalXp": 1090
       },
       "resilience": {
         "level": 2,
@@ -4540,8 +4707,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -4551,6 +4721,7 @@
     "waistPlus2": 30.42,
     "waistMinus2": 31.57,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1400,
     "protein": 190,
@@ -4565,9 +4736,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 165,
+        "currentLvlXp": 185,
         "nextLvlXp": 200,
-        "totalXp": 265
+        "totalXp": 285
       },
       "discipline": {
         "level": 4,
@@ -4577,9 +4748,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 45,
+        "currentLvlXp": 105,
         "nextLvlXp": 500,
-        "totalXp": 1045
+        "totalXp": 1105
       },
       "resilience": {
         "level": 2,
@@ -4594,6 +4765,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4605,9 +4777,10 @@
     "waistPlus2": 30.2,
     "waistMinus2": 31.53,
     "tier": "Tier 3",
+    "isFast": false,
     "status": "Fail",
     "calories": 3625,
-    "protein": 128,
+    "protein": 190,
     "sleep": 8.92,
     "notes": "",
     "isBossFight": true,
@@ -4619,9 +4792,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 175,
+        "currentLvlXp": 195,
         "nextLvlXp": 200,
-        "totalXp": 275
+        "totalXp": 295
       },
       "discipline": {
         "level": 4,
@@ -4631,9 +4804,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 50,
+        "currentLvlXp": 120,
         "nextLvlXp": 500,
-        "totalXp": 1050
+        "totalXp": 1120
       },
       "resilience": {
         "level": 2,
@@ -4648,8 +4821,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -4659,9 +4835,10 @@
     "waistPlus2": 30.42,
     "waistMinus2": 31.35,
     "tier": "Tier 2",
+    "isFast": false,
     "status": "Pass",
     "calories": 1937,
-    "protein": 160,
+    "protein": 190,
     "sleep": 6.75,
     "notes": "",
     "isBossFight": false,
@@ -4673,9 +4850,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 175,
+        "currentLvlXp": 195,
         "nextLvlXp": 200,
-        "totalXp": 275
+        "totalXp": 295
       },
       "discipline": {
         "level": 4,
@@ -4685,9 +4862,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 55,
+        "currentLvlXp": 135,
         "nextLvlXp": 500,
-        "totalXp": 1055
+        "totalXp": 1135
       },
       "resilience": {
         "level": 2,
@@ -4702,8 +4879,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -4713,6 +4893,7 @@
     "waistPlus2": 30.68,
     "waistMinus2": 31.6,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2231,
     "protein": 216,
@@ -4727,9 +4908,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 190,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 290
       },
       "discipline": {
         "level": 4,
@@ -4739,9 +4920,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 70,
+        "currentLvlXp": 150,
         "nextLvlXp": 500,
-        "totalXp": 1070
+        "totalXp": 1150
       },
       "resilience": {
         "level": 2,
@@ -4756,6 +4937,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "raw_daily_total",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4767,6 +4949,7 @@
     "waistPlus2": 30.31,
     "waistMinus2": 31.17,
     "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -4781,9 +4964,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 190,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 290
       },
       "discipline": {
         "level": 4,
@@ -4793,9 +4976,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 75,
+        "currentLvlXp": 155,
         "nextLvlXp": 500,
-        "totalXp": 1075
+        "totalXp": 1155
       },
       "resilience": {
         "level": 2,
@@ -4810,6 +4993,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": true,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4821,9 +5005,10 @@
     "waistPlus2": 30.74,
     "waistMinus2": 31.17,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 2188,
-    "protein": 176,
+    "protein": 190,
     "sleep": 6.2,
     "notes": "",
     "isBossFight": false,
@@ -4835,9 +5020,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 170,
+        "currentLvlXp": 190,
         "nextLvlXp": 200,
-        "totalXp": 270
+        "totalXp": 290
       },
       "discipline": {
         "level": 4,
@@ -4847,9 +5032,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 80,
+        "currentLvlXp": 170,
         "nextLvlXp": 500,
-        "totalXp": 1080
+        "totalXp": 1170
       },
       "resilience": {
         "level": 2,
@@ -4864,8 +5049,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -4875,9 +5063,10 @@
     "waistPlus2": 31.61,
     "waistMinus2": 31.61,
     "tier": "Linear",
+    "isFast": false,
     "status": "Fail",
     "calories": 2500,
-    "protein": 169,
+    "protein": 190,
     "sleep": 5.77,
     "notes": "",
     "isBossFight": false,
@@ -4889,9 +5078,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 165,
+        "currentLvlXp": 185,
         "nextLvlXp": 200,
-        "totalXp": 265
+        "totalXp": 285
       },
       "discipline": {
         "level": 4,
@@ -4901,9 +5090,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 85,
+        "currentLvlXp": 185,
         "nextLvlXp": 500,
-        "totalXp": 1085
+        "totalXp": 1185
       },
       "resilience": {
         "level": 2,
@@ -4918,8 +5107,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -4929,6 +5121,7 @@
     "waistPlus2": 30.96,
     "waistMinus2": 31.95,
     "tier": "Tier 3",
+    "isFast": true,
     "status": "Pass",
     "calories": 0,
     "protein": 0,
@@ -4943,9 +5136,9 @@
     "attributes": {
       "vitality": {
         "level": 2,
-        "currentLvlXp": 175,
+        "currentLvlXp": 195,
         "nextLvlXp": 200,
-        "totalXp": 275
+        "totalXp": 295
       },
       "discipline": {
         "level": 4,
@@ -4955,9 +5148,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 90,
+        "currentLvlXp": 190,
         "nextLvlXp": 500,
-        "totalXp": 1090
+        "totalXp": 1190
       },
       "resilience": {
         "level": 2,
@@ -4972,6 +5165,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": true,
       "hasOverrides": false,
       "overrideFields": []
     }
@@ -4983,9 +5177,10 @@
     "waistPlus2": 30.22,
     "waistMinus2": 31.38,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1875,
-    "protein": 154,
+    "protein": 190,
     "sleep": 7.23,
     "notes": "",
     "isBossFight": false,
@@ -4996,10 +5191,10 @@
     "adherenceScore": 95,
     "attributes": {
       "vitality": {
-        "level": 2,
-        "currentLvlXp": 185,
-        "nextLvlXp": 200,
-        "totalXp": 285
+        "level": 3,
+        "currentLvlXp": 5,
+        "nextLvlXp": 300,
+        "totalXp": 305
       },
       "discipline": {
         "level": 4,
@@ -5009,9 +5204,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 95,
+        "currentLvlXp": 205,
         "nextLvlXp": 500,
-        "totalXp": 1095
+        "totalXp": 1205
       },
       "resilience": {
         "level": 2,
@@ -5026,8 +5221,11 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
-      "hasOverrides": false,
-      "overrideFields": []
+      "isFastDay": false,
+      "hasOverrides": true,
+      "overrideFields": [
+        "protein"
+      ]
     }
   },
   {
@@ -5037,6 +5235,7 @@
     "waistPlus2": 30.6,
     "waistMinus2": 31.89,
     "tier": "Linear",
+    "isFast": false,
     "status": "Pass",
     "calories": 1810,
     "protein": 254,
@@ -5050,10 +5249,10 @@
     "adherenceScore": 99,
     "attributes": {
       "vitality": {
-        "level": 2,
-        "currentLvlXp": 185,
-        "nextLvlXp": 200,
-        "totalXp": 285
+        "level": 3,
+        "currentLvlXp": 5,
+        "nextLvlXp": 300,
+        "totalXp": 305
       },
       "discipline": {
         "level": 4,
@@ -5063,9 +5262,9 @@
       },
       "strength": {
         "level": 5,
-        "currentLvlXp": 110,
+        "currentLvlXp": 220,
         "nextLvlXp": 500,
-        "totalXp": 1110
+        "totalXp": 1220
       },
       "resilience": {
         "level": 2,
@@ -5080,6 +5279,7 @@
       "hasCorrectedAppParseBlock": false,
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
