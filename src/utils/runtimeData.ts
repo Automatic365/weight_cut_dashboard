@@ -2,7 +2,7 @@ import fallbackData from '../data.json';
 import fallbackSyncMetadata from '../sync-metadata.json';
 import type { DashboardDataLoadResult, DayEntry, SyncMetadata } from '../types';
 
-const DEFAULT_DATA_BASE_URL = 'https://raw.githubusercontent.com/Automatic365/weight_cut_dashboard/data/artifacts';
+const DEFAULT_DATA_BASE_URL = 'https://raw.githubusercontent.com/Automatic365/weight_cut_dashboard/refs/heads/data/artifacts';
 
 function getDataBaseUrl(explicitBaseUrl?: string): string {
   const configured = explicitBaseUrl ?? import.meta.env.VITE_DATA_BASE_URL ?? DEFAULT_DATA_BASE_URL;
