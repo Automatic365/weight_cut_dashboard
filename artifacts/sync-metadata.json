@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-04-29T14:26:24.198Z",
-  "trigger": "manual",
-  "source": "local_file",
-  "remoteUrl": null,
-  "lastLogDate": "04/28",
-  "lastLogDateIso": "2026-04-28",
-  "totalDays": 92
+  "generatedAt": "2026-04-30T15:22:22.294Z",
+  "trigger": "schedule",
+  "source": "remote_url",
+  "remoteUrl": "https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md",
+  "lastLogDate": "04/29",
+  "lastLogDateIso": "2026-04-29",
+  "totalDays": 93
 }
