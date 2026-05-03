@@ -5395,5 +5395,61 @@
       "hasOverrides": false,
       "overrideFields": []
     }
+  },
+  {
+    "date": "05/01",
+    "weight": 159.7,
+    "waistNavel": 30.42,
+    "waistPlus2": 30.24,
+    "waistMinus2": 31.25,
+    "tier": "Tier 2",
+    "isFast": false,
+    "status": "Fail",
+    "calories": 0,
+    "protein": null,
+    "sleep": 5.77,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 70,
+    "attributes": {
+      "vitality": {
+        "level": 3,
+        "currentLvlXp": 0,
+        "nextLvlXp": 300,
+        "totalXp": 300
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 305,
+        "nextLvlXp": 400,
+        "totalXp": 905
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 245,
+        "nextLvlXp": 500,
+        "totalXp": 1245
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 20,
+        "nextLvlXp": 200,
+        "totalXp": 120
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "isFastDay": false,
+      "hasOverrides": false,
+      "overrideFields": []
+    }
   }
 ]
