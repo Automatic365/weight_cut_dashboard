@@ -33,11 +33,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Log Dispatch Payload
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          echo "Repository dispatch payload:"
+          echo '${{ toJson(github.event.client_payload) }}'
+
       - name: Sync Markdown Logs to JSON
         run: npm run sync
         env:
           DAILY_LOG_URL: 'https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md'
           SYNC_TRIGGER: ${{ github.event_name }}
+          SYNC_DISPATCH_PAYLOAD: ${{ github.event_name == 'repository_dispatch' && toJson(github.event.client_payload) || '' }}
 
       - name: Validate Sync Artifacts
         id: validate_sync

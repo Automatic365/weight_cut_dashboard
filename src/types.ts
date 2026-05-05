@@ -32,6 +32,7 @@ export interface SyncMetadata {
   trigger: string;
   source: 'local_file' | 'remote_url';
   remoteUrl: string | null;
+  dispatchPayload?: Record<string, unknown> | null;
   lastLogDate: string | null;
   lastLogDateIso?: string | null;
   totalDays: number;

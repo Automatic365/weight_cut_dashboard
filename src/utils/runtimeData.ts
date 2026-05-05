@@ -9,6 +9,18 @@ function getDataBaseUrl(explicitBaseUrl?: string): string {
   return configured.replace(/\/+$/, '');
 }
 
+function getCacheBustValue(cacheBust: LoadDashboardDataOptions['cacheBust']): string | null {
+  if (cacheBust === false) return null;
+  if (typeof cacheBust === 'string') return cacheBust;
+  return `${Date.now()}`;
+}
+
+function withCacheBust(url: string, cacheBustValue: string | null): string {
+  if (!cacheBustValue) return url;
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}v=${encodeURIComponent(cacheBustValue)}`;
+}
+
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value != null;
 }
@@ -23,6 +35,7 @@ function isSyncMetadata(value: unknown): value is SyncMetadata {
     && typeof value.trigger === 'string'
     && typeof value.source === 'string'
     && (typeof value.remoteUrl === 'string' || value.remoteUrl === null)
+    && (!('dispatchPayload' in value) || isObject(value.dispatchPayload) || value.dispatchPayload === null)
     && (typeof value.lastLogDate === 'string' || value.lastLogDate === null)
     && (value.lastLogDateIso == null || typeof value.lastLogDateIso === 'string')
     && Number.isInteger(value.totalDays);
@@ -41,6 +54,7 @@ function readFallbackSnapshot(
 
 export interface LoadDashboardDataOptions {
   baseUrl?: string;
+  cacheBust?: string | false;
   fetchImpl?: typeof fetch;
   fallbackData?: unknown;
   fallbackSyncMetadata?: unknown;
@@ -51,8 +65,9 @@ export async function loadDashboardData(
 ): Promise<DashboardDataLoadResult> {
   const fetchImpl = options.fetchImpl ?? fetch;
   const baseUrl = getDataBaseUrl(options.baseUrl);
-  const dataUrl = `${baseUrl}/data.json`;
-  const metadataUrl = `${baseUrl}/sync-metadata.json`;
+  const cacheBustValue = getCacheBustValue(options.cacheBust);
+  const dataUrl = withCacheBust(`${baseUrl}/data.json`, cacheBustValue);
+  const metadataUrl = withCacheBust(`${baseUrl}/sync-metadata.json`, cacheBustValue);
 
   try {
     const [dataResponse, metadataResponse] = await Promise.all([

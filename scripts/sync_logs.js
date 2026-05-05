@@ -1049,6 +1049,22 @@ function resolveLocalLogPath() {
   return path.resolve(configuredPath);
 }
 
+function parseOptionalJsonEnv(name) {
+  const rawValue = process.env[name];
+  if (!rawValue) return null;
+
+  try {
+    const parsed = JSON.parse(rawValue);
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) return parsed;
+    console.warn(`Ignoring ${name}: expected a JSON object.`);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn(`Ignoring ${name}: invalid JSON (${message}).`);
+  }
+
+  return null;
+}
+
 async function main() {
   let content = '';
   let contentSource = 'local_file';
@@ -1083,11 +1099,13 @@ async function main() {
 
     const entries = parseLogContent(content, overrides, { printDiagnostics: true });
     const lastLogDate = entries.length > 0 ? entries[entries.length - 1].date : null;
+    const dispatchPayload = parseOptionalJsonEnv('SYNC_DISPATCH_PAYLOAD');
     const syncMetadata = {
       generatedAt: new Date().toISOString(),
       trigger: process.env.GITHUB_EVENT_NAME || process.env.SYNC_TRIGGER || 'manual',
       source: contentSource,
       remoteUrl: REMOTE_URL || null,
+      dispatchPayload,
       lastLogDate,
       lastLogDateIso: toIsoDateFromMonthDay(lastLogDate),
       totalDays: entries.length,

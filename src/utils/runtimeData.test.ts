@@ -54,12 +54,92 @@ describe('loadDashboardData', () => {
       .mockResolvedValueOnce(okResponse(validData))
       .mockResolvedValueOnce(okResponse(validMetadata));
 
-    const result = await loadDashboardData({ fetchImpl: fetchImpl as unknown as typeof fetch, baseUrl: 'https://example.test/artifacts' });
+    const result = await loadDashboardData({
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+      baseUrl: 'https://example.test/artifacts',
+      cacheBust: false,
+    });
 
     expect(result.dataSource).toBe('live');
     expect(result.data?.length).toBe(1);
     expect(result.syncMetadata?.lastLogDateIso).toBe('2026-04-18');
     expect(fetchImpl).toHaveBeenCalledTimes(2);
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      1,
+      'https://example.test/artifacts/data.json',
+      { cache: 'no-store' },
+    );
+  });
+
+  it('uses one cache-busting value for both runtime artifact requests', async () => {
+    const fetchImpl = vi.fn()
+      .mockResolvedValueOnce(okResponse(validData))
+      .mockResolvedValueOnce(okResponse(validMetadata));
+
+    await loadDashboardData({
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+      baseUrl: 'https://example.test/artifacts',
+      cacheBust: 'run-123',
+    });
+
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      1,
+      'https://example.test/artifacts/data.json?v=run-123',
+      { cache: 'no-store' },
+    );
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      2,
+      'https://example.test/artifacts/sync-metadata.json?v=run-123',
+      { cache: 'no-store' },
+    );
+  });
+
+  it('cache-busts runtime artifact requests by default', async () => {
+    const nowSpy = vi.spyOn(Date, 'now').mockReturnValue(1777998000000);
+    const fetchImpl = vi.fn()
+      .mockResolvedValueOnce(okResponse(validData))
+      .mockResolvedValueOnce(okResponse(validMetadata));
+
+    await loadDashboardData({
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+      baseUrl: 'https://example.test/artifacts',
+    });
+
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      1,
+      'https://example.test/artifacts/data.json?v=1777998000000',
+      { cache: 'no-store' },
+    );
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      2,
+      'https://example.test/artifacts/sync-metadata.json?v=1777998000000',
+      { cache: 'no-store' },
+    );
+
+    nowSpy.mockRestore();
+  });
+
+  it('can disable runtime artifact cache busting', async () => {
+    const fetchImpl = vi.fn()
+      .mockResolvedValueOnce(okResponse(validData))
+      .mockResolvedValueOnce(okResponse(validMetadata));
+
+    await loadDashboardData({
+      fetchImpl: fetchImpl as unknown as typeof fetch,
+      baseUrl: 'https://example.test/artifacts',
+      cacheBust: false,
+    });
+
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      1,
+      'https://example.test/artifacts/data.json',
+      { cache: 'no-store' },
+    );
+    expect(fetchImpl).toHaveBeenNthCalledWith(
+      2,
+      'https://example.test/artifacts/sync-metadata.json',
+      { cache: 'no-store' },
+    );
   });
 
   it('falls back to local snapshot when runtime fetch fails', async () => {
