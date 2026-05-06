@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-05-05T16:18:46.683Z",
-  "trigger": "workflow_dispatch",
+  "generatedAt": "2026-05-06T15:33:32.807Z",
+  "trigger": "schedule",
   "source": "remote_url",
   "remoteUrl": "https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md",
+  "dispatchPayload": null,
   "lastLogDate": "05/04",
   "lastLogDateIso": "2026-05-04",
   "totalDays": 97
