@@ -595,7 +595,7 @@
     "tier": "Tier 2",
     "isFast": false,
     "status": "Fail",
-    "calories": 2100,
+    "calories": 2350,
     "protein": 190,
     "sleep": 6.88,
     "notes": "",
@@ -5672,6 +5672,62 @@
       "hasConflictingAppParseBlocks": false,
       "proteinSource": "app_block",
       "isFastDay": true,
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "05/07",
+    "weight": 158,
+    "waistNavel": 30.27,
+    "waistPlus2": 29.92,
+    "waistMinus2": 31.12,
+    "tier": "Tier 2",
+    "isFast": false,
+    "status": "Pass",
+    "calories": 2050,
+    "protein": 205,
+    "sleep": 5.6,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": "Mother's Day Houston Trip",
+    "shield": 3,
+    "streak": 3,
+    "adherenceScore": 89,
+    "attributes": {
+      "vitality": {
+        "level": 3,
+        "currentLvlXp": 15,
+        "nextLvlXp": 300,
+        "totalXp": 315
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 345,
+        "nextLvlXp": 400,
+        "totalXp": 945
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 295,
+        "nextLvlXp": 500,
+        "totalXp": 1295
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 70,
+        "nextLvlXp": 200,
+        "totalXp": 170
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "isFastDay": false,
       "hasOverrides": false,
       "overrideFields": []
     }
