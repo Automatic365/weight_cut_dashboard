@@ -5731,5 +5731,61 @@
       "hasOverrides": false,
       "overrideFields": []
     }
+  },
+  {
+    "date": "05/12",
+    "weight": 165.7,
+    "waistNavel": 31.53,
+    "waistPlus2": 30.97,
+    "waistMinus2": 31.73,
+    "tier": "Linear",
+    "isFast": false,
+    "status": "Pass",
+    "calories": 1850,
+    "protein": 190,
+    "sleep": 6.08,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Social Outing",
+    "upcomingBossName": null,
+    "shield": 3,
+    "streak": 3,
+    "adherenceScore": null,
+    "attributes": {
+      "vitality": {
+        "level": 3,
+        "currentLvlXp": 15,
+        "nextLvlXp": 300,
+        "totalXp": 315
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 350,
+        "nextLvlXp": 400,
+        "totalXp": 950
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 310,
+        "nextLvlXp": 500,
+        "totalXp": 1310
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 120,
+        "nextLvlXp": 200,
+        "totalXp": 220
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "isFastDay": false,
+      "hasOverrides": false,
+      "overrideFields": []
+    }
   }
 ]
