@@ -5946,10 +5946,10 @@
       }
     },
     "parseVerification": {
-      "appParseBlockCount": 1,
-      "selectedAppParseBlockIndex": 1,
+      "appParseBlockCount": 2,
+      "selectedAppParseBlockIndex": 2,
       "hasCorrectedAppParseBlock": false,
-      "hasConflictingAppParseBlocks": false,
+      "hasConflictingAppParseBlocks": true,
       "proteinSource": "app_block",
       "isFastDay": false,
       "hasOverrides": false,
