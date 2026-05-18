@@ -5955,5 +5955,117 @@
       "hasOverrides": false,
       "overrideFields": []
     }
+  },
+  {
+    "date": "05/16",
+    "weight": 162.9,
+    "waistNavel": 31.4,
+    "waistPlus2": 30.68,
+    "waistMinus2": 31.19,
+    "tier": "Tier 2",
+    "isFast": false,
+    "status": "Fail",
+    "calories": 0,
+    "protein": null,
+    "sleep": 8.45,
+    "notes": "",
+    "isBossFight": true,
+    "bossName": "Birthday Party",
+    "upcomingBossName": null,
+    "shield": 0,
+    "streak": 0,
+    "adherenceScore": 78,
+    "attributes": {
+      "vitality": {
+        "level": 3,
+        "currentLvlXp": 20,
+        "nextLvlXp": 300,
+        "totalXp": 320
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 370,
+        "nextLvlXp": 400,
+        "totalXp": 970
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 350,
+        "nextLvlXp": 500,
+        "totalXp": 1350
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 100,
+        "nextLvlXp": 200,
+        "totalXp": 200
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "unknown",
+      "isFastDay": false,
+      "hasOverrides": false,
+      "overrideFields": []
+    }
+  },
+  {
+    "date": "05/17",
+    "weight": 164.7,
+    "waistNavel": 31.32,
+    "waistPlus2": 30.83,
+    "waistMinus2": 31.77,
+    "tier": "Tier 3",
+    "isFast": true,
+    "status": "Pass",
+    "calories": 0,
+    "protein": 0,
+    "sleep": 7.18,
+    "notes": "",
+    "isBossFight": false,
+    "bossName": null,
+    "upcomingBossName": null,
+    "shield": 1,
+    "streak": 1,
+    "adherenceScore": 100,
+    "attributes": {
+      "vitality": {
+        "level": 3,
+        "currentLvlXp": 30,
+        "nextLvlXp": 300,
+        "totalXp": 330
+      },
+      "discipline": {
+        "level": 4,
+        "currentLvlXp": 380,
+        "nextLvlXp": 400,
+        "totalXp": 980
+      },
+      "strength": {
+        "level": 5,
+        "currentLvlXp": 350,
+        "nextLvlXp": 500,
+        "totalXp": 1350
+      },
+      "resilience": {
+        "level": 2,
+        "currentLvlXp": 100,
+        "nextLvlXp": 200,
+        "totalXp": 200
+      }
+    },
+    "parseVerification": {
+      "appParseBlockCount": 1,
+      "selectedAppParseBlockIndex": 1,
+      "hasCorrectedAppParseBlock": false,
+      "hasConflictingAppParseBlocks": false,
+      "proteinSource": "app_block",
+      "isFastDay": true,
+      "hasOverrides": false,
+      "overrideFields": []
+    }
   }
 ]
