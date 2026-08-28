@@ -1,15 +1,9 @@
 {
-  "generatedAt": "2026-08-28T14:45:58.413Z",
-  "trigger": "repository_dispatch",
+  "generatedAt": "2026-08-28T23:01:29.058Z",
+  "trigger": "schedule",
   "source": "remote_url",
   "remoteUrl": "https://raw.githubusercontent.com/Automatic365/daily_nutrition_logs/main/daily_log.md",
-  "dispatchPayload": {
-    "source_path": "daily_log.md",
-    "source_ref": "refs/heads/main",
-    "source_repo": "Automatic365/daily_nutrition_logs",
-    "source_run_id": 33181028938,
-    "source_sha": "ab5726182dcf7fc92e6eff8e684bb61b238721a3"
-  },
+  "dispatchPayload": null,
   "lastLogDate": "08/27",
   "lastLogDateIso": "2026-08-27",
   "totalDays": 114
